@@ -1,0 +1,36 @@
+/* Motion layer: only opacity and transforms are animated. */
+:root{--ease-out:cubic-bezier(.16,1,.3,1)}
+html{overflow-x:clip}body{overflow-x:clip}.skip{z-index:1100}
+.booting body{overflow:hidden}
+.intro{display:none;position:fixed;inset:0;z-index:1000;background:var(--blue);color:var(--ink);align-items:center;justify-content:center;isolation:isolate;transition:transform .75s var(--ease-out),visibility .75s;overflow:hidden}
+.booting .intro,.intro.leaving{display:flex}.intro.leaving{transform:translateY(-102%);visibility:hidden;pointer-events:none}
+.intro:before{content:'';position:absolute;inset:0;z-index:-1;background:url('assets/paper.webp');opacity:.2;pointer-events:none}
+.intro-top,.intro-bottom{position:absolute;left:clamp(24px,5vw,80px);right:clamp(24px,5vw,80px);display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.intro-top{top:max(28px,env(safe-area-inset-top))}.intro-bottom{bottom:max(28px,env(safe-area-inset-bottom))}.intro-skip{background:none;border:1px solid var(--ink);border-radius:30px;min-height:44px;padding:8px 18px;font:inherit;letter-spacing:inherit}
+.intro-center{text-align:center;width:min(650px,90%)}.intro-doodle{width:148px;height:148px;border:1.5px solid var(--ink);border-radius:50%;margin:0 auto 22px;overflow:hidden;transform:rotate(-7deg);background:var(--paper)}.intro-doodle img{display:block;width:100%;height:100%;object-fit:cover}.intro-title{font-family:var(--display);font-size:clamp(80px,16vw,180px);line-height:1;letter-spacing:-.04em}.intro-title span{color:var(--paper)}.intro-caption{font-size:12px;margin:20px auto 30px}.intro-meter{width:min(260px,70%);height:2px;background:rgba(9,27,32,.2);margin:auto;overflow:hidden}.intro-meter span{display:block;height:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}.intro-count{font-variant-numeric:tabular-nums}
+.hero-sticker>span{font-size:8px}.scroll-progress{position:fixed;left:0;top:0;width:100%;height:3px;transform:scaleX(0);transform-origin:left;z-index:30;background:var(--yellow);pointer-events:none}
+.js .reveal{transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);transition-delay:var(--reveal-delay,0ms);transform:translateY(26px)}.js .reveal.visible{transform:none}
+.hero-title{overflow:hidden}.hero-title .title-part{display:inline-block;color:inherit}.hero-title .title-part:last-child{color:var(--paper)}
+.entering .hero-title .title-part{animation:title-arrive 1s var(--ease-out) both}.entering .hero-title .title-part:last-child{animation-delay:.09s}
+.entering .hero-bottom,.entering .speech,.entering .hero-sticker{animation:ink-arrive .85s var(--ease-out) both}.entering .hero-bottom{animation-delay:.22s}.entering .speech{animation-delay:.38s}.entering .hero-sticker{animation-delay:.48s}
+@keyframes title-arrive{from{opacity:0;transform:translateY(105%) rotate(3deg)}to{opacity:1;transform:none}}
+@keyframes ink-arrive{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
+.wave-arm{animation-duration:6s;transform-box:view-box}
+@keyframes wave{0%,12%,62%,100%{transform:rotate(0deg)}24%,44%{transform:rotate(10deg)}34%,53%{transform:rotate(-7deg)}}
+.marquee-track{animation-name:marquee-seamless}@keyframes marquee-seamless{to{transform:translateX(calc(-50% - 24px))}}
+.nav-links a[aria-current="location"]:after{width:100%}
+.btn .arrow{transition:transform .3s var(--ease-out)}.btn:active{transform:translateY(1px);box-shadow:none}
+.art-card{transform:perspective(900px) rotate(-6deg) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .45s var(--ease-out)}
+.token-card .corner{transition:transform .5s var(--ease-out)}.text-link{transition:gap .3s var(--ease-out)}
+.faq summary:after{transition:transform .3s var(--ease-out)}.faq details[open] summary:after{content:'+';transform:rotate(45deg)}.faq details[open] p{animation:answer-in .3s ease-out}
+@keyframes answer-in{from{opacity:0;transform:translateY(-5px)}to{opacity:.8;transform:none}}
+dialog[open]{animation:dialog-in .3s var(--ease-out)}@keyframes dialog-in{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+body:has(dialog[open]){overflow:hidden}
+body.motion-off *,body.motion-off *:before,body.motion-off *:after,body.page-hidden *,body.page-hidden *:before,body.page-hidden *:after{animation-play-state:paused!important}
+body.motion-off .reveal{opacity:1;transform:none;transition:none}body.motion-off .entering *,body.motion-off.entering .hero-title .title-part,body.motion-off.entering .hero-bottom,body.motion-off.entering .speech,body.motion-off.entering .hero-sticker{animation:none}
+body.motion-off .art-card{transform:rotate(-6deg)}body.motion-off *,body.motion-off *:before,body.motion-off *:after{transition:none!important}html:has(body.motion-off){scroll-behavior:auto}
+@media(hover:hover) and (pointer:fine){.btn:hover .arrow{transform:translate(3px,-3px)}.text-link:hover{gap:22px}.token-card:hover .corner{transform:rotate(45deg)}}
+@media(hover:none){.btn:hover{transform:none;box-shadow:none}}
+@media(max-width:760px){.hero-topline{align-items:flex-start;gap:12px}.hero-topline .eyebrow{max-width:48%}.tiny-status{max-width:48%;text-align:right;justify-content:flex-end}.hero-foot{letter-spacing:.03em;gap:10px}.motion-button{min-height:44px}.footer-links a{padding:8px 0}.nav-links.open{animation:answer-in .25s ease-out}.intro-doodle{width:115px;height:115px}.intro-top,.intro-bottom{font-size:9px;letter-spacing:.06em}.intro-bottom span:first-child{max-width:190px}.token-card .num{font-size:clamp(70px,18vw,90px)}.world h2{font-size:clamp(45px,12vw,59px)}.section-header h2{font-size:clamp(40px,10.5vw,52px)}}
+@media(max-width:380px){.hero-actions{gap:16px}.hero-actions .btn{gap:20px;padding:14px 18px}.hero-foot>span{max-width:85px}.hero-sticker{width:86px;height:86px}.hero-sticker>span{font-size:6.5px}.hero-sticker strong{font-size:27px}.speech{right:0;font-size:12px}.brand small{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.intro{transition:none}.intro-doodle{transform:none}.js .reveal{opacity:1;transform:none}*,*:before,*:after{animation:none!important;transition:none!important}}
