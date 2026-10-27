@@ -1,0 +1,24 @@
+/* Fluid pointer: real text remains selectable and accessible underneath its ink.
+   No fixed cursor, canvas trail, layout reflow, or mouse-driven character travel. */
+water-word{display:inline-block;position:relative;white-space:nowrap;vertical-align:baseline}
+water-source{display:inline}
+water-ink{position:absolute;inset:0;display:block;pointer-events:none;user-select:none;visibility:hidden}
+water-glyph{position:absolute;top:0;display:block;white-space:pre;pointer-events:none;transform-origin:50% 65%}
+.water-live water-word.water-ready>water-source{opacity:0}
+.water-live water-word.water-ready>water-ink{visibility:visible}
+.water-live .water-widget{translate:var(--water-x,0px) var(--water-y,0px)}
+.water-card{isolation:isolate;background:transparent!important}
+.water-skin{position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:var(--water-fill)}
+.water-live .water-skin{translate:var(--water-x,0px) var(--water-y,0px)}
+/* Selection and printing always use the original continuous text. */
+body.water-selecting water-source{opacity:1!important}
+body.water-selecting water-ink{visibility:hidden!important}
+@media(prefers-reduced-motion:reduce),(hover:none),(pointer:coarse){
+ .water-live water-word.water-ready>water-source{opacity:1}
+ .water-live water-word.water-ready>water-ink{visibility:hidden}
+ .water-live .water-widget,.water-live .water-skin{translate:none}
+}
+@media print{
+ water-source{opacity:1!important}water-ink{display:none!important}
+ .water-widget,.water-skin{translate:none!important}
+}
