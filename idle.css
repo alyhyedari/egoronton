@@ -1,0 +1,25 @@
+/* Local, articulated micro-gestures. The illustration boxes never travel. */
+.idle-shell{display:block;position:relative;flex-shrink:0;pointer-events:none}
+.idle-shell>img.idle-source{display:block;width:100%!important;height:100%!important;max-width:100%;margin:0!important;transform:none!important;object-fit:contain}
+.idle-shell.idle-ready>img{opacity:0}
+.idle-figure{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible;pointer-events:none}
+.token-host>.idle-shell{width:190px;height:220px;margin-left:-35px;margin-right:-20px}
+.guide-disc>.idle-shell{width:270px;height:270px;max-width:none;transform:translate(-18px,8px)}
+.curious-host>.idle-shell{position:relative;top:auto;right:auto;width:235px;height:235px;transform:none;font-size:inherit}
+.farewell-lockup>.idle-shell{width:155px;height:155px;margin-left:0;transform:none}
+.idle-head,.idle-gesture{transform-box:view-box;animation-timing-function:cubic-bezier(.45,0,.3,1);animation-iteration-count:infinite;animation-play-state:paused}
+.idle-visible .idle-head,.idle-visible .idle-gesture{animation-play-state:running}
+.idle-head{transform-origin:var(--neck-x) var(--neck-y);animation-name:idle-listen;animation-duration:var(--idle-duration,17s);animation-delay:var(--idle-delay,0s)}
+.idle-shell[data-pose=confident] .idle-head{animation-name:idle-acknowledge}
+.idle-shell[data-pose=curious] .idle-head{animation-name:idle-consider}
+.idle-gesture{transform-origin:65.3% 43.6%;animation-name:idle-offer;animation-duration:19s;animation-delay:3s}
+@keyframes idle-listen{0%,20%,47%,100%{transform:rotate(0deg)}28%{transform:rotate(-1.7deg)}36%{transform:rotate(-1.2deg)}41%{transform:rotate(.35deg)}}
+@keyframes idle-acknowledge{0%,31%,56%,100%{transform:rotate(0deg)}39%{transform:rotate(1.6deg)}45%{transform:rotate(1.1deg)}51%{transform:rotate(-.3deg)}}
+@keyframes idle-consider{0%,18%,54%,100%{transform:rotate(0deg)}29%,38%{transform:rotate(-2deg)}47%{transform:rotate(.4deg)}}
+@keyframes idle-offer{0%,37%,64%,100%{transform:rotate(0deg)}46%{transform:rotate(-2.7deg)}53%{transform:rotate(-1.6deg)}59%{transform:rotate(.4deg)}}
+/* The hero still moves only its original line arm, with a long quiet rest. */
+.wave-arm{animation-duration:13s;animation-timing-function:ease-in-out}
+@keyframes wave{0%,13%,39%,100%{transform:rotate(0deg)}20%{transform:rotate(6deg)}26%{transform:rotate(-3deg)}32%{transform:rotate(4deg)}}
+@media(max-width:1100px){.token-host>.idle-shell{width:155px;margin-left:-15px}.guide-disc>.idle-shell{width:240px;height:240px;transform:translate(-15px,4px)}}
+@media(max-width:760px){.token-host>.idle-shell{width:150px;height:170px;margin-right:-10px}.guide-disc>.idle-shell{width:205px;height:205px;transform:translate(-15px,4px)}.curious-host>.idle-shell{width:155px;height:155px}.farewell-lockup>.idle-shell{width:135px;height:135px}}
+@media(prefers-reduced-motion:reduce){.idle-head,.idle-gesture{animation:none!important;transform:none}}

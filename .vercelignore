@@ -1,0 +1,12 @@
+# Local tooling and documentation are not public website files.
+.git
+.vercel
+.env
+.env.*
+node_modules
+__pycache__
+*.py
+*.md
+*.zip
+font-source.css
+.DS_Store

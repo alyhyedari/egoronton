@@ -4,7 +4,6 @@
   const root = document.documentElement;
   const body = document.body;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const $ = selector => document.querySelector(selector);
   const intro = $('#intro');
   let finished = false;
@@ -121,21 +120,6 @@
   if ('ResizeObserver' in window) new ResizeObserver(queueProgress).observe(body);
   updateProgress();
 
-  const card = $('.art-card');
-  let tiltFrame = 0;
-  card.addEventListener('pointermove', event => {
-    if (!finePointer.matches || !motionAllowed() || tiltFrame) return;
-    tiltFrame = requestAnimationFrame(() => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--tilt-x', `${(0.5 - (event.clientY - rect.top) / rect.height) * 6}deg`);
-      card.style.setProperty('--tilt-y', `${((event.clientX - rect.left) / rect.width - 0.5) * 6}deg`);
-      tiltFrame = 0;
-    });
-  }, {passive:true});
-  card.addEventListener('pointerleave', () => {
-    cancelAnimationFrame(tiltFrame);tiltFrame = 0;
-    card.style.removeProperty('--tilt-x');card.style.removeProperty('--tilt-y');
-  });
   // Close the mobile menu when leaving its breakpoint or clicking elsewhere.
   matchMedia('(max-width:760px)').addEventListener('change', () => {
     $('.menu-toggle').setAttribute('aria-expanded', 'false');$('#nav-links').classList.remove('open');
