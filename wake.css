@@ -1,6 +1,6 @@
-/* Boat-wake finish. Decorative, never a hit target or a replacement cursor. */
+/* Soft paper ripples. Decorative and mouse-only; scrolling stays clean. */
 .egor-wake{position:fixed;inset:0;width:100%;height:100%;z-index:8;pointer-events:none!important;user-select:none;contain:strict}
 .egor-wake[hidden]{display:none}
 body.motion-off .egor-wake,body.page-hidden .egor-wake,.booting .egor-wake,body:has(dialog[open]) .egor-wake{display:none}
-@media(prefers-reduced-motion:reduce){.egor-wake{display:none!important}}
+@media(prefers-reduced-motion:reduce),(hover:none),(pointer:coarse){.egor-wake{display:none!important}}
 @media print{.egor-wake{display:none!important}}

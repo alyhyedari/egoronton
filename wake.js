@@ -1,12 +1,11 @@
-/* EGOR / paper wake. Small, fading boat wakes; native scrolling stays native.
-   No WebGL, blur, scroll interception, third-party code or idle render loop. */
+/* EGOR / soft paper ripples. Mouse-only, bounded, and asleep when idle.
+   Native scrolling never emits a trail; no touch handlers or scroll rails. */
 (() => {
   'use strict';
   const body = document.body;
   const reduced = matchMedia('(prefers-reduced-motion:reduce)');
-  const coarse = matchMedia('(pointer:coarse)');
-  const interactive = 'a,button,input,textarea,select,summary,[role="button"],[contenteditable],code,pre,.token-dock,.contract-bar';
-  const protectedSelector = `${interactive},img,svg,.character,.idle-shell,.art-card,.marquee,[data-water-static]`;
+  const fine = matchMedia('(hover:hover) and (pointer:fine)');
+  const protectedSelector = 'a,button,input,textarea,select,summary,[role="button"],[contenteditable],code,pre,img,svg,dialog,.character,.idle-shell,.art-card,.marquee,.token-dock,.contract-bar,[data-water-static],h1,h2,h3,p,li,water-word,.water-widget';
   const canvas = document.createElement('canvas');
   canvas.className = 'egor-wake';
   canvas.setAttribute('aria-hidden','true');
@@ -14,159 +13,99 @@
   const ctx = canvas.getContext('2d',{alpha:true});
   if (!ctx) return;
   body.append(canvas);
-  let width=0, height=0, ratio=1, raf=0, lastPaint=0, lastEmit=-Infinity;
-  let waves=[], pointer=null, touch=null, selected=false, printing=false;
-  let lastScroll=scrollY, scrollIntent=-Infinity, lastRail=-Infinity, railPhase=0;
-  let geometryDirty=true, measured=-Infinity, subjects=[], masks=[];
-  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
-  const allowed=()=>!reduced.matches && !body.classList.contains('motion-off') &&
-    !document.hidden && !printing && !selected &&
-    !document.documentElement.classList.contains('booting') &&
-    !body.classList.contains('entering') && !document.querySelector('dialog[open]') &&
-    (!window.visualViewport || visualViewport.scale<=1.01);
+  let width=0, height=0, raf=0, lastPaint=0, lastEmit=-Infinity;
+  let waves=[], pointer=null, masks=[], dirty=true, selected=false, printing=false;
+  let scrollUntil=0;
+  const allowed=()=>fine.matches && !reduced.matches && !body.classList.contains('motion-off') &&
+    !body.classList.contains('page-hidden') && !document.hidden && !printing && !selected &&
+    !document.documentElement.classList.contains('booting') && !body.classList.contains('entering') &&
+    !document.querySelector('dialog[open]') && (!window.visualViewport || visualViewport.scale<=1.01);
 
   function stop() {
-    cancelAnimationFrame(raf);raf=0;waves=[];pointer=touch=null;
-    lastScroll=scrollY;scrollIntent=-Infinity;
+    cancelAnimationFrame(raf);raf=0;waves=[];pointer=null;
     ctx.clearRect(0,0,width,height);canvas.hidden=true;
     canvas.dataset.state='sleeping';
   }
   function resize() {
     stop();width=innerWidth;height=innerHeight;
-    // Bound the bitmap even on high-DPR phones/tablets. No full-resolution GPU effects.
-    ratio=Math.min(devicePixelRatio||1,coarse.matches?1.25:1.5,Math.sqrt(1800000/(width*height)));
-    canvas.width=Math.ceil(width*ratio);canvas.height=Math.ceil(height*ratio);
+    // No full-size bitmap on touch devices or with reduced motion enabled.
+    const ratio=Math.min(devicePixelRatio||1,1.25,Math.sqrt(1200000/(width*height)));
+    const enabled=fine.matches && !reduced.matches;
+    canvas.width=enabled?Math.floor(width*ratio):1;
+    canvas.height=enabled?Math.floor(height*ratio):1;
     ctx.setTransform(ratio,0,0,ratio,0,0);
-    geometryDirty=true;
+    dirty=true;
   }
-  function collect() {
-    subjects=[...document.querySelectorAll(protectedSelector)].filter(el=>
-      !el.parentElement?.closest(protectedSelector));
-    // Preserve names even on touch devices where water.js does not split text.
-    for(const root of document.querySelectorAll('main,footer')) {
-      const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
-        acceptNode(node) {
-          return /egor/i.test(node.data) && !node.parentElement.closest(`${protectedSelector},water-ink,script,style`)
-            ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-        }
-      });
-      while(walker.nextNode()) {
-        const node=walker.currentNode;
-        for(const match of node.data.matchAll(/\$?egor/ig)) {
-          const range=document.createRange();
-          range.setStart(node,match.index);range.setEnd(node,match.index+match[0].length);
-          subjects.push(range);
-        }
-      }
-    }
-    geometryDirty=false;
-  }
-  function measure(now) {
-    if(geometryDirty) collect();
+  function measure() {
     masks=[];
-    // Layout reads are batched, not performed for each ripple or on every touch event.
-    for(const subject of subjects) for(const r of subject.getClientRects()) {
-      if(r.width && r.height && r.bottom>-220 && r.top<height+220)
-        masks.push({x:r.left-5,y:r.top+scrollY-5,w:r.width+10,h:r.height+10});
-    }
-    measured=now;
-  }
-  function emit(x,y,angle,strength,rail=false,now=performance.now()) {
-    if(!allowed()) return;
-    waves.push({x,y,angle,strength,rail,born:now,life:rail?1250:1050});
-    if(waves.length>(coarse.matches?32:44)) waves.shift();
-    canvas.hidden=false;canvas.dataset.state='running';
-    if(!raf) raf=requestAnimationFrame(frame);
-  }
-  function trace(x,y,now) {
-    if(pointer && now-pointer.time<140) {
-      const dx=x-pointer.x,dy=y-pointer.y,distance=Math.hypot(dx,dy);
-      if(distance>9 && distance<200 && now-lastEmit>48) {
-        emit(x,y,Math.atan2(dy,dx),clamp(distance/45,.35,1),false,now);
-        lastEmit=now;pointer={x,y,time:now};return;
+    for(const el of document.querySelectorAll(protectedSelector)) {
+      if(el.parentElement?.closest(protectedSelector)) continue;
+      for(const r of el.getClientRects()) {
+        if(r.width && r.height && r.bottom>0 && r.top<height)
+          masks.push({x:r.left-8,y:r.top-8,w:r.width+16,h:r.height+16});
       }
-      if(distance<=9) return;
     }
-    pointer={x,y,time:now};
+    dirty=false;
   }
   function draw(w,now) {
-    const t=(now-w.born)/w.life,fade=Math.min(1,t*9)*(1-t)**1.5;
-    // Ease out into broad, fine chevrons: a boat wake, not a cursor halo.
-    const spread=(w.rail?19:9)+(w.rail?67:37)*t;
-    const tail=(w.rail?29:18)+(w.rail?68:48)*t;
+    const t=(now-w.born)/900;
+    const ease=1-(1-t)**3;
+    const fade=Math.sin(Math.PI*t)*(1-t);
     ctx.save();ctx.translate(w.x,w.y);ctx.rotate(w.angle);
-    ctx.translate(-t*20,0);ctx.lineCap='round';ctx.lineJoin='round';
-    for(let layer=0;layer<2;layer++) {
-      const back=layer*10;
-      ctx.beginPath();ctx.moveTo(-tail-back,-spread);
-      ctx.bezierCurveTo(-tail*.55-back,-spread*.76,-back-2,-spread*.16,-back,0);
-      ctx.bezierCurveTo(-back-2,spread*.16,-tail*.55-back,spread*.76,-tail-back,spread);
-      ctx.globalAlpha=fade*(.45+w.strength*.2)*(layer? .55:1);
-      ctx.strokeStyle='#f5fff7';ctx.lineWidth=1.6;ctx.stroke();
-      ctx.translate(-1.8,0);
-      ctx.globalAlpha=fade*.15*(layer?.55:1);
-      ctx.strokeStyle='#287e8c';ctx.lineWidth=.8;ctx.stroke();
-      ctx.translate(1.8,0);
+    ctx.lineWidth=.85;ctx.lineCap='round';
+    // Round, incomplete ripples with a gentle outward drift, not sharp chevrons.
+    for(let i=0;i<2;i++) {
+      const radius=9+ease*29+i*9;
+      ctx.beginPath();
+      ctx.ellipse(-ease*7,0,radius,radius*.68,0,.32*Math.PI,1.68*Math.PI);
+      ctx.strokeStyle='#f4fffa';ctx.globalAlpha=fade*(i?.13:.24);ctx.stroke();
+      ctx.beginPath();
+      ctx.ellipse(-ease*7+1,1,radius,radius*.68,0,.38*Math.PI,1.62*Math.PI);
+      ctx.strokeStyle='#287e8c';ctx.globalAlpha=fade*(i?.035:.065);ctx.stroke();
     }
     ctx.restore();
   }
   function frame(now) {
     raf=0;
     if(!allowed()){stop();return;}
-    // 30fps cap on touch; 60fps ceiling on desktop, including high-refresh screens.
-    if(now-lastPaint<(coarse.matches?32:16)){raf=requestAnimationFrame(frame);return;}
+    // 30fps is enough for this quiet decoration, including high-refresh screens.
+    if(now-lastPaint<32){raf=requestAnimationFrame(frame);return;}
     lastPaint=now;
-    waves=waves.filter(w=>now-w.born<w.life);
+    waves=waves.filter(w=>now-w.born<900);
     if(!waves.length){stop();return;}
-    if(geometryDirty || now-measured>100) measure(now);
+    if(dirty) measure();
     ctx.clearRect(0,0,width,height);
     for(const wave of waves) draw(wave,now);
-    // All protected artwork, controls, names and addresses remain visually untouched.
-    for(const r of masks) ctx.clearRect(r.x,r.y-scrollY,r.w,r.h);
+    for(const r of masks) ctx.clearRect(r.x,r.y,r.w,r.h);
+    // Leave both page edges clean, including overlay-scrollbar hit areas.
+    ctx.clearRect(0,0,40,height);ctx.clearRect(width-40,0,40,height);
     raf=requestAnimationFrame(frame);
   }
-
   addEventListener('pointermove',event=>{
-    if(event.pointerType!=='mouse' || event.buttons || !allowed()) {pointer=null;return;}
-    if(event.target.closest(interactive)){pointer=null;return;}
-    trace(event.clientX,event.clientY,performance.now());
+    const now=performance.now(), x=event.clientX, y=event.clientY;
+    if(event.pointerType!=='mouse' || event.buttons || !allowed() || now<scrollUntil ||
+      x<48 || x>document.documentElement.clientWidth-48 || y<16 || y>height-16 ||
+      event.target.closest(protectedSelector)) {pointer=null;return;}
+    if(dirty) measure();
+    if(masks.some(r=>x>=r.x && x<=r.x+r.w && y>=r.y && y<=r.y+r.h)){pointer=null;return;}
+    if(pointer && now-pointer.time<180) {
+      const dx=x-pointer.x, dy=y-pointer.y, distance=Math.hypot(dx,dy);
+      if(distance<24) return;
+      if(distance<160 && now-lastEmit>=100) {
+        waves.push({x,y,angle:Math.atan2(dy,dx),born:now});
+        if(waves.length>8) waves.shift();
+        lastEmit=now;canvas.hidden=false;canvas.dataset.state='running';
+        if(!raf) raf=requestAnimationFrame(frame);
+      }
+    }
+    pointer={x,y,time:now};
   },{passive:true});
   document.addEventListener('pointerleave',()=>{pointer=null;},{passive:true});
-  // Passive touch events continue after pointercancel during native scroll on mobile.
-  addEventListener('touchstart',event=>{
-    if(event.touches.length!==1 || !allowed() || event.target.closest(interactive)){stop();return;}
-    const t=event.touches[0];
-    touch={x:t.clientX,y:t.clientY};pointer={...touch,time:performance.now()};
-  },{passive:true});
-  addEventListener('touchmove',event=>{
-    if(!touch || event.touches.length!==1 || !allowed()){stop();return;}
-    const t=event.touches[0],now=performance.now();
-    if(Math.hypot(t.clientX-touch.x,t.clientY-touch.y)<10) return;
-    scrollIntent=now;
-    trace(t.clientX,t.clientY,now);
-  },{passive:true});
-  addEventListener('touchend',()=>{touch=null;pointer=null;},{passive:true});
-  addEventListener('touchcancel',()=>{touch=null;pointer=null;},{passive:true});
-  addEventListener('wheel',event=>{
-    if(!event.ctrlKey && allowed()) scrollIntent=performance.now();
-  },{passive:true});
-  addEventListener('keydown',event=>{
-    if(['ArrowDown','ArrowUp','PageDown','PageUp',' '].includes(event.key) && !event.target.closest(interactive) && allowed())
-      scrollIntent=performance.now();
-  });
-  addEventListener('scroll',()=>{
-    const delta=scrollY-lastScroll;lastScroll=scrollY;
-    const now=performance.now();
-    if(!allowed() || now-scrollIntent>1800 || Math.abs(delta)<1 || Math.abs(delta)>height*.65 || now-lastRail<85) return;
-    lastRail=now;railPhase+=.72;
-    const y=height*(delta>0?.58:.42)+Math.sin(railPhase)*22;
-    const strength=clamp(Math.abs(delta)/45,.3,1),angle=delta>0?-Math.PI/2:Math.PI/2;
-    // Soft wakes down both margins make momentum scrolling feel watery without
-    // shifting reading text. A fingertip adds its own small wake while dragging.
-    emit(12,y,angle,strength,true,now);
-    emit(width-12,y+Math.sin(railPhase)*18,angle,strength,true,now);
-  },{passive:true});
-
+  addEventListener('pointerdown',stop,{passive:true});
+  // Clear immediately on scrolling (including nested scrollers), never emit.
+  const scrolling=()=>{scrollUntil=performance.now()+180;dirty=true;stop();};
+  addEventListener('scroll',scrolling,{passive:true,capture:true});
+  addEventListener('wheel',scrolling,{passive:true});
   document.addEventListener('selectionchange',()=>{
     selected=!!getSelection()?.toString();if(selected) stop();
   });
@@ -176,15 +115,16 @@
   addEventListener('afterprint',()=>{printing=false;});
   addEventListener('resize',resize,{passive:true});
   window.visualViewport?.addEventListener('resize',resize,{passive:true});
-  reduced.addEventListener('change',stop);
-  coarse.addEventListener('change',resize);
-  new MutationObserver(()=>{if(!allowed()) stop();}).observe(body,{attributes:true,attributeFilter:['class']});
+  reduced.addEventListener('change',resize);
+  fine.addEventListener('change',resize);
+  new MutationObserver(()=>{dirty=true;if(!allowed()) stop();}).observe(body,{attributes:true,attributeFilter:['class']});
   for(const dialog of document.querySelectorAll('dialog'))
-    new MutationObserver(stop).observe(dialog,{attributes:true,attributeFilter:['open']});
-  const dirty=()=>{geometryDirty=true;};
-  if(window.ResizeObserver) new ResizeObserver(dirty).observe(body);
-  document.fonts?.ready.then(dirty);
-  document.fonts?.addEventListener('loadingdone',dirty);
-  document.addEventListener('toggle',dirty,true);
+    new MutationObserver(()=>{dirty=true;stop();}).observe(dialog,{attributes:true,attributeFilter:['open']});
+  const invalidate=()=>{dirty=true;};
+  if(window.ResizeObserver) new ResizeObserver(invalidate).observe(body);
+  document.fonts?.ready.then(invalidate);
+  document.fonts?.addEventListener('loadingdone',invalidate);
+  document.addEventListener('toggle',invalidate,true);
+  document.addEventListener('load',invalidate,true);
   resize();
 })();
