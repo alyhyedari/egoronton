@@ -18,6 +18,23 @@ Extract the ZIP and upload this folder to a Git repository, including `vercel.js
 
 Optional Analytics and Speed Insights require activation in your Vercel dashboard and may depend on your plan. Deployment and domain connection require your account; they are not performed by this ZIP. After attaching the final domain, complete the domain-dependent SEO steps below.
 
+## Analytics setup and verification
+
+This is a plain HTML/CSS/JavaScript site, **not Next.js**. Do not install React or add the Next.js `<Analytics />` component. `index.html` already loads `vercel-monitoring.js`, which loads the Vercel Web Analytics and Speed Insights endpoints asynchronously, once per page. No npm package or build step is needed.
+
+1. In the Vercel project, enable **Web Analytics**. Enable **Speed Insights** separately if you want performance metrics; check your plan before enabling paid features.
+2. Deploy this updated directory with framework preset **Other**. Ensure `index.html` and `vercel-monitoring.js` are in the deployed output.
+3. Visit the deployed HTTPS site, then check the Analytics dashboard after about 30 seconds; reporting can take longer.
+4. In browser DevTools → Network, check that `/_vercel/insights/script.js` loads successfully and that page-view requests to `/_vercel/insights/` succeed. The separate Speed Insights script is `/_vercel/speed-insights/script.js`.
+5. If there is no data, check the correct project, domain, dashboard date filters, feature activation, and redeployment. A 404 on the script endpoint usually calls for checking Vercel feature activation and hosting configuration. Ad/content blockers can prevent collection.
+
+Privacy and expected behavior:
+- HTTPS only; localhost, Do Not Track (`1`), and Global Privacy Control are intentionally excluded. Use a separate testing profile without these settings to verify collection; do not override visitors' choices.
+- Page URLs are stripped of query strings and fragments before sending. Monitoring script requests use an origin-only referrer policy.
+- This is one HTML page: scrolling and `#section` navigation are not separate page views. No fake section views, click events, wallet identifiers, or trading events are added.
+- Blocked or unavailable monitoring must not prevent site rendering or interactions. Other static hosts do not automatically serve Vercel's monitoring endpoints.
+- Local tests verify integration logic, not live ingestion. Dashboard activation, billing, deployment, and production collection still require your Vercel account.
+
 ## Design and motion
 
 - Cyan paper, self-hosted type, original supplied character layers.

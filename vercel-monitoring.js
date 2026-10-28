@@ -26,7 +26,9 @@
     if (document.querySelector(`script[src="${src}"]`)) continue;
     const script = document.createElement('script');
     script.src = src;
-    script.defer = true;
+    // Dynamic scripts load independently; monitoring must never block the page.
+    script.async = true;
+    script.referrerPolicy = 'origin';
     script.dataset.autoTrack = 'true';
     document.head.appendChild(script);
   }
