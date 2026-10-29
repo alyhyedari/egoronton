@@ -10,7 +10,7 @@ From this directory:
 python3 -m http.server 8080
 ```
 
-Open http://localhost:8080. Deploy the contents of this directory to any static host with HTTPS. Keep `assets/`, `fonts.css`, `motion.css`, `character.css`, `motion.js`, `character.js`, `token-dock.css`, `token-dock.js`, `idle.css`, `idle.js`, `water.css`, `water.js`, `wake.css`, `wake.js`, and `vercel-monitoring.js` alongside `index.html`. All runtime files and fonts are included; no npm install is required.
+Open http://localhost:8080. Deploy the contents of this directory to any static host with HTTPS. Keep the complete `assets/` directory and all runtime `.css` and `.js` files alongside `index.html`, including `experience.css` and `studio.js`. All runtime files and fonts are included; no npm install is required.
 
 ## Deploy to Vercel
 
@@ -54,6 +54,16 @@ Privacy and expected behavior:
 
 To see the intro again, clear the `egor-visited` sessionStorage key or open a fresh tab/session. It intentionally does not appear with reduced motion enabled.
 
+## Local doodle studio
+
+`#play` is a small local-only canvas desk: four character stamps, a spark stamp, freehand drawing, three paper colors, prompts, surprise guests, undo/redo, confirmed clearing, and a 1600 × 1200 PNG download.
+
+- Drawings stay in browser memory. They are not uploaded, included in analytics, or saved between reloads. Download before leaving to keep your work. No wallet connection.
+- In stamp mode, touch scrolling and pinch zoom remain native. In Draw mode, draw inside the canvas and scroll outside it.
+- With the canvas focused, arrow keys move the stamp cursor; Shift moves farther; Enter or Space places a stamp. Ctrl/Cmd+Z undoes and Ctrl/Cmd+Shift+Z or Ctrl/Cmd+Y redoes. The Place stamp button is another keyboard-accessible option.
+- Pose images load near the section with an eight-second timeout. Failed stamps are disabled; drawing and sparks remain available. Without JavaScript, a static illustration replaces the controls.
+- Rendering happens only when needed, with a capped canvas resolution and bounded drawing history. The page motion control and reduced-motion preferences also apply here.
+
 ## Trading details
 
 The project-supplied contract is displayed with a Copy CA button:
@@ -96,6 +106,8 @@ After choosing the final HTTPS domain:
 Canonical, sitemap, and social image URLs are intentionally not fabricated while the final domain is unknown.
 
 ## QA
+
+Final site and studio checks passed in headless Chromium at 320, 375, 390, 768, 1024, and 1440px: overflow, menus, dialogs, keyboard controls, clipboard fallback, motion preferences, drawing/stamping, undo/redo shortcuts, confirmed clearing, PNG export, native touch scrolling, an eight-second stalled-image fallback, and no-JavaScript presentation. No runtime exceptions were reported. Monitoring integration and JavaScript syntax checks passed; live analytics ingestion still needs verification after deployment.
 
 The revised ripple effect passed headless Chromium checks for desktop mouse rendering, clean side margins, immediate scroll cancellation, sleep, motion toggle, reduced motion, selection, dialogs, printing and hidden-tab suppression. Emulated touch tests at 320/375/390/768/1024/1440px confirmed native scrolling without trails, a 1px inactive canvas and no horizontal overflow; a real dispatched touch tap opened the mobile menu. Idle-character and fluid-ink regression tests also passed. No physical-device performance benchmark is claimed.
 
