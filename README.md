@@ -54,6 +54,17 @@ Privacy and expected behavior:
 
 To see the intro again, clear the `egor-visited` sessionStorage key or open a fresh tab/session. It intentionally does not appear with reduced motion enabled.
 
+## Sticker stories and attribution
+
+The “Small stickers, big feelings” section links to the exact TLGRM pack listings:
+- Utya: https://tlgrm.eu/stickers/UtyaDuck
+- Resistance Dog: https://tlgrm.eu/stickers/ResistanceDog
+- Baby Yoda: https://tlgrm.eu/stickers/BabyYoda
+
+Indexed search listings credit “Yegor Zhgun” for these specific packs. This is secondary directory evidence; the retrieved Resistance Dog page did not expose an artist credit. Do not broaden these credits to original character creation, other pack versions, token authorship, or endorsement. A different Resistance Dog project on Behance credits Toha Andreev, making version specificity important.
+
+`assets/line-memory-tribute.webp` is an optimized independent community illustration, not artwork by Zhgun. Its visible caption states this distinction. The section uses `sticker-stories.css`, static semantic HTML, local imagery, and external source links without third-party embeds or new JavaScript.
+
 ## Local doodle studio
 
 `#play` is a small local-only canvas desk: four character stamps, a spark stamp, freehand drawing, three paper colors, prompts, surprise guests, undo/redo, confirmed clearing, and a 1600 × 1200 PNG download.
@@ -106,6 +117,8 @@ After choosing the final HTTPS domain:
 Canonical, sitemap, and social image URLs are intentionally not fabricated while the final domain is unknown.
 
 ## QA
+
+After adding the sticker section, reran site and studio regression tests at all six widths below, plus monitoring integration tests. Section-specific checks passed for image loading, source-link targets, keyboard order, 44px link targets, reduced motion, and no-JavaScript content. Desktop and mobile screenshots were reviewed.
 
 Final site and studio checks passed in headless Chromium at 320, 375, 390, 768, 1024, and 1440px: overflow, menus, dialogs, keyboard controls, clipboard fallback, motion preferences, drawing/stamping, undo/redo shortcuts, confirmed clearing, PNG export, native touch scrolling, an eight-second stalled-image fallback, and no-JavaScript presentation. No runtime exceptions were reported. Monitoring integration and JavaScript syntax checks passed; live analytics ingestion still needs verification after deployment.
 

@@ -1,0 +1,24 @@
+/* Static artist references: no new motion, scripts or third-party embeds. */
+.sticker-stories{margin-top:68px;padding-top:48px;border-top:1px solid var(--line)}
+.sticker-heading{max-width:680px;margin-bottom:30px}
+.sticker-heading h3{font-size:clamp(42px,5.4vw,72px);margin:14px 0 18px}
+.sticker-heading>p:last-child{max-width:54ch;font-size:14px;line-height:1.85}
+.sticker-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:36px;align-items:start}
+.sticker-tribute{margin:0;min-width:0}
+.sticker-tribute img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:3px}
+.sticker-tribute figcaption{padding:16px 0;font-size:11px;line-height:1.8}
+.sticker-tribute figcaption strong{display:block;font-size:14px;margin-bottom:4px}
+.sticker-tribute figcaption span{display:block;max-width:54ch}
+.sticker-packs{display:grid;gap:14px;min-width:0}
+.sticker-pack{padding:20px 24px;border:1px solid var(--line);border-left:4px solid var(--blue);background:rgba(255,255,255,.25);border-radius:3px}
+.sticker-pack h4{font-family:var(--display);font-size:32px;line-height:1.1;margin:9px 0}
+.sticker-pack p{font-size:12px;line-height:1.7;margin-bottom:7px}
+.sticker-pack a{display:inline-flex;align-items:center;gap:9px;min-height:44px;max-width:100%;font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.sticker-pack a:hover{ text-decoration-thickness:2px }
+.sticker-pack a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.sticker-evidence{margin-top:22px;padding:20px 24px;border:1px dashed var(--line);font-size:11px;line-height:1.85}
+.sticker-evidence strong{font-size:12px}
+.sticker-evidence p{margin-top:6px;max-width:105ch}
+.sticker-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:760px){.sticker-stories{margin-top:44px;padding-top:34px}.sticker-layout{grid-template-columns:minmax(0,1fr);gap:16px}.sticker-tribute{max-width:480px}.sticker-pack{padding:18px 20px}.sticker-evidence{padding:16px 18px}}
+@media print{.sticker-layout{display:block}.sticker-tribute{max-width:260px}.sticker-pack,.sticker-tribute{break-inside:avoid}.sticker-pack{margin-bottom:10px}}
