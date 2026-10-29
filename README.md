@@ -65,6 +65,20 @@ Indexed search listings credit “Yegor Zhgun” for these specific packs. This 
 
 `assets/line-memory-tribute.webp` is an optimized independent community illustration, not artwork by Zhgun. Its visible caption states this distinction. The section uses `sticker-stories.css`, static semantic HTML, local imagery, and external source links without third-party embeds or new JavaScript.
 
+## Utya’s paper room
+
+`#utya` uses `utya-room.css`, `utya-room.js`, twelve supplied-reference sticker crops in `assets/utya/`, and `assets/telegram-plane-cursor.svg`.
+
+- Six mood buttons change a postcard on deliberate input. Native buttons support Tab, Enter and Space; the selected state and caption are announced accessibly. Failed image requests preserve the current image and offer retry; rapid input honors the last request.
+- Six native disclosure cards reveal independent community-written notes, including a link to the local doodle studio. A discovery count lives only in page memory. No rewards, sign-in, uploads, or wallet connection.
+- Without JavaScript, the initial postcard, artwork credits, source links and six disclosure cards remain usable; inactive mood buttons are hidden.
+- Only the two small badges bob while the section is visible. The motion toggle, hidden-tab state and reduced-motion preference apply; there is no new JavaScript animation loop or autoplay carousel.
+- A native Telegram-plane-style cursor is limited to fine, hovering pointers. Touch interaction and the studio retain their normal behavior. Symbols are decorative, not official endorsement badges.
+- Utya remains distinct from EGOR. Credit is limited to the named UtyaDuck pack listing. The supplied-reference crops are not original artwork created for this website, and neither cropping nor attribution establishes a reproduction license: confirm usage rights before public promotion.
+- Requested copy deterrence disables general text selection and casual image dragging/context menus. Contract text and form inputs remain selectable; Copy CA, its manual fallback, ordinary link menus, keyboard navigation and studio export still work. This is **not DRM**: screenshots, downloads and browser tools cannot be reliably prevented. To remove deterrence, delete the selection rule in `utya-room.css` and the final copy/contextmenu/dragstart handlers in `utya-room.js`.
+
+Validation: automated Chromium checks cover seven widths (320–1440px), mood changes, rapid input, image failure/retry, keyboard activation, disclosure counting, motion controls, reduced motion, copy exceptions and the no-JavaScript fallback. Site, dock, studio, sticker-story and monitoring regression checks also pass. These are local checks, not production analytics verification or physical-device/Safari testing.
+
 ## Local doodle studio
 
 `#play` is a small local-only canvas desk: four character stamps, a spark stamp, freehand drawing, three paper colors, prompts, surprise guests, undo/redo, confirmed clearing, and a 1600 × 1200 PNG download.
