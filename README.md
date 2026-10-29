@@ -79,6 +79,15 @@ Indexed search listings credit “Yegor Zhgun” for these specific packs. This 
 
 Validation: automated Chromium checks cover seven widths (320–1440px), mood changes, rapid input, image failure/retry, keyboard activation, disclosure counting, motion controls, reduced motion, copy exceptions and the no-JavaScript fallback. Site, dock, studio, sticker-story and monitoring regression checks also pass. These are local checks, not production analytics verification or physical-device/Safari testing.
 
+## Resistance Dog: free voices
+
+`#resistance` includes `resistance-room.css`, `resistance-room.js`, and twelve supplied-reference crops in `assets/resistance/`.
+
+- Six deliberate choices update a postcard; six native disclosure notes explore freedom of expression. There is no autoplay or automatic scrolling.
+- On mobile, the postcard sits above its choice buttons. Keyboard controls, accessible status messages, image-failure recovery, reduced motion and a no-JavaScript fallback are included.
+- Resistance Dog, Utya and EGOR remain distinct. The copy and layout are an independent tribute, not an official collaboration or artist endorsement. Pack attribution is limited to the linked listing; cropping and credit do not establish reproduction rights. Confirm artwork permissions before public promotion.
+- Chromium checks cover nine widths (320–1920px), keyboard activation, rapid input, failed images/retries, native disclosure notes, navigation, motion preferences and no-JavaScript behavior. These are local emulated-browser checks, not physical-device certification.
+
 ## Local doodle studio
 
 `#play` is a small local-only canvas desk: four character stamps, a spark stamp, freehand drawing, three paper colors, prompts, surprise guests, undo/redo, confirmed clearing, and a 1600 × 1200 PNG download.

@@ -58,6 +58,8 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <link rel="stylesheet" href="experience.css">
 <link rel="stylesheet" href="sticker-stories.css">
 <link rel="stylesheet" href="utya-room.css">
+<link rel="stylesheet" href="resistance-room.css">
+<script src="resistance-room.js" defer></script>
 <script src="utya-room.js" defer></script>
 <script src="water.js" defer></script>
 <script src="wake.js" defer></script>
@@ -79,7 +81,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <header class="paper"><nav class="nav wrap" aria-label="Main navigation">
 <a class="brand" href="#" aria-label="EGOR home"><img src="assets/portrait.webp" alt="" width="42" height="42"><div><span class="brand-word">$EGOR</span><small>A LITTLE DIFFERENT</small></div></a>
 <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">＋</span></button>
-<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#utya">Utya</a><a href="#token">The token</a><a href="#how">How to buy</a><a href="#faq">FAQ</a><a href="#play">Play</a><button class="btn btn-dark" data-buy>Get $EGOR <span class="arrow" aria-hidden="true">↗</span></button></div>
+<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#utya">Utya</a><a href="#resistance">Freedom</a><a href="#token">The token</a><a href="#how">How to buy</a><a href="#faq">FAQ</a><a href="#play">Play</a><button class="btn btn-dark" data-buy>Get $EGOR <span class="arrow" aria-hidden="true">↗</span></button></div>
 </nav></header>
 <main id="main">
 <section class="hero paper" aria-labelledby="hero-heading"><div class="wrap">
@@ -157,6 +159,48 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
  <div class="utya-source-note">
   <p><strong>Artwork, not a lookalike.</strong> These images are crops from the supplied Utya sticker reference, not newly drawn ducks. The <a href="https://tlgrm.eu/stickers/UtyaDuck" target="_blank" rel="noopener noreferrer">specific pack listing</a> credits Yegor Zhgun; this is a pack-specific credit, not a claim about all character versions.</p>
   <p><strong>A guest, not a token identity.</strong> Utya is distinct from EGOR. The EGOR coin motif and TON badge refer to this community site, not to an Utya token or an artist partnership. Layout and little notes are an independent tribute; no endorsement is implied.</p>
+ </div>
+</div></section>
+<section class="resistance-room" id="resistance" aria-labelledby="resistance-title" data-water-static><div class="wrap">
+ <div class="resistance-top"><p class="eyebrow">Resistance Dog / an independent sticker tribute</p><a class="text-link" href="https://tlgrm.eu/stickers/ResistanceDog" target="_blank" rel="noopener noreferrer">View the pack <span aria-hidden="true">↗</span><span class="sticker-sr"> (opens in a new tab)</span></a></div>
+ <div class="resistance-layout">
+  <div class="resistance-copy">
+   <h2 class="display" id="resistance-title">SMALL LINES<br><span>FREE VOICES</span></h2>
+   <p class="resistance-intro">A hood. A little defiance. A lot to say.<br>In this corner of EGOR’s world, Resistance Dog is a reminder to think freely, speak honestly, and leave room for someone else.</p>
+   <div class="resistance-choices" role="group" aria-label="Choose a freedom to reflect on" hidden>
+    <button type="button" data-resistance="hello" aria-pressed="true" aria-controls="resistance-card"><span aria-hidden="true">01</span>Be yourself</button>
+    <button type="button" data-resistance="laugh" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">02</span>Laugh out loud</button>
+    <button type="button" data-resistance="no" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">03</span>Say no</button>
+    <button type="button" data-resistance="heart" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">04</span>Care openly</button>
+    <button type="button" data-resistance="peace" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">05</span>Choose peace</button>
+    <button type="button" data-resistance="signal" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">06</span>Send a signal</button>
+   </div>
+   <p class="resistance-hint" id="resistance-hint" hidden>Six small reminders. Pick one to change the card.</p>
+   <p class="resistance-feedback" id="resistance-feedback" role="status"></p>
+  </div>
+  <div class="resistance-stage">
+   <figure class="resistance-card" id="resistance-card">
+    <div class="resistance-card-top" aria-hidden="true"><span>NOTES ON BEING FREE</span><span id="resistance-number">01 / 06</span></div>
+    <div class="resistance-art"><img id="resistance-image" src="assets/resistance/hello.webp" alt="Hooded Resistance Dog raising a hand beneath the word Hey" width="128" height="148" loading="lazy" decoding="async" draggable="false"></div>
+    <figcaption aria-live="polite" aria-atomic="true"><strong id="resistance-caption">Start with a hello.</strong><span id="resistance-note">You don’t need a louder voice to deserve a place in the conversation.</span></figcaption>
+    <div class="resistance-card-footer" aria-hidden="true"><span>Resistance Dog</span><span>A voice, not an echo</span></div>
+   </figure>
+  </div>
+ </div>
+ <div class="resistance-principle"><p class="eyebrow">Our little reminder</p><p>You don’t have to agree to belong in the conversation. Make space for expression, curiosity, and a little absurdity.</p></div>
+ <div class="resistance-notes-heading"><h3 id="resistance-notes-title">Off-script, on purpose</h3><p>Six everyday acts of being yourself. Open a note.</p></div>
+ <div class="resistance-notes" role="group" aria-labelledby="resistance-notes-title">
+  <details class="resistance-note"><summary><img src="assets/resistance/fine.webp" alt="Resistance Dog sitting among flames beneath This is fine" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 01</small>Drop the brave face</span></summary><p>You’re allowed to say it isn’t fine. An honest feeling is worth more than a perfect performance.</p></details>
+  <details class="resistance-note"><summary><img src="assets/resistance/cheers.webp" alt="Resistance Dog in a bow tie raising a glass" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 02</small>Make a little toast</span></summary><p>To the people who let you be strange. To the friends who listen. To one good conversation that wasn’t about winning.</p></details>
+  <details class="resistance-note"><summary><img src="assets/resistance/plane.webp" alt="Resistance Dog riding a paper plane beside I’m on a plane I can’t complain" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 03</small>Let an idea travel</span></summary><p>Share the sketch. Ask the awkward question. A thought doesn’t need to be polished before it deserves some air.</p></details>
+  <details class="resistance-note"><summary><img src="assets/resistance/phone.webp" alt="Resistance Dog looking at a phone with one hand against the face" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 04</small>Read. Breathe. Reply.</span></summary><p>There’s a person beyond the screen. You can challenge an idea without making someone smaller.</p></details>
+  <details class="resistance-note"><summary><img src="assets/resistance/go.webp" alt="Two hooded dogs setting off together beneath Go" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 05</small>Take the first step</span></summary><p>You don’t need a crowd to begin. Bring one curious friend. Make something that sounds like you.</p></details>
+  <details class="resistance-note"><summary><img src="assets/resistance/rest.webp" alt="Resistance Dog floating on blue water" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 06</small>Choose a little quiet</span></summary><p>Freedom includes stepping away. Not every thought needs a post. Not every moment needs an audience.</p></details>
+ </div>
+ <div class="resistance-invite"><img src="assets/portrait.webp" alt="EGOR’s separate doodle character" width="64" height="64" loading="lazy" decoding="async"><div><h3>Your line belongs here, too</h3><p>Back at EGOR’s desk, there’s room for your own expression.<br>Draw locally. No upload. No wallet.</p></div><a class="btn" href="#play">Make your mark <span aria-hidden="true">↗</span></a></div>
+ <div class="resistance-credit">
+  <p><strong>A tribute, not a partnership.</strong> Resistance Dog and EGOR are distinct. This independently designed gallery and its original written notes do not imply an official Resistance Dog collaboration, artist endorsement, or connection between tokens.</p>
+  <details><summary>Artwork, source &amp; credit</summary><p>These sticker images are crops from the supplied Resistance Dog reference, not new drawings or newly created EGOR characters. The freedom-themed captions are this site’s interpretation, not statements by the artist or a Resistance Dog project.</p><p>Indexed TLGRM search listings credit “Yegor Zhgun” for the <a href="https://tlgrm.eu/stickers/ResistanceDog" target="_blank" rel="noopener noreferrer">specific ResistanceDog pack ↗<span class="sticker-sr"> (opens in a new tab)</span></a>; the retrieved pack page did not expose that credit. This secondary evidence does not independently establish authorship of every supplied image, character ownership, token creation, or endorsement. Cropping and attribution do not establish reproduction rights.</p></details>
  </div>
 </div></section>
 <section class="numbers paper" id="token"><div class="wrap"><div class="section-label eyebrow reveal">02 / The token, in plain sight</div><div class="section-header token-heading reveal"><h2 class="display">BIG CHARACTER<br>SIMPLE NUMBERS</h2><div class="token-host"><img src="assets/egor-confident.webp" alt="Egor standing with crossed arms and smart glasses" width="640" height="640" loading="lazy" decoding="async"><p><span class="host-aside">the serious face</span>Same little doodle.<br>A little more business.<br>Let’s look at the details.</p></div></div>
