@@ -1,10 +1,20 @@
 # $EGOR — A little blue. A lot of character.
 
-## Version 0.2.0
+## Version 0.3.1 — English editorial edition
 
-This release adds an on-demand sticker desk with 18 unique supplied animations. It is based on the recoverable deploy-ready website. **The separate Utya and Resistance interactive rooms from later work are not included:** their archives were corrupt/unreadable. The sticker stories, local doodle studio and new animation desk are included; this is not a complete recovery of those later rooms.
+This update standardizes the interface in US English, refines navigation and playback messages, and clarifies download labels and card-preview instructions. Page language metadata is set to `en-US`. Site copy, accessibility descriptions, default card text and this deployment guide are in English. Supplied artwork and original downloads remain unchanged, including embedded lettering in other languages; English descriptions provide context. Visitors may still enter their own messages in any supported language.
 
-A static, English-language website. No build tools, dependencies, or wallet connection. Optional Vercel monitoring is included.
+### Validation for version 0.3.1
+
+The 18-animation and 10-animation REDO regression suites passed, including six viewport widths, playback controls, reduced motion, error recovery and no-JavaScript fallbacks. An initial reduced-motion assertion in the sticker suite failed; the complete suite passed on rerun. English language metadata and interface text were checked. Original assets are byte-for-byte unchanged from version 0.3.0.
+
+### Included in version 0.3.0
+
+This release adds the REDO signal room to version 0.2.0: ten curated animations, manual frame inspection and local PNG card composition. The older separate Utya/Resistance rooms remain unrecovered; REDO is a new section, not a recovery of those archives.
+
+The preceding release added an on-demand sticker desk with 18 unique supplied animations. It is based on the recoverable deploy-ready website. **The separate Utya and Resistance interactive rooms from later work are not included:** their archives were corrupt/unreadable. The sticker stories, local doodle studio and new animation desk are included; this is not a complete recovery of those later rooms.
+
+A static, English-language website. No build tools, package installation, or wallet connection. The runtime player and fonts are bundled locally. Optional Vercel monitoring is included.
 
 ## Preview
 
@@ -78,6 +88,16 @@ All originals, including two duplicate aliases, are preserved in `assets/sticker
 The local Lottie canvas player (5.13.0) and selected animation JSON are fetched only after Play. No CDN or third-party animation service is required. Keep `assets/vendor/lottie-web-LICENSE.md` with the player. Without JavaScript, previews and original-file links remain available. Preview through HTTP, not `file://`, so animation fetches work.
 
 Version 0.2.0 animation QA passed in headless Chromium at 320, 375, 390, 768, 1024 and 1440px: all 18 animations, single-run playback, pause/resume/replay/reset, keyboard activation, Escape, offscreen pause, print, motion preferences, failed data/player retry, cancelled loading and no-JavaScript fallback. Thumbnail proportions and touch-target sizes were checked. No runtime exceptions were reported. The local studio regression suite also passed. Earlier QA notes below describe the recovered baseline, not new physical-device or production testing.
+
+## REDO signal room
+
+`redo-room.css`, `redo-room.js` and the shared `lottie-loader.js` provide ten curated signals, previous/next selection, on-demand playback, manual frame inspection, still previews and original downloads. No REDO animation autoplays. Both sticker players coordinate to avoid simultaneous playback. Offscreen, print and motion-preference controls pause playback; manual inspection remains available under reduced motion.
+
+All 28 supplied REDO-labelled TGS files (27 unique hashes) are preserved in `assets/redo/originals/`; the manifest records the originals and technical metadata. Ten visually distinct non-duck selections are featured; duplicates remain archived. Receipt and directory references do not establish authorship, completeness or sharing rights. The freedom theme and signal names are editorial interpretations, not artist intent or Pavel Durov endorsement. Obtain artwork permissions before publishing or sharing cards.
+
+The local card maker includes a live preview, a short message, night/paper palettes and a 1600 × 1000 PNG export. Message text is composed in browser memory, not uploaded or retained after reload. The export includes an attribution/rights caveat.
+
+Version 0.3.0 REDO QA passed in headless Chromium: all ten animations, pause, frame inspection, print, cross-player pause event, offscreen pause, reduced motion/manual inspection, failed-data recovery, Persian-message PNG export with verified dimensions, no-JavaScript fallback and horizontal-overflow checks at 320, 375, 390, 768, 1024 and 1440px. No runtime exceptions were recorded. This is automated browser QA, not physical-device or production verification.
 
 ## Local doodle studio
 

@@ -14,7 +14,7 @@
   const status = desk.querySelector('#sticker-status');
   const options = [...desk.querySelectorAll('.sticker-option')];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let selected = options[0], animation = null, playerPromise = null;
+  let selected = options[0], animation = null;
   let request = 0, controller = null, state = 'still', inView = true, printing = false;
   const blocked = () => reduced.matches || document.body.classList.contains('motion-off');
   const allowed = () => !blocked() && !document.hidden && inView && !printing;
@@ -42,25 +42,12 @@
     if (state !== 'playing') return;
     animation.pause(); state = 'paused'; update(message);
   }
-  function loadPlayer() {
-    if (window.lottie) return Promise.resolve(window.lottie);
-    if (!playerPromise) {
-      playerPromise = new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        const timer = setTimeout(() => fail(), 12000);
-        function fail() { clearTimeout(timer); script.remove(); reject(new Error('Player unavailable')); }
-        script.src = 'assets/vendor/lottie_canvas-5.13.0.min.js';
-        script.onload = () => { clearTimeout(timer); window.lottie ? resolve(window.lottie) : fail(); };
-        script.onerror = fail;
-        document.head.append(script);
-      }).catch(error => { playerPromise = null; throw error; });
-    }
-    return playerPromise;
-  }
+  function loadPlayer() { return window.egorLoadLottie(); }
   async function start() {
     if (!allowed()) return;
     if (state === 'loading') { still('Loading cancelled. Static preview restored.'); return; }
     if (state === 'playing') { pause('Paused. Resume when you’re ready.'); return; }
+    document.dispatchEvent(new CustomEvent('egor-sticker-play', {detail:'stickers'}));
     if (animation) {
       state === 'ended' ? animation.goToAndPlay(0, true) : animation.play();
       state = 'playing'; update('Playing once. You can pause at any time.'); return;
@@ -69,7 +56,7 @@
     const abort = new AbortController(); controller = abort;
     state = 'loading'; update('Loading this sticker only…');
     const timeout = setTimeout(() => {
-      if (token === request) still('Loading took too long. The preview is safe; try Play once again.');
+      if (token === request) still('Loading took too long. The static preview is still available. Try again when ready.');
     }, 15000);
     try {
       const [player, data] = await Promise.all([
@@ -102,7 +89,7 @@
       state = 'playing'; item.goToAndPlay(0, true);
       update('Playing once. You can pause at any time.');
     } catch (_) {
-      if (token === request) still('Playback unavailable. Your static preview is still here. Try again when ready.');
+      if (token === request) still('Playback unavailable. The static preview is still available. Try again when ready.');
     } finally { clearTimeout(timeout); }
   }
   canvas.setAttribute('aria-label', preview.alt);
@@ -132,6 +119,7 @@
     // Other site effects also change body classes. Ignore unrelated changes.
     if (play.disabled !== blocked()) preferences();
   }).observe(document.body, {attributes:true, attributeFilter:['class']});
+  document.addEventListener('egor-sticker-play', event => { if (event.detail !== 'stickers') pause('Paused while another sticker plays.'); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) pause('Paused while you were away. Press Resume when ready.'); });
   if ('IntersectionObserver' in window) new IntersectionObserver(entries => {
     inView = entries[0].isIntersecting;
