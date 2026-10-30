@@ -57,10 +57,8 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <link rel="stylesheet" href="wake.css">
 <link rel="stylesheet" href="experience.css">
 <link rel="stylesheet" href="sticker-stories.css">
-<link rel="stylesheet" href="utya-room.css">
-<link rel="stylesheet" href="resistance-room.css">
-<script src="resistance-room.js" defer></script>
-<script src="utya-room.js" defer></script>
+<link rel="stylesheet" href="sticker-desk.css">
+<script src="sticker-desk.js" defer></script>
 <script src="water.js" defer></script>
 <script src="wake.js" defer></script>
 <script src="idle.js" defer></script>
@@ -81,7 +79,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <header class="paper"><nav class="nav wrap" aria-label="Main navigation">
 <a class="brand" href="#" aria-label="EGOR home"><img src="assets/portrait.webp" alt="" width="42" height="42"><div><span class="brand-word">$EGOR</span><small>A LITTLE DIFFERENT</small></div></a>
 <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">＋</span></button>
-<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#utya">Utya</a><a href="#resistance">Freedom</a><a href="#token">The token</a><a href="#how">How to buy</a><a href="#faq">FAQ</a><a href="#play">Play</a><button class="btn btn-dark" data-buy>Get $EGOR <span class="arrow" aria-hidden="true">↗</span></button></div>
+<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#token">The token</a><a href="#how">How to buy</a><a href="#faq">FAQ</a><a href="#play">Play</a><button class="btn btn-dark" data-buy>Get $EGOR <span class="arrow" aria-hidden="true">↗</span></button></div>
 </nav></header>
 <main id="main">
 <section class="hero paper" aria-labelledby="hero-heading"><div class="wrap">
@@ -117,90 +115,40 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
  <div class="sticker-evidence"><strong>A note on the artist credit</strong><p>TLGRM’s indexed search listings credit “Yegor Zhgun” as artist for these specific packs. This is directory evidence, not independent confirmation of every sticker’s authorship; the retrieved Resistance Dog page did not expose its artist credit. These references concern the named sticker packs only, not original character ownership, other versions, or any related token. They do not establish an endorsement of $EGOR.</p></div>
 </section>
 </div></section>
-<section class="utya-room" id="utya" aria-labelledby="utya-title" data-water-static><div class="wrap">
- <div class="utya-top"><p class="eyebrow">A guest in EGOR’s little world</p><a class="text-link" href="https://tlgrm.eu/stickers/UtyaDuck" target="_blank" rel="noopener noreferrer">Explore the pack ↗</a></div>
- <div class="utya-layout">
-  <div class="utya-copy">
-   <h2 class="display" id="utya-title">SMALL DUCK<br><span>BIG MOOD</span></h2>
-   <p>Some feelings don’t need words.<br>A little yellow duck will do.<br>Meet Utya. Pick a mood. Stay a minute.</p>
-   <div class="utya-byline"><div><strong>Utya Duck / sticker spotlight</strong><a href="https://tlgrm.eu/stickers/UtyaDuck" target="_blank" rel="noopener noreferrer">Pack listing credits Yegor Zhgun ↗</a></div></div>
-   <div class="utya-moods" role="group" aria-label="Choose Utya’s mood" hidden>
-    <button type="button" data-utya="hello" aria-pressed="true" aria-controls="utya-postcard">Hello</button>
-    <button type="button" data-utya="laugh" aria-pressed="false" aria-controls="utya-postcard">Big laugh</button>
-    <button type="button" data-utya="love" aria-pressed="false" aria-controls="utya-postcard">Love</button>
-    <button type="button" data-utya="yes" aria-pressed="false" aria-controls="utya-postcard">You got this</button>
-    <button type="button" data-utya="cool" aria-pressed="false" aria-controls="utya-postcard">Stay cool</button>
-    <button type="button" data-utya="rainbow" aria-pressed="false" aria-controls="utya-postcard">Too much</button>
+<section class="sticker-desk" id="sticker-desk" aria-labelledby="sticker-desk-title" data-water-static><div class="wrap">
+ <div class="sticker-desk-heading"><div><p class="eyebrow">The sticker desk / A little feeling goes a long way</p><h2 class="display" id="sticker-desk-title">PICK A MOOD<br><span class="blue-text">MAKE IT MOVE</span></h2></div><p>Eighteen little reactions. Choose a feeling, then press Play once. Nothing here starts without you.</p></div>
+ <div class="sticker-desk-layout">
+  <div class="sticker-player">
+   <div class="sticker-player-top"><span>A feeling, frame by frame</span><span id="sticker-count">01 / 18</span></div>
+   <div class="sticker-stage"><img id="sticker-preview" src="assets/stickers/previews/sticker-01.webp" alt="Yellow duck laughing with tears of joy" width="512" height="512" loading="lazy" decoding="async"><div class="sticker-canvas" role="img" aria-label="Animation of the selected duck reaction"></div></div>
+   <div class="sticker-player-caption"><h3 id="sticker-title">Big laugh</h3><a id="sticker-original" href="assets/stickers/originals/1.tgs" download>Original .tgs ↓</a></div>
+   <div class="sticker-controls" hidden><div class="sticker-control-row"><button type="button" id="sticker-play">Play once</button><button type="button" id="sticker-reset">Show still</button></div><p class="sticker-status" id="sticker-status" role="status" aria-live="polite" aria-atomic="true">Nothing plays automatically.</p></div>
+  </div>
+  <div class="sticker-shelf">
+   <div class="sticker-shelf-heading"><h3 id="sticker-shelf-title">Choose your little feeling</h3><span>18 originals, on demand</span></div>
+   <div class="sticker-options" role="group" aria-labelledby="sticker-shelf-title">
+    <button class="sticker-option" type="button" disabled aria-pressed="true" data-sticker="sticker-01" data-source="1.tgs" data-title="Big laugh"><img src="assets/stickers/previews/sticker-01.webp" alt="Yellow duck laughing with tears of joy" width="512" height="512" loading="lazy" decoding="async"><span>Big laugh</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-02" data-source="2.tgs" data-title="With love"><img src="assets/stickers/previews/sticker-02.webp" alt="Yellow duck sending a red heart" width="512" height="512" loading="lazy" decoding="async"><span>With love</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-03" data-source="3.tgs" data-title="Oh, hi"><img src="assets/stickers/previews/sticker-03.webp" alt="Smiling yellow duck with wings raised" width="512" height="512" loading="lazy" decoding="async"><span>Oh, hi</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-04" data-source="4.tgs" data-title="No way"><img src="assets/stickers/previews/sticker-04.webp" alt="Shocked duck holding its cheeks" width="512" height="512" loading="lazy" decoding="async"><span>No way</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-05" data-source="5.tgs" data-title="Feeling good"><img src="assets/stickers/previews/sticker-05.webp" alt="Yellow duck smiling with eyes closed" width="512" height="512" loading="lazy" decoding="async"><span>Feeling good</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-06" data-source="6.tgs" data-title="Rainy day"><img src="assets/stickers/previews/sticker-06.webp" alt="Sad yellow duck crying in the rain" width="512" height="512" loading="lazy" decoding="async"><span>Rainy day</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-07" data-source="7.tgs" data-title="Wait, what"><img src="assets/stickers/previews/sticker-07.webp" alt="Wide-eyed yellow duck with a surprised expression" width="512" height="512" loading="lazy" decoding="async"><span>Wait, what</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-08" data-source="8.tgs" data-title="Not today"><img src="assets/stickers/previews/sticker-08.webp" alt="Angry yellow duck frowning" width="512" height="512" loading="lazy" decoding="async"><span>Not today</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-09" data-source="9.tgs" data-title="Little mischief"><img src="assets/stickers/previews/sticker-09.webp" alt="Purple duck with small horns and a mischievous smile" width="512" height="512" loading="lazy" decoding="async"><span>Mischief</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-10" data-source="10.tgs" data-title="Stay cool"><img src="assets/stickers/previews/sticker-10.webp" alt="Yellow duck wearing dark sunglasses" width="512" height="512" loading="lazy" decoding="async"><span>Stay cool</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-11" data-source="11.tgs" data-title="Whatever"><img src="assets/stickers/previews/sticker-11.webp" alt="Duck with folded wings beneath the word Whatever" width="512" height="512" loading="lazy" decoding="async"><span>Whatever</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-12" data-source="12.tgs" data-title="Tiny giggle"><img src="assets/stickers/previews/sticker-12.webp" alt="Yellow duck covering its beak while giggling" width="512" height="512" loading="lazy" decoding="async"><span>Tiny giggle</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-13" data-source="13.tgs" data-title="Classic"><img src="assets/stickers/previews/sticker-13.webp" alt="Duck holding a cigarette beneath the words Haha, classic" width="512" height="512" loading="lazy" decoding="async"><span>Classic</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-14" data-source="14.tgs" data-title="Tea time"><img src="assets/stickers/previews/sticker-14.webp" alt="Green duck holding a small blue cup" width="512" height="512" loading="lazy" decoding="async"><span>Tea time</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-15" data-source="15.tgs" data-title="Still here"><img src="assets/stickers/previews/sticker-15.webp" alt="Small duck skeleton with large dark eyes" width="512" height="512" loading="lazy" decoding="async"><span>Still here</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-16" data-source="16.tgs" data-title="Goodnight"><img src="assets/stickers/previews/sticker-16.webp" alt="Duck sleeping under a green blanket with a teddy bear" width="512" height="512" loading="lazy" decoding="async"><span>Goodnight</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-17" data-source="17.tgs" data-title="Incognito"><img src="assets/stickers/previews/sticker-17.webp" alt="Duck wearing a wide-brimmed hat and sunglasses" width="512" height="512" loading="lazy" decoding="async"><span>Incognito</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-18" data-source="18.tgs" data-title="All heart"><img src="assets/stickers/previews/sticker-18.webp" alt="Yellow duck with a white H on its chest and a red heart nearby" width="512" height="512" loading="lazy" decoding="async"><span>All heart</span></button>
    </div>
-   <p class="utya-instruction" id="utya-instruction" hidden>Pick a feeling. The postcard is yours to change.</p>
-   <p class="utya-feedback" role="status" id="utya-feedback"></p>
+   <noscript><p class="sticker-desk-note">JavaScript is off. Enjoy the static collection; animated playback needs JavaScript.</p></noscript>
+   <div class="sticker-desk-note"><strong>Supplied stickers, carefully kept</strong><p>These are user-supplied Telegram animations, with the original files preserved. The mood names are labels for this gallery, not official sticker titles. Visual resemblance does not confirm pack membership, authorship, permission to reproduce, or endorsement of $EGOR. <a href="assets/stickers/manifest.json">View the file manifest</a>.</p></div>
   </div>
-  <div class="utya-stage">
-   <figure class="utya-postcard" id="utya-postcard">
-    <div class="eyebrow" aria-hidden="true"><span>A LITTLE FEELING</span><span id="utya-number">01 / 06</span></div>
-    <div class="utya-photo"><img id="utya-image" src="assets/utya/hello.webp" alt="Utya smiling and waving hello" width="168" height="193" loading="lazy" decoding="async" draggable="false"></div>
-    <figcaption aria-live="polite" aria-atomic="true"><strong id="utya-caption">Oh, hi there.</strong><span id="utya-note">No grand entrance. Just a little wave.</span></figcaption>
-   </figure>
-   <span class="utya-postmark" aria-hidden="true">DELIVERED WITH<strong>FEELING</strong></span>
-   <span class="utya-coin" aria-hidden="true"><strong>EGOR</strong>COMMUNITY</span>
-   <span class="utya-ton" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M6 7h20c1.5 0 2.1 1.5 1.2 2.7L16 26 4.8 9.7C3.9 8.5 4.5 7 6 7Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M16 8v18" stroke="currentColor" stroke-width="2.5"/></svg>TON</span>
-  </div>
- </div>
- <div class="utya-shelf-heading"><h3 id="utya-notes-title">Psst. There’s a note inside.</h3><p>Six tiny doors. Tap a sticker to peek behind the feeling.</p></div>
- <div class="utya-shelf" role="group" aria-labelledby="utya-notes-title">
-  <details class="utya-secret"><summary><img src="assets/utya/shock.webp" alt="A wide-eyed, surprised Utya" width="168" height="193" loading="lazy" decoding="async" draggable="false"><span>Plot twist</span></summary><p>You don’t have to have it all figured out. Surprise is a perfectly good first draft.</p></details>
-  <details class="utya-secret"><summary><img src="assets/utya/rain.webp" alt="Utya feeling sad in the rain" width="168" height="193" loading="lazy" decoding="async" draggable="false"><span>Rain check</span></summary><p>Even a little duck has rainy days. You can sit here for a while. No explanation needed.</p></details>
-  <details class="utya-secret"><summary><img src="assets/utya/oops.webp" alt="Utya with a blank, startled expression" width="168" height="193" loading="lazy" decoding="async" draggable="false"><span>Loading…</span></summary><p>Brain buffering. Heart still online. Take one breath before your next tab.</p></details>
-  <details class="utya-secret"><summary><img src="assets/utya/angry.webp" alt="An angry red Utya" width="168" height="193" loading="lazy" decoding="async" draggable="false"><span>Big feelings</span></summary><p>Write the message. Don’t send it yet. Get some water. Let the duck do the shouting.</p></details>
-  <details class="utya-secret"><summary><img src="assets/utya/devil.webp" alt="A mischievous purple Utya" width="168" height="193" loading="lazy" decoding="async" draggable="false"><span>Tiny trouble</span></summary><p>Your very serious assignment: draw something wonderfully silly. The doodle desk is waiting.</p><a href="#play">To the doodle desk ↗</a></details>
-  <details class="utya-secret"><summary><img src="assets/utya/whatever.webp" alt="Utya looking away beneath the word Whatever" width="168" height="193" loading="lazy" decoding="async" draggable="false"><span>Off duty</span></summary><p>You are allowed to close the tabs. The internet will still be weird tomorrow.</p></details>
- </div>
- <p class="utya-discovery" id="utya-discovery" role="status" hidden>0 of 6 little notes discovered.</p>
- <div class="utya-source-note">
-  <p><strong>Artwork, not a lookalike.</strong> These images are crops from the supplied Utya sticker reference, not newly drawn ducks. The <a href="https://tlgrm.eu/stickers/UtyaDuck" target="_blank" rel="noopener noreferrer">specific pack listing</a> credits Yegor Zhgun; this is a pack-specific credit, not a claim about all character versions.</p>
-  <p><strong>A guest, not a token identity.</strong> Utya is distinct from EGOR. The EGOR coin motif and TON badge refer to this community site, not to an Utya token or an artist partnership. Layout and little notes are an independent tribute; no endorsement is implied.</p>
- </div>
-</div></section>
-<section class="resistance-room" id="resistance" aria-labelledby="resistance-title" data-water-static><div class="wrap">
- <div class="resistance-top"><p class="eyebrow">Resistance Dog / an independent sticker tribute</p><a class="text-link" href="https://tlgrm.eu/stickers/ResistanceDog" target="_blank" rel="noopener noreferrer">View the pack <span aria-hidden="true">↗</span><span class="sticker-sr"> (opens in a new tab)</span></a></div>
- <div class="resistance-layout">
-  <div class="resistance-copy">
-   <h2 class="display" id="resistance-title">SMALL LINES<br><span>FREE VOICES</span></h2>
-   <p class="resistance-intro">A hood. A little defiance. A lot to say.<br>In this corner of EGOR’s world, Resistance Dog is a reminder to think freely, speak honestly, and leave room for someone else.</p>
-   <div class="resistance-choices" role="group" aria-label="Choose a freedom to reflect on" hidden>
-    <button type="button" data-resistance="hello" aria-pressed="true" aria-controls="resistance-card"><span aria-hidden="true">01</span>Be yourself</button>
-    <button type="button" data-resistance="laugh" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">02</span>Laugh out loud</button>
-    <button type="button" data-resistance="no" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">03</span>Say no</button>
-    <button type="button" data-resistance="heart" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">04</span>Care openly</button>
-    <button type="button" data-resistance="peace" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">05</span>Choose peace</button>
-    <button type="button" data-resistance="signal" aria-pressed="false" aria-controls="resistance-card"><span aria-hidden="true">06</span>Send a signal</button>
-   </div>
-   <p class="resistance-hint" id="resistance-hint" hidden>Six small reminders. Pick one to change the card.</p>
-   <p class="resistance-feedback" id="resistance-feedback" role="status"></p>
-  </div>
-  <div class="resistance-stage">
-   <figure class="resistance-card" id="resistance-card">
-    <div class="resistance-card-top" aria-hidden="true"><span>NOTES ON BEING FREE</span><span id="resistance-number">01 / 06</span></div>
-    <div class="resistance-art"><img id="resistance-image" src="assets/resistance/hello.webp" alt="Hooded Resistance Dog raising a hand beneath the word Hey" width="128" height="148" loading="lazy" decoding="async" draggable="false"></div>
-    <figcaption aria-live="polite" aria-atomic="true"><strong id="resistance-caption">Start with a hello.</strong><span id="resistance-note">You don’t need a louder voice to deserve a place in the conversation.</span></figcaption>
-    <div class="resistance-card-footer" aria-hidden="true"><span>Resistance Dog</span><span>A voice, not an echo</span></div>
-   </figure>
-  </div>
- </div>
- <div class="resistance-principle"><p class="eyebrow">Our little reminder</p><p>You don’t have to agree to belong in the conversation. Make space for expression, curiosity, and a little absurdity.</p></div>
- <div class="resistance-notes-heading"><h3 id="resistance-notes-title">Off-script, on purpose</h3><p>Six everyday acts of being yourself. Open a note.</p></div>
- <div class="resistance-notes" role="group" aria-labelledby="resistance-notes-title">
-  <details class="resistance-note"><summary><img src="assets/resistance/fine.webp" alt="Resistance Dog sitting among flames beneath This is fine" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 01</small>Drop the brave face</span></summary><p>You’re allowed to say it isn’t fine. An honest feeling is worth more than a perfect performance.</p></details>
-  <details class="resistance-note"><summary><img src="assets/resistance/cheers.webp" alt="Resistance Dog in a bow tie raising a glass" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 02</small>Make a little toast</span></summary><p>To the people who let you be strange. To the friends who listen. To one good conversation that wasn’t about winning.</p></details>
-  <details class="resistance-note"><summary><img src="assets/resistance/plane.webp" alt="Resistance Dog riding a paper plane beside I’m on a plane I can’t complain" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 03</small>Let an idea travel</span></summary><p>Share the sketch. Ask the awkward question. A thought doesn’t need to be polished before it deserves some air.</p></details>
-  <details class="resistance-note"><summary><img src="assets/resistance/phone.webp" alt="Resistance Dog looking at a phone with one hand against the face" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 04</small>Read. Breathe. Reply.</span></summary><p>There’s a person beyond the screen. You can challenge an idea without making someone smaller.</p></details>
-  <details class="resistance-note"><summary><img src="assets/resistance/go.webp" alt="Two hooded dogs setting off together beneath Go" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 05</small>Take the first step</span></summary><p>You don’t need a crowd to begin. Bring one curious friend. Make something that sounds like you.</p></details>
-  <details class="resistance-note"><summary><img src="assets/resistance/rest.webp" alt="Resistance Dog floating on blue water" width="128" height="148" loading="lazy" decoding="async" draggable="false"><span><small>NOTE / 06</small>Choose a little quiet</span></summary><p>Freedom includes stepping away. Not every thought needs a post. Not every moment needs an audience.</p></details>
- </div>
- <div class="resistance-invite"><img src="assets/portrait.webp" alt="EGOR’s separate doodle character" width="64" height="64" loading="lazy" decoding="async"><div><h3>Your line belongs here, too</h3><p>Back at EGOR’s desk, there’s room for your own expression.<br>Draw locally. No upload. No wallet.</p></div><a class="btn" href="#play">Make your mark <span aria-hidden="true">↗</span></a></div>
- <div class="resistance-credit">
-  <p><strong>A tribute, not a partnership.</strong> Resistance Dog and EGOR are distinct. This independently designed gallery and its original written notes do not imply an official Resistance Dog collaboration, artist endorsement, or connection between tokens.</p>
-  <details><summary>Artwork, source &amp; credit</summary><p>These sticker images are crops from the supplied Resistance Dog reference, not new drawings or newly created EGOR characters. The freedom-themed captions are this site’s interpretation, not statements by the artist or a Resistance Dog project.</p><p>Indexed TLGRM search listings credit “Yegor Zhgun” for the <a href="https://tlgrm.eu/stickers/ResistanceDog" target="_blank" rel="noopener noreferrer">specific ResistanceDog pack ↗<span class="sticker-sr"> (opens in a new tab)</span></a>; the retrieved pack page did not expose that credit. This secondary evidence does not independently establish authorship of every supplied image, character ownership, token creation, or endorsement. Cropping and attribution do not establish reproduction rights.</p></details>
  </div>
 </div></section>
 <section class="numbers paper" id="token"><div class="wrap"><div class="section-label eyebrow reveal">02 / The token, in plain sight</div><div class="section-header token-heading reveal"><h2 class="display">BIG CHARACTER<br>SIMPLE NUMBERS</h2><div class="token-host"><img src="assets/egor-confident.webp" alt="Egor standing with crossed arms and smart glasses" width="640" height="640" loading="lazy" decoding="async"><p><span class="host-aside">the serious face</span>Same little doodle.<br>A little more business.<br>Let’s look at the details.</p></div></div>

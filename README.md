@@ -1,5 +1,9 @@
 # $EGOR — A little blue. A lot of character.
 
+## Version 0.2.0
+
+This release adds an on-demand sticker desk with 18 unique supplied animations. It is based on the recoverable deploy-ready website. **The separate Utya and Resistance interactive rooms from later work are not included:** their archives were corrupt/unreadable. The sticker stories, local doodle studio and new animation desk are included; this is not a complete recovery of those later rooms.
+
 A static, English-language website. No build tools, dependencies, or wallet connection. Optional Vercel monitoring is included.
 
 ## Preview
@@ -65,28 +69,15 @@ Indexed search listings credit “Yegor Zhgun” for these specific packs. This 
 
 `assets/line-memory-tribute.webp` is an optimized independent community illustration, not artwork by Zhgun. Its visible caption states this distinction. The section uses `sticker-stories.css`, static semantic HTML, local imagery, and external source links without third-party embeds or new JavaScript.
 
-## Utya’s paper room
+## Animated sticker desk
 
-`#utya` uses `utya-room.css`, `utya-room.js`, twelve supplied-reference sticker crops in `assets/utya/`, and `assets/telegram-plane-cursor.svg`.
+`sticker-desk.css` and `sticker-desk.js` provide 18 choices, static WebP previews, Play once / Pause / Resume / Replay, Show still, accessible status feedback and original `.tgs` downloads. Nothing in this desk autoplays. Selection restores the still preview; Escape, scrolling away, printing and a hidden tab pause playback without automatic resumption. Reduced Motion and the page motion toggle disable playback.
 
-- Six mood buttons change a postcard on deliberate input. Native buttons support Tab, Enter and Space; the selected state and caption are announced accessibly. Failed image requests preserve the current image and offer retry; rapid input honors the last request.
-- Six native disclosure cards reveal independent community-written notes, including a link to the local doodle studio. A discovery count lives only in page memory. No rewards, sign-in, uploads, or wallet connection.
-- Without JavaScript, the initial postcard, artwork credits, source links and six disclosure cards remain usable; inactive mood buttons are hidden.
-- Only the two small badges bob while the section is visible. The motion toggle, hidden-tab state and reduced-motion preference apply; there is no new JavaScript animation loop or autoplay carousel.
-- A native Telegram-plane-style cursor is limited to fine, hovering pointers. Touch interaction and the studio retain their normal behavior. Symbols are decorative, not official endorsement badges.
-- Utya remains distinct from EGOR. Credit is limited to the named UtyaDuck pack listing. The supplied-reference crops are not original artwork created for this website, and neither cropping nor attribution establishes a reproduction license: confirm usage rights before public promotion.
-- Requested copy deterrence disables general text selection and casual image dragging/context menus. Contract text and form inputs remain selectable; Copy CA, its manual fallback, ordinary link menus, keyboard navigation and studio export still work. This is **not DRM**: screenshots, downloads and browser tools cannot be reliably prevented. To remove deterrence, delete the selection rule in `utya-room.css` and the final copy/contextmenu/dragstart handlers in `utya-room.js`.
+All originals, including two duplicate aliases, are preserved in `assets/stickers/originals/`. `assets/stickers/manifest.json` records SHA-256 hashes, technical metadata and inferred visual groups; grouping is not proof of authorship or permission. Confirm publication rights before deployment. No affiliation or endorsement is implied.
 
-Validation: automated Chromium checks cover seven widths (320–1440px), mood changes, rapid input, image failure/retry, keyboard activation, disclosure counting, motion controls, reduced motion, copy exceptions and the no-JavaScript fallback. Site, dock, studio, sticker-story and monitoring regression checks also pass. These are local checks, not production analytics verification or physical-device/Safari testing.
+The local Lottie canvas player (5.13.0) and selected animation JSON are fetched only after Play. No CDN or third-party animation service is required. Keep `assets/vendor/lottie-web-LICENSE.md` with the player. Without JavaScript, previews and original-file links remain available. Preview through HTTP, not `file://`, so animation fetches work.
 
-## Resistance Dog: free voices
-
-`#resistance` includes `resistance-room.css`, `resistance-room.js`, and twelve supplied-reference crops in `assets/resistance/`.
-
-- Six deliberate choices update a postcard; six native disclosure notes explore freedom of expression. There is no autoplay or automatic scrolling.
-- On mobile, the postcard sits above its choice buttons. Keyboard controls, accessible status messages, image-failure recovery, reduced motion and a no-JavaScript fallback are included.
-- Resistance Dog, Utya and EGOR remain distinct. The copy and layout are an independent tribute, not an official collaboration or artist endorsement. Pack attribution is limited to the linked listing; cropping and credit do not establish reproduction rights. Confirm artwork permissions before public promotion.
-- Chromium checks cover nine widths (320–1920px), keyboard activation, rapid input, failed images/retries, native disclosure notes, navigation, motion preferences and no-JavaScript behavior. These are local emulated-browser checks, not physical-device certification.
+Version 0.2.0 animation QA passed in headless Chromium at 320, 375, 390, 768, 1024 and 1440px: all 18 animations, single-run playback, pause/resume/replay/reset, keyboard activation, Escape, offscreen pause, print, motion preferences, failed data/player retry, cancelled loading and no-JavaScript fallback. Thumbnail proportions and touch-target sizes were checked. No runtime exceptions were reported. The local studio regression suite also passed. Earlier QA notes below describe the recovered baseline, not new physical-device or production testing.
 
 ## Local doodle studio
 
