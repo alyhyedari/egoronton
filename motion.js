@@ -35,23 +35,40 @@
   });
   if (!root.classList.contains('booting')) finishIntro();
   else {
-    let completed = 0;
-    const images = ['assets/body.webp', 'assets/arm.webp', 'assets/portrait.webp'];
+    let completed = 0, failed = 0;
+    const images = ['assets/body.webp', 'assets/arm.webp', 'assets/portrait.webp', 'assets/paper.webp'];
     const tasks = images.map(src => new Promise(resolve => {
       const image = new Image();
-      image.onload = image.onerror = resolve;
+      image.onload = () => resolve(true);
+      image.onerror = () => resolve(false);
       image.src = src;
     }));
-    tasks.push(document.fonts ? document.fonts.ready : Promise.resolve());
-    tasks.forEach(task => task.finally(() => {
+    tasks.push(document.fonts ? document.fonts.ready.then(() =>
+      [...document.fonts].every(font => font.status !== 'error')) : Promise.resolve(true));
+    const detail = $('#intro-detail');
+    const checks = tasks.map(task => task.catch(() => false).then(ok => {
       if (finished) return;
-      const progress = ++completed / tasks.length;
-      $('#intro-meter').style.transform = `scaleX(${progress})`;
-      $('#intro-count').textContent = `${completed} / ${tasks.length}`;
+      completed++;
+      if (!ok) failed++;
+      const percent = Math.round(completed / tasks.length * 100);
+      $('#intro-meter').style.transform = `scaleX(${percent / 100})`;
+      $('#intro-count').textContent = `${percent}%`;
+      $('#intro-progress').setAttribute('aria-valuenow', String(percent));
+      detail.textContent = failed ? 'Some artwork is unavailable · you can still explore' :
+        completed === tasks.length ? 'Ready. Make yourself at home.' : `${completed} of ${tasks.length} essentials checked`;
     }));
-    // A brief reveal, never a fabricated loading percentage or an unbounded wait.
-    Promise.race([Promise.allSettled(tasks), new Promise(resolve => setTimeout(resolve, 2200))])
-      .then(() => setTimeout(finishIntro, 180));
+    // Completion of essential-resource checks, not simulated byte progress.
+    // Lazy animation data is intentionally not downloaded by this loader.
+    let deadline;
+    Promise.race([Promise.all(checks), new Promise(resolve => {
+      deadline = setTimeout(() => {
+        detail.textContent = 'Still loading · continuing without waiting';
+        resolve();
+      }, 2200);
+    })]).then(() => {
+      clearTimeout(deadline);
+      setTimeout(finishIntro, 260);
+    });
   }
 
   const motionButton = $('#motion-toggle');

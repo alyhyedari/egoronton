@@ -1,5 +1,42 @@
 # $EGOR — A little blue. A lot of character.
 
+## Version 0.3.6 — A window into EGOR's world
+
+- The homepage welcomes visitors with EGOR beside a hand-drawn window, with clear paths to explore the artwork, browse stickers, or create a portrait.
+- `welcome.css` and `welcome.js` add a visitor-operated sky-brightness toggle. Its accessible name stays stable, while pressed state, status text, and the illustration description reflect the setting. The scene remains visible without JavaScript and the unavailable toggle stays hidden.
+- The sky interaction adds no timers, animation loops, storage, network requests, or sound. Existing site motion controls and reduced-motion support remain available.
+- Homepage copy uses simple English. Sticker originals, REDO content, and the browser-local portrait editor are preserved from version 0.3.5. Native Telegram and X links remain available without embeds.
+- Deploy as a static site: no dependency installation, build step, or wallet connection. Include both `welcome.css` and `welcome.js` with the other runtime files.
+
+### Validation for version 0.3.6
+
+Headless Chromium checks passed for homepage layout, control bounds, and touch-target sizes at 11 widths from 320 to 1920px; sky control activation by Enter and Space; accessible state updates; reduced motion; and no-JavaScript presentation. The community/portrait-entry suite passed, including editor layout at eight widths, text layers, undo/redo, and PNG preview. The 18-animation sticker suite, ten-animation REDO suite, and local doodle studio suite also passed. REDO initially failed its reduced-motion assertion and the doodle studio initially failed its readiness assertion; each complete suite passed on rerun. These initial failures are not presented as clean first-pass results. Successful runs reported no runtime exceptions. Desktop/mobile homepage screenshots were reviewed.
+
+These are local emulated Chromium checks, not physical-device, Safari, live Vercel, or production certification. Deployment, domain verification, live analytics ingestion, and domain-dependent SEO remain outstanding. See the accompanying release QA report for archive integrity checks and test-log details.
+
+## Version 0.3.5 — Community links and portrait invitation
+
+- Native Telegram (`https://t.me/egorverseportal`) and X (`https://x.com/egorverse`) links appear in the hero, community section, and footer. They open in new tabs with `noopener noreferrer`; these links add no embeds or tracking scripts. Existing optional Vercel monitoring is described below.
+- The homepage invites visitors to make a Telegram profile picture in `portrait-studio.html`, without rewards, pressure, or implied endorsement. Using or sharing a portrait is optional; artwork permissions still apply.
+- The portrait studio is a browser-local **2D compositor**, not a 3D editor. It supports a poseable character, photo/text/sticker layers, layer ordering, erase/restore, undo/redo, project save/open, and PNG export. Photos and edits are not uploaded. Work stays in memory: explicitly save a project or export before leaving; there is no autosave. Optional music never autoplays.
+
+### Validation for version 0.3.5
+
+Headless Chromium checks passed for homepage layout and community-link bounds at 11 widths from 320 to 1920px, and editor overflow at eight widths. Checks covered native community-link destinations and new-tab attributes, homepage fragment targets, mobile navigation into the editor, adding text, undo/redo, PNG preview, reduced-motion community styling, and no-JavaScript homepage entry/link visibility. No runtime exceptions were reported. These are emulated Chromium checks, not physical-device, Safari, or production certification.
+
+## Version 0.3.4 — Light room and verified asset caching
+
+- A responsive, isolated lamp scene with draggable light and doodles, cord adjustment, keyboard controls, pause, and optional sound (off by default). Reduced motion disables the pendulum; the light remains switchable. Resizing safely cancels a drag.
+- The intro reports completion of five real checks: four essential images and font readiness. This is not a download-byte percentage. Failed checks are disclosed; slow resources do not hold the page indefinitely.
+- `asset-cache.js` registers `sw.js` on HTTPS or localhost. Only assets listed in `asset-manifest.json` and verified against their SHA-256 hashes enter the persistent asset cache. Changed hashes get new cache keys; unchanged cached assets need no repeat download. Documents and application code use ordinary network/HTTP caching.
+- Caching is best-effort: storage can be denied or evicted. Previously cached assets work offline, but this is **not an offline website**; HTML and application code are not precached. Editor inputs and user images are never included.
+- After editing anything under `assets/`, run `python3 update_asset_manifest.py`, then deploy assets and manifest together. This maintainer utility is not a deployment build step. No manifest change is needed for CSS/JS outside `assets/`. Deploy `sw.js`, `asset-cache.js`, and `asset-manifest.json` alongside both HTML pages.
+- The standalone local-only 2D portrait editor is available at `portrait-studio.html`; it is not a 3D model or a rights-management system.
+
+### Validation for version 0.3.4
+
+Headless Chromium checks passed at 13 widths from 320 to 1920px, including repeated resizing across 760/761px: no horizontal overflow or lamp/title overlap, bounded lamp position, drag cancellation, pause, light toggle, sound initially off, and reduced motion. Cache tests passed for reuse without a network request, cached-asset offline access, changed manifests, rejection of corrupt content from persistent caching, and isolated root/nested-path scopes. A stalled loader exited without a false 100%; a failed image produced an explicit warning. The 18-animation sticker and ten-animation REDO regression suites also passed, including failure/retry and no-JavaScript fallbacks. Desktop/mobile screenshots were reviewed. These are emulated Chromium checks, not physical-device or production certification.
+
 ## Version 0.3.1 — English editorial edition
 
 This update standardizes the interface in US English, refines navigation and playback messages, and clarifies download labels and card-preview instructions. Page language metadata is set to `en-US`. Site copy, accessibility descriptions, default card text and this deployment guide are in English. Supplied artwork and original downloads remain unchanged, including embedded lettering in other languages; English descriptions provide context. Visitors may still enter their own messages in any supported language.
@@ -54,7 +91,7 @@ Privacy and expected behavior:
 - Cyan paper, self-hosted type, original supplied character layers.
 - Four custom character poses, an interactive mood board, a seated farewell, and a character-led purchase guide.
 - Editorial headings without decorative terminal periods or long dashes; normal punctuation remains in explanatory prose.
-- First-visit intro tracks three essential images and font readiness (not simulated percentages). Skip button, Escape, keyboard navigation, a 2.2-second asset timeout, and a 3.5-second fail-open safeguard. Repeat visits in the same tab skip it.
+- First-visit intro tracks four essential images and font readiness (not simulated percentages). Skip button, Escape, keyboard navigation, a 2.2-second check deadline, and a 3.5-second fail-open safeguard. Repeat visits in the same tab skip it.
 - At the hero, only the raised arm waves; the original face and hair remain unchanged. Every character stays in its own section: no travel between sections, climbing, or jumping.
 - `idle.js` layers the supplied artwork for subtle head tilts, nods, and guide-arm gestures with varied timing. Standing and seated characters wave continuously and gently while visible. The mood selector rebuilds the local layers without moving the illustration.
 - Failed pose loading, disabled JavaScript, and reduced motion preserve static illustrations. Decorative layers are hidden from assistive technology and cannot intercept clicks.

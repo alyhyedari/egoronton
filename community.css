@@ -1,0 +1,36 @@
+/* EGOR community — native links, no embeds, trackers, or autoplay. */
+.hero-socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;position:relative;z-index:2}
+.hero-socials a{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:9px 15px;border:1.5px solid var(--ink);border-radius:999px;background:var(--paper);font-size:12px;font-weight:800;text-decoration:none;box-shadow:2px 3px 0 rgba(36,36,36,.12)}
+.hero-socials a:hover{background:var(--blue);color:var(--white)}
+.community{scroll-margin-top:90px}
+.community .community-intro{max-width:550px;margin:22px auto 32px;font-size:15px}
+.community-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:840px;margin:0 auto;text-align:left}
+.community-card{display:flex;flex-direction:column;position:relative;min-width:0;padding:28px;border:2px solid var(--ink);border-radius:5px 14px 6px 12px;box-shadow:5px 6px 0 var(--ink);text-decoration:none;color:var(--ink);background:var(--white)}
+.community-telegram{background:#dcecf6;transform:rotate(-1deg)}
+.community-x{background:#f4edcf;transform:rotate(1deg)}
+.community-card-top{display:flex;align-items:center;gap:12px;margin-bottom:25px}
+.community-icon{width:34px;height:34px;flex:0 0 34px}
+.community-card-top .eyebrow{font-size:9px;letter-spacing:1px;margin:0}
+.community-card-arrow{font-size:25px;margin-left:auto}
+.community-card h3{font-size:clamp(31px,3.3vw,43px);line-height:1.1;letter-spacing:-.5px}
+.community .community-card p{font-size:13px;line-height:1.8;margin:14px 0 23px;max-width:300px}
+.community-handle{display:flex;justify-content:space-between;gap:10px;margin-top:auto;padding-top:16px;border-top:1px dashed currentColor;font-size:13px;font-weight:800;overflow-wrap:anywhere}
+.community-card:hover{background:var(--blue);color:var(--white)}
+.community-card:hover .community-handle{text-decoration:underline;text-underline-offset:4px}
+.hero-socials a:focus-visible,.community-card:focus-visible{outline:3px solid var(--blue);outline-offset:7px}
+.community .community-welcome{margin:34px auto 8px;font-size:14px;font-weight:700;max-width:580px}
+.community .community-external{font-size:11px;margin:0 auto 22px}
+.community-token{font-size:12px}
+.portrait-invite{padding:80px 0;scroll-margin-top:90px;border-top:2px solid var(--ink)}
+.portrait-invite-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:48px}
+.portrait-invite h2{font-size:clamp(38px,6vw,76px);line-height:1.05;margin:20px 0}
+.portrait-invite p:not(.eyebrow){max-width:560px;line-height:1.8;margin:20px 0}
+.portrait-invite .portrait-invite-note{font-size:12px}
+.portrait-invite figure{margin:0;text-align:center}
+.portrait-invite img{display:block;width:100%;max-width:360px;height:auto;margin:auto;border:2px solid var(--ink);border-radius:50%;background:#dcecf6}
+.portrait-invite figcaption{font-size:12px;margin-top:18px}
+@media(max-width:600px){.portrait-invite{padding:56px 0}.portrait-invite-layout{grid-template-columns:1fr;gap:24px}.portrait-invite img{max-width:240px}.portrait-invite .btn{max-width:100%;font-size:12px}}
+.footer-links{flex-wrap:wrap}
+@media(min-width:761px) and (max-width:1100px){.nav-links{gap:13px}.nav-links>a{font-size:11px}.nav-links .btn{padding:10px 15px}}
+@media(max-width:600px){.community-cards{grid-template-columns:1fr;gap:22px;max-width:400px}.community-card{padding:24px;transform:none}.community-card h3{font-size:38px}.community .display#community-heading{font-size:clamp(34px,9vw,50px)}.community .community-intro{font-size:14px}.community .community-welcome{font-size:13px}.community-token{display:inline-flex;max-width:100%;line-height:1.8;text-align:left}.footer-links{row-gap:12px}}
+@media(prefers-reduced-motion:reduce){.community-card,.hero-socials a{transition:none;transform:none}}
