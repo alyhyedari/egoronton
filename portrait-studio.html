@@ -2,16 +2,49 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101f28"><meta name="description" content="Make an EGOR profile picture in your browser. Pose the character, arrange photo layers, erase and restore, then export a PNG.">
-<title>EGOR Portrait Studio</title>
+<meta name="theme-color" content="#101f28">
+<meta name="description" content="Create an EGOR profile picture in your browser. Pose the character, add photo and text layers, and export a PNG. Local editing with no photo uploads.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.egorverse.xyz/portrait-studio.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EGOR World">
+<meta property="og:url" content="https://www.egorverse.xyz/portrait-studio.html">
+<meta property="og:title" content="EGOR Portrait Studio | Make Your Profile Picture">
+<meta property="og:description" content="Pose EGOR, add photo and text layers, and export your profile picture as a PNG. Photos stay in your browser; no uploads.">
+<meta property="og:image" content="https://www.egorverse.xyz/assets/og/egor-world-v1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EGOR in white lettering on blue, with a relaxed line-drawn character, a lamp and a small plant.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@egorverse">
+<meta name="twitter:title" content="EGOR Portrait Studio | Make Your Profile Picture">
+<meta name="twitter:description" content="Make an EGOR profile picture with poseable artwork, photos and text. Edit locally in your browser and export a PNG.">
+<meta name="twitter:image" content="https://www.egorverse.xyz/assets/og/egor-world-v1.jpg">
+<meta name="twitter:image:alt" content="EGOR in white lettering on blue, with a relaxed line-drawn character, a lamp and a small plant.">
+<title>EGOR Portrait Studio | Make Your Profile Picture</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.egorverse.xyz/portrait-studio.html#webpage",
+  "url": "https://www.egorverse.xyz/portrait-studio.html",
+  "name": "EGOR Portrait Studio | Make Your Profile Picture",
+  "inLanguage": "en-US",
+  "isPartOf": {"@type": "WebSite", "@id": "https://www.egorverse.xyz/#website", "name": "EGOR World", "url": "https://www.egorverse.xyz/"},
+  "description": "An independent browser-local portrait editor with poseable EGOR artwork, photo and text layers, and PNG export. Photos are not uploaded.",
+  "primaryImageOfPage": {"@type": "ImageObject", "url": "https://www.egorverse.xyz/assets/og/egor-world-v1.jpg", "width": 1200, "height": 630}
+}
+</script>
 <link rel="icon" href="assets/portrait.webp" type="image/webp"><link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="portrait-studio.css">
 <script src="asset-cache.js" defer></script>
 <script src="portrait-studio.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#workspace">Skip to canvas</a>
-<header class="app-header"><a class="brand" href="index.html#portrait"><img src="assets/portrait.webp" width="36" height="36" alt=""><span>EGOR <small>PORTRAIT STUDIO</small></span></a><span class="privacy-pill"><i></i> Local editing · no uploads</span><div class="header-actions"><button id="help-open">Guide <span aria-hidden="true">?</span></button><a href="index.html#portrait" class="back-link">Back to the world ↗</a></div></header>
-<noscript><div class="fallback"><h1>Make a little character.</h1><p>The editor needs JavaScript to work locally in your browser. No photo upload service is used.</p><a href="index.html#play">Return to the doodle desk</a></div></noscript>
+<header class="app-header"><a class="brand" href="./#portrait"><img src="assets/portrait.webp" width="36" height="36" alt=""><span>EGOR <small>PORTRAIT STUDIO</small></span></a><span class="privacy-pill"><i></i> Local editing · no uploads</span><div class="header-actions"><button id="help-open">Guide <span aria-hidden="true">?</span></button><a href="./#portrait">Back to the world ↗</a></div></header>
+<noscript><div class="fallback"><h1>Make a little character.</h1><p>The editor needs JavaScript to work locally in your browser. No photo upload service is used.</p><a href="./#play">Return to the doodle desk</a></div></noscript>
 <div id="boot-message" role="status">Preparing the drawing desk… If this stays here, reload the page or check that JavaScript is enabled.</div>
 <main class="editor" id="editor" hidden>
 <section class="document-bar" aria-label="Document actions"><div><span class="eyebrow">A little blue. Entirely you.</span><h1>Your next little identity</h1></div><div class="document-actions"><button id="new-project">New</button><button id="load-project">Open project</button><button id="save-project">Save project</button><button id="export-open" class="primary">Export PNG <span aria-hidden="true">↗</span></button></div></section>
@@ -46,7 +79,7 @@
 <fieldset class="background-controls"><legend>The backdrop</legend><div class="swatches" role="group" aria-label="Background colors"><button data-bg="#03afd5" style="--swatch:#03afd5" aria-label="Blue background" aria-pressed="true"></button><button data-bg="#f4f0df" style="--swatch:#f4f0df" aria-label="Paper background" aria-pressed="false"></button><button data-bg="#f6ee69" style="--swatch:#f6ee69" aria-label="Yellow background" aria-pressed="false"></button><button data-bg="#ffffff" style="--swatch:#fff" aria-label="White background" aria-pressed="false"></button><button data-bg="transparent" class="transparent-swatch" aria-label="Transparent background" aria-pressed="false"></button><label class="custom-color" title="Custom background"><input id="bg-color" type="color" value="#03afd5" aria-label="Custom background color"></label></div></fieldset>
 </aside>
 </div>
-<footer class="editor-footer"><span>Made of lines. Made by you.</span><p>Independent community tool. The rig adapts supplied EGOR artwork; it is not an original artist-authored pose. No artist endorsement or reproduction rights are implied. Use only photos you have permission to edit and share.</p><a href="index.html#play">Just want to doodle? ↗</a></footer>
+<footer class="editor-footer"><span>Made of lines. Made by you.</span><p>Independent community tool. The rig adapts supplied EGOR artwork; it is not an original artist-authored pose. No artist endorsement or reproduction rights are implied. Use only photos you have permission to edit and share.</p><a href="./#play">Just want to doodle? ↗</a></footer>
 </main>
 <input id="photo-input" type="file" accept="image/png,image/jpeg,image/webp" hidden><input id="project-input" type="file" accept=".json,application/json" hidden>
 <dialog id="export-dialog" aria-labelledby="export-title"><form method="dialog"><button class="dialog-close" aria-label="Close export">×</button></form><span class="eyebrow">Ready for the outside world</span><h2 id="export-title">A little you, to go.</h2><canvas id="export-preview" width="320" height="320" role="img" aria-label="Clean export preview"></canvas><div class="export-options"><label class="field">Resolution<select id="export-size"><option value="1024">1024 × 1024</option><option value="2048" selected>2048 × 2048</option><option value="512">512 × 512</option></select></label><label class="field">Shape<select id="export-shape"><option value="square">Square PNG</option><option value="circle">Circle · transparent corners</option></select></label></div><p class="micro">No guides, handles or watermark. PNG keeps transparency. Exporting does not grant rights to the artwork.</p><button id="download-png" class="primary">Download PNG ↗</button><p id="export-status" role="status"></p></dialog>

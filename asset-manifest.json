@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "e59c234003b65ebd",
+  "version": "c74c8f74badb2287",
   "assets": {
     "assets/arm.webp": "a0d3beb8ee1f4366ec1440146f608a3b2dd2d32e4aa0551c1a98e1689794d942",
     "assets/body.webp": "2d95672070d4cb90301dffe05b99bca59f4392229ac649c22503d5777cc069fb",
@@ -20,6 +20,7 @@
     "assets/font-4.woff2": "56c3ea3216f46145041f285064728c371fd178147777e910f83bfde32ced299f",
     "assets/journey-head.webp": "7bd6fec6d654a66935bbbdf5573fbd54b72da1953038e503910aef621127aa6d",
     "assets/line-memory-tribute.webp": "71697e7c29124edda8ae5709dc8a493362397b8448f602490a918f79da946673",
+    "assets/og/egor-world-v1.jpg": "b94c8b1440ce479a8b54ba1b3df316d0e8236ab58b7462bcfaf27ffed6d2905d",
     "assets/paper.webp": "261938a1c9291eb140c3fca4ecfde466a6d973dede66802fb0913c80aa1247e9",
     "assets/portrait.webp": "0efa77fbbcb01acc31922f590187320bb802d1a544a734ed59c429fb7b60ea6d",
     "assets/redo/data/redo-01.json": "4a0d31dd52e84d187484178b0efe1a1954f786466088b1e15b30295bb971840d",

@@ -1,5 +1,14 @@
 # $EGOR — A little blue. A lot of character.
 
+## Version 0.3.7 — Canonical URLs and search metadata
+
+- Both pages have distinct English titles/descriptions, canonical URLs on `https://www.egorverse.xyz/`, Open Graph / X cards, and WebSite / WebPage structured data without endorsement or ranking claims.
+- `sitemap.xml` lists the homepage and portrait editor; `robots.txt` advertises it. Section fragments and redirected URLs are not listed. No invented modification dates are supplied.
+- The bundled social image is `assets/og/egor-world-v1.jpg` (1200 × 630). The asset manifest includes its SHA-256 hash.
+- Vercel permanently redirects `/index.html` to `/`. Keep the existing apex-to-www redirect in the domain dashboard. Portrait editor navigation uses the canonical homepage path.
+- The homepage introduction identifies EGOR, the artwork, stickers and local portrait maker. Existing application JS/CSS and previous artwork are unchanged from 0.3.6.
+- This is a static release, not a deployment or proof of Google indexing. See **Search visibility** below for account-dependent steps. Check production responses, DNS and indexing after deploying.
+
 ## Version 0.3.6 — A window into EGOR's world
 
 - The homepage welcomes visitors with EGOR beside a hand-drawn window, with clear paths to explore the artwork, browse stickers, or create a portrait.
@@ -175,17 +184,25 @@ The full address stays visible in a fixed bottom dock with exactly two actions: 
 
 ## Search visibility
 
-The page includes an entity-specific title and description, Open Graph and Twitter text metadata, crawl directives, and WebSite JSON-LD. Visible FAQs distinguish Gram, TON, and EGOR without implying artist endorsement. No ranking or rich-result appearance is guaranteed, especially for the ambiguous query “egor”.
+Production canonical host: `https://www.egorverse.xyz/`.
 
-After choosing the final HTTPS domain:
-1. Add its absolute homepage URL as `link rel="canonical"`, `og:url`, and the WebSite JSON-LD `url`.
-2. Add absolute `og:image` and `twitter:image` URLs for an approved share image, with alt text.
-3. Create `sitemap.xml` listing the canonical homepage (not section fragments); add its absolute URL to `robots.txt`.
-4. Redirect alternate domains to the canonical host. Keep preview deployments out of search with deployment-specific noindex headers; do not noindex production.
-5. Verify ownership in Google Search Console and Bing Webmaster Tools, submit the sitemap, and inspect the live URL. Measure real search queries and Core Web Vitals before making performance claims.
-6. Earn relevant, legitimate community links and publish useful original material. Avoid keyword stuffing, purchased link schemes, or claims of official artist affiliation.
+Both HTML pages include distinct titles/descriptions, canonical URLs, crawl directives, Open Graph / X large-image cards and JSON-LD. The social image is bundled, not an external dependency. `sitemap.xml` lists only the two canonical pages; `robots.txt` references its absolute URL. `/index.html` redirects to `/` through `vercel.json` on Vercel. A Python preview server does not apply Vercel redirects or headers.
 
-Canonical, sitemap, and social image URLs are intentionally not fabricated while the final domain is unknown.
+After deployment:
+1. In Vercel Domains, keep `www.egorverse.xyz` attached to this production deployment and redirect `egorverse.xyz` to it. Check both HTTP and HTTPS variants; do not reverse the host redirect. Only change DNS if required by Vercel; preserve email and verification records.
+2. Check `/`, `/portrait-studio.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/egor-world-v1.jpg` publicly return 200 with the intended content. Check `/index.html` redirects to `/`, and unknown URLs return 404 rather than the homepage. Ensure production has no password protection or `noindex` header. Use deployment-specific access protection/noindex for staging; do not add a global production noindex header.
+3. In Google Search Console, add a **Domain** property for `egorverse.xyz` (no protocol or path). Copy Google's exact TXT record into the authoritative DNS provider. If the active nameservers are Vercel's, add it in Vercel DNS; otherwise use the provider actually serving DNS. Wait for propagation and verify. Never delete the verification record afterward.
+4. Alternatively add the **URL-prefix** property `https://www.egorverse.xyz/` and use Google's HTML file or HTML meta tag. The actual account-specific token must come from Google; no placeholder token is included in this release. Keep the verification file/tag in future deployments.
+5. Submit `https://www.egorverse.xyz/sitemap.xml` in Search Console's Sitemaps section. Inspect both canonical URLs, run **Test live URL**, then request indexing if available. Sitemap submission and requests do not guarantee indexing or rankings.
+6. Review Page indexing and Performance as data accumulates. Check Google's chosen canonical, actual search queries, clicks and Core Web Vitals rather than assuming a score or timeframe. WebSite/WebPage schema does not guarantee rich results.
+7. Keep the community's website links consistent with the canonical host. Publish useful original material and seek relevant organic links, not purchased link schemes or keyword stuffing. Do not imply official artist affiliation.
+
+If the domain or a page URL changes, update the canonical tags, social URLs, JSON-LD, sitemap, robots sitemap reference and domain redirects together. Use a new social-image filename when replacing its content to reduce stale social previews, then regenerate the asset manifest.
+
+References:
+- https://support.google.com/webmasters/answer/9008080
+- https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+
 
 ## QA
 
