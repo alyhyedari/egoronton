@@ -1,5 +1,13 @@
 # $EGOR — A little blue. A lot of character.
 
+## Google Search Console verification package
+
+- Includes the owner-supplied `googlef36cd2f256655d72.html` at the deployment root, byte-for-byte unchanged.
+- After deploying, open `https://www.egorverse.xyz/googlef36cd2f256655d72.html` and confirm it publicly returns HTTP 200 with `google-site-verification: googlef36cd2f256655d72.html`, without login or a redirect to the homepage. Then click VERIFY in the Search Console property that issued this file.
+- Keep this file in every future deployment, including after verification succeeds. Do not rename it, wrap it in a page template, or add it to the sitemap/navigation.
+- This prepares HTML-file verification for the requested URL-prefix property; it does not complete verification, deploy the site, or verify a Domain property. Domain verification needs the separate account-issued DNS TXT value. Other verification methods are alternatives, not all required.
+- Once verified, submit `https://www.egorverse.xyz/sitemap.xml` and inspect the homepage and portrait editor URLs in Search Console.
+
 ## Version 0.3.7 — Canonical URLs and search metadata
 
 - Both pages have distinct English titles/descriptions, canonical URLs on `https://www.egorverse.xyz/`, Open Graph / X cards, and WebSite / WebPage structured data without endorsement or ranking claims.
