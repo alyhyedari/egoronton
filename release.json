@@ -1,0 +1,17 @@
+{
+  "version": "0.4.3",
+  "name": "EGOR World",
+  "deployment": "static",
+  "walletConnection": false,
+  "evidence": {
+    "source": "Previously reviewed transaction snapshot; not a live feed",
+    "matchedRecords": 9,
+    "comment": "Creator Rewards for $EGOR from topblast.lol",
+    "firstRecordUTC": "2026-05-27T21:32:09Z",
+    "lastRecordUTC": "2026-06-28T00:38:51Z",
+    "amountsPublished": false,
+    "limitations": "No verified fee rate, recipient identity, future payments or artist endorsement."
+  },
+  "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
+  "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment."
+}
