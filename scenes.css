@@ -1,0 +1,43 @@
+/* Two different moods: a quiet resting nook and a cobalt idea worktable. */
+.light-stage .room-window{top:48px;height:25%;width:35%}
+.light-stage .room-daylight{top:calc(48px + 25%);height:55%;width:67%}
+.light-stage .room-sun{width:26px;height:26px}
+.light-room[data-time="sunset"] .room-sun{transform:translateY(28px)}
+.room-rocker{position:absolute;left:5%;bottom:25px;width:48%;height:50%;overflow:visible;pointer-events:none}
+.rocker-assembly{transform-origin:180px 347px;animation:rocker-rest 6s ease-in-out infinite;animation-play-state:paused}
+.light-room[data-active="true"] .rocker-assembly{animation-play-state:running}
+.light-room[data-time="night"] .rocker-head{filter:brightness(0) invert(.9)}
+.light-stage .room-rug{left:7%;width:48%;bottom:30px}
+@keyframes rocker-rest{0%,100%{transform:rotate(-1.3deg)}50%{transform:rotate(1.3deg)}}
+.idea-workshop{padding:72px 0;background:#e8e5d8;border-top:1px solid var(--line)}
+.idea-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+.idea-copy{min-width:0}
+.idea-copy h2{font-size:clamp(32px,3.5vw,48px);line-height:1.15;letter-spacing:-.045em;margin:20px 0}
+.idea-copy h2 span{color:#2457a6}
+.idea-copy>p:not(.eyebrow){max-width:35ch;font-size:14px;line-height:1.8}
+.idea-choices{display:flex;flex-direction:column;gap:8px;margin:24px 0}
+.idea-choices button{display:flex;align-items:center;gap:16px;text-align:left;font:inherit;font-size:13px;min-height:48px;padding:10px 14px;border:1px solid #173c6238;border-radius:3px;background:transparent;color:#16343b;cursor:pointer}
+.idea-choices button span{font-size:10px;letter-spacing:.08em;opacity:.75}
+.idea-choices button[aria-pressed="true"]{background:#2457a6;color:#fff9e9;border-color:#2457a6}
+.idea-choices button:hover:not(:disabled){border-color:#2457a6}
+.idea-choices button:disabled{cursor:default}
+.idea-choices button:focus-visible{outline:3px solid #2457a6;outline-offset:3px}
+.idea-desk{min-width:0;overflow:hidden;background:#2457a6;color:#fff9e9;border-radius:4px 28px 4px 4px;box-shadow:9px 12px 0 #173c6215}
+.idea-desk-label{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #ffffff30;margin:0 24px;padding:20px 0 14px;font-size:10px;letter-spacing:.12em}
+.idea-scene{display:block;width:100%;height:auto}
+.idea-scene [hidden]{display:none}
+.idea-desk-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid #ffffff30;padding:16px 0;margin:0 24px}
+.idea-desk-footer p{font-size:11px;line-height:1.6;margin:0;max-width:29ch;min-height:36px}
+.idea-desk-footer button{flex-shrink:0;background:transparent;color:#fff9e9;border:1px solid #ffffff80;border-radius:3px;font:inherit;font-size:11px;min-height:44px;padding:8px 12px;cursor:pointer}
+.idea-desk-footer button:disabled{opacity:.65;cursor:default}
+.idea-desk-footer button:focus-visible{outline:3px solid #fff9e9;outline-offset:3px}
+.idea-fallback{font-size:11px;padding:0 24px 20px;line-height:1.6}
+.idea-workshop.is-drawing [data-idea-art]:not([hidden]) path{stroke-dasharray:1;animation:idea-line 1.2s ease both;animation-play-state:paused}
+.idea-workshop[data-active="true"].is-drawing [data-idea-art] path{animation-play-state:running}
+@keyframes idea-line{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+body.motion-off .idea-workshop *,body.page-hidden .idea-workshop *{animation-play-state:paused!important}
+@media(max-width:1000px){.idea-layout{gap:24px;grid-template-columns:1fr 1.1fr}.idea-desk-footer{flex-direction:column;align-items:flex-start;gap:8px}.idea-desk-footer p{max-width:none}}
+@media(max-width:760px){.idea-workshop{padding:44px 0}.idea-layout{grid-template-columns:1fr;gap:28px}.idea-desk{width:min(100%,540px);justify-self:center}.idea-desk-label{margin:0 16px;font-size:9px}.idea-desk-footer{margin:0 16px;flex-direction:row;align-items:center;gap:10px}.idea-desk-footer p{max-width:24ch}.idea-copy h2{font-size:36px}}
+@media(max-width:360px){.idea-desk-footer{flex-direction:column;align-items:flex-start}.idea-copy h2{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.rocker-assembly,.idea-workshop *{animation:none!important;transition:none!important}}
+@media print{.idea-choices,.idea-desk-footer button{display:none}.idea-layout{grid-template-columns:1fr 1fr}.idea-workshop{break-inside:avoid}.rocker-assembly{animation:none}}

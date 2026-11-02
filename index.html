@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f4f0df">
-<meta name="egor-release" content="0.4.5">
+<meta name="egor-release" content="0.4.6">
 <meta name="description" content="Explore EGOR World: playful art, animated stickers, a browser-based portrait maker, and the independent $EGOR community on TON. No wallet needed to explore.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.egorverse.xyz/">
@@ -108,10 +108,11 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <script src="water.js" defer></script>
 <script src="wake.js" defer></script>
 <script src="idle.js" defer></script>
-<link rel="stylesheet" href="welcome.css?v=0.4.3">
+<link rel="stylesheet" href="welcome.css?v=0.4.6">
+<link rel="stylesheet" href="scenes.css?v=0.4.6">
 <link rel="stylesheet" href="release.css?v=0.4.3">
 <script src="evidence.js?v=0.4.3" defer></script>
-<script src="welcome.js" defer></script>
+<script src="welcome.js?v=0.4.6" defer></script>
 <script src="motion.js" defer></script>
 <script src="character.js" defer></script>
 <script src="studio.js" defer></script>
@@ -148,10 +149,24 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
  <div class="light-stage" id="light-stage">
   <div class="room-window" aria-hidden="true"><span class="room-sun"></span><span class="room-cloud"></span><span class="room-stars">✧ · ✦<br> · ✧</span><i></i></div>
   <div class="room-daylight" aria-hidden="true"></div>
-  <div class="room-picture" aria-hidden="true"><span>☺</span><small>take it easy</small></div>
-  <svg class="room-shelf" viewBox="0 0 100 110" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 94h90M16 96v10m67-10v10"/><path d="m17 91-2-38 11-1 3 39m4 0V43h12v48m4 0-5-32 10-2 8 34" fill="#dfb693"/><path d="M68 91h18l4-22H64Z" fill="#a8b8a0"/><path d="M76 69V39m0 15Q58 54 60 40q16 0 16 14m0-6q16-2 17-18-18 2-17 18"/></g></svg>
   <div class="room-rug" aria-hidden="true"></div>
-  <img class="room-egor" src="assets/egor-seated.webp" width="640" height="640" alt="EGOR taking a break on his stool beside the window" decoding="async">
+  <svg class="room-rocker" viewBox="80 0 240 375" role="img" aria-labelledby="rocker-title rocker-desc">
+   <title id="rocker-title">EGOR, off the clock</title><desc id="rocker-desc">EGOR rests in a wooden rocking chair, comfortably below the window.</desc>
+   <g class="rocker-assembly">
+    <g fill="none" stroke="#688a91" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+     <path d="M101 158 119 252 217 252M108 193l93 6M121 199l10 51M194 202l8 48"/>
+     <path d="m132 254-9 85m79-85 37 84m-108-51h85"/>
+     <path d="M94 329Q175 369 275 328" stroke-width="7"/>
+    </g>
+    <image class="rocker-head" href="assets/egor-rocker-head.webp" x="108" y="20" width="85" height="96"/>
+    <g class="rocker-body" fill="none" stroke="currentColor" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+     <path d="m149 108 1 24m-25 3 49-1 14 103q-28 9-56-2Z" fill="var(--room-wall)"/>
+     <path d="M127 141q-20 28-10 57 8 18 42 13m16-69q9 31 25 47l27-18"/>
+     <path d="M139 236q42-12 70-5l27 61q17 0 23 9-17 6-27-3l-29-47-28-3m-39-11q9 16 45 15l43 65q30-1 37 10-19 10-35-4"/>
+    </g>
+    <path d="m110 216 61 4" fill="none" stroke="#688a91" stroke-width="5" stroke-linecap="round"/>
+   </g>
+  </svg>
   <span class="room-time-note" id="light-time-note">Coffee first, everything else later</span>
   <svg class="light-drawing" id="light-drawing" viewBox="0 0 420 420" preserveAspectRatio="none" aria-hidden="true">
    <path class="light-floor" id="light-floor" d="M18 390H402"/>
@@ -185,25 +200,44 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 </section>
   </div>
  </div>
- <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.5</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
+ <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.6</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
 </div></section>
-<section class="lamp-play paper" aria-labelledby="lamp-play-title"><div class="wrap lamp-layout"><div><p class="eyebrow">A small moment of quiet</p><h2 id="lamp-play-title">Your little<br>blue corner</h2><p>A familiar face, a quiet sky, and room to make something your own</p><a class="text-link" href="#play">Want to draw? ↓</a></div>
-  <div class="window-room" id="window-room">
-   <svg class="window-art" viewBox="0 0 600 540" role="img" aria-labelledby="window-title window-desc">
-    <title id="window-title">A quiet moment with EGOR</title><desc id="window-desc">EGOR sits on a small stool beside a hand-drawn window. Outside is a soft blue sky.</desc>
-    <defs><clipPath id="window-clip"><path d="M307 57 542 61 537 308 305 305Z"/></clipPath></defs>
-    <path d="M42 468Q286 458 561 470" fill="none" stroke="#536b69" stroke-width="2" stroke-linecap="round"/>
-    <path class="window-ray" d="M307 305 537 308 583 466 120 466Z" fill="#f2de8b"/>
-    <g clip-path="url(#window-clip)"><path class="window-sky" d="M295 48H555V320H295Z"/><circle class="window-sun" cx="477" cy="118" r="29" fill="#fff1a4"/><g class="window-clouds" fill="#f7f6e9"><path d="M297 155q15-25 40-9 1-35 32-29 25 4 23 28 24-1 31 19H295Z"/><path d="M449 242q8-17 26-14 8-32 34-20 18 6 18 25 20-3 29 18H449Z"/></g><path d="M298 294q63-18 122 0t136-2v30H295Z" fill="#a6c9bc"/></g>
-    <g fill="none" stroke="#16343b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M301 50 549 55 544 317 298 313Z"/><path d="M307 57 542 61 537 308 305 305ZM425 59l-3 249M305 190l234 3"/><path d="M289 316 555 321 553 331 290 326Z"/><path d="m309 46 237 5" opacity=".35"/></g>
-    <ellipse cx="243" cy="462" rx="108" ry="10" fill="#1c4143" opacity=".07"/>
-    <image href="assets/egor-seated.webp" x="9" y="132" width="420" height="420"/>
-    <g fill="none" stroke="#16343b" stroke-width="2.5" stroke-linecap="round"><path d="m508 424-2-51m0 26q-28-1-25-21 24-1 25 21m0-13q25 1 28-22-25 0-28 22"/><path d="m488 421 36 1-6 43-25-1Z" fill="#dfb092"/><path d="m486 421 40 1"/></g>
-   </svg>
-   <div class="window-controls"><span class="window-caption" id="sky-status" role="status">A quiet sky and a little room to breathe</span><button class="sky-button" id="sky-toggle" type="button" aria-pressed="false" aria-controls="window-room" hidden><span aria-hidden="true">☀</span> A brighter sky</button></div>
-   <noscript><p class="window-fallback">A quiet blue view. Turn on JavaScript to change the sky.</p></noscript>
+<section class="idea-workshop paper" id="idea-workshop" aria-labelledby="idea-title" data-idea="voyage" data-water-static>
+ <div class="wrap idea-layout">
+  <div class="idea-copy"><p class="eyebrow">The little idea desk / Make a mark</p><h2 id="idea-title">One little line.<br><span>Somewhere new.</span></h2><p>A blank page, a familiar face, and three small possibilities. Pick a thought. Watch it take shape.</p>
+   <div class="idea-choices" role="group" aria-label="Choose a little drawing">
+    <button type="button" data-idea-choice="voyage" aria-pressed="true" aria-controls="idea-art" disabled><span aria-hidden="true">01</span> A little voyage</button>
+    <button type="button" data-idea-choice="grow" aria-pressed="false" aria-controls="idea-art" disabled><span aria-hidden="true">02</span> Something growing</button>
+    <button type="button" data-idea-choice="orbit" aria-pressed="false" aria-controls="idea-art" disabled><span aria-hidden="true">03</span> A tiny universe</button>
+   </div>
+   <a class="text-link" href="#play">Now make something of your own ↓</a>
   </div>
-</div></section>
+  <div class="idea-desk">
+   <div class="idea-desk-label"><span>EGOR / FIELD NOTES</span><span id="idea-number">NO. 01</span></div>
+   <svg class="idea-scene" viewBox="0 0 640 470" role="img" aria-labelledby="idea-art-title idea-art-desc">
+    <title id="idea-art-title">The little idea desk</title><desc id="idea-art-desc">EGOR stands beside a drawing of a paper boat on a cobalt-blue worktable.</desc>
+    <ellipse cx="179" cy="417" rx="100" ry="10" fill="#0b244d" opacity=".22"/>
+    <path d="M48 419Q310 410 591 421" fill="none" stroke="#dbe8ec" opacity=".4" stroke-width="2"/>
+    <image class="idea-egor" href="assets/egor-guide.webp" x="-24" y="119" width="320" height="320"/>
+    <g transform="rotate(-4 398 226)">
+     <path d="M267 85 548 85 548 359 267 359Z" fill="#132f61" opacity=".32" transform="translate(9 12)"/>
+     <path d="M267 85 548 85 548 359 267 359Z" fill="#f7f1df"/>
+     <path d="M383 75 439 76 437 96 385 94Z" fill="#b7cccf" opacity=".9"/>
+     <path d="M289 115h58M289 329h72" stroke="#a7b2a9" stroke-width="2"/>
+     <g id="idea-art" fill="none" stroke="#2457a6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g data-idea-art="voyage"><path pathLength="1" d="m321 238 174-2-35 39-107-1Zm29-3 48-73 4 74m0-74 71 73M323 290q21-10 43 0t43 0 43 0 43 0"/><path pathLength="1" d="M457 165h17m-8-9v18M316 195h12" opacity=".55"/></g>
+      <g data-idea-art="grow" hidden><path pathLength="1" d="m367 243 84 1-12 57h-58ZM407 243v-73m0 52q-59 5-54-43 53-2 54 43Zm1-24q54 5 55-43-55-1-55 43ZM359 302h99"/><path pathLength="1" d="m329 155 5 13m-19 5 14 4m143 43 12-6" opacity=".55"/></g>
+      <g data-idea-art="orbit" hidden><path pathLength="1" d="M446 223a40 40 0 1 1-80 0 40 40 0 1 1 80 0Zm-77 17q-53 32-44 3t73-47 87-15-47 53-69 6"/><path pathLength="1" d="m347 160 1-12m-7 6h13m124 115v16m-8-8h16m-100 23 1 5m80-153 1 6" opacity=".7"/></g>
+     </g>
+    </g>
+    <g transform="rotate(24 545 367)"><path d="M539 296h12v110l-6 18-6-18Z" fill="#efc173" stroke="#183b64" stroke-width="2"/><path d="m539 406 12 0-6 18Z" fill="#f4ebd3"/><path d="m543 418 2 6 2-6" fill="#183b64"/><path d="M545 306v92" stroke="#c68b45" stroke-width="2"/></g>
+    <text x="291" y="402" fill="#dce6ee" font-size="11" letter-spacing="2">SMALL IDEAS WELCOME.</text>
+   </svg>
+   <div class="idea-desk-footer"><p id="idea-status" role="status">A little voyage. Every adventure starts somewhere.</p><button id="idea-replay" type="button" disabled aria-controls="idea-art">Draw again ↻</button></div>
+   <noscript><p class="idea-fallback">A small drawing, just for you. Enable JavaScript to explore all three ideas.</p></noscript>
+  </div>
+ </div>
+</section>
 <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-group"><span>SMALL LINES, BIG PERSONALITY</span><i>✳</i><span>LONG LIVE THE DOODLE</span><i>✳</i><span>ART AT HEART</span><i>✳</i><span>STAY A LITTLE WEIRD</span><i>✳</i></div><div class="marquee-group"><span>SMALL LINES, BIG PERSONALITY</span><i>✳</i><span>LONG LIVE THE DOODLE</span><i>✳</i><span>ART AT HEART</span><i>✳</i><span>STAY A LITTLE WEIRD</span><i>✳</i></div></div></div>
 <section class="world paper" id="world"><div class="wrap">
 <div class="world-layout"><div class="reveal"><div class="section-label eyebrow">01 / Behind the lines</div><h2 class="display">THE INTERNET<br>NEEDS MORE<br><span class="blue-text">CHARACTER</span></h2><p class="world-copy">Egor Zhgun turns simple shapes into ideas that stick. From visual satire and animated stories to expressive stickers, his work makes a little go a long way.<br><br><strong>$EGOR carries that spirit into a community tribute.</strong> Not another shiny mascot. A blue piece of paper, an imperfect line, and a reason to smile.</p><div class="source-links"><a class="text-link" href="https://www.behance.net/egorzhgun" target="_blank" rel="noopener noreferrer">Explore Egor’s work ↗</a><a class="text-link" href="https://www.artlebedev.com/zhgun/" target="_blank" rel="noopener noreferrer">Artist profile ↗</a></div></div>

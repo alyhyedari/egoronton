@@ -1,12 +1,13 @@
 {
   "schema": 1,
-  "version": "c74c8f74badb2287",
+  "version": "d01e1b867a92de09",
   "assets": {
     "assets/arm.webp": "a0d3beb8ee1f4366ec1440146f608a3b2dd2d32e4aa0551c1a98e1689794d942",
     "assets/body.webp": "2d95672070d4cb90301dffe05b99bca59f4392229ac649c22503d5777cc069fb",
     "assets/egor-confident.webp": "10bdfb94e855b1034bafd7f007a6b634a8dbf68f6b1db67548b152154379021a",
     "assets/egor-curious.webp": "0663b53346e6692265b29bebbd05ae757469b93debaccdc7418c1b883286e8c7",
     "assets/egor-guide.webp": "67c8f22ce4c037dd20531ebb355520327978675d6a51ecc825c9f1b587ffdc21",
+    "assets/egor-rocker-head.webp": "96f4074110ad96ed45fab05cf957533f28eac056443f8d769ebe6d76fcef6a12",
     "assets/egor-seated.webp": "075726107023842706c8d62b4ce0e38d6380c7c2f252697552e3a189abd15c86",
     "assets/font-0.ttf": "fd9301f2837c99df2be07cc7f0be66e9470f5354d8fcf1606027c67fcd637a53",
     "assets/font-0.woff2": "7c35272bfb97c69495243ed86326a6ee04750f69e4992b076e662e05eb6aff44",
