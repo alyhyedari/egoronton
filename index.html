@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f4f0df">
-<meta name="egor-release" content="0.4.3">
+<meta name="egor-release" content="0.4.5">
 <meta name="description" content="Explore EGOR World: playful art, animated stickers, a browser-based portrait maker, and the independent $EGOR community on TON. No wallet needed to explore.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.egorverse.xyz/">
@@ -97,9 +97,9 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <link rel="stylesheet" href="experience.css">
 <link rel="stylesheet" href="sticker-stories.css">
 <link rel="stylesheet" href="sticker-desk.css">
-<link rel="stylesheet" href="light-room.css">
+<link rel="stylesheet" href="light-room.css?v=0.4.4">
 <script src="asset-cache.js" defer></script>
-<script src="light-room.js" defer></script>
+<script src="light-room.js?v=0.4.4" defer></script>
 <link rel="stylesheet" href="redo-room.css">
 <link rel="stylesheet" href="community.css">
 <script src="lottie-loader.js" defer></script>
@@ -115,6 +115,8 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <script src="motion.js" defer></script>
 <script src="character.js" defer></script>
 <script src="studio.js" defer></script>
+<link rel="stylesheet" href="roadmap.css?v=0.4.5">
+<script src="roadmap.js?v=0.4.5" defer></script>
 <script src="vercel-monitoring.js" defer></script>
 </head>
 <body>
@@ -128,23 +130,37 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <header class="paper"><nav class="nav wrap" aria-label="Main navigation">
 <a class="brand" href="#" aria-label="EGOR home"><img src="assets/portrait.webp" alt="" width="42" height="42"><div><span class="brand-word">$EGOR</span><small>A LITTLE DIFFERENT</small></div></a>
 <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">＋</span></button>
-<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#sticker-desk">Stickers</a><a href="#community">Community</a><a href="#token">Token details</a><a class="btn btn-dark" href="portrait-studio.html">Make a picture <span aria-hidden="true">↗</span></a></div>
+<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#sticker-desk">Stickers</a><a href="#community">Community</a><a href="#roadmap">Roadmap</a><a href="#token">Token details</a><a class="btn btn-dark" href="portrait-studio.html">Make a picture <span aria-hidden="true">↗</span></a></div>
 </nav></header>
 <main id="main">
 <section class="hero welcome paper" aria-labelledby="hero-heading" data-water-static><div class="wrap">
  <div class="welcome-grid">
   <div class="welcome-copy"><p class="eyebrow">EGOR / A little blue corner</p><h1 id="hero-heading">The world is<br>a little loud<br><span>Here’s a little blue</span> <span class="welcome-smile">:)</span></h1><p class="welcome-intro">Explore EGOR World: playful art, animated stickers, and a portrait maker from the independent $EGOR community on TON.</p><div class="welcome-actions"><a class="btn btn-dark" href="#world">Explore the world <span aria-hidden="true">↓</span></a><a class="btn btn-light" href="#portrait">Make something yours <span aria-hidden="true">↗</span></a></div><p class="welcome-note">No sign-up or purchase needed</p><div class="hero-socials" aria-label="EGOR community links"><a href="https://t.me/egorverseportal" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://x.com/egorverse" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></div>
-  <div class="hero-play"><p class="eyebrow">A little light. A little play.</p>
-<section class="light-room" id="light-room" aria-labelledby="light-heading" data-lit="true" data-water-static>
- <h2 id="light-heading" class="sr-only">A little light, a little play</h2>
+  <div class="hero-play"><p class="eyebrow">EGOR’s room / Stay a while</p>
+<section class="light-room" id="light-room" aria-labelledby="light-heading" data-lit="true" data-time="morning" data-water-static>
+ <h2 id="light-heading" class="sr-only">Make yourself at home</h2>
+ <div class="room-times" role="group" aria-label="Choose the room light">
+  <button type="button" data-room-time="morning" aria-pressed="true" aria-controls="light-stage" disabled>Morning</button>
+  <button type="button" data-room-time="day" aria-pressed="false" aria-controls="light-stage" disabled>Day</button>
+  <button type="button" data-room-time="sunset" aria-pressed="false" aria-controls="light-stage" disabled>Sunset</button>
+  <button type="button" data-room-time="night" aria-pressed="false" aria-controls="light-stage" disabled>Night</button>
+ </div>
  <div class="light-stage" id="light-stage">
-  <svg class="light-drawing" id="light-drawing" viewBox="0 0 420 300" aria-hidden="true">
-   <path class="light-floor" id="light-floor" d="M20 270H400"/>
-   <path class="light-cord" id="light-cord" d="M210 0L210 140"/>
-   <g id="light-anchor" transform="translate(210 0)"><path d="M-12 2H12M-6 6H6" fill="none" stroke="#34454a" stroke-width="2"/></g>
-   <g class="light-toy" data-toy="0" transform="translate(97 222)"><circle r="26" fill="#f4f0df"/><path d="M-10 4Q0 17 11 3M-8-6v3M8-6v3" fill="none" stroke-linecap="round"/></g>
-   <g class="light-toy" data-toy="1" transform="translate(323 222)"><path d="M0-30 8-14 26-16 19 0 29 15 11 17 0 31-10 17-28 14-19-2-25-17-8-14Z" fill="#f6ee69"/><text y="4">HEY!</text></g>
-   <g class="light-toy" data-toy="2" transform="translate(210 246)"><circle r="23" fill="#e9b3a0"/><path d="M-9-4Q-5-10-1-4M5-4h5M-7 6Q0 12 8 4" fill="none" stroke-linecap="round"/></g>
+  <div class="room-window" aria-hidden="true"><span class="room-sun"></span><span class="room-cloud"></span><span class="room-stars">✧ · ✦<br> · ✧</span><i></i></div>
+  <div class="room-daylight" aria-hidden="true"></div>
+  <div class="room-picture" aria-hidden="true"><span>☺</span><small>take it easy</small></div>
+  <svg class="room-shelf" viewBox="0 0 100 110" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 94h90M16 96v10m67-10v10"/><path d="m17 91-2-38 11-1 3 39m4 0V43h12v48m4 0-5-32 10-2 8 34" fill="#dfb693"/><path d="M68 91h18l4-22H64Z" fill="#a8b8a0"/><path d="M76 69V39m0 15Q58 54 60 40q16 0 16 14m0-6q16-2 17-18-18 2-17 18"/></g></svg>
+  <div class="room-rug" aria-hidden="true"></div>
+  <img class="room-egor" src="assets/egor-seated.webp" width="640" height="640" alt="EGOR taking a break on his stool beside the window" decoding="async">
+  <span class="room-time-note" id="light-time-note">Coffee first, everything else later</span>
+  <svg class="light-drawing" id="light-drawing" viewBox="0 0 420 420" preserveAspectRatio="none" aria-hidden="true">
+   <path class="light-floor" id="light-floor" d="M18 390H402"/>
+    <path class="light-desk" id="light-desk" d="M248 371H403M256 371v19M395 371v19"/>
+   <path class="light-cord" id="light-cord" d="M319 6L319 262"/>
+   <g id="light-anchor" transform="translate(319 0)"><path d="M-12 2H12M-6 6H6" fill="none" stroke="currentColor" stroke-width="2"/></g>
+   <g class="light-toy" data-toy="0" transform="translate(277 350)"><path d="M-14-12H10V7q0 9-12 9t-12-9Z" fill="#f4edda"/><path d="M10-8q13-2 12 7T10 8" fill="none"/><path d="M-8-3h12" stroke="#087d97"/><ellipse cx="-2" cy="-12" rx="12" ry="3" fill="#82654e"/></g>
+   <g class="light-toy" data-toy="1" transform="translate(370 350)"><path d="m-16-19 30 3-2 33-29-3Z" fill="#80afbb"/><path d="m-12-17-2 30m7-22 13 1m-14 5 10 1" fill="none"/><path d="m-17 14 29 3-2 5-28-3Z" fill="#f4edda"/></g>
+   <g class="light-toy" data-toy="2" transform="translate(319 376)"><path d="m-12-6 6-8 13 2 7 11-6 11-13 2-10-7Z" fill="#eadcba"/><path d="m-6-14 4 11-10-3M-2-3l10 13M-2-3 7-12M-2-3l-3 15" fill="none" opacity=".4"/></g>
   </svg>
   <button class="light-bulb" id="light-bulb" type="button" disabled aria-label="Lamp light" aria-pressed="true" aria-describedby="light-help">
    <svg viewBox="0 0 64 84" aria-hidden="true">
@@ -157,21 +173,21 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
     <path class="light-filament" d="M29 34 27 64l3-4 2 5 2-5 3 4-2-30"/>
    </svg>
   </button>
-  <p class="light-scene-note" id="light-help">DRAG THE LIGHT · BUMP A DOODLE</p>
+  <p class="light-scene-note" id="light-help">Drag the lamp · Give the desk a little nudge</p>
  </div>
  <div class="light-toolbar"><div class="light-tools">
   <button type="button" id="light-nudge" disabled aria-label="Nudge the lamp">Nudge ↗</button>
   <button type="button" id="light-reel" disabled aria-label="Change the cord length">Cord ↓</button>
   <button type="button" id="light-sound" aria-pressed="false" disabled>Sound off</button>
   <button type="button" id="light-pause" aria-pressed="false" disabled>Pause</button>
- </div><p class="light-status" id="light-status" role="status">Tap to switch. Arrow keys move the lamp.</p></div>
- <noscript><p class="light-static-note">A quiet light. JavaScript enables play.</p></noscript>
+ </div><p class="light-status" id="light-status" role="status">Tap the bulb to switch · Arrow keys move it</p></div>
+ <noscript><p class="light-static-note">A quiet morning view · Enable JavaScript to play</p></noscript>
 </section>
   </div>
  </div>
- <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.3</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
+ <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.5</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
 </div></section>
-<section class="lamp-play paper" aria-labelledby="lamp-play-title"><div class="wrap lamp-layout"><div><p class="eyebrow">A small moment of quiet</p><h2 id="lamp-play-title">Your little<br>blue corner</h2><p>A familiar face, a quiet sky, and room to make something your own.</p><a class="text-link" href="#play">Want to draw? ↓</a></div>
+<section class="lamp-play paper" aria-labelledby="lamp-play-title"><div class="wrap lamp-layout"><div><p class="eyebrow">A small moment of quiet</p><h2 id="lamp-play-title">Your little<br>blue corner</h2><p>A familiar face, a quiet sky, and room to make something your own</p><a class="text-link" href="#play">Want to draw? ↓</a></div>
   <div class="window-room" id="window-room">
    <svg class="window-art" viewBox="0 0 600 540" role="img" aria-labelledby="window-title window-desc">
     <title id="window-title">A quiet moment with EGOR</title><desc id="window-desc">EGOR sits on a small stool beside a hand-drawn window. Outside is a soft blue sky.</desc>
@@ -298,6 +314,56 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
   <div class="redo-colophon"><span>NO AUTOPLAY. NO WALLET. JUST A LITTLE POSSIBILITY.</span><span>END OF TRANSMISSION <span aria-hidden="true">✳</span></span></div>
  </div>
 </section>
+<section class="roadmap paper" id="roadmap" aria-labelledby="roadmap-title" data-water-static>
+ <div class="wrap">
+  <div class="rm-heading"><div><p class="eyebrow">THE EGOR FIELD NOTES / A PROPOSED 12-MONTH JOURNEY</p><h2 id="roadmap-title">Little steps<br><span>Bigger world</span></h2></div><div class="rm-intro"><p>A place to make things, meet people<br>and see what comes next</p><a href="roadmap-notes.html" class="rm-doc-link">Read the plan &amp; source notes <span aria-hidden="true">↗</span></a></div></div>
+  <div class="rm-legend" aria-label="Roadmap status key"><span><i class="rm-dot rm-dot-built" aria-hidden="true"></i>Built into this site</span><span><i class="rm-dot rm-dot-plan" aria-hidden="true"></i>Proposed next steps</span><span><i class="rm-dot rm-dot-external" aria-hidden="true"></i>Outside decisions</span></div>
+  <div class="rm-notebook">
+   <div class="rm-map-side">
+    <div class="rm-map-caption"><span>FOLLOW THE LITTLE BLUE LINE</span><button class="rm-pause" type="button" aria-pressed="false" hidden>Pause motion</button></div>
+    <div class="rm-map">
+     <svg class="rm-landscape" viewBox="0 0 720 530" fill="none" aria-hidden="true" focusable="false">
+      <defs><pattern id="rm-grid" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#264fc6" opacity=".14"/></pattern></defs>
+      <rect width="720" height="530" fill="url(#rm-grid)"/>
+      <g class="rm-sun"><circle cx="594" cy="97" r="46" fill="#f4df79"/><path d="M594 36v-12m0 146v-12m-61-61h-12m146 0h-12m-104-43-9-9m104 104-9-9m0-86 9-9m-104 104 9-9" stroke="#9b7429" stroke-width="2" stroke-linecap="round"/></g>
+      <g class="rm-cloud rm-cloud-one" stroke="#778ea5" stroke-width="2" fill="#f6f2e4"><path d="M80 110c-29 0-24-28-3-27-2-31 42-39 51-8 27-12 42 23 19 35Z"/></g>
+      <g class="rm-cloud rm-cloud-two" stroke="#778ea5" stroke-width="2" fill="#f6f2e4"><path d="M354 94c-22 0-23-24-3-26 2-24 32-26 39-5 24-6 31 27 9 31Z"/></g>
+      <path d="M20 478c81-20 145-13 221 6s143-5 226-11 133 13 230-11" stroke="#7c9286" stroke-width="2"/>
+      <g stroke="#6a8376" stroke-width="2.5" stroke-linecap="round"><path d="M151 477v-25m0 12c-19-2-21-16-21-16 21-1 21 16 21 16m0-7c1-16 19-21 19-21 0 17-19 21-19 21M551 478v-33m0 15c-20-1-23-19-23-19 19 0 23 19 23 19m0-8c1-17 21-24 21-24 0 18-21 24-21 24"/></g>
+      <g stroke="#244bb7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m60 321 32-22 31 22v36H60Z" fill="#e4ebf1"/><path d="M82 357v-23h20v23m-15-43h10M305 197l23-11 23 11-23 12Zm0 0v27l23 12 23-12v-27m-23 12v27"/><path d="M591 293h36v56h-36Zm8 6h21v50m-6-28h1" fill="#e4ebf1"/><path d="m431 447 10-12 10 12m-10-12v30m-7-12h14"/></g>
+      <path class="rm-route-shadow" d="M95 420 C85 345 125 245 230 245 S280 360 380 360 S418 190 500 190 S547 90 620 90" stroke="#d9d8cb" stroke-width="13" stroke-linecap="round"/>
+      <path id="rm-route" d="M95 420 C85 345 125 245 230 245 S280 360 380 360 S418 190 500 190 S547 90 620 90" stroke="#365dd0" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 9"/>
+      <g id="rm-traveler" style="transform:translate(95px,420px)"><ellipse cx="0" cy="-13" rx="32" ry="6" fill="#173fb0" opacity=".12"/><g class="rm-traveler-bob"><image href="assets/egor-guide.webp" x="-70" y="-155" width="140" height="140"/></g></g>
+      <g transform="translate(367 457) rotate(-6)"><path d="m-34 5 9-5-4 10m4-10c13 15 31 16 44 9" stroke="#607379" stroke-width="1.6"/><text x="-29" y="37" fill="#52646b" font-size="15" font-family="Georgia,serif" font-style="italic">room to grow</text></g>
+     </svg>
+     <div class="rm-stops" aria-label="Choose a roadmap chapter" hidden>
+      <button class="rm-stop" style="--x:13.194%;--y:79.245%" type="button" data-chapter="0" aria-controls="rm-chapter-0" aria-pressed="true"><span>01</span><strong>Start here</strong></button>
+      <button class="rm-stop" style="--x:31.944%;--y:46.226%" type="button" data-chapter="1" aria-controls="rm-chapter-1" aria-pressed="false"><span>02</span><strong>Get clear</strong></button>
+      <button class="rm-stop" style="--x:52.778%;--y:67.925%" type="button" data-chapter="2" aria-controls="rm-chapter-2" aria-pressed="false"><span>03</span><strong>Create together</strong></button>
+      <button class="rm-stop" style="--x:69.444%;--y:35.849%" type="button" data-chapter="3" aria-controls="rm-chapter-3" aria-pressed="false"><span>04</span><strong>Open doors</strong></button>
+      <button class="rm-stop" style="--x:86.111%;--y:16.981%" type="button" data-chapter="4" aria-controls="rm-chapter-4" aria-pressed="false"><span>05</span><strong>Keep growing</strong></button>
+     </div>
+    </div>
+    <div class="rm-map-foot"><span class="rm-handnote">A plan, not a price prediction</span><span class="rm-map-hint">Tap a number to explore</span></div>
+   </div>
+   <div class="rm-pages">
+    <div class="rm-page-top"><span>THE NEXT CHAPTER</span><span class="rm-page-count" aria-hidden="true">01 / 05</span></div>
+    <div class="rm-chapters">
+     <article class="rm-chapter" id="rm-chapter-0" aria-labelledby="rm-title-0"><div class="rm-chapter-meta"><span class="rm-badge rm-built">Built into this site</span><span>THE STARTING POINT</span></div><h3 id="rm-title-0">Come on in</h3><p class="rm-simple">There’s already a little world to explore</p><ul><li>A room with a light you can play with</li><li>Sticker stories, Utya and the REDO room</li><li>A portrait studio that works in your browser</li></ul><div class="rm-proof"><span>WHAT YOU CAN CHECK</span><p>Try the tools yourself — no wallet, sign-up or purchase needed</p></div><a class="rm-chapter-link" href="portrait-studio.html">Make your first picture <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-1" aria-labelledby="rm-title-1"><div class="rm-chapter-meta"><span class="rm-badge rm-planned">Proposed</span><span>MONTHS 1–2*</span></div><h3 id="rm-title-1">Make it clear</h3><p class="rm-simple">One name, one address, facts you can find</p><ul><li>Match project details across public profiles</li><li>Collect fee, migration and liquidity records</li><li>Keep a public list of fixes and open questions</li></ul><div class="rm-proof"><span>PROPOSED FINISH LINE</span><p>A linked checklist with a source for each verified fact — and an honest label for everything still unknown</p></div><a class="rm-chapter-link" href="roadmap-notes.html#phase-1">See the checks <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-2" aria-labelledby="rm-title-2"><div class="rm-chapter-meta"><span class="rm-badge rm-planned">Proposed</span><span>MONTHS 3–5*</span></div><h3 id="rm-title-2">Make it together</h3><p class="rm-simple">More things to make, more room for people</p><ul><li>Try small community art prompts</li><li>Improve the studio using real feedback</li><li>Share community work with permission</li></ul><div class="rm-proof"><span>PROPOSED FINISH LINE</span><p>A small, credited showcase and a tested studio update — shaped by what people actually use</p></div><a class="rm-chapter-link" href="roadmap-notes.html#phase-2">See the creative plan <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-3" aria-labelledby="rm-title-3"><div class="rm-chapter-meta"><span class="rm-badge rm-outside">Outside decisions</span><span>MONTHS 6–9*</span></div><h3 id="rm-title-3">Open a few doors</h3><p class="rm-simple">We can ask — others decide</p><ul><li>Ask Topblast to confirm the current rules</li><li>Prepare eligible platform applications</li><li>Track replies without calling them approvals</li></ul><div class="rm-proof"><span>WHAT DEPENDS ON OTHERS</span><p>Listings, promotions and market conditions are not controlled by EGOR — applying does not guarantee acceptance</p></div><a class="rm-chapter-link" href="roadmap-notes.html#topblast">Read the Topblast notes <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-4" aria-labelledby="rm-title-4"><div class="rm-chapter-meta"><span class="rm-badge rm-planned">Proposed</span><span>MONTHS 10–12*</span></div><h3 id="rm-title-4">Keep the good bits</h3><p class="rm-simple">Listen, learn and draw the next page</p><ul><li>Review the tools and community feedback</li><li>Publish what shipped, slipped or stopped</li><li>Choose a smaller, clearer next plan</li></ul><div class="rm-proof"><span>PROPOSED FINISH LINE</span><p>A public review with useful evidence, not a promised token price, audience size or exchange rank</p></div><a class="rm-chapter-link" href="roadmap-notes.html#phase-4">See the review plan <span aria-hidden="true">↗</span></a></article>
+    </div>
+    <div class="rm-controls" hidden><button type="button" class="rm-prev" aria-label="Previous roadmap chapter" disabled>←</button><span class="rm-position" role="status" aria-live="polite" aria-atomic="true">Chapter 1 of 5 · Come on in</span><button type="button" class="rm-next" aria-label="Next roadmap chapter">→</button></div>
+   </div>
+  </div>
+  <div class="rm-bottom"><p>* Timing is a suggested sequence from team approval, not a dated commitment<br>Changing chapters explores the plan — it does not mark work as complete</p><a href="roadmap-notes.html">Open the full roadmap <span aria-hidden="true">↗</span></a></div>
+  <details class="rm-trust"><summary>Where does Topblast fit in?</summary><div><p>Topblast is a separate platform — its published milestones are not EGOR promises</p><p>The current rules and EGOR’s eligibility have not been independently verified — fresh written confirmation is needed before any benefit is marked as available</p><p>No listing, payment, artist endorsement or commercial art license is promised here — <a href="roadmap-notes.html#topblast">read the source limitations and open questions ↗</a></p></div></details>
+  <noscript><p class="rm-noscript">JavaScript is off — all five chapters are shown below the map so you can still read the whole plan</p></noscript>
+ </div>
+</section>
+
 <section class="numbers paper" id="token"><div class="wrap"><div class="section-label eyebrow reveal">02 / The token, in plain sight</div><div class="section-header token-heading reveal"><h2 class="display">BIG CHARACTER<br>SIMPLE NUMBERS</h2><div class="token-host"><img src="assets/egor-confident.webp" alt="Egor standing with crossed arms and smart glasses" width="640" height="640" loading="lazy" decoding="async"><p><span class="host-aside">the serious face</span>Same little doodle.<br>A little more business.<br>Let’s look at the details.</p></div></div>
 <div class="token-grid reveal"><article class="token-card supply"><span class="eyebrow">Maximum supply</span><span class="corner" aria-hidden="true">↗</span><div class="num">1 BILLION</div><p>1,000,000,000 EGOR.<br>Mintable: false in the supplied metadata.</p></article><article class="token-card fee"><span class="eyebrow">Creator rewards</span><span class="corner" aria-hidden="true">✳</span><div class="num">ON RECORD</div><p>Dated transfers, not a promised rate.<br><a class="text-link" href="#evidence">Read the evidence ↓</a></p></article><article class="token-card chain"><span class="eyebrow">The home chain</span><span class="corner" aria-hidden="true">◇</span><div class="num">TON</div><p>The Open Network.<br>Native coin: Gram (see naming note in FAQ).<br>Community token: $EGOR.</p></article></div>
 <p class="numbers-note">Supply and mintability reflect the project’s supplied token metadata. Historical reward comments do not establish a trading tax, a recurring reward rate, recipient identity, or artist endorsement. Confirm the deployed contract and all fees before trading.</p>

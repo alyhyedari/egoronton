@@ -1,5 +1,5 @@
 {
-  "version": "0.4.3",
+  "version": "0.4.5",
   "name": "EGOR World",
   "deployment": "static",
   "walletConnection": false,
@@ -11,6 +11,12 @@
     "lastRecordUTC": "2026-06-28T00:38:51Z",
     "amountsPublished": false,
     "limitations": "No verified fee rate, recipient identity, future payments or artist endorsement."
+  },
+  "roadmap": {
+    "chapters": 5,
+    "notes": "roadmap-notes.html",
+    "timing": "Proposed sequence from team approval, not dated commitments",
+    "topblast": "Current terms and EGOR eligibility not independently verified"
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment."

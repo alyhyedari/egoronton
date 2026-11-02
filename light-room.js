@@ -14,9 +14,20 @@
     Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, value));
     return node;
   };
+  const timeNotes = {morning:'Coffee first, everything else later', day:'A little daylight, a little daydream', sunset:'Let the day put its feet up', night:'Small light, quiet world'};
+  const timeButtons = [...room.querySelectorAll('[data-room-time]')];
+  timeButtons.forEach(button => {
+    button.disabled = false;
+    button.addEventListener('click', () => {
+      room.dataset.time = button.dataset.roomTime;
+      timeButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      $('time-note').textContent = timeNotes[room.dataset.time];
+      status.textContent = timeNotes[room.dataset.time];
+    });
+  });
   const shadows = make('g', {'aria-hidden':'true'});
   svg.insertBefore(shadows, svg.firstChild);
-  const pool = make('ellipse', {fill:'url(#light-pool)', opacity:'.55'});
+  const pool = make('ellipse', {class:'light-pool', fill:'url(#light-pool)', opacity:'.55'});
   const defs = make('defs', {});
   const gradient = make('radialGradient', {id:'light-pool'});
   gradient.append(make('stop', {'stop-color':'#fff3ba','stop-opacity':'.8'}), make('stop', {offset:'1','stop-color':'#fff3ba','stop-opacity':'0'}));
@@ -24,7 +35,7 @@
   const toys = [...room.querySelectorAll('[data-toy]')].map((node, i) => {
     const shadow = make('ellipse', {fill:'#091b20',opacity:'.13'});
     shadows.append(shadow);
-    return {node, shadow, i, x:0, y:0, vx:0, vy:0, rotation:0, spin:0, homeX:0, homeY:0, r:[26,29,23][i], hit:0};
+    return {node, shadow, i, x:0, y:0, vx:0, vy:0, rotation:0, spin:0, homeX:0, homeY:0, r:[18,22,16][i], hit:0};
   });
   let width = 0, height = 0, length = 0, targetLength = 0, lengthVelocity = 0;
   let angle = -.12, velocity = 0, extended = false, lit = true, localPause = false;
@@ -34,15 +45,17 @@
   let lastImpact = 0, alternate = 1;
   const blocked = () => localPause || reduced.matches || document.body.classList.contains('motion-off');
   const active = () => visible && !document.hidden && !blocked();
-  const limit = () => Math.asin(clamp((width / 2 - 49) / (length + 63), .08, .8));
+  const anchorX = () => width * .76;
+  // Keep the full bulb silhouette right of EGOR, even at maximum extension
+  const limit = () => Math.asin(clamp((width * .19 - 27) / (length + 78), .01, .6));
   function point() {
-    return {x:width / 2 + Math.sin(angle) * length, y:10 + Math.cos(angle) * length};
+    return {x:anchorX() + Math.sin(angle) * length, y:10 + Math.cos(angle) * length};
   }
   function lightPoint() {
-    return {x:width / 2 + Math.sin(angle) * (length + 60), y:10 + Math.cos(angle) * (length + 60)};
+    return {x:anchorX() + Math.sin(angle) * (length + 60), y:10 + Math.cos(angle) * (length + 60)};
   }
   function updateTarget() {
-    targetLength = clamp(height - (extended ? 124 : 174) + scrollAmount, 65, height - 119);
+    targetLength = clamp(height - (extended ? 114 : 164) + scrollAmount, 100, height - 109);
   }
   function resize() {
     const box = stage.getBoundingClientRect();
@@ -51,14 +64,15 @@
     width = box.width; height = box.height; scrollBase = box.top + scrollY;
     velocity = 0;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    $('anchor').setAttribute('transform', `translate(${width / 2} 0)`);
+    $('anchor').setAttribute('transform', `translate(${anchorX()} 0)`);
     $('floor').setAttribute('d', `M18 ${height - 30}H${width - 18}`);
+    if ($('desk')) $('desk').setAttribute('d', `M${width*.59} ${height-49}H${width*.96}M${width*.61} ${height-49}v19M${width*.94} ${height-49}v19`);
     scrollAmount = clamp((scrollY - scrollBase + 150) * .15, -12, 45);
     updateTarget(); length = targetLength; lengthVelocity = 0;
     angle = clamp(angle, -limit(), limit());
     toys.forEach(t => {
-      t.homeX = width * [.23,.77,.5][t.i];
-      t.homeY = height - [78,78,54][t.i];
+      t.homeX = width * [.66,.88,.76][t.i];
+      t.homeY = height - [65,71,46][t.i];
       t.x = t.homeX; t.y = t.homeY; t.vx = t.vy = t.spin = t.rotation = 0;
     });
     render(); wake();
@@ -68,7 +82,7 @@
     bulb.style.transform = `translate3d(${(p.x - 40).toFixed(2)}px,${(p.y - 18.75).toFixed(2)}px,0) rotate(${-angle}rad)`;
     // A taut cord with just a little inertial bow, not an elastic rubber band.
     const bow = clamp(velocity * 7, -9, 9);
-    cord.setAttribute('d', `M${width/2} 6 Q${width/2 + (p.x-width/2)*.48 + bow} ${p.y*.49} ${p.x} ${p.y}`);
+    cord.setAttribute('d', `M${anchorX()} 6 Q${anchorX() + (p.x-anchorX())*.48 + bow} ${p.y*.49} ${p.x} ${p.y}`);
     room.style.setProperty('--light-x', `${light.x.toFixed(1)}px`);
     room.style.setProperty('--light-y', `${light.y.toFixed(1)}px`);
     pool.setAttribute('cx', light.x); pool.setAttribute('cy', height - 33);
@@ -119,7 +133,7 @@
           impact(closing,t.i);
         }
       }
-      if (t.x < t.r+8 || t.x > width-t.r-8) { t.x=clamp(t.x,t.r+8,width-t.r-8); t.vx *= -.5; }
+      if (t.x < width*.57+t.r || t.x > width-t.r-8) { t.x=clamp(t.x,width*.57+t.r,width-t.r-8); t.vx *= -.5; }
       if (t.y > height-30-t.r) { t.y=height-30-t.r; t.vy=-Math.abs(t.vy)*.45; }
     });
     // Doodle-to-doodle contacts transfer momentum too.
@@ -132,6 +146,11 @@
         if(relative>0) { const impulse=relative*.7; a.vx-=nx*impulse;a.vy-=ny*impulse;b.vx+=nx*impulse;b.vy+=ny*impulse; }
       }
     }
+    // Pair separation must never push an object into EGOR's side of the room
+    toys.forEach(t => {
+      t.x=clamp(t.x,width*.57+t.r,width-t.r-8);
+      t.y=clamp(t.y,t.r+8,height-30-t.r);
+    });
   }
   function tick(time) {
     frame = 0;
@@ -160,7 +179,8 @@
     pause.disabled=reduced.matches || document.body.classList.contains('motion-off');
     pause.setAttribute('aria-pressed', String(locked)); pause.textContent=locked?'Paused':'Pause';
     room.dataset.paused=String(locked);
-    $('help').textContent=locked?'A QUIET LIGHT · TAP TO SWITCH':'DRAG THE LIGHT · BUMP A DOODLE';
+    $('help').textContent=locked?'A QUIET LIGHT · TAP TO SWITCH':'DRAG THE LIGHT · RATTLE THE DESK';
+    room.dataset.active=String(active());
     if (active()) wake(); else stop();
     syncAudio();
   }
@@ -171,7 +191,7 @@
   }
   function toggleLight() {
     lit=!lit; room.dataset.lit=String(lit); bulb.setAttribute('aria-pressed',String(lit));
-    status.textContent=lit?'A little light goes a long way.':'Lights out. The play stays.';
+    status.textContent=lit?'A little light goes a long way':'Lights out, make yourself at home';
     tone(lit?660:330,.09,.12); render();
   }
   bulb.addEventListener('click', event => { if (suppressClick && event.detail) {suppressClick=false;return;} toggleLight(); });
@@ -187,10 +207,10 @@
     if (!drag || drag.id!==event.pointerId) return;
     const now=performance.now(), dt=Math.max(.008,(now-drag.last)/1000);
     const box = stage.getBoundingClientRect();
-    const x=event.clientX-box.left-drag.offsetX-width/2;
+    const x=event.clientX-box.left-drag.offsetX-anchorX();
     const y=event.clientY-box.top-drag.offsetY-10;
     const oldAngle=angle, oldLength=length;
-    length=clamp(Math.hypot(x,y),65,height-119);
+    length=clamp(Math.hypot(x,y),100,height-109);
     angle=clamp(Math.atan2(x,Math.max(20,y)),-limit(),limit());
     velocity=clamp((angle-oldAngle)/dt,-2,2); lengthVelocity=clamp((length-oldLength)/dt,-160,160);
     drag.last=now;
@@ -225,7 +245,7 @@
   reel.addEventListener('click',()=>{
     extended=!extended;updateTarget();syncReel();wake();
   });
-  pause.addEventListener('click',()=>{localPause=!localPause;sync();status.textContent=localPause?'Take your time. The light can wait.':'Ready when you are.';});
+  pause.addEventListener('click',()=>{localPause=!localPause;sync();status.textContent=localPause?'Take your time, the light can wait':'Ready when you are';});
   addEventListener('scroll',()=>{
     const delta=clamp(scrollY-lastScroll,-60,60);lastScroll=scrollY;
     if(!active() || drag)return;
@@ -255,15 +275,15 @@
         musicTimer=setTimeout(play,2400);
       };
       clearTimeout(musicTimer);play();
-    }).catch(()=>{audioOn=false;sound.setAttribute('aria-pressed','false');sound.textContent='Sound off';status.textContent='Audio unavailable. The light still works.';});
+    }).catch(()=>{audioOn=false;sound.setAttribute('aria-pressed','false');sound.textContent='Sound off';status.textContent='Audio unavailable, the light still works';});
   }
   sound.addEventListener('click',()=>{
     try {
       if(!audio) {const Context=window.AudioContext||window.webkitAudioContext;audio=new Context();master=audio.createGain();master.gain.value=.22;master.connect(audio.destination);}
       audioOn=!audioOn;sound.setAttribute('aria-pressed',String(audioOn));sound.textContent=audioOn?'Sound on':'Sound off';
-      status.textContent=audioOn?'Soft notes + tiny collision chimes. Sound stays in this scene.':'Sound off. A little peace and quiet.';
+      status.textContent=audioOn?'Soft notes and tiny chimes, just for this room':'Sound off, a little peace and quiet';
       syncAudio();
-    } catch (_) {status.textContent='Audio unavailable. The light still works.';}
+    } catch (_) {status.textContent='Audio unavailable, the light still works';}
   });
   if('IntersectionObserver' in window) new IntersectionObserver(entries=>{
     visible=entries[0].isIntersecting;sync();
@@ -271,7 +291,7 @@
   new MutationObserver(sync).observe(document.body,{attributes:true,attributeFilter:['class']});
   document.addEventListener('visibilitychange',sync);
   reduced.addEventListener('change',sync);
-  addEventListener('pagehide',()=>{stop();clearTimeout(musicTimer);if(audio)audio.suspend().catch(()=>{});});
+  addEventListener('pagehide',()=>{room.dataset.active='false';stop();clearTimeout(musicTimer);if(audio)audio.suspend().catch(()=>{});});
   addEventListener('pageshow',sync);
   room.dataset.ready='true';
   [bulb,nudge,reel,pause,sound].forEach(button=>button.disabled=false);
