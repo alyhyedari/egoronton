@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f4f0df">
-<meta name="egor-release" content="0.4.6">
-<meta name="description" content="Explore EGOR World: playful art, animated stickers, a browser-based portrait maker, and the independent $EGOR community on TON. No wallet needed to explore.">
+<meta name="egor-release" content="0.4.7">
+<meta name="description" content="Explore EGOR World, an independent tribute to Egor Zhgun: Utya sticker references, art, a portrait maker and the $EGOR community on TON.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.egorverse.xyz/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="EGOR World">
 <meta property="og:url" content="https://www.egorverse.xyz/">
-<meta property="og:title" content="EGOR World | Art, Stickers &amp; Community on TON">
-<meta property="og:description" content="Explore playful art, animated stickers and a local portrait maker. Meet the independent $EGOR community on TON. No wallet needed to explore.">
+<meta property="og:title" content="EGOR World | An Independent Tribute to Egor Zhgun">
+<meta property="og:description" content="Art, sticker stories and a browser-local portrait maker. Explore an independent community tribute to Egor Zhgun, not his official website.">
 <meta property="og:image" content="https://www.egorverse.xyz/assets/og/egor-world-v1.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -21,11 +21,11 @@
 <meta property="og:image:alt" content="EGOR in white lettering on blue, with a relaxed line-drawn character, a lamp and a small plant.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@egorverse">
-<meta name="twitter:title" content="EGOR World | Art, Stickers &amp; Community on TON">
+<meta name="twitter:title" content="EGOR World | An Independent Tribute to Egor Zhgun">
 <meta name="twitter:description" content="Explore playful art, animated stickers and a local portrait maker. An independent community tribute, not an official artist project.">
 <meta name="twitter:image" content="https://www.egorverse.xyz/assets/og/egor-world-v1.jpg">
 <meta name="twitter:image:alt" content="EGOR in white lettering on blue, with a relaxed line-drawn character, a lamp and a small plant.">
-<title>EGOR World | Art, Stickers &amp; Community on TON</title>
+<title>EGOR World | An Independent Tribute to Egor Zhgun</title>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -44,7 +44,7 @@
       "@type": "WebPage",
       "@id": "https://www.egorverse.xyz/#webpage",
       "url": "https://www.egorverse.xyz/",
-      "name": "EGOR World | Art, Stickers & Community on TON",
+      "name": "EGOR World | An Independent Tribute to Egor Zhgun",
       "isPartOf": {"@id": "https://www.egorverse.xyz/#website"},
       "inLanguage": "en-US",
       "description": "Explore EGOR's art, stickers, portrait studio and independent community. Not an official artist project or endorsement.",
@@ -58,7 +58,9 @@
   ]
 }
 </script>
-<link rel="icon" href="assets/portrait.webp" type="image/webp">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/assets/icons/egor-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/assets/icons/egor-180.png" sizes="180x180">
 <link rel="preload" href="assets/font-0.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts.css">
 <link rel="preload" href="assets/egor-seated.webp" as="image">
@@ -66,8 +68,8 @@
 // Fail open: content remains accessible if scripts, fonts, or assets fail.
 try {
  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && localStorage.getItem('egor-motion') !== 'off' && !sessionStorage.getItem('egor-visited')) {
-  document.documentElement.classList.add('booting');
-  window.egorBootTimeout = setTimeout(() => document.documentElement.classList.remove('booting'), 3500);
+  document.documentElement.classList.add('greeting');
+  window.egorBootTimeout = setTimeout(() => document.documentElement.classList.remove('greeting'), 2000);
  }
 } catch (_) {}
 </script>
@@ -121,10 +123,10 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <script src="vercel-monitoring.js" defer></script>
 </head>
 <body>
-<div class="intro" id="intro" aria-label="Preparing the EGOR world">
- <div class="intro-top"><span>$EGOR / A little different</span><button class="intro-skip" id="intro-skip">Skip intro ↗</button></div>
- <div class="intro-center"><div class="intro-doodle"><img src="assets/portrait.webp" alt="" width="148" height="148" fetchpriority="high"></div><div class="intro-title">OH, <span>HI</span></div><p class="intro-caption">A few lines, a whole little world</p><div class="intro-progress" id="intro-progress" role="progressbar" aria-label="Essential artwork and fonts checked" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="intro-count" id="intro-count">0%</span><div class="intro-meter" aria-hidden="true"><span id="intro-meter"></span></div></div></div>
- <div class="intro-bottom"><span id="intro-detail">Preparing essential artwork + fonts</span><span>THE REST LOADS AS YOU EXPLORE</span></div>
+<div class="intro" id="intro" aria-label="Welcome to EGOR World">
+ <div class="intro-doodle"><img src="assets/portrait.webp" alt="" width="56" height="56"></div>
+ <div class="intro-center"><div class="intro-title">OH, <span>HI</span></div><p class="intro-caption">A few lines, a whole little world</p></div>
+ <button class="intro-skip" id="intro-skip" aria-label="Dismiss greeting">×</button>
 </div>
 <div class="scroll-progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
@@ -200,7 +202,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 </section>
   </div>
  </div>
- <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.6</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
+ <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.7</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
 </div></section>
 <section class="idea-workshop paper" id="idea-workshop" aria-labelledby="idea-title" data-idea="voyage" data-water-static>
  <div class="wrap idea-layout">
@@ -240,7 +242,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 </section>
 <div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-group"><span>SMALL LINES, BIG PERSONALITY</span><i>✳</i><span>LONG LIVE THE DOODLE</span><i>✳</i><span>ART AT HEART</span><i>✳</i><span>STAY A LITTLE WEIRD</span><i>✳</i></div><div class="marquee-group"><span>SMALL LINES, BIG PERSONALITY</span><i>✳</i><span>LONG LIVE THE DOODLE</span><i>✳</i><span>ART AT HEART</span><i>✳</i><span>STAY A LITTLE WEIRD</span><i>✳</i></div></div></div>
 <section class="world paper" id="world"><div class="wrap">
-<div class="world-layout"><div class="reveal"><div class="section-label eyebrow">01 / Behind the lines</div><h2 class="display">THE INTERNET<br>NEEDS MORE<br><span class="blue-text">CHARACTER</span></h2><p class="world-copy">Egor Zhgun turns simple shapes into ideas that stick. From visual satire and animated stories to expressive stickers, his work makes a little go a long way.<br><br><strong>$EGOR carries that spirit into a community tribute.</strong> Not another shiny mascot. A blue piece of paper, an imperfect line, and a reason to smile.</p><div class="source-links"><a class="text-link" href="https://www.behance.net/egorzhgun" target="_blank" rel="noopener noreferrer">Explore Egor’s work ↗</a><a class="text-link" href="https://www.artlebedev.com/zhgun/" target="_blank" rel="noopener noreferrer">Artist profile ↗</a></div></div>
+<div class="world-layout"><div class="reveal"><div class="section-label eyebrow">01 / Behind the lines</div><h2 class="display">THE INTERNET<br>NEEDS MORE<br><span class="blue-text">CHARACTER</span></h2><p class="world-copy">Egor Zhgun turns simple shapes into ideas that stick. From visual satire and animated stories to expressive stickers, his work makes a little go a long way.<br><br><strong>$EGOR carries that spirit into a community tribute.</strong> Not another shiny mascot. A blue piece of paper, an imperfect line, and a reason to smile.</p><div class="source-links"><a class="text-link" href="egor-zhgun.html">Egor Zhgun: artist &amp; sticker credits ↗</a><a class="text-link" href="https://www.behance.net/egorzhgun" target="_blank" rel="noopener noreferrer">Explore Egor’s work ↗</a><a class="text-link" href="https://www.artlebedev.com/zhgun/" target="_blank" rel="noopener noreferrer">Artist profile ↗</a></div></div>
 <div class="art-wall reveal"><span class="asterisk" aria-hidden="true">✳</span><figure class="art-card paper"><span class="pose-edition eyebrow">THE EGOR MOOD BOARD</span><div class="pose-stage"><img id="mood-image" src="assets/egor-seated.webp" alt="Egor sitting on a little stool, taking a well-earned break" width="640" height="640" loading="lazy" decoding="async"></div><figcaption><span id="mood-caption" aria-live="polite">FIG 01 / OFF DUTY</span><span aria-hidden="true">☺</span></figcaption></figure><div class="art-label">SAME EGOR<br>DIFFERENT ENERGY</div><span class="wall-caption">a whole personality in a few lines</span></div></div>
 <div class="mood-desk reveal"><div><span class="eyebrow">EGOR, OFF THE CLOCK</span><p>Some days we build. Some days we just sit. Both belong here.</p></div><div class="mood-buttons" role="group" aria-label="Choose Egor’s pose" hidden><button type="button" data-mood="seated" aria-pressed="true" aria-controls="mood-image">Off duty <span aria-hidden="true">↙</span></button><button type="button" data-mood="confident" aria-pressed="false" aria-controls="mood-image">On brand <span aria-hidden="true">✳</span></button><button type="button" data-mood="guide" aria-pressed="false" aria-controls="mood-image">Good company <span aria-hidden="true">↗</span></button></div></div>
 <div class="world-meta reveal"><div><span>DRAWN TOGETHER</span><p>A shared appreciation for art, humor,<br>and things with a little soul.</p></div><div><span>MADE TO FEEL</span><p>One small wave says more<br>than a thousand buzzwords.</p></div><div><span>CREATOR IN MIND</span><p>Public reward records.<br>No fixed rate verified here.</p></div></div>

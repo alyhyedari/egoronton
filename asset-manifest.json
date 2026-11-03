@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "d01e1b867a92de09",
+  "version": "4bf7b72674552463",
   "assets": {
     "assets/arm.webp": "a0d3beb8ee1f4366ec1440146f608a3b2dd2d32e4aa0551c1a98e1689794d942",
     "assets/body.webp": "2d95672070d4cb90301dffe05b99bca59f4392229ac649c22503d5777cc069fb",
@@ -19,6 +19,8 @@
     "assets/font-3.woff2": "ff2d61aefa10479f317ff7c07006e53641b0e60fb6c933799f811f85b71b3175",
     "assets/font-4.ttf": "2a8e7f713ee79fbccdef3cef5c787aff47580299f7da60144961e7db2ec08211",
     "assets/font-4.woff2": "56c3ea3216f46145041f285064728c371fd178147777e910f83bfde32ced299f",
+    "assets/icons/egor-180.png": "1132770f9fc0f4d2e63c11b7493289952d755eaf22e291c36b0bec79a9989dc7",
+    "assets/icons/egor-96.png": "3e6e0e049bdd70c06bb453391af5799bb4845bf0d1829ae25fdbeeb3275c5619",
     "assets/journey-head.webp": "7bd6fec6d654a66935bbbdf5573fbd54b72da1953038e503910aef621127aa6d",
     "assets/line-memory-tribute.webp": "71697e7c29124edda8ae5709dc8a493362397b8448f602490a918f79da946673",
     "assets/og/egor-world-v1.jpg": "b94c8b1440ce479a8b54ba1b3df316d0e8236ab58b7462bcfaf27ffed6d2905d",

@@ -15,15 +15,12 @@
     if (finished) return;
     finished = true;
     clearTimeout(window.egorBootTimeout);
-    root.classList.remove('booting');
+    root.classList.remove('greeting');
     intro.classList.add('leaving');
     intro.setAttribute('aria-hidden', 'true');
     intro.inert = true;
     if (intro.contains(document.activeElement)) $('.brand').focus({preventScroll:true});
-    if (motionAllowed()) {
-      body.classList.add('entering');
-      setTimeout(() => body.classList.remove('entering'), 1600);
-    }
+    // Do not replay opacity-based hero entrances after the page has painted.
     setTimeout(() => intro.remove(), 800);
     try { sessionStorage.setItem('egor-visited', '1'); } catch (_) {}
   }
@@ -33,43 +30,13 @@
   document.addEventListener('focusin', event => {
     if (!finished && !intro.contains(event.target)) finishIntro();
   });
-  if (!root.classList.contains('booting')) finishIntro();
-  else {
-    let completed = 0, failed = 0;
-    const images = ['assets/body.webp', 'assets/arm.webp', 'assets/portrait.webp', 'assets/paper.webp'];
-    const tasks = images.map(src => new Promise(resolve => {
-      const image = new Image();
-      image.onload = () => resolve(true);
-      image.onerror = () => resolve(false);
-      image.src = src;
-    }));
-    tasks.push(document.fonts ? document.fonts.ready.then(() =>
-      [...document.fonts].every(font => font.status !== 'error')) : Promise.resolve(true));
-    const detail = $('#intro-detail');
-    const checks = tasks.map(task => task.catch(() => false).then(ok => {
-      if (finished) return;
-      completed++;
-      if (!ok) failed++;
-      const percent = Math.round(completed / tasks.length * 100);
-      $('#intro-meter').style.transform = `scaleX(${percent / 100})`;
-      $('#intro-count').textContent = `${percent}%`;
-      $('#intro-progress').setAttribute('aria-valuenow', String(percent));
-      detail.textContent = failed ? 'Some artwork is unavailable · you can still explore' :
-        completed === tasks.length ? 'Ready. Make yourself at home.' : `${completed} of ${tasks.length} essentials checked`;
-    }));
-    // Completion of essential-resource checks, not simulated byte progress.
-    // Lazy animation data is intentionally not downloaded by this loader.
-    let deadline;
-    Promise.race([Promise.all(checks), new Promise(resolve => {
-      deadline = setTimeout(() => {
-        detail.textContent = 'Still loading · continuing without waiting';
-        resolve();
-      }, 2200);
-    })]).then(() => {
-      clearTimeout(deadline);
-      setTimeout(finishIntro, 260);
-    });
-  }
+  if (!root.classList.contains('greeting')) finishIntro();
+  else setTimeout(finishIntro, 1400);
+  // A greeting, not a loader: never wait for fonts or artwork to unlock the page.
+  document.addEventListener('pointerdown', event => {
+    if (!finished && !intro.contains(event.target)) finishIntro();
+  }, {passive:true});
+  addEventListener('scroll', finishIntro, {passive:true, once:true});
 
   const motionButton = $('#motion-toggle');
   function setMotion() {

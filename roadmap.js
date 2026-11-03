@@ -9,25 +9,43 @@
   const route = $('#rm-route'), traveler = $('#rm-traveler');
   const pause = $('.rm-pause'), prev = $('.rm-prev'), next = $('.rm-next');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const total = route.getTotalLength();
-  // Match the actual curve to the five authored station coordinates.
-  const points = [[95,420],[230,245],[380,360],[500,190],[620,90]];
-  const distances = points.map(([x,y]) => {
-    let best = 0, error = Infinity;
-    for (let i = 0; i <= 2000; i++) {
-      const d = total * i / 2000, p = route.getPointAtLength(d);
-      const e = (p.x-x)**2 + (p.y-y)**2;
-      if (e < error) { error = e; best = d; }
+  // The four authored cubic segments of #rm-route. Build a tiny arc-length
+  // table with arithmetic, not 10,005 synchronous SVG geometry queries.
+  // Keep these controls in sync with the path in index.html (covered by QA).
+  const curves = [
+    [[95,420],[85,345],[125,245],[230,245]],
+    [[230,245],[335,245],[280,360],[380,360]],
+    [[380,360],[480,360],[418,190],[500,190]],
+    [[500,190],[582,190],[547,90],[620,90]]
+  ];
+  const samples = [{x:95, y:420, d:0}], distances = [0];
+  for (const curve of curves) {
+    for (let i = 1; i <= 100; i++) {
+      const t = i / 100, u = 1 - t;
+      const x = u*u*u*curve[0][0] + 3*u*u*t*curve[1][0] + 3*u*t*t*curve[2][0] + t*t*t*curve[3][0];
+      const y = u*u*u*curve[0][1] + 3*u*u*t*curve[1][1] + 3*u*t*t*curve[2][1] + t*t*t*curve[3][1];
+      const previous = samples[samples.length - 1];
+      samples.push({x, y, d:previous.d + Math.hypot(x-previous.x, y-previous.y)});
     }
-    return best;
-  });
+    distances.push(samples[samples.length - 1].d);
+  }
+  function pointAt(distance) {
+    let low = 0, high = samples.length - 1;
+    while (high - low > 1) {
+      const mid = (low + high) >> 1;
+      if (samples[mid].d < distance) low = mid; else high = mid;
+    }
+    const a = samples[low], b = samples[high];
+    const t = Math.max(0, Math.min(1, (distance-a.d)/(b.d-a.d)));
+    return {x:a.x+(b.x-a.x)*t, y:a.y+(b.y-a.y)*t};
+  }
   let selected = 0, current = 0, target = 0, frame = 0;
   let localPause = false, visible = false;
   const blocked = () => localPause || reduced.matches || document.body.classList.contains('motion-off');
   const active = () => visible && !document.hidden && !blocked();
   function place(distance) {
     current = distance;
-    const p = route.getPointAtLength(distance);
+    const p = pointAt(distance);
     traveler.style.transform = `translate(${p.x.toFixed(2)}px,${p.y.toFixed(2)}px)`;
   }
   function cancel() { cancelAnimationFrame(frame); frame = 0; }
@@ -86,7 +104,7 @@
   document.addEventListener('visibilitychange', sync);
   new MutationObserver(sync).observe(document.body, {attributes:true, attributeFilter:['class']});
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }, {threshold:0}).observe($('.rm-map'));
+    new IntersectionObserver(entries => { visible = entries[entries.length - 1].isIntersecting; sync(); }, {threshold:0}).observe($('.rm-map'));
   } else visible = true;
   room.classList.add('rm-ready');
   $('.rm-stops').hidden = $('.rm-controls').hidden = pause.hidden = false;

@@ -11,6 +11,36 @@
   const widgetSelector = '.speech,.scribble,.hero-sticker,.asterisk,.art-label,.wall-caption,.guide-bubble,.curious-host>span,.curious-host>small,.farewell-lockup>span,.host-aside,.corner,.status-mark,.step-index';
   const segmenter = new Intl.Segmenter('en', {granularity:'grapheme'});
   const groups = [], visible = new Set();
+  const pending = new Map(), nearby = new Set();
+  let preparation = 0;
+  function prepareNext() {
+    preparation = 0;
+    if (!enabled) return;
+    // One host per task: fast scrolling must not create thousands of glyphs
+    // in one observer callback. Text remains native until it is enhanced.
+    const host = nearby.values().next().value;
+    if (!host) return;
+    nearby.delete(host);
+    const prepare = pending.get(host);
+    if (prepare && host.isConnected) prepare();
+    pending.delete(host);
+    prepareObserver.unobserve(host);
+    queuePreparation();
+  }
+  function queuePreparation() {
+    if (enabled && nearby.size && !preparation) preparation = setTimeout(prepareNext, 0);
+  }
+  const prepareObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) nearby.add(entry.target);
+      else nearby.delete(entry.target);
+    }
+    queuePreparation();
+  }, {rootMargin:'200px'});
+  function deferGroup(host, prepare) {
+    pending.set(host, prepare);
+    prepareObserver.observe(host);
+  }
   let started = false, enabled = false, raf = 0, dirty = true, previous = 0;
   let particles = [], barriers = [], lastInput = 0, selection = false;
   let point = null, stroke = null;
@@ -68,15 +98,19 @@
     // Move only independent decoration; never a parent containing protected ink.
     for (const host of document.querySelectorAll(widgetSelector)) {
       if (host.closest(immune) || host.querySelector(immune) || hasName(host.textContent)) continue;
-      host.classList.add('water-widget');
-      makeGroup(host,[particle(host,'widget')]);
+      deferGroup(host, () => {
+        host.classList.add('water-widget');
+        makeGroup(host,[particle(host,'widget')]);
+      });
     }
     for (const host of document.querySelectorAll('.token-card')) {
-      const skin = document.createElement('div');
-      skin.className='water-skin';skin.setAttribute('aria-hidden','true');
-      skin.style.setProperty('--water-fill',getComputedStyle(host).backgroundColor);
-      host.prepend(skin);host.classList.add('water-card');
-      makeGroup(skin,[particle(skin,'skin')]);
+      deferGroup(host, () => {
+        const skin = document.createElement('div');
+        skin.className='water-skin';skin.setAttribute('aria-hidden','true');
+        skin.style.setProperty('--water-fill',getComputedStyle(host).backgroundColor);
+        host.prepend(skin);host.classList.add('water-card');
+        makeGroup(skin,[particle(skin,'skin')]);
+      });
     }
     // Walk only editorial text. No changes to interactive or live-updating DOM.
     const nodes = [];
@@ -84,7 +118,7 @@
       const walker = document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
         acceptNode(node) {
           const parent=node.parentElement;
-          return node.data.trim() && !parent.closest(`${immune},.water-widget,.water-skin,script,style,noscript`)
+          return node.data.trim() && !parent.closest(`${immune},${widgetSelector},.water-skin,script,style,noscript`)
             ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
         }
       });
@@ -93,11 +127,19 @@
     const byHost = new Map();
     for (const node of nodes) {
       const host=node.parentElement;
-      const result=splitText(node);
-      if (!byHost.has(host)) byHost.set(host,{words:[],items:[]});
-      const group=byHost.get(host);group.words.push(...result.words);group.items.push(...result.items);
+      if (!byHost.has(host)) byHost.set(host,[]);
+      byHost.get(host).push(node);
     }
-    for (const [host,g] of byHost) if (g.items.length) makeGroup(host,g.items,g.words);
+    for (const [host,textNodes] of byHost) deferGroup(host, () => {
+      const words = [], items = [];
+      for (const node of textNodes) {
+        // Another feature may have updated its status since registration.
+        if (node.parentElement !== host) continue;
+        const result = splitText(node);
+        words.push(...result.words);items.push(...result.items);
+      }
+      if (items.length) makeGroup(host,items,words);
+    });
     new ResizeObserver(invalidate).observe(body);
     document.fonts?.addEventListener('loadingdone',invalidate);
     document.addEventListener('toggle',invalidate,true);
@@ -116,7 +158,7 @@
   function invalidate() {stop();}
   function sync() {
     enabled=permitted();
-    if(enabled) start();
+    if(enabled) {start();queuePreparation();}
     body.classList.toggle('water-live',enabled);
     if(!enabled) stop();
   }
