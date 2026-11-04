@@ -1,12 +1,12 @@
 {
-  "version": "0.4.12",
+  "version": "0.4.13",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
     "motion": "Staged approach, reach, lift, carry, lower, release and return; no travel animation with reduced motion",
-    "status": "Local review; Chromium interaction checks at 320, 375 and 1440 pixels passed; mobile and desktop screenshots reviewed; not deployed"
+    "status": "Local review; room-play checks at 320, 375 and 1440 pixels passed; mobile screenshot reviewed; see LIVING-REVIEW.md for limits; not deployed"
   },
   "walletConnection": false,
   "evidence": {
@@ -31,9 +31,7 @@
     "chart": "Not provided",
     "freshness": "Browser receipt time shown; provider observation time unknown",
     "quoteStorage": "No persistent quote cache; requests use no-store",
-    "holderSnapshot": "data/holder-snapshot.json",
-    "sourceResponseTimeUTC": "2026-11-04T08:24:33Z",
-    "holderAddresses": 297,
+    "holderSnapshot": "Removed from page; historical data retained as archive only",
     "liveCounter": false,
     "distributionPercentages": "Withheld: snapshot balances exceed reported supply; cause unresolved"
   },

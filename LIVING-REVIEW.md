@@ -1,25 +1,15 @@
-# EGOR World 0.4.12 — local review
+# EGOR World 0.4.13 — local review
 
 Not deployed. Serve this directory over HTTP and open `market.html`.
 
 ## Changes
-- Object-return choreography: notice, approach, reach/bend, lift, carry, lower, release, then return to the resting position. Multiple displaced props are handled sequentially.
-- Original head/torso and foot image fragments with reconstructed SVG line limbs during choreography. Source artwork is unchanged; animated limbs are not pixel-identical to the original drawing.
-- Feet step with the legs; the shadow follows lateral travel. Object coordinates follow the hand during transport.
-- SVG book, cup and gamepad replace platform-dependent glyphs. Pointer/tap and arrow-key controls retained.
-- Pause/resume and visibility suspension retained. Reduced-motion users receive an immediate prop return after the notice delay, without travel animation.
-- Existing local-only room memory and time preview retained. Clear memory cancels active choreography and restores object positions.
-- Existing automatic TonAPI-only reports retained; no provider fallback or new market snapshot. Time previews affect routines, not market data.
+- Added TV/channel, mirror smudge/clean, mood and fictional screen-knock interactions.
+- Pretend cracks can be disabled, dismissed with Escape, or expire; reduced motion suppresses them. No sound or scroll lock.
+- Tidy up restores the room. Original static artwork retained; animated SVG limbs are reconstructed, not pixel-identical to the reference.
+- Removed saved-holder snapshot UI, fixed count, evidence details, anchor and metadata references. Historical data files remain archival only and were not updated.
+- TonAPI reports remain separate; Tonviewer is only a contract inspection link.
 
-## Verification
-- Chromium at 320, 375 and 1440 CSS pixels: no page overflow; keyboard prop movement; pause stability; completed return.
-- Reduced-motion return, time preview and memory clearing passed. No runtime exceptions captured in that run.
-- Mobile and desktop screenshots visually reviewed, including desktop carrying pose.
-- External network requests were blocked in browser QA. Actual TonAPI responses, availability and freshness were not verified in this release.
-- Source JavaScript syntax, asset manifest and ZIP contents checked separately during packaging.
+## Executed checks for this version
+Chromium at 320, 375 and 1440 CSS pixels: no horizontal overflow, no snapshot UI, valid local section anchors, TV toggling, mirror smudge/clean, knock/crack, Escape dismissal and tidy reset passed. Reduced-motion suppression of cracks passed. No runtime exceptions captured. Mobile screenshot visually reviewed.
 
-## Limits
-- A lightweight 2D rig, not a physics simulation or frame-by-frame character animation. Contact and limb shapes remain approximate, particularly at narrow scene edges.
-- Existing cooking, gaming and other routines remain illustrated vignettes with captions; this release does not add bespoke animations for each activity.
-- No physical-phone test, comprehensive accessibility audit or all-browser regression is claimed.
-- No online deployment or external submission performed.
+Results: `QA-0.4.13.json`. External requests blocked during QA: live TonAPI availability and freshness were not tested. Physical phone, pointer dragging, full routine choreography, pause/resume and screen-reader testing were not repeated for this version. Prior-version results are not presented as new checks.

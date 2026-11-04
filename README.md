@@ -1,4 +1,4 @@
-# EGOR World 0.4.12 — local review build
+# EGOR World 0.4.13 — local review build
 
 Static, wallet-free site with a standalone market report at `market.html`. Not deployed.
 
@@ -15,10 +15,8 @@ The “At home with EGOR” section on `market.html` retains the supplied charac
 - Browser receipt time is not provider observation time or a blockchain timestamp. TonAPI freshness is unverified; these are on-demand reports, not a live feed.
 - Tonviewer is an inspection link only, never a numeric data provider.
 
-## Saved snapshot and limitations
-The static holder report remains readable without JavaScript. It records 297 holder addresses, not 297 people. The saved HTTP Date header is 4 November 2026, 08:24:33 UTC; it does not establish a synchronized blockchain block.
-
-Distribution percentages are withheld: saved balances total `1001608826275396994` base units, versus reported supply `1000000000000000000` (9 decimals). The cause is unresolved; this is not evidence of minting or fraud. Pool balances are included and other contracts are not exhaustively classified. Fresh metadata does not update the saved holder rows or resolve their discrepancy.
+## Removed holder snapshot
+The saved-holder card, fixed count, evidence details and related navigation were removed from `market.html`. Historical files under `data/` are retained only as audit material, not displayed figures. No snapshot was refreshed. Distribution percentages remain unpublished.
 
 Historical source captures under `data/` include a DexScreener response retained as audit material; it is not used for displayed quotes or fallback. The report does not calculate liquidity, volume, circulating market capitalization, FDV, holder concentration, or a price chart.
 
