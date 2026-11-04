@@ -1,17 +1,25 @@
-# EGOR World 0.4.11 — local review
+# EGOR World 0.4.12 — local review
 
-Not deployed. Serve this directory over HTTP and open market.html.
+Not deployed. Serve this directory over HTTP and open `market.html`.
 
 ## Changes
-- Automatic TonAPI requests while the reports section and tab are visible. One-minute endpoint cooldown, rate-limit backoff, stop controls, no other provider. Existing token identity checks and receipt timestamps retained. Time previews never alter market data.
-- Autonomous, clock-based home vignettes: breakfast, design, learning, work, cooking, games, reading and rest. Schedule changes approximately every 90 seconds; time preview spans ±168 hours.
-- Three movable props with pointer, tap and keyboard controls. EGOR notices, complains playfully after repeated interference and resets their positions after about 7 seconds of visible, unpaused life.
-- Local-only room positions, visit count and time offset; clear-memory control; storage failures do not prevent use. No wallet, device access or real threats.
-- Original character artwork unchanged. Activities reuse existing poses with captions, not bespoke animated cooking or gaming sequences. Prop reset is an illustrated interaction, not an animated physical walk-and-carry action.
+- Object-return choreography: notice, approach, reach/bend, lift, carry, lower, release, then return to the resting position. Multiple displaced props are handled sequentially.
+- Original head/torso and foot image fragments with reconstructed SVG line limbs during choreography. Source artwork is unchanged; animated limbs are not pixel-identical to the original drawing.
+- Feet step with the legs; the shadow follows lateral travel. Object coordinates follow the hand during transport.
+- SVG book, cup and gamepad replace platform-dependent glyphs. Pointer/tap and arrow-key controls retained.
+- Pause/resume and visibility suspension retained. Reduced-motion users receive an immediate prop return after the notice delay, without travel animation.
+- Existing local-only room memory and time preview retained. Clear memory cancels active choreography and restores object positions.
+- Existing automatic TonAPI-only reports retained; no provider fallback or new market snapshot. Time previews affect routines, not market data.
 
-## Verification and limits
-- JavaScript syntax checks passed.
-- Real Chromium headless browser: 375px and 1440px screenshots; mobile overflow, three props, time preview, notice and return interaction, automatic-refresh checkbox checked.
-- Browser tests do not verify actual TonAPI responses, historical coverage or real mobile hardware. No claim of comprehensive regression coverage.
-- Reduced motion disables animation without stopping autonomous text routines. Pause life stops routine progression and prop reactions. Background tabs pause work.
-- No new artwork generated; body/legs assets are byte-identical to 0.4.10.
+## Verification
+- Chromium at 320, 375 and 1440 CSS pixels: no page overflow; keyboard prop movement; pause stability; completed return.
+- Reduced-motion return, time preview and memory clearing passed. No runtime exceptions captured in that run.
+- Mobile and desktop screenshots visually reviewed, including desktop carrying pose.
+- External network requests were blocked in browser QA. Actual TonAPI responses, availability and freshness were not verified in this release.
+- Source JavaScript syntax, asset manifest and ZIP contents checked separately during packaging.
+
+## Limits
+- A lightweight 2D rig, not a physics simulation or frame-by-frame character animation. Contact and limb shapes remain approximate, particularly at narrow scene edges.
+- Existing cooking, gaming and other routines remain illustrated vignettes with captions; this release does not add bespoke animations for each activity.
+- No physical-phone test, comprehensive accessibility audit or all-browser regression is claimed.
+- No online deployment or external submission performed.

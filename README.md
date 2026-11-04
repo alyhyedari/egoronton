@@ -1,9 +1,9 @@
-# EGOR World 0.4.11 — local review build
+# EGOR World 0.4.12 — local review build
 
 Static, wallet-free site with a standalone market report at `market.html`. Not deployed.
 
-## Original-character correction
-The “At home with EGOR” section on `market.html` now uses ink extracted from the supplied full-body reference, preserving its body and long legs without redrawing them. Eight activity images share that silhouette; props and subtle whole-image movements change, not anatomy. See `LIVING-REVIEW.md` for limitations.
+## Character and object choreography
+The “At home with EGOR” section on `market.html` retains the supplied character image for routine vignettes. Object interactions use a lightweight SVG rig: original head/torso and foot image fragments, with articulated line arms and legs. EGOR approaches, bends, lifts, carries, lowers and releases each displaced prop before returning. The source artwork is unchanged, but moving limbs are reconstructed rather than pixel-identical. Reduced-motion mode returns objects without travel animation. See `LIVING-REVIEW.md` for verification and limits.
 
 ## Market report
 - TonAPI is the only source of displayed figures. No automatic provider fallback, external chart, wallet connection or trading interface.

@@ -1,12 +1,12 @@
 {
-  "version": "0.4.11",
+  "version": "0.4.12",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
-    "art": "Original full-body reference ink; unchanged proportions and legs across eight prop variants",
-    "motion": "Whole-image motion, not articulated animation",
-    "status": "Local review; browser visual verification pending; not deployed"
+    "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
+    "motion": "Staged approach, reach, lift, carry, lower, release and return; no travel animation with reduced motion",
+    "status": "Local review; Chromium interaction checks at 320, 375 and 1440 pixels passed; mobile and desktop screenshots reviewed; not deployed"
   },
   "walletConnection": false,
   "evidence": {
