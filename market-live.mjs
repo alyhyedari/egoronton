@@ -1,4 +1,4 @@
-/* Opt-in public API reads. No keys, wallets, cookies or persistent quote cache. */
+/* Automatic public API reads while visible. No keys, wallets, cookies or persistent quote cache. */
 export const TOKEN = 'EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA';
 export const RAW_TOKEN = '0:0efed6292db3eaf863977a061362d15a434b4c9312c1c73605f1c5021865808f';
 const MINUTE = 60000, STALE = 5 * MINUTE;
@@ -45,7 +45,7 @@ export function initMarket(panel) {
  const $ = s => panel.querySelector(s);
  const refresh = $('#market-refresh'), auto = $('#market-auto'), stop = $('#market-stop'), status = $('#market-status');
  const reports = sources.map(s => ({...s,card:$(`#quote-${s.id}`),data:null,received:0,next:0,error:'',busy:false}));
- let activated = false, busy = false, inView = false, stopped = false, cycle = 0, poll = 0, ticker = 0;
+ let activated = true, busy = false, inView = false, stopped = false, cycle = 0, poll = 0, ticker = 0;
  const controllers = new Set();
  const utc = ms => new Date(ms).toISOString().replace('T',' ').replace(/\.\d{3}Z$/,' UTC');
  const fmt = (key,value) => {
@@ -118,7 +118,7 @@ export function initMarket(panel) {
    if(run!==cycle)return;
    busy=false;
    const good=eligible.filter(r=>!r.error).length;
-   if (reports.some(r=>r.error)) {auto.checked=false;auto.disabled=true;}
+   // Endpoint-specific cooldowns remain active after failures; never substitute a provider.
    status.textContent=`${good} of ${eligible.length} requested TonAPI endpoints returned a usable report.${reports.some(r=>r.error)?' Check each report’s status. No fallback provider.':''} ${auto.checked?'Automatic refresh is enabled only while this section is in view.':'Automatic refresh is off.'}`;
    render();schedule();
  }
@@ -130,8 +130,8 @@ export function initMarket(panel) {
    else {render();if(activated){startTicker();schedule();}}
  }
  if ('IntersectionObserver' in window) new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;visibilityChanged();},{threshold:0}).observe($('#reports'));
- else inView=true;
+ else {inView=true;visibilityChanged();}
  document.addEventListener('visibilitychange',visibilityChanged);
  addEventListener('pagehide',()=>cancel('Requests stopped on leaving this page.',true));
- $('#market-controls').hidden=false;render();
+ $('#market-controls').hidden=false;render();schedule();
 }

@@ -1,4 +1,4 @@
-# EGOR World 0.4.10 — local review build
+# EGOR World 0.4.11 — local review build
 
 Static, wallet-free site with a standalone market report at `market.html`. Not deployed.
 
@@ -8,7 +8,7 @@ The “At home with EGOR” section on `market.html` now uses ink extracted from
 ## Market report
 - TonAPI is the only source of displayed figures. No automatic provider fallback, external chart, wallet connection or trading interface.
 - The homepage links to the report; it does not load the market API module.
-- Current-session opt-in is required before requests to TonAPI. Requests share connection information (including IP address) with TonAPI. No API keys are bundled.
+- TonAPI requests start automatically when reports are visible, with stop controls. Requests share connection information (including IP address) with TonAPI. No API keys are bundled.
 - Optional 60-second refresh runs only while the reports section and browser tab are visible. Refreshes have a cooldown, time out, and stop after errors; retry is manual. Stop cancels pending requests.
 - API responses use `cache: 'no-store'` and are not written to browser storage. The service worker handles same-origin static assets only.
 - Metadata must match the configured raw token address and 9 decimals. Rates must match the same address; malformed fields become unavailable, and wholly invalid reports are rejected. Unicode minus is supported for percentage changes.

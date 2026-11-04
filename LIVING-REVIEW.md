@@ -1,15 +1,17 @@
-# EGOR living corner — 0.4.10 local review
+# EGOR World 0.4.11 — local review
 
-Run `python -m http.server 8000` in this folder and open http://localhost:8000/market.html. The section is below the introduction.
+Not deployed. Serve this directory over HTTP and open market.html.
 
-## Character correction
-The original ink was extracted from the supplied full-body reference without redrawing its body or legs. All eight activity images preserve that silhouette and aspect ratio. Coffee, book/sketchbook and watering-can props are overlays. CSS uses proportional sizing, with no scaleY stretching. This correction is limited to the living corner; other site illustrations are unchanged.
+## Changes
+- Automatic TonAPI requests while the reports section and tab are visible. One-minute endpoint cooldown, rate-limit backoff, stop controls, no other provider. Existing token identity checks and receipt timestamps retained. Time previews never alter market data.
+- Autonomous, clock-based home vignettes: breakfast, design, learning, work, cooking, games, reading and rest. Schedule changes approximately every 90 seconds; time preview spans ±168 hours.
+- Three movable props with pointer, tap and keyboard controls. EGOR notices, complains playfully after repeated interference and resets their positions after about 7 seconds of visible, unpaused life.
+- Local-only room positions, visit count and time offset; clear-memory control; storage failures do not prevent use. No wallet, device access or real threats.
+- Original character artwork unchanged. Activities reuse existing poses with captions, not bespoke animated cooking or gaming sequences. Prop reset is an illustrated interaction, not an animated physical walk-and-carry action.
 
-Local-time morning/day/evening/night routines, greeting/coffee/plant buttons, pause, reduced motion and background/offscreen suspension remain. No camera, microphone, geolocation or new external data source is used.
-
-## Limitations
-This is an illustrated prototype, not articulated character animation: greeting, stretching and resting share the same standing silhouette with small whole-image movements. Plant visits are not simulated watering. Market charts, automatic market loading and GRAM comparison are not added.
-
-JavaScript syntax and 16 DOM-mock routine/interaction scenarios are checked separately from visual rendering. Browser visual/mobile verification remains pending because a browser runtime is unavailable here. The supplied JPEG is a composited illustration, not a browser screenshot.
-
-This complete static-site review package is version 0.4.10, not proof of deployment. Original hosting configuration was not recovered; see README.md. No online site was changed.
+## Verification and limits
+- JavaScript syntax checks passed.
+- Real Chromium headless browser: 375px and 1440px screenshots; mobile overflow, three props, time preview, notice and return interaction, automatic-refresh checkbox checked.
+- Browser tests do not verify actual TonAPI responses, historical coverage or real mobile hardware. No claim of comprehensive regression coverage.
+- Reduced motion disables animation without stopping autonomous text routines. Pause life stops routine progression and prop reactions. Background tabs pause work.
+- No new artwork generated; body/legs assets are byte-identical to 0.4.10.

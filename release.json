@@ -1,5 +1,5 @@
 {
-  "version": "0.4.10",
+  "version": "0.4.11",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
@@ -26,7 +26,7 @@
   },
   "market": {
     "page": "market.html",
-    "figuresProvider": "TonAPI only; opt-in per page session; no provider fallback",
+    "figuresProvider": "TonAPI only; automatic while visible; no provider fallback",
     "contractInspection": "Tonviewer link only; not a figures provider",
     "chart": "Not provided",
     "freshness": "Browser receipt time shown; provider observation time unknown",
