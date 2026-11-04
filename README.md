@@ -1,6 +1,9 @@
-# EGOR World 0.4.9 — local review build
+# EGOR World 0.4.10 — local review build
 
 Static, wallet-free site with a standalone market report at `market.html`. Not deployed.
+
+## Original-character correction
+The “At home with EGOR” section on `market.html` now uses ink extracted from the supplied full-body reference, preserving its body and long legs without redrawing them. Eight activity images share that silhouette; props and subtle whole-image movements change, not anatomy. See `LIVING-REVIEW.md` for limitations.
 
 ## Market report
 - TonAPI is the only source of displayed figures. No automatic provider fallback, external chart, wallet connection or trading interface.

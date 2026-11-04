@@ -1,7 +1,13 @@
 {
-  "version": "0.4.9",
+  "version": "0.4.10",
   "name": "EGOR World",
   "deployment": "static",
+  "livingCorner": {
+    "page": "market.html",
+    "art": "Original full-body reference ink; unchanged proportions and legs across eight prop variants",
+    "motion": "Whole-image motion, not articulated animation",
+    "status": "Local review; browser visual verification pending; not deployed"
+  },
   "walletConnection": false,
   "evidence": {
     "source": "Previously reviewed transaction snapshot; not a live feed",
