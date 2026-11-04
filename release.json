@@ -1,12 +1,12 @@
 {
-  "version": "0.4.25",
+  "version": "0.4.26",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
     "motion": "Staged approach, reach, lift, carry, lower and release; daily scenes rest at their destination instead of returning to origin; reduced motion preserves position",
-    "status": "Local prototype. Chromium: independent spill cleanup, sequential repair, position continuity, Escape, reduced-motion repair, and overflow/TV separation at 320/375/1440 verified. See QA-0.4.20.md. No physical phone, other browser or live-market verification; not deployed"
+    "status": "Local WIP. Syntax checks, 10 mocked position checks, 8 mocked life checks and 182 asset hashes passed. Room layout and interactions have not been browser-verified in 0.4.26. Earlier QA does not validate this build. Not deployed"
   },
   "walletConnection": false,
   "evidence": {

@@ -1,6 +1,6 @@
 /* Vector costume prototype. No flashing, destructive effects or layout shifts. */
-.day-horn{opacity:0;transform:scaleY(.05);transform-box:fill-box;transform-origin:bottom;transition:opacity 1.2s,transform 1.6s}
-.purple-mischief .day-horn{opacity:1;transform:scaleY(1)}
+.day-horn{display:none!important}
+.purple-mischief .rig-upper>image{filter:sepia(1) saturate(5) hue-rotate(225deg)}
 .home-stage{transition:box-shadow 1.6s}
 .purple-mischief .home-stage{box-shadow:inset 0 0 80px 25px #743a9855}
 .home-rig path{transition:stroke 1.4s}
