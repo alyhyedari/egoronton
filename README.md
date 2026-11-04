@@ -1,4 +1,8 @@
-# EGOR World 0.4.15 — staged routines prototype
+# EGOR World 0.4.16 — room physics prototype
+
+New: three draggable/throwable SVG props, gravity and damped bounces, simplified object collisions, cascading shelf impacts, pretend window/mirror/TV cracks and coffee spills. Grab EGOR to elicit objections and bounded arm movement; repeated grabs trigger a nine-second fictional laptop boundary. Escape always releases and unlocks; Repair resets damage. Arrow keys move props; Shift + arrow throws. Reduced motion disables release/keyboard throwing. Pause and hidden/offscreen states freeze simulation. Facing uses a subtle directional face offset, not full profile artwork. Collision shapes are approximate; this is not a full rigid-body or ragdoll engine. Only the three loose props can be thrown; fixtures are impact targets. No permissions, audio or network are added by physics. Headless Chromium: 21 checks passed across 320/375/1440 widths on a resized page, including real pointer capture/drag, damage, repair, boundary and Escape. Physical phones and live market not tested. Not deployed.
+
+Previous 0.4.15 routine work:
 
 New in this prototype: eight routines with approach, settle, activity, finish and return phases; hand-attached SVG props; a progressively drawn sketch; and activity-aware interruption dialogue. Work is a short fictional studio absence, not a real-hour schedule. Routines pause offscreen and when life is paused. Headless Chromium scripted phase checks passed at 320, 375 and 1440 pixels, with reduced-motion travel disabled. External requests were blocked: live market data and physical phones were not tested. Repeated-navigation testing timed out; the successful phase run resized a single loaded page. This remains a prototype: interruptions still reset position rather than performing a complete put-down animation. No online deployment.
 

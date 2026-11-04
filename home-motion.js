@@ -20,7 +20,7 @@ window.EgorChoreography=class{
  request(){if(!this.raf)this.raf=requestAnimationFrame(this.frame);}
  setRunning(value){this.running=value;this.last=0;if(value&&this.active)this.request();else if(this.raf){cancelAnimationFrame(this.raf);this.raf=0;}}
  cancel(){if(this.raf)cancelAnimationFrame(this.raf);this.raf=0;for(const b of this.root.querySelectorAll('.home-object')){b.disabled=false;b.classList.remove('is-selected','is-carried');}this.active=false;this.queue=[];this.x=0;this.actor.style.removeProperty('translate');this.shadow.style.removeProperty('translate');this.root.classList.remove('is-choreographing');}
- pose(crouch,walk,hand){const s=this.scale,phase=this.elapsed/160,stride=walk?Math.sin(phase)*22:0,bob=walk?Math.abs(Math.sin(phase))*5:0,cy=crouch-bob;
+ pose(crouch,walk,hand){const delta=this.x-(this.previousPoseX??this.x);if(walk&&Math.abs(delta)>.03){this.facing=delta>0?1:-1;}this.previousPoseX=this.x;const face=this.rig.querySelector('.rig-face');face.setAttribute('transform',`translate(${(this.facing||1)*6} 0)`);this.actor.dataset.facing=this.facing===-1?'left':'right';const s=this.scale,phase=this.elapsed/160,stride=walk?Math.sin(phase)*22:0,bob=walk?Math.abs(Math.sin(phase))*5:0,cy=crouch-bob;
   this.upper.setAttribute('transform',`translate(0 ${cy})`);
   const liftL=walk?Math.max(0,Math.cos(phase))*13:0,liftR=walk?Math.max(0,-Math.cos(phase))*13:0;
   this.feet[0].setAttribute('transform',`translate(${stride} ${-liftL})`);this.feet[1].setAttribute('transform',`translate(${-stride} ${-liftR})`);
