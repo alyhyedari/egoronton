@@ -1,4 +1,7 @@
-# EGOR World 0.4.13 — local review build
+# EGOR World 0.4.15 — staged routines prototype
+
+New in this prototype: eight routines with approach, settle, activity, finish and return phases; hand-attached SVG props; a progressively drawn sketch; and activity-aware interruption dialogue. Work is a short fictional studio absence, not a real-hour schedule. Routines pause offscreen and when life is paused. Headless Chromium scripted phase checks passed at 320, 375 and 1440 pixels, with reduced-motion travel disabled. External requests were blocked: live market data and physical phones were not tested. Repeated-navigation testing timed out; the successful phase run resized a single loaded page. This remains a prototype: interruptions still reset position rather than performing a complete put-down animation. No online deployment.
+
 
 Static, wallet-free site with a standalone market report at `market.html`. Not deployed.
 

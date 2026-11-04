@@ -1,4 +1,8 @@
-# EGOR World 0.4.13 — local review
+# EGOR World 0.4.14 — prototype review
+
+The new activity director has syntax validation only. Browser, accessibility and visual acceptance checks must be repeated. The notes below describe inherited 0.4.13 behavior and tests, not tests of 0.4.14.
+
+## Historical 0.4.13 review
 
 Not deployed. Serve this directory over HTTP and open `market.html`.
 
