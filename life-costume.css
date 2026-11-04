@@ -1,0 +1,13 @@
+/* Vector costume prototype. No flashing, destructive effects or layout shifts. */
+.day-horn{opacity:0;transform:scaleY(.05);transform-box:fill-box;transform-origin:bottom;transition:opacity 1.2s,transform 1.6s}
+.purple-mischief .day-horn{opacity:1;transform:scaleY(1)}
+.home-stage{transition:box-shadow 1.6s}
+.purple-mischief .home-stage{box-shadow:inset 0 0 80px 25px #743a9855}
+.home-rig path{transition:stroke 1.4s}
+.purple-mischief .rig-legs,.purple-mischief .rig-feet,.purple-mischief .rig-upper>path:not(.day-horn),.purple-mischief .rig-face,.purple-mischief .rig-arm-back,.purple-mischief .rig-arm-front{stroke:#7735a4}
+.day-panel{flex-wrap:wrap;gap:8px}
+.day-panel button{min-height:44px}
+.day-panel button:focus-visible{outline:3px solid #7735a4;outline-offset:3px}
+.day-panel button[hidden]{display:none}
+.day-panel button:disabled{opacity:.7;cursor:wait}
+@media(prefers-reduced-motion:reduce){.day-horn,.home-stage,.home-rig path{transition:none}}

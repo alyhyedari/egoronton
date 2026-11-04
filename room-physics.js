@@ -12,20 +12,21 @@ let drag=null,last=0,raf=0,locked=0,offenses=0,visible=true,dirty=false,activeTi
 let carePending=false,quiet=0;
 const motion=root.roomLife.motion,originalPlace=motion.place;
 motion.place=(button,x,y,carried)=>{originalPlace(button,x,y,carried);const o=items.find(o=>o.el===button);if(o){o.x=x/100;o.y=y/100;o.angle=0;o.flight=false;o.vx=o.vy=0;paint(o);}};
-function stopCare(){carePending=false;quiet=0;motion.cancel();}
+function stopCare(){carePending=false;quiet=0;motion.cancel(true);}
 function armCare(){carePending=true;quiet=0;}
 function care(dt){if(!carePending||drag||locked>0||items.some(o=>o.flight)||motion.active){quiet=0;return;}quiet+=dt;if(quiet<1.4)return;quiet=0;
  const broken=targets.find(t=>t.classList.contains('physics-broken'));
  const displaced=items.filter(o=>Math.hypot(o.x-o.homeX,o.y-o.homeY)>.005);
  if(displaced.length){suspend();motion.start(displaced.map(o=>({button:o.el,label:o.el.dataset.object,x:o.x*100,y:o.y*100,homeX:o.homeX*100,homeY:o.homeY*100})));return;}
- const spill=stage.querySelector('.physics-spill');if(broken||spill){story.start(broken||spill,'repair');return;}carePending=false;
+ const spill=stage.querySelector('.physics-spill');if(spill||broken){story.start(spill||broken,'repair');return;}const personal=stage.querySelector('[data-personal-task]');if(personal){story.start(personal,personal.dataset.personalTask);return;}carePending=false;
 }
+root.addEventListener('room-personal-task',armCare);
 function say(text,mood='annoyed'){root.roomLife.react(text,mood);}
 function suspend(){root.roomLife.suspend();}
 function paint(o){o.el.style.left=o.x*100+'%';o.el.style.top=o.y*100+'%';o.el.style.rotate=o.angle+'deg';}
 function unlock(){locked=0;laptop.hidden=true;root.classList.remove('room-boundary');tools.querySelector('.physics-state').textContent='Room permissions: yours';}
-function release(){const held=drag;drag=null;if(held){if(held.el.hasPointerCapture?.(held.id))held.el.releasePointerCapture(held.id);held.el.classList.remove('physics-grabbed');}root.classList.remove('is-choreographing');actor.style.removeProperty('rotate');actor.style.removeProperty('translate');root.classList.remove('actor-grabbed');}
-function repair(){stopCare();story?.cancel();release();unlock();offenses=0;dirty=false;targets.forEach(t=>t.classList.remove('physics-broken'));stage.querySelectorAll('.physics-spill').forEach(n=>n.remove());items.forEach((o,i)=>{Object.assign(o,{x:o.homeX,y:o.homeY,vx:0,vy:0,angle:0,flight:false});paint(o);});say('A fresh start. Thank you for helping me put my home back together.','calm');}
+function release(){const held=drag;drag=null;if(held){if(held.el.hasPointerCapture?.(held.id))held.el.releasePointerCapture(held.id);held.el.classList.remove('physics-grabbed');}if(!held)return;actor.style.removeProperty('rotate');actor.style.removeProperty('translate');root.classList.remove('actor-grabbed');}
+function repair(){stopCare();story?.cancel();motion.cancel();release();unlock();offenses=0;dirty=false;targets.forEach(t=>t.classList.remove('physics-broken'));stage.querySelectorAll('.physics-spill').forEach(n=>n.remove());items.forEach((o,i)=>{Object.assign(o,{x:o.homeX,y:o.homeY,vx:0,vy:0,angle:0,flight:false});paint(o);});say('A fresh start. Thank you for helping me put my home back together.','calm');}
 function boundary(){locked=9;laptop.hidden=false;root.classList.add('room-boundary');tools.querySelector('.physics-state').textContent='EGOR requests nine seconds of space. Escape restores access.';say('You do not get to control me. My room, my boundaries. Nine seconds. You can always press Escape.','furious');}
 function damage(t,o,speed){if(!tools.querySelector('[data-damage]').checked||t.classList.contains('physics-broken')||speed<.65)return;t.classList.add('physics-broken');dirty=true;offenses++;if(t===shelf){items.forEach(p=>{if(p!==o){p.flight=true;p.vx=(Math.random()-.5)*.7;p.vy=-.5;}});}if(activeTime-lastImpact>1){lastImpact=activeTime;say(t===shelf?'The shelf! Now the other things are falling too.':t.matches('.home-window')?'My window! That was not a basketball hoop.':t.matches('.room-mirror')?'Seven years? No. You are helping me repair that.':'Please leave my television out of this.','furious');}if(offenses>=4)boundary();}
 function blocked(){return story.active||motion.active||root.roomLife.paused||locked>0;}
@@ -46,10 +47,10 @@ for(const {target,b} of boxes){if(target.classList.contains('physics-broken'))co
 for(const p of items){if(p===o||drag?.o===p)continue;const dx=(o.x-p.x)*r.width,dy=(o.y-p.y)*r.height,dist=Math.hypot(dx,dy),min=(o.el.offsetWidth+p.el.offsetWidth)*.35;if(dist>0&&dist<min&&Math.hypot(o.vx,o.vy)>.15){p.flight=true;p.vx=o.vx*.72;p.vy=o.vy*.65-.12;o.vx*=-.25;o.x+=dx/dist*(min-dist)/r.width;o.y+=dy/dist*(min-dist)/r.height;}}
 if(o.y>.92-ry){o.y=.92-ry;if(o.el.dataset.object==='cup'&&Math.abs(o.vy)>.5&&!stage.querySelector('.physics-spill')){const spill=document.createElement('div');spill.className='physics-spill';spill.style.left=o.x*100+'%';stage.append(spill);dirty=true;say('There goes my coffee. The floor did not need breakfast.');}o.vy*=-.3;o.vx*=.72;o.spin*=.65;if(Math.abs(o.vy)<.08&&Math.abs(o.vx)<.04){o.flight=false;o.angle=o.el.dataset.object==='cup'?65:0;}}paint(o);}}
 }
-const story=new EgorRestoration(root,target=>{target.classList.remove('physics-broken');if(target.matches('.physics-spill'))target.remove();stage.querySelectorAll('.physics-spill').forEach(n=>n.remove());dirty=targets.some(t=>t.classList.contains('physics-broken'));});
-tools.querySelector('[data-repair]').textContent='Repair one thing';
+const story=new EgorRestoration(root,target=>{if(target.dataset.personalTask){root.dispatchEvent(new CustomEvent('room-personal-finish',{detail:{target,kind:target.dataset.personalTask}}));delete target.dataset.personalTask;}target.classList.remove('physics-broken');if(target.matches('.physics-spill'))target.remove();dirty=targets.some(t=>t.classList.contains('physics-broken'))||!!stage.querySelector('.physics-spill');});
+tools.querySelector('[data-repair]').textContent='Restore the whole room';
 for(const [kind,label] of [['draw','Draw a replacement'],['delivery','Order a replacement']]){const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=()=>beginStory(kind);tools.append(b);}
-function beginStory(kind){if(story.active||motion.active||root.roomLife.paused)return;armCare();release();unlock();items.forEach(o=>{o.flight=false;o.vx=o.vy=0;});story.start(targets.find(t=>t.classList.contains('physics-broken'))||targets[0],kind);}
+function beginStory(kind){if(story.active||motion.active||root.roomLife.paused)return;armCare();release();unlock();items.forEach(o=>{o.flight=false;o.vx=o.vy=0;});if(kind==='repair'){suspend();return;}story.start(targets.find(t=>t.classList.contains('physics-broken'))||targets[0],kind);}
 tools.querySelector('[data-repair]').addEventListener('click',()=>beginStory('repair'));root.addEventListener('room-reset',repair);document.addEventListener('keydown',e=>{if(e.key==='Escape'){stopCare();story.cancel();release();items.forEach(o=>{o.flight=false;o.vx=o.vy=0;});unlock();}});root.querySelector('[data-home="pause"]').addEventListener('click',()=>{release();last=0;});document.addEventListener('visibilitychange',()=>{release();last=0;});new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible){stopCare();story.cancel();release();}last=0;}).observe(stage);reduce.addEventListener('change',()=>{release();items.forEach(o=>{o.flight=false;o.vx=o.vy=0;});});window.addEventListener('blur',()=>{release();items.forEach(o=>{o.flight=false;o.vx=o.vy=0;});last=0;});
 story.ui.querySelector('button').addEventListener('click',stopCare);
 window.addEventListener('blur',stopCare);document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCare();});reduce.addEventListener('change',stopCare);root.querySelector('[data-home="pause"]').addEventListener('click',stopCare);

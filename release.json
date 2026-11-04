@@ -1,12 +1,12 @@
 {
-  "version": "0.4.19",
+  "version": "0.4.25",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
-    "motion": "Staged approach, reach, lift, carry, lower, release and return; no travel animation with reduced motion",
-    "status": "Local automatic care prototype. Chromium pointer throw and retrieval, sequential repair of two injected damage fixtures, Escape, reduced-motion retrieval and overflow at 320/375/1440 verified. No physical phone, other browser or live-market verification; not deployed"
+    "motion": "Staged approach, reach, lift, carry, lower and release; daily scenes rest at their destination instead of returning to origin; reduced motion preserves position",
+    "status": "Local prototype. Chromium: independent spill cleanup, sequential repair, position continuity, Escape, reduced-motion repair, and overflow/TV separation at 320/375/1440 verified. See QA-0.4.20.md. No physical phone, other browser or live-market verification; not deployed"
   },
   "walletConnection": false,
   "evidence": {
@@ -36,5 +36,6 @@
     "distributionPercentages": "Withheld: snapshot balances exceed reported supply; cause unresolved"
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
-  "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment."
+  "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
+  "status": "Local WIP based on 0.4.23. Queued activity suggestions, phone and encouragement vignettes, vector purple costume prototype. See QA-0.4.25.md. Not deployed."
 }

@@ -12,14 +12,14 @@ window.EgorChoreography=class{
  }
  expression(mood){this.rig.querySelector('.face-mouth').setAttribute('d',mood==='furious'?'M175 80 Q185 68 195 79':mood==='annoyed'?'M175 77L195 74':'M175 73 Q185 84 195 72');if(!this.active){this.measure();this.pose(0,false,null);}}
  start(items){if(this.active||!items.length)return;if(this.reduced.matches){for(const item of items)this.place(item.button,item.homeX,item.homeY);this.finish();return;}this.queue=items;this.active=true;this.root.classList.add('is-choreographing');this.next();if(this.running)this.request();}
- next(){this.item=this.queue.shift();if(!this.item){this.phase='home';this.from=this.x;this.to=0;this.elapsed=0;this.duration=Math.max(650,Math.abs(this.x)*5);return;}
+ next(){this.item=this.queue.shift();if(!this.item){this.cancel(true);this.finish();return;}
   this.button=this.item.button;this.button.disabled=true;this.button.classList.add('is-selected');this.phase='notice';this.elapsed=0;this.duration=650;this.say(`Oh. My ${this.item.label.toLowerCase()}. Let me get that.`);this.measure();}
  measure(){const r=this.stage.getBoundingClientRect(),a=this.actor.getBoundingClientRect();this.w=r.width;this.h=r.height;this.scale=a.width/400;this.baseX=a.left-r.left-this.x;this.baseY=a.top-r.top;}
  targetX(x){return Math.max(-this.baseX+8,Math.min(this.w-this.baseX-400*this.scale-8,x*this.w/100-this.baseX-260*this.scale));}
  phaseTo(name,duration,to=this.x){this.phase=name;this.elapsed=0;this.duration=duration;this.from=this.x;this.to=to;}
  request(){if(!this.raf)this.raf=requestAnimationFrame(this.frame);}
  setRunning(value){this.running=value;this.last=0;if(value&&this.active)this.request();else if(this.raf){cancelAnimationFrame(this.raf);this.raf=0;}}
- cancel(){if(this.raf)cancelAnimationFrame(this.raf);this.raf=0;for(const b of this.root.querySelectorAll('.home-object')){b.disabled=false;b.classList.remove('is-selected','is-carried');}this.active=false;this.queue=[];this.x=0;this.actor.style.removeProperty('translate');this.shadow.style.removeProperty('translate');this.root.classList.remove('is-choreographing');}
+ cancel(preserve=false){if(this.raf)cancelAnimationFrame(this.raf);this.raf=0;for(const b of this.root.querySelectorAll('.home-object')){b.disabled=false;b.classList.remove('is-selected','is-carried');}this.active=false;this.queue=[];if(preserve){this.pose(0,false,null);return;}this.x=0;this.actor.style.removeProperty('translate');this.shadow.style.removeProperty('translate');this.root.classList.remove('is-choreographing');}
  pose(crouch,walk,hand){const delta=this.x-(this.previousPoseX??this.x);if(walk&&Math.abs(delta)>.03){this.facing=delta>0?1:-1;}this.previousPoseX=this.x;const face=this.rig.querySelector('.rig-face');face.setAttribute('transform',`translate(${(this.facing||1)*6} 0)`);this.actor.dataset.facing=this.facing===-1?'left':'right';const s=this.scale,phase=this.elapsed/160,stride=walk?Math.sin(phase)*22:0,bob=walk?Math.abs(Math.sin(phase))*5:0,cy=crouch-bob;
   this.upper.setAttribute('transform',`translate(0 ${cy})`);
   const liftL=walk?Math.max(0,Math.cos(phase))*13:0,liftR=walk?Math.max(0,-Math.cos(phase))*13:0;
