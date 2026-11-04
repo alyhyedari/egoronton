@@ -33,7 +33,7 @@ window.EgorDay=class {
  stop(){this.active=false;this.root.classList.remove('has-story','story-away');delete this.root.dataset.story;delete this.root.dataset.storyPhase;this.prop.textContent='';this.fill.style.width='0%';this.caption.textContent='A little life, unfolding';this.artwork.style.removeProperty('--ink');if(!this.motion.active){this.root.classList.remove('is-choreographing');this.motion.x=0;this.motion.actor.style.removeProperty('translate');this.motion.shadow.style.removeProperty('translate');}}
  reactionContext(){const id=this.active?this.scene[0]:this.interrupted;this.interrupted=null;return {movie:'I was just getting to the good part. ',draw:'There goes my train of thought. ',exercise:'Let me catch my breath. ',work:'I leave for one minute… ',read:'Let me save my page. ',coffee:'Careful. That is hot. ',game:'I had one life left. ',sleep:'I was almost onto something. '}[id]||'';}
  interrupt(){if(!this.active)return;this.interrupted=this.scene[0];this.stop();this.cooldown=14;this.reactions++;}
- update(dt){if(this.motion.active)return;if(!this.active){this.cooldown-=dt;if(this.cooldown<=0)this.start();else return;}
+ update(dt){if(this.root.dataset.restoring==='true'||this.motion.active)return;if(!this.active){this.cooldown-=dt;if(this.cooldown<=0)this.start();else return;}
  const [id,label,target,hold,intro,during,end]=this.scene;this.clock+=dt;const t=this.clock,a=this.arrival,total=hold+a+6;
  const p=t<a?0:t<a+2?1:t<a+hold-2?2:t<a+hold?3:4;
  if(p!==this.phase){this.phase=p;this.root.dataset.storyPhase=['approach','settle','doing','finish','return'][p];if(p===0)this.say(intro);if(p===2)this.say(during);if(p===3)this.say(end);}

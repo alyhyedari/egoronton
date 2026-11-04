@@ -1,12 +1,12 @@
 {
-  "version": "0.4.17",
+  "version": "0.4.18",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
     "motion": "Staged approach, reach, lift, carry, lower, release and return; no travel animation with reduced motion",
-    "status": "Local room-physics prototype; headless Chromium 21 checks passed at 320, 375 and 1440px: throws, damage, repair, pointer capture, actor boundaries, Escape and reduced motion. External HTTPS blocked. Physical phone and live market not tested; not deployed"
+    "status": "Local restoration prototype; 33 headless Chromium checks passed at 320, 375 and 1440px, plus real-time completion of repair, drawing and fictional delivery scenes. Escape and reduced motion checked. External HTTPS blocked during tests. Physical phone and live market not tested; not deployed"
   },
   "walletConnection": false,
   "evidence": {

@@ -1,0 +1,28 @@
+/* Visible-time restoration stories. All deliveries are fictional and offline. */
+(()=>{'use strict';
+const clamp=n=>Math.max(0,Math.min(1,n)),ease=n=>{n=clamp(n);return n*n*(3-2*n);},mix=(a,b,t)=>a+(b-a)*t;
+window.EgorRestoration=class{
+ constructor(root,finish){this.root=root;this.stage=root.querySelector('.home-stage');this.m=root.roomLife.motion;this.finish=finish;this.t=0;this.active=false;
+ this.layer=document.createElement('div');this.layer.className='restore-layer';this.layer.setAttribute('aria-hidden','true');this.layer.innerHTML=`<div class="restore-paper"><svg viewBox="0 0 120 100" fill="none" stroke="currentColor" stroke-width="3"><path pathLength="1" d="M18 78V20h84v58H18m7-6 22-30 22 21 16-12 13 21M35 30a7 7 0 1 0 1 0"/></svg></div><div class="restore-tool">✎</div><div class="restore-parcel"><span>EGOR<br>HANDLE WITH CARE</span></div><div class="restore-courier"><svg viewBox="0 0 100 180" fill="none" stroke="#183044" stroke-width="4" stroke-linecap="round"><circle cx="50" cy="28" r="18" fill="#e7bc82"/><path d="M30 22q20-30 42 0Z" fill="#809fa8"/><path d="M34 49h32l8 67H27Z" fill="#809fa8"/><path d="M35 115l-7 57m32-57 15 57M33 55 15 90 40 95m25-40 20 32-29 8"/><path d="M43 27v2m14-2v2m-12 9q6 5 11-1"/></svg></div>`;this.stage.append(this.layer);this.layer.hidden=true;
+ this.ui=document.createElement('div');this.ui.className='restore-controls';this.ui.innerHTML='<span role="status">Little repairs. New possibilities.</span><button type="button">Stop scene</button>';root.querySelector('.physics-tools').after(this.ui);this.ui.querySelector('button').onclick=()=>this.cancel();this.ui.querySelector('button').hidden=true;
+ this.paper=this.layer.querySelector('.restore-paper');this.tool=this.layer.querySelector('.restore-tool');this.parcel=this.layer.querySelector('.restore-parcel');this.courier=this.layer.querySelector('.restore-courier');
+ }
+ start(target,kind){this.root.roomLife.suspend();this.target=target;this.kind=kind;this.t=0;this.done=false;this.phase=-1;this.active=true;this.root.dataset.restoring='true';this.root.classList.add('is-choreographing');this.m.measure();this.from=this.m.x;this.layer.hidden=false;this.ui.querySelector('button').hidden=false;this.layer.dataset.kind=kind;}
+ cancel(){if(!this.active)return;this.active=false;delete this.root.dataset.restoring;this.layer.hidden=true;this.ui.querySelector('button').hidden=true;this.target?.classList.remove('restore-reveal');this.m.cancel();this.ui.querySelector('span').textContent='Scene stopped. You can continue whenever you like.';}
+ update(dt){if(!this.active)return;this.t+=dt;const t=this.t,reduced=this.m.reduced.matches,total=reduced?5:18;
+ const p=reduced?Math.min(5,Math.floor(t)):t<2?0:t<5?1:t<10?2:t<13?3:t<16?4:5;
+ const texts={repair:['Let me see what happened.','A little patience. The right tool.','Tighten. Align. Check once more.','That should hold. Let me test it.','Good as new. Better, perhaps.','Everything deserves a second chance.'],draw:['I have an idea for this one.','First, a little drawing.','One line at a time. Make it mine.','What if this drawing could become real?','From paper to my little world.','An original. Made right here.'],delivery:['This needs a replacement.','One imaginary order. No real shopping.','A neighbour is bringing the parcel.','Thank you! I will take it from here.','Unpack. Fit. A little adjustment.','Perfect. And I am keeping the box.']};
+ if(p!==this.phase){this.phase=p;this.root.roomLife.react(texts[this.kind][p],'calm');this.root.classList.add('is-choreographing');this.ui.querySelector('span').textContent=texts[this.kind][p];}
+ this.m.measure();const r=this.stage.getBoundingClientRect(),b=this.target.getBoundingClientRect(),x=b.left-r.left+b.width/2,y=b.top-r.top+b.height/2,dest=this.m.targetX(x/r.width*100);
+ this.m.x=reduced?0:t<5?mix(this.from,dest,ease((t-2)/3)):t>16?mix(dest,0,ease((t-16)/2)):dest;this.m.elapsed=t*1000;
+ const reach=ease((t-4)/1),work=clamp((t-5)/5),contact=t>=5&&t<13,hand={x:mix(this.m.baseX+this.m.x+253*this.m.scale,x,reach),y:mix(this.m.baseY+390*this.m.scale,y,reach)};
+ if(contact&&!reduced){hand.x+=Math.sin(t*5)*Math.sin(Math.PI*work)*5;hand.y+=Math.cos(t*4)*Math.sin(Math.PI*work)*3;}
+ this.m.pose(reduced?0:contact?Math.min(65,Math.max(0,(y-this.m.baseY)/this.m.scale-470)):0,!reduced&&((t>2&&t<5)||t>16),!reduced&&t>4&&t<16?hand:null);
+ this.tool.textContent=this.kind==='repair'?'⚒':'✎';this.tool.hidden=reduced||this.kind==='delivery'||!contact;this.tool.style.left=hand.x/r.width*100+'%';this.tool.style.top=hand.y/r.height*100+'%';
+ this.paper.hidden=this.kind!=='draw'||p<1||p>4;this.paper.style.left=x/r.width*100+'%';this.paper.style.top=y/r.height*100+'%';this.paper.style.setProperty('--ink',String(1-(reduced?1:work)));this.paper.style.opacity=p===4?String(1-ease((t-13)/3)):'1';this.paper.style.transform=`translate(-50%,-50%) scale(${reduced?1:mix(.7,1.12,ease((t-10)/3))})`;
+ this.courier.hidden=this.kind!=='delivery'||p<2||p>4;this.courier.style.left=(reduced?12:mix(-18,Math.max(10,x/r.width*100-22),t<10?ease((t-5)/5):1-ease((t-13)/3)))+'%';
+ this.parcel.hidden=this.kind!=='delivery'||p<2||p>4;this.parcel.style.left=(p===2?parseFloat(this.courier.style.left)+8:mix(Math.max(10,x/r.width*100-22)+8,x/r.width*100,reduced?1:ease((t-10)/3)))+'%';this.parcel.style.top=(p===2?65:mix(65,y/r.height*100,reduced?1:ease((t-10)/3)))+'%';this.parcel.style.opacity=p===4?String(reduced?1:1-ease((t-13)/3)):'1';
+ if(p>=4&&!this.done){this.done=true;this.finish(this.target);this.target.classList.add('restore-reveal');}
+ if(t>=total){this.cancel();this.done=false;this.ui.querySelector('span').textContent='One little thing made right.';}
+ }
+};})();

@@ -1,0 +1,17 @@
+[
+  {
+    "scene": "repair",
+    "realTimeCompletion": true
+  },
+  {
+    "scene": "draw",
+    "realTimeCompletion": true
+  },
+  {
+    "scene": "delivery",
+    "realTimeCompletion": true
+  },
+  {
+    "noJSErrors": true
+  }
+]
