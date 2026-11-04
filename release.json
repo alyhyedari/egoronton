@@ -1,5 +1,5 @@
 {
-  "version": "0.4.7",
+  "version": "0.4.9",
   "name": "EGOR World",
   "deployment": "static",
   "walletConnection": false,
@@ -17,6 +17,19 @@
     "notes": "roadmap-notes.html",
     "timing": "Proposed sequence from team approval, not dated commitments",
     "topblast": "Current terms and EGOR eligibility not independently verified"
+  },
+  "market": {
+    "page": "market.html",
+    "figuresProvider": "TonAPI only; opt-in per page session; no provider fallback",
+    "contractInspection": "Tonviewer link only; not a figures provider",
+    "chart": "Not provided",
+    "freshness": "Browser receipt time shown; provider observation time unknown",
+    "quoteStorage": "No persistent quote cache; requests use no-store",
+    "holderSnapshot": "data/holder-snapshot.json",
+    "sourceResponseTimeUTC": "2026-11-04T08:24:33Z",
+    "holderAddresses": 297,
+    "liveCounter": false,
+    "distributionPercentages": "Withheld: snapshot balances exceed reported supply; cause unresolved"
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment."

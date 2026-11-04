@@ -1,225 +1,33 @@
-# $EGOR — A little blue. A lot of character.
+# EGOR World 0.4.9 — local review build
 
-## Google Search Console verification package
+Static, wallet-free site with a standalone market report at `market.html`. Not deployed.
 
-- Includes the owner-supplied `googlef36cd2f256655d72.html` at the deployment root, byte-for-byte unchanged.
-- After deploying, open `https://www.egorverse.xyz/googlef36cd2f256655d72.html` and confirm it publicly returns HTTP 200 with `google-site-verification: googlef36cd2f256655d72.html`, without login or a redirect to the homepage. Then click VERIFY in the Search Console property that issued this file.
-- Keep this file in every future deployment, including after verification succeeds. Do not rename it, wrap it in a page template, or add it to the sitemap/navigation.
-- This prepares HTML-file verification for the requested URL-prefix property; it does not complete verification, deploy the site, or verify a Domain property. Domain verification needs the separate account-issued DNS TXT value. Other verification methods are alternatives, not all required.
-- Once verified, submit `https://www.egorverse.xyz/sitemap.xml` and inspect the homepage and portrait editor URLs in Search Console.
+## Market report
+- TonAPI is the only source of displayed figures. No automatic provider fallback, external chart, wallet connection or trading interface.
+- The homepage links to the report; it does not load the market API module.
+- Current-session opt-in is required before requests to TonAPI. Requests share connection information (including IP address) with TonAPI. No API keys are bundled.
+- Optional 60-second refresh runs only while the reports section and browser tab are visible. Refreshes have a cooldown, time out, and stop after errors; retry is manual. Stop cancels pending requests.
+- API responses use `cache: 'no-store'` and are not written to browser storage. The service worker handles same-origin static assets only.
+- Metadata must match the configured raw token address and 9 decimals. Rates must match the same address; malformed fields become unavailable, and wholly invalid reports are rejected. Unicode minus is supported for percentage changes.
+- Browser receipt time is not provider observation time or a blockchain timestamp. TonAPI freshness is unverified; these are on-demand reports, not a live feed.
+- Tonviewer is an inspection link only, never a numeric data provider.
 
-## Version 0.3.7 — Canonical URLs and search metadata
+## Saved snapshot and limitations
+The static holder report remains readable without JavaScript. It records 297 holder addresses, not 297 people. The saved HTTP Date header is 4 November 2026, 08:24:33 UTC; it does not establish a synchronized blockchain block.
 
-- Both pages have distinct English titles/descriptions, canonical URLs on `https://www.egorverse.xyz/`, Open Graph / X cards, and WebSite / WebPage structured data without endorsement or ranking claims.
-- `sitemap.xml` lists the homepage and portrait editor; `robots.txt` advertises it. Section fragments and redirected URLs are not listed. No invented modification dates are supplied.
-- The bundled social image is `assets/og/egor-world-v1.jpg` (1200 × 630). The asset manifest includes its SHA-256 hash.
-- Vercel permanently redirects `/index.html` to `/`. Keep the existing apex-to-www redirect in the domain dashboard. Portrait editor navigation uses the canonical homepage path.
-- The homepage introduction identifies EGOR, the artwork, stickers and local portrait maker. Existing application JS/CSS and previous artwork are unchanged from 0.3.6.
-- This is a static release, not a deployment or proof of Google indexing. See **Search visibility** below for account-dependent steps. Check production responses, DNS and indexing after deploying.
+Distribution percentages are withheld: saved balances total `1001608826275396994` base units, versus reported supply `1000000000000000000` (9 decimals). The cause is unresolved; this is not evidence of minting or fraud. Pool balances are included and other contracts are not exhaustively classified. Fresh metadata does not update the saved holder rows or resolve their discrepancy.
 
-## Version 0.3.6 — A window into EGOR's world
+Historical source captures under `data/` include a DexScreener response retained as audit material; it is not used for displayed quotes or fallback. The report does not calculate liquidity, volume, circulating market capitalization, FDV, holder concentration, or a price chart.
 
-- The homepage welcomes visitors with EGOR beside a hand-drawn window, with clear paths to explore the artwork, browse stickers, or create a portrait.
-- `welcome.css` and `welcome.js` add a visitor-operated sky-brightness toggle. Its accessible name stays stable, while pressed state, status text, and the illustration description reflect the setting. The scene remains visible without JavaScript and the unavailable toggle stays hidden.
-- The sky interaction adds no timers, animation loops, storage, network requests, or sound. Existing site motion controls and reduced-motion support remain available.
-- Homepage copy uses simple English. Sticker originals, REDO content, and the browser-local portrait editor are preserved from version 0.3.5. Native Telegram and X links remain available without embeds.
-- Deploy as a static site: no dependency installation, build step, or wallet connection. Include both `welcome.css` and `welcome.js` with the other runtime files.
+## Preview and asset integrity
+Run `python -m http.server 8000` in this directory and open http://localhost:8000/market.html.
+No build tools, secrets or wallet connection are needed.
 
-### Validation for version 0.3.6
+After editing files under `assets/`, run `python update_asset_manifest.py` to regenerate their SHA-256 hashes and the content-derived manifest version. Use `python update_asset_manifest.py --check` to verify it without writing. The service worker keeps its stable cache namespace and uses per-asset hashes as cache keys. HTML, CSS, application scripts and API responses are not stored by that asset cache; the manifest is not a full release-integrity inventory.
 
-Headless Chromium checks passed for homepage layout, control bounds, and touch-target sizes at 11 widths from 320 to 1920px; sky control activation by Enter and Space; accessible state updates; reduced motion; and no-JavaScript presentation. The community/portrait-entry suite passed, including editor layout at eight widths, text layers, undo/redo, and PNG preview. The 18-animation sticker suite, ten-animation REDO suite, and local doodle studio suite also passed. REDO initially failed its reduced-motion assertion and the doodle studio initially failed its readiness assertion; each complete suite passed on rerun. These initial failures are not presented as clean first-pass results. Successful runs reported no runtime exceptions. Desktop/mobile homepage screenshots were reviewed.
+## Verification scope
+Parser and browser checks must use TonAPI fixtures, not the historical multi-provider test. Mock responses can verify rendering, privacy controls and failure handling; they cannot certify real TonAPI availability, CORS behavior, data correctness or freshness. A full independent accessibility audit, all-browser regression and SEO ranking are not guaranteed.
 
-These are local emulated Chromium checks, not physical-device, Safari, live Vercel, or production certification. Deployment, domain verification, live analytics ingestion, and domain-dependent SEO remain outstanding. See the accompanying release QA report for archive integrity checks and test-log details.
+The upstream deployment configuration and original build scripts were not recovered. Do not assume original hosting headers/settings are reproduced. Vercel's generated `_vercel` runtime scripts are excluded; existing homepage monitoring code may request those platform endpoints on non-local HTTPS hosts unless privacy settings disable it. The standalone market page does not include monitoring scripts.
 
-## Version 0.3.5 — Community links and portrait invitation
-
-- Native Telegram (`https://t.me/egorverseportal`) and X (`https://x.com/egorverse`) links appear in the hero, community section, and footer. They open in new tabs with `noopener noreferrer`; these links add no embeds or tracking scripts. Existing optional Vercel monitoring is described below.
-- The homepage invites visitors to make a Telegram profile picture in `portrait-studio.html`, without rewards, pressure, or implied endorsement. Using or sharing a portrait is optional; artwork permissions still apply.
-- The portrait studio is a browser-local **2D compositor**, not a 3D editor. It supports a poseable character, photo/text/sticker layers, layer ordering, erase/restore, undo/redo, project save/open, and PNG export. Photos and edits are not uploaded. Work stays in memory: explicitly save a project or export before leaving; there is no autosave. Optional music never autoplays.
-
-### Validation for version 0.3.5
-
-Headless Chromium checks passed for homepage layout and community-link bounds at 11 widths from 320 to 1920px, and editor overflow at eight widths. Checks covered native community-link destinations and new-tab attributes, homepage fragment targets, mobile navigation into the editor, adding text, undo/redo, PNG preview, reduced-motion community styling, and no-JavaScript homepage entry/link visibility. No runtime exceptions were reported. These are emulated Chromium checks, not physical-device, Safari, or production certification.
-
-## Version 0.3.4 — Light room and verified asset caching
-
-- A responsive, isolated lamp scene with draggable light and doodles, cord adjustment, keyboard controls, pause, and optional sound (off by default). Reduced motion disables the pendulum; the light remains switchable. Resizing safely cancels a drag.
-- The intro reports completion of five real checks: four essential images and font readiness. This is not a download-byte percentage. Failed checks are disclosed; slow resources do not hold the page indefinitely.
-- `asset-cache.js` registers `sw.js` on HTTPS or localhost. Only assets listed in `asset-manifest.json` and verified against their SHA-256 hashes enter the persistent asset cache. Changed hashes get new cache keys; unchanged cached assets need no repeat download. Documents and application code use ordinary network/HTTP caching.
-- Caching is best-effort: storage can be denied or evicted. Previously cached assets work offline, but this is **not an offline website**; HTML and application code are not precached. Editor inputs and user images are never included.
-- After editing anything under `assets/`, run `python3 update_asset_manifest.py`, then deploy assets and manifest together. This maintainer utility is not a deployment build step. No manifest change is needed for CSS/JS outside `assets/`. Deploy `sw.js`, `asset-cache.js`, and `asset-manifest.json` alongside both HTML pages.
-- The standalone local-only 2D portrait editor is available at `portrait-studio.html`; it is not a 3D model or a rights-management system.
-
-### Validation for version 0.3.4
-
-Headless Chromium checks passed at 13 widths from 320 to 1920px, including repeated resizing across 760/761px: no horizontal overflow or lamp/title overlap, bounded lamp position, drag cancellation, pause, light toggle, sound initially off, and reduced motion. Cache tests passed for reuse without a network request, cached-asset offline access, changed manifests, rejection of corrupt content from persistent caching, and isolated root/nested-path scopes. A stalled loader exited without a false 100%; a failed image produced an explicit warning. The 18-animation sticker and ten-animation REDO regression suites also passed, including failure/retry and no-JavaScript fallbacks. Desktop/mobile screenshots were reviewed. These are emulated Chromium checks, not physical-device or production certification.
-
-## Version 0.3.1 — English editorial edition
-
-This update standardizes the interface in US English, refines navigation and playback messages, and clarifies download labels and card-preview instructions. Page language metadata is set to `en-US`. Site copy, accessibility descriptions, default card text and this deployment guide are in English. Supplied artwork and original downloads remain unchanged, including embedded lettering in other languages; English descriptions provide context. Visitors may still enter their own messages in any supported language.
-
-### Validation for version 0.3.1
-
-The 18-animation and 10-animation REDO regression suites passed, including six viewport widths, playback controls, reduced motion, error recovery and no-JavaScript fallbacks. An initial reduced-motion assertion in the sticker suite failed; the complete suite passed on rerun. English language metadata and interface text were checked. Original assets are byte-for-byte unchanged from version 0.3.0.
-
-### Included in version 0.3.0
-
-This release adds the REDO signal room to version 0.2.0: ten curated animations, manual frame inspection and local PNG card composition. The older separate Utya/Resistance rooms remain unrecovered; REDO is a new section, not a recovery of those archives.
-
-The preceding release added an on-demand sticker desk with 18 unique supplied animations. It is based on the recoverable deploy-ready website. **The separate Utya and Resistance interactive rooms from later work are not included:** their archives were corrupt/unreadable. The sticker stories, local doodle studio and new animation desk are included; this is not a complete recovery of those later rooms.
-
-A static, English-language website. No build tools, package installation, or wallet connection. The runtime player and fonts are bundled locally. Optional Vercel monitoring is included.
-
-## Preview
-
-From this directory:
-
-```sh
-python3 -m http.server 8080
-```
-
-Open http://localhost:8080. Deploy the contents of this directory to any static host with HTTPS. Keep the complete `assets/` directory and all runtime `.css` and `.js` files alongside `index.html`, including `experience.css` and `studio.js`. All runtime files and fonts are included; no npm install is required.
-
-## Deploy to Vercel
-
-Extract the ZIP and upload this folder to a Git repository, including `vercel.json` and all assets. Import the repository in Vercel; choose **Other** as the framework, leave the build command unset, and use this directory as the project root/output. No Node dependencies or build step are needed. The included `vercel.json` supplies static headers and caching rules. If this folder is nested in your repository, select it as the Root Directory.
-
-Optional Analytics and Speed Insights require activation in your Vercel dashboard and may depend on your plan. Deployment and domain connection require your account; they are not performed by this ZIP. After attaching the final domain, complete the domain-dependent SEO steps below.
-
-## Analytics setup and verification
-
-This is a plain HTML/CSS/JavaScript site, **not Next.js**. Do not install React or add the Next.js `<Analytics />` component. `index.html` already loads `vercel-monitoring.js`, which loads the Vercel Web Analytics and Speed Insights endpoints asynchronously, once per page. No npm package or build step is needed.
-
-1. In the Vercel project, enable **Web Analytics**. Enable **Speed Insights** separately if you want performance metrics; check your plan before enabling paid features.
-2. Deploy this updated directory with framework preset **Other**. Ensure `index.html` and `vercel-monitoring.js` are in the deployed output.
-3. Visit the deployed HTTPS site, then check the Analytics dashboard after about 30 seconds; reporting can take longer.
-4. In browser DevTools → Network, check that `/_vercel/insights/script.js` loads successfully and that page-view requests to `/_vercel/insights/` succeed. The separate Speed Insights script is `/_vercel/speed-insights/script.js`.
-5. If there is no data, check the correct project, domain, dashboard date filters, feature activation, and redeployment. A 404 on the script endpoint usually calls for checking Vercel feature activation and hosting configuration. Ad/content blockers can prevent collection.
-
-Privacy and expected behavior:
-- HTTPS only; localhost, Do Not Track (`1`), and Global Privacy Control are intentionally excluded. Use a separate testing profile without these settings to verify collection; do not override visitors' choices.
-- Page URLs are stripped of query strings and fragments before sending. Monitoring script requests use an origin-only referrer policy.
-- This is one HTML page: scrolling and `#section` navigation are not separate page views. No fake section views, click events, wallet identifiers, or trading events are added.
-- Blocked or unavailable monitoring must not prevent site rendering or interactions. Other static hosts do not automatically serve Vercel's monitoring endpoints.
-- Local tests verify integration logic, not live ingestion. Dashboard activation, billing, deployment, and production collection still require your Vercel account.
-
-## Design and motion
-
-- Cyan paper, self-hosted type, original supplied character layers.
-- Four custom character poses, an interactive mood board, a seated farewell, and a character-led purchase guide.
-- Editorial headings without decorative terminal periods or long dashes; normal punctuation remains in explanatory prose.
-- First-visit intro tracks four essential images and font readiness (not simulated percentages). Skip button, Escape, keyboard navigation, a 2.2-second check deadline, and a 3.5-second fail-open safeguard. Repeat visits in the same tab skip it.
-- At the hero, only the raised arm waves; the original face and hair remain unchanged. Every character stays in its own section: no travel between sections, climbing, or jumping.
-- `idle.js` layers the supplied artwork for subtle head tilts, nods, and guide-arm gestures with varied timing. Standing and seated characters wave continuously and gently while visible. The mood selector rebuilds the local layers without moving the illustration.
-- Failed pose loading, disabled JavaScript, and reduced motion preserve static illustrations. Decorative layers are hidden from assistive technology and cannot intercept clicks.
-- Reveal-on-scroll, staggered steps, a seamless ticker, section navigation indicators, and scroll progress.
-- No pointer-driven art-card tilt.
-- `water.js` / `water.css` add a mouse-only fluid-ink interaction: nearby text and independent decorations yield to pointer passes, exchange local collision impulses, and spring back. Buttons, links, character artwork, EGOR names, and contract surfaces stay fixed. The simulation sleeps after settling; touch/coarse pointers and reduced-motion settings use static content. Text selection and printing reveal the original text.
-- `wake.js` / `wake.css` add soft, rounded, fading ripples only when a fine mouse pointer crosses empty space. Scroll-generated margin trails and touch trails are removed. Wheel input and scrolling immediately clear the effect; the outer 40px edges stay clear. Text, artwork and controls are masked out. No touch handlers, scroll interception, blur or WebGL. At most eight ripples, a 30fps drawing cap, a 1.2-million-pixel bitmap budget and cached geometry bound the work; rendering sleeps after 900ms without new ripples. Touch devices and reduced-motion users get a hidden 1px bitmap. Selection, dialogs, printing, hidden tabs and Pause motion suppress the effect.
-- Offscreen loops pause. Animations pause when the tab is hidden. No perpetual JavaScript animation loop.
-- Device reduced-motion preferences respected; the manual motion setting persists locally.
-- Native purchase-information dialog and FAQ, keyboard focus styles, skip navigation, no-JavaScript fallback.
-
-To see the intro again, clear the `egor-visited` sessionStorage key or open a fresh tab/session. It intentionally does not appear with reduced motion enabled.
-
-## Sticker stories and attribution
-
-The “Small stickers, big feelings” section links to the exact TLGRM pack listings:
-- Utya: https://tlgrm.eu/stickers/UtyaDuck
-- Resistance Dog: https://tlgrm.eu/stickers/ResistanceDog
-- Baby Yoda: https://tlgrm.eu/stickers/BabyYoda
-
-Indexed search listings credit “Yegor Zhgun” for these specific packs. This is secondary directory evidence; the retrieved Resistance Dog page did not expose an artist credit. Do not broaden these credits to original character creation, other pack versions, token authorship, or endorsement. A different Resistance Dog project on Behance credits Toha Andreev, making version specificity important.
-
-`assets/line-memory-tribute.webp` is an optimized independent community illustration, not artwork by Zhgun. Its visible caption states this distinction. The section uses `sticker-stories.css`, static semantic HTML, local imagery, and external source links without third-party embeds or new JavaScript.
-
-## Animated sticker desk
-
-`sticker-desk.css` and `sticker-desk.js` provide 18 choices, static WebP previews, Play once / Pause / Resume / Replay, Show still, accessible status feedback and original `.tgs` downloads. Nothing in this desk autoplays. Selection restores the still preview; Escape, scrolling away, printing and a hidden tab pause playback without automatic resumption. Reduced Motion and the page motion toggle disable playback.
-
-All originals, including two duplicate aliases, are preserved in `assets/stickers/originals/`. `assets/stickers/manifest.json` records SHA-256 hashes, technical metadata and inferred visual groups; grouping is not proof of authorship or permission. Confirm publication rights before deployment. No affiliation or endorsement is implied.
-
-The local Lottie canvas player (5.13.0) and selected animation JSON are fetched only after Play. No CDN or third-party animation service is required. Keep `assets/vendor/lottie-web-LICENSE.md` with the player. Without JavaScript, previews and original-file links remain available. Preview through HTTP, not `file://`, so animation fetches work.
-
-Version 0.2.0 animation QA passed in headless Chromium at 320, 375, 390, 768, 1024 and 1440px: all 18 animations, single-run playback, pause/resume/replay/reset, keyboard activation, Escape, offscreen pause, print, motion preferences, failed data/player retry, cancelled loading and no-JavaScript fallback. Thumbnail proportions and touch-target sizes were checked. No runtime exceptions were reported. The local studio regression suite also passed. Earlier QA notes below describe the recovered baseline, not new physical-device or production testing.
-
-## REDO signal room
-
-`redo-room.css`, `redo-room.js` and the shared `lottie-loader.js` provide ten curated signals, previous/next selection, on-demand playback, manual frame inspection, still previews and original downloads. No REDO animation autoplays. Both sticker players coordinate to avoid simultaneous playback. Offscreen, print and motion-preference controls pause playback; manual inspection remains available under reduced motion.
-
-All 28 supplied REDO-labelled TGS files (27 unique hashes) are preserved in `assets/redo/originals/`; the manifest records the originals and technical metadata. Ten visually distinct non-duck selections are featured; duplicates remain archived. Receipt and directory references do not establish authorship, completeness or sharing rights. The freedom theme and signal names are editorial interpretations, not artist intent or Pavel Durov endorsement. Obtain artwork permissions before publishing or sharing cards.
-
-The local card maker includes a live preview, a short message, night/paper palettes and a 1600 × 1000 PNG export. Message text is composed in browser memory, not uploaded or retained after reload. The export includes an attribution/rights caveat.
-
-Version 0.3.0 REDO QA passed in headless Chromium: all ten animations, pause, frame inspection, print, cross-player pause event, offscreen pause, reduced motion/manual inspection, failed-data recovery, Persian-message PNG export with verified dimensions, no-JavaScript fallback and horizontal-overflow checks at 320, 375, 390, 768, 1024 and 1440px. No runtime exceptions were recorded. This is automated browser QA, not physical-device or production verification.
-
-## Local doodle studio
-
-`#play` is a small local-only canvas desk: four character stamps, a spark stamp, freehand drawing, three paper colors, prompts, surprise guests, undo/redo, confirmed clearing, and a 1600 × 1200 PNG download.
-
-- Drawings stay in browser memory. They are not uploaded, included in analytics, or saved between reloads. Download before leaving to keep your work. No wallet connection.
-- In stamp mode, touch scrolling and pinch zoom remain native. In Draw mode, draw inside the canvas and scroll outside it.
-- With the canvas focused, arrow keys move the stamp cursor; Shift moves farther; Enter or Space places a stamp. Ctrl/Cmd+Z undoes and Ctrl/Cmd+Shift+Z or Ctrl/Cmd+Y redoes. The Place stamp button is another keyboard-accessible option.
-- Pose images load near the section with an eight-second timeout. Failed stamps are disabled; drawing and sparks remain available. Without JavaScript, a static illustration replaces the controls.
-- Rendering happens only when needed, with a capped canvas resolution and bounded drawing history. The page motion control and reduced-motion preferences also apply here.
-
-## Trading details
-
-The project-supplied contract is displayed with a Copy CA button:
-
-`EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA`
-
-Direct Swap on DeDust links open this Gram → EGOR pair in a new tab. TON is the network; Gram (GRAM) is its native currency according to https://ton.org. The supplied URL keeps the technical `TON` asset identifier unchanged:
-
-https://dedust.io/swap/TON/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA
-
-Get EGOR buttons open an information dialog containing the same link. Transactions are reviewed and signed on DeDust and in the user's wallet, never on this site. Clipboard access requires browser permission; if unavailable, the address is selected for manual copying.
-
-Contract authenticity, liquidity, supply, and fee routing have not been independently verified. Before promoting trading:
-
-1. Independently verify the TON contract, metadata, and supply.
-2. Verify the claimed 3% fee, applicable transactions, and recipient. Fee routing does not establish artist endorsement.
-3. Verify available liquidity, minimum received, price impact, and network fees on DeDust.
-4. Confirm artwork rights and project claims.
-
-The public `window.EGOR_CONFIG` in `index.html` contains the supplied values. When changing them, also update the static address and both direct swap links. The code checks address format and exact DeDust URL matching, not contract authenticity. Never include private keys, credentials, or recovery phrases.
-
-The page presents the supplied 1 billion supply and project-stated 3% creator fee with verification caveats and risk disclosures. It does not claim an official artist partnership or guaranteed returns.
-
-## Floating contract dock
-
-The full address stays visible in a fixed bottom dock with exactly two actions: Copy and Swap. After scrolling past the hero, the same dock moves to the top; scrolling back restores its bottom position. A subtle periodic nudge draws attention at the top and pauses on hover/focus, with the site's motion toggle, or when the tab is hidden. Reduced-motion users get no animation. Mobile layouts wrap the complete address rather than truncating it. The Swap link is the exact project-supplied DeDust URL above. Copy uses Clipboard API with a local-preview fallback and accessible feedback. Without JavaScript the address remains selectable and Swap remains usable.
-
-## Search visibility
-
-Production canonical host: `https://www.egorverse.xyz/`.
-
-Both HTML pages include distinct titles/descriptions, canonical URLs, crawl directives, Open Graph / X large-image cards and JSON-LD. The social image is bundled, not an external dependency. `sitemap.xml` lists only the two canonical pages; `robots.txt` references its absolute URL. `/index.html` redirects to `/` through `vercel.json` on Vercel. A Python preview server does not apply Vercel redirects or headers.
-
-After deployment:
-1. In Vercel Domains, keep `www.egorverse.xyz` attached to this production deployment and redirect `egorverse.xyz` to it. Check both HTTP and HTTPS variants; do not reverse the host redirect. Only change DNS if required by Vercel; preserve email and verification records.
-2. Check `/`, `/portrait-studio.html`, `/robots.txt`, `/sitemap.xml`, and `/assets/og/egor-world-v1.jpg` publicly return 200 with the intended content. Check `/index.html` redirects to `/`, and unknown URLs return 404 rather than the homepage. Ensure production has no password protection or `noindex` header. Use deployment-specific access protection/noindex for staging; do not add a global production noindex header.
-3. In Google Search Console, add a **Domain** property for `egorverse.xyz` (no protocol or path). Copy Google's exact TXT record into the authoritative DNS provider. If the active nameservers are Vercel's, add it in Vercel DNS; otherwise use the provider actually serving DNS. Wait for propagation and verify. Never delete the verification record afterward.
-4. Alternatively add the **URL-prefix** property `https://www.egorverse.xyz/` and use Google's HTML file or HTML meta tag. The actual account-specific token must come from Google; no placeholder token is included in this release. Keep the verification file/tag in future deployments.
-5. Submit `https://www.egorverse.xyz/sitemap.xml` in Search Console's Sitemaps section. Inspect both canonical URLs, run **Test live URL**, then request indexing if available. Sitemap submission and requests do not guarantee indexing or rankings.
-6. Review Page indexing and Performance as data accumulates. Check Google's chosen canonical, actual search queries, clicks and Core Web Vitals rather than assuming a score or timeframe. WebSite/WebPage schema does not guarantee rich results.
-7. Keep the community's website links consistent with the canonical host. Publish useful original material and seek relevant organic links, not purchased link schemes or keyword stuffing. Do not imply official artist affiliation.
-
-If the domain or a page URL changes, update the canonical tags, social URLs, JSON-LD, sitemap, robots sitemap reference and domain redirects together. Use a new social-image filename when replacing its content to reduce stale social previews, then regenerate the asset manifest.
-
-References:
-- https://support.google.com/webmasters/answer/9008080
-- https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
-
-
-## QA
-
-After adding the sticker section, reran site and studio regression tests at all six widths below, plus monitoring integration tests. Section-specific checks passed for image loading, source-link targets, keyboard order, 44px link targets, reduced motion, and no-JavaScript content. Desktop and mobile screenshots were reviewed.
-
-Final site and studio checks passed in headless Chromium at 320, 375, 390, 768, 1024, and 1440px: overflow, menus, dialogs, keyboard controls, clipboard fallback, motion preferences, drawing/stamping, undo/redo shortcuts, confirmed clearing, PNG export, native touch scrolling, an eight-second stalled-image fallback, and no-JavaScript presentation. No runtime exceptions were reported. Monitoring integration and JavaScript syntax checks passed; live analytics ingestion still needs verification after deployment.
-
-The revised ripple effect passed headless Chromium checks for desktop mouse rendering, clean side margins, immediate scroll cancellation, sleep, motion toggle, reduced motion, selection, dialogs, printing and hidden-tab suppression. Emulated touch tests at 320/375/390/768/1024/1440px confirmed native scrolling without trails, a 1px inactive canvas and no horizontal overflow; a real dispatched touch tap opened the mobile menu. Idle-character and fluid-ink regression tests also passed. No physical-device performance benchmark is claimed.
-
-JavaScript syntax, CSS parsing, local asset references, unique IDs, and internal anchors were checked in the build environment. The floating dock was additionally tested in headless Chromium at 320, 375, 768, and 1440px: bottom/top/return positioning, exact address passed to the clipboard API (mocked), no horizontal page overflow, and reduced-motion behavior passed. A mobile screenshot was reviewed. Broader Chromium QA also passed at six widths: dialogs/Escape, mobile menu, mood selection, privacy FAQ, motion persistence, intro/repeat/asset failure, clipboard fallback, reduced motion, and no-JavaScript rendering. The final idle animation passed checks at 320/375/390/768/1024/1440px: stationary character boxes, no horizontal overflow, local gestures, mood updates, motion pause/resume, offscreen pause, hidden-tab pause styling, and reduced-motion switching, with no runtime exceptions. The fluid-pointer update also passed headless Chromium checks with a fine mouse pointer: text displacement, EGOR and protected-surface exclusions, return to rest and animation sleep, manual motion toggling, reduced-motion switching, and overflow checks at six widths, without runtime exceptions. A desktop screenshot was reviewed. These are emulated browser tests, not physical iPhone/Android/Safari certification; native clipboard permissions and actual trading remain outside these checks.
-
-Check 320, 375, 390, 768, 1024, and 1440px viewports; keyboard navigation; dialog open/close and Escape; menu; fresh/repeat visits; offline asset failures; reduced motion; motion toggle persistence; no-JavaScript mode; and touch versus mouse interactions. Run Lighthouse on the deployed HTTPS site. No unmeasured performance score is claimed.
+Nothing in this local review build authorizes deployment, external submissions or payments.

@@ -1,0 +1,27 @@
+/* Standalone market page shell. All fonts and artwork are served locally. */
+:root{--display:'Anton',sans-serif;color-scheme:light;font-family:'DM Sans',sans-serif;color:#182a45;background:#f4f0df}
+*{box-sizing:border-box}
+body{margin:0}
+a{color:inherit;text-underline-offset:4px}
+button,input{font:inherit}
+button{cursor:pointer}
+p{margin:0}
+h1,h2,h3{overflow-wrap:anywhere}
+:focus-visible{outline:3px solid #134fe6;outline-offset:4px}
+.skip{position:absolute;left:16px;top:12px;transform:translateY(-200%);z-index:10;padding:14px;background:white;color:#182a45}
+.skip:focus{transform:none}
+.page-nav,.page-footer,main{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+.page-nav{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:22px;font-size:14px}
+.page-nav a,.page-footer a{display:inline-flex;align-items:center;min-height:44px}
+.page-nav span{font-size:11px;font-weight:700;letter-spacing:1px}
+.market-page .market-panel{margin-top:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #182a45;padding:12px 20px;font-weight:700;text-decoration:none;line-height:1.5}
+.market-method p{margin-block:16px;max-width:90ch}
+.market-method code{overflow-wrap:anywhere;font-size:13px}
+.market-method ul{padding-left:24px;line-height:1.7}
+.market-method li a{display:inline-block;padding-block:10px}
+.page-footer{padding-block:28px 40px;font-size:13px;line-height:1.7}
+.page-footer p{margin-top:8px}
+#reports,#holders,#method{scroll-margin-top:20px}
+@media(max-width:480px){.page-nav,.page-footer,main{width:calc(100% - 24px)}.page-nav{gap:4px 12px;padding-block:12px}.page-nav span{order:3;width:100%}.page-nav a{font-size:13px}}
+@media(forced-colors:active){:focus-visible{outline-color:Highlight}}

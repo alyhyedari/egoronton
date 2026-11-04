@@ -1,0 +1,102 @@
+[
+  {
+    "scenario": "strict parsers: identity, decimals, Unicode percentages, invalid fields, integer supply",
+    "pass": true
+  },
+  {
+    "width": 320,
+    "pass": true,
+    "checks": [
+      "no requests before consent",
+      "TonAPI only",
+      "keyboard loading and disclosure",
+      "no overflow",
+      "reduced motion",
+      "no persisted reports",
+      "no JS errors or local 404"
+    ]
+  },
+  {
+    "width": 375,
+    "pass": true,
+    "checks": [
+      "no requests before consent",
+      "TonAPI only",
+      "keyboard loading and disclosure",
+      "no overflow",
+      "reduced motion",
+      "no persisted reports",
+      "no JS errors or local 404"
+    ]
+  },
+  {
+    "width": 768,
+    "pass": true,
+    "checks": [
+      "no requests before consent",
+      "TonAPI only",
+      "keyboard loading and disclosure",
+      "no overflow",
+      "reduced motion",
+      "no persisted reports",
+      "no JS errors or local 404"
+    ]
+  },
+  {
+    "width": 1440,
+    "pass": true,
+    "checks": [
+      "no requests before consent",
+      "TonAPI only",
+      "keyboard loading and disclosure",
+      "no overflow",
+      "reduced motion",
+      "no persisted reports",
+      "no JS errors or local 404"
+    ]
+  },
+  {
+    "scenario": "failed automatic refresh preserves receipt; auto disabled; stale age visible",
+    "pass": true
+  },
+  {
+    "scenario": "429 honors 600-second Retry-After; token endpoint independent",
+    "pass": true
+  },
+  {
+    "scenario": "network",
+    "pass": true
+  },
+  {
+    "scenario": "http",
+    "pass": true
+  },
+  {
+    "scenario": "schema",
+    "pass": true
+  },
+  {
+    "scenario": "partial",
+    "pass": true
+  },
+  {
+    "scenario": "12-second timeout and partial success",
+    "pass": true
+  },
+  {
+    "scenario": "stop cancels pending requests; focus retained; late responses ignored",
+    "pass": true
+  },
+  {
+    "scenario": "auto refresh pauses offscreen/hidden, resumes visible, stops explicitly",
+    "pass": true
+  },
+  {
+    "scenario": "no-JavaScript snapshot and source links",
+    "pass": true
+  },
+  {
+    "scenario": "homepage links to standalone page without API reads",
+    "pass": true
+  }
+]

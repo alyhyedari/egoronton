@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f4f0df">
-<meta name="egor-release" content="0.4.7">
+<meta name="egor-release" content="0.4.9">
 <meta name="description" content="Explore EGOR World, an independent tribute to Egor Zhgun: Utya sticker references, art, a portrait maker and the $EGOR community on TON.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://www.egorverse.xyz/">
@@ -112,6 +112,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <script src="idle.js" defer></script>
 <link rel="stylesheet" href="welcome.css?v=0.4.6">
 <link rel="stylesheet" href="scenes.css?v=0.4.6">
+<link rel="stylesheet" href="market.css?v=0.4.9">
 <link rel="stylesheet" href="release.css?v=0.4.3">
 <script src="evidence.js?v=0.4.3" defer></script>
 <script src="welcome.js?v=0.4.6" defer></script>
@@ -202,7 +203,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 </section>
   </div>
  </div>
- <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.7</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
+ <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.9</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
 </div></section>
 <section class="idea-workshop paper" id="idea-workshop" aria-labelledby="idea-title" data-idea="voyage" data-water-static>
  <div class="wrap idea-layout">
@@ -404,6 +405,15 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <div class="token-grid reveal"><article class="token-card supply"><span class="eyebrow">Maximum supply</span><span class="corner" aria-hidden="true">↗</span><div class="num">1 BILLION</div><p>1,000,000,000 EGOR.<br>Mintable: false in the supplied metadata.</p></article><article class="token-card fee"><span class="eyebrow">Creator rewards</span><span class="corner" aria-hidden="true">✳</span><div class="num">ON RECORD</div><p>Dated transfers, not a promised rate.<br><a class="text-link" href="#evidence">Read the evidence ↓</a></p></article><article class="token-card chain"><span class="eyebrow">The home chain</span><span class="corner" aria-hidden="true">◇</span><div class="num">TON</div><p>The Open Network.<br>Native coin: Gram (see naming note in FAQ).<br>Community token: $EGOR.</p></article></div>
 <p class="numbers-note">Supply and mintability reflect the project’s supplied token metadata. Historical reward comments do not establish a trading tax, a recurring reward rate, recipient identity, or artist endorsement. Confirm the deployed contract and all fees before trading.</p>
 <div class="contract-bar reveal"><div class="contract-detail"><span class="eyebrow">Token contract / CA</span><code id="contract-display" tabindex="0">EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA</code></div><div class="contract-actions"><button id="contract-action" data-buy aria-label="Copy EGOR contract address">Copy CA</button><a class="text-link" href="https://dedust.io/swap/TON/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA" target="_blank" rel="noopener noreferrer" aria-label="Swap Gram for EGOR on DeDust, opens in a new tab">Swap on DeDust ↗</a></div></div>
+<section class="market-panel" id="market" aria-labelledby="market-title">
+ <header class="market-heading">
+  <div><p class="eyebrow">THE EGOR FIELD NOTES</p><h3 id="market-title">A LITTLE CHARACTER.<br>A CLEARER PICTURE.</h3><p class="market-intro">A dedicated space for opt-in TonAPI price and token reports, saved holder evidence, and the limits behind the numbers.</p><p class="market-tag">No wallet. No hidden fallback. No rush.</p><a class="btn" href="market.html">Explore the market notes ↗</a></div>
+  <div class="market-art" aria-hidden="true"><span class="market-orbit"></span><img src="assets/egor-confident.webp" alt="" width="640" height="640" loading="lazy" decoding="async"><span class="market-scribble">look a little closer ↙</span></div>
+ </header>
+ <nav class="market-links" aria-label="Market notes"><a href="market.html#reports">TonAPI reports</a><a href="market.html#holders">Holder evidence &amp; limits</a><a href="https://tonviewer.com/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA" target="_blank" rel="noopener noreferrer">Inspect contract on Tonviewer ↗</a></nav>
+ <div class="market-content"><p>Reports load only when you choose to contact TonAPI on the market page. A recent response is not a live trade; addresses are not people. Holder distribution percentages remain withheld while the saved balances and reported supply disagree.</p></div>
+</section>
+
 </div></section>
 <section class="how" id="how"><div class="wrap"><div class="section-label eyebrow reveal">03 / Your little DeDust guide</div>
 <div class="section-header how-heading reveal"><div><h2 class="display">FIRST, GET CURIOUS<br>THEN, GET CLEAR</h2><p>No rush. EGOR can wait.<br>Here’s how to swap Gram for EGOR on DeDust.</p></div><div class="guide-host"><span class="guide-bubble">one step at a time</span><div class="guide-disc paper"><img src="assets/egor-guide.webp" alt="Egor offering a friendly, simple line-arm gesture" width="640" height="640" loading="lazy" decoding="async"></div></div></div>
