@@ -1,5 +1,5 @@
 {
-  "version": "0.4.28",
+  "version": "0.4.29",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
@@ -37,5 +37,5 @@
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
-  "status": "Local review build with isolated TV wall bay, object-release position preservation and sleep-aware interactions. Not deployed."
+  "status": "Local favicon consistency update. Not deployed. See QA-0.4.29.md."
 }
