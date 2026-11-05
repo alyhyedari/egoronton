@@ -1,0 +1,17 @@
+# EGOR World
+
+> An independent community tribute with playful art, stickers and a browser-based portrait maker. Not the official website of Egor Zhgun and not evidence of his endorsement.
+
+## Explore
+- [Home](https://www.egorverse.xyz/): Project introduction, interactive room, stickers, drawing tools and FAQ.
+- [Portrait studio](https://www.egorverse.xyz/portrait-studio.html): Create and export a portrait. Save work before leaving; work is not autosaved.
+- [Artist context](https://www.egorverse.xyz/egor-zhgun.html): Background and source links about Egor Zhgun.
+- [Roadmap notes](https://www.egorverse.xyz/roadmap-notes.html): Proposed project sequence, not guaranteed delivery dates.
+- [Market](https://www.egorverse.xyz/market.html): Token information with source and freshness limitations.
+
+## Important distinctions
+$EGOR is a speculative community meme token on TON, not an ownership stake in art or intellectual property. No guaranteed returns, artist endorsement or fixed creator reward rate is established by this website. Historical transfer comments alone do not establish recipient identity or ongoing arrangements. Verify token contracts and third-party services independently. The website does not connect to wallets or execute swaps.
+
+## Community
+- [X](https://x.com/egorverse)
+- [Telegram](https://t.me/egorversePortal)
