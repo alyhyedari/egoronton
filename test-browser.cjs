@@ -1,7 +1,7 @@
 /* Local Chromium interaction regression suite. No production network or deployment. */
 const {chromium}=require(process.env.PLAYWRIGHT_CORE || '/app/browser/node_modules/playwright-core');
 const fs=require('node:fs');const path=require('node:path');const assert=require('node:assert/strict');
-const out=path.join(__dirname,'qa-0.4.28');fs.mkdirSync(out,{recursive:true});
+const out=path.join(__dirname,'qa-0.4.32');fs.mkdirSync(out,{recursive:true});
 const results=[];const errors=[];
 (async()=>{
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH || '/opt/playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell',headless:true,args:['--no-sandbox']});

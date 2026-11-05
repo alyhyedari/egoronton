@@ -4,7 +4,8 @@ body,header{background:#f4f0df}
 .hero.welcome{min-height:0;overflow:hidden;background:#f4f0df}
 .welcome-grid{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:22px;padding:52px 0 30px}
 .welcome-copy h1{font-family:var(--font);font-size:clamp(38px,4.65vw,68px);font-weight:600;letter-spacing:-.055em;line-height:1.13;margin:22px 0}
-.welcome-friend{display:none}
+.welcome-character{display:none}
+.welcome-friend{display:block;width:100%;height:auto}
 .welcome-copy h1>span:not(.welcome-smile){color:#087d97}
 .welcome-smile{white-space:nowrap;font-weight:400}
 .welcome-intro{font-size:16px;line-height:1.8;max-width:37ch}
@@ -41,14 +42,19 @@ body,header{background:#f4f0df}
 body.motion-off .window-art *,body.page-hidden .window-art *{transition:none}
 @media(max-width:1100px){.nav-links{gap:18px}.welcome-grid{gap:12px}.welcome-actions .btn{font-size:12px;gap:12px}}
 @media(max-width:760px){
- .welcome-grid{grid-template-columns:1fr;padding:32px 0 24px;gap:16px}
- .welcome-copy h1{font-size:clamp(36px,7.8vw,54px);max-width:15ch;margin:18px 0}
- .welcome-headline{position:relative;padding-bottom:8px}
- .welcome-copy .welcome-headline h1{font-size:clamp(32px,6.4vw,48px);max-width:15ch;margin:18px 0;padding-right:74px}
- .welcome-friend{display:block;position:absolute;width:clamp(140px,32vw,210px);height:auto;right:-28px;bottom:0;pointer-events:none}
- .welcome-intro{font-size:14px;max-width:36ch}
- .welcome-actions{gap:10px;margin-top:22px}
- .welcome-actions .btn{font-size:12px;padding:12px 14px}
+ .welcome-grid{grid-template-columns:1fr;padding:20px 0 24px;gap:28px}
+ .welcome-copy>.eyebrow{text-align:center;margin:0}
+ .welcome-headline{display:flex;flex-direction:column;align-items:center;text-align:center}
+ .welcome-character{display:block;position:relative;width:260px;height:240px;margin:8px auto 0;isolation:isolate}
+ .welcome-character:before{content:"";position:absolute;z-index:-1;inset:24px 25px 12px;border-radius:48% 52% 45% 55%;background:#c4dce0;transform:rotate(-8deg)}
+ .welcome-friend{position:relative;width:260px;height:260px;object-fit:contain;pointer-events:none;transform:translate(-15px,-10px)}
+ .welcome-copy .welcome-headline h1{font-size:clamp(30px,7.6vw,42px);max-width:19ch;margin:10px 0 12px;padding:0;line-height:1.12;letter-spacing:-.045em}
+ .welcome-intro{font-size:14px;line-height:1.65;max-width:38ch;margin:0 auto;text-align:center}
+ .welcome-actions{justify-content:center;gap:10px;margin:18px 0 10px}
+ .welcome-actions .btn{font-size:12px;padding:12px 14px;min-height:48px}
+ .welcome-note{text-align:center}
+ .welcome .hero-socials{justify-content:center}
+ .welcome-actions .btn-light{background:transparent;box-shadow:none}
  .window-room{width:min(100%,460px);justify-self:center}
  .welcome-foot{align-items:flex-start;font-size:10px}
  .welcome-foot>span{max-width:24ch;padding-top:9px}

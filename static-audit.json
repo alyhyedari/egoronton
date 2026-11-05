@@ -1,0 +1,78 @@
+[
+  {
+    "page": "egor-zhgun.html",
+    "title": "Egor Zhgun, Utya & Sticker Sources | EGOR World",
+    "description": [
+      "Egor Zhgun and Utya sticker references, with clear attribution limits for Resistance Dog. Independent EGOR World community notes, not an official artist page."
+    ],
+    "h1": [
+      "Egor Zhgun. A little context."
+    ],
+    "canonical": [
+      "https://www.egorverse.xyz/egor-zhgun.html"
+    ],
+    "missingAlt": 0,
+    "broken": []
+  },
+  {
+    "page": "index.html",
+    "title": "EGOR World | An Independent Tribute to Egor Zhgun",
+    "description": [
+      "Explore EGOR World, an independent tribute to Egor Zhgun: Utya sticker references, art, a portrait maker and the $EGOR community on TON."
+    ],
+    "h1": [
+      "Meet Egor. Your little blue escape."
+    ],
+    "canonical": [
+      "https://www.egorverse.xyz/"
+    ],
+    "missingAlt": 0,
+    "broken": []
+  },
+  {
+    "page": "market.html",
+    "title": "EGOR at Home & Market Notes | EGOR World",
+    "description": [
+      "Explore EGOR with automatic TonAPI price and token reports, clear timestamps and a Tonviewer contract link. No wallet connection required."
+    ],
+    "h1": [
+      "A LITTLE CHARACTER. A CLEARER PICTURE."
+    ],
+    "canonical": [
+      "https://www.egorverse.xyz/market.html"
+    ],
+    "missingAlt": 0,
+    "broken": []
+  },
+  {
+    "page": "portrait-studio.html",
+    "title": "EGOR Portrait Studio | Make Your Profile Picture",
+    "description": [
+      "Create an EGOR profile picture in your browser. Pose the character, add photo and text layers, and export a PNG. Local editing with no photo uploads."
+    ],
+    "h1": [
+      "Make a little character.",
+      "Your next little identity"
+    ],
+    "canonical": [
+      "https://www.egorverse.xyz/portrait-studio.html"
+    ],
+    "missingAlt": 0,
+    "broken": []
+  },
+  {
+    "page": "roadmap-notes.html",
+    "title": "EGOR Roadmap \u2014 Plan & Source Notes",
+    "description": [
+      "A proposed twelve-month EGOR plan: available creative tools, conditional next steps, external decisions and source limitations."
+    ],
+    "h1": [
+      "A little plan. Clear boundaries."
+    ],
+    "canonical": [
+      "https://www.egorverse.xyz/roadmap-notes.html"
+    ],
+    "missingAlt": 0,
+    "broken": []
+  }
+]

@@ -1,12 +1,12 @@
 {
-  "version": "0.4.30",
+  "version": "0.4.32",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
     "motion": "Staged approach, reach, lift, carry, lower and release; daily scenes rest at their destination instead of returning to origin; reduced motion preserves position",
-    "status": "Local review build. 48 Chromium checks passed across mobile 320, mobile 375 reduced motion and desktop 1440; 18 mocked checks passed separately. 182 asset hashes verified. See QA-0.4.28.md. Not deployed."
+    "status": "Local review build. 48 Chromium regression checks passed across mobile 320, mobile 375 reduced motion and desktop 1440. Sleep checks use an explicit fixture. 182 asset hashes verified. See QA-0.4.32.md. Not deployed."
   },
   "walletConnection": false,
   "evidence": {
@@ -37,5 +37,5 @@
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
-  "status": "Local mobile welcome refinement and llms.txt addition. Not deployed. See QA-0.4.30.md."
+  "status": "Local navigation and accessibility review build. See QA-0.4.32.md for tested scope and limitations. Lighthouse scores unavailable. Not deployed."
 }

@@ -1,0 +1,8 @@
+/* Local navigation refinements; preserve the original paper and artwork. */
+.explore-paths{display:flex;flex-wrap:wrap;gap:4px 18px;margin:12px 0;font-size:12px}
+.explore-paths a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
+.explore-paths a:focus-visible,.nav a:focus-visible,.menu-toggle:focus-visible{outline:3px solid var(--blue,#244bb7);outline-offset:4px}
+#main:focus{outline:none}
+#light-room,#play,#sticker-desk{scroll-margin-top:24px}
+.menu-toggle{min-height:44px;min-width:44px}
+@media(max-width:760px){.nav-links{gap:6px;max-height:calc(100dvh - 74px);overflow-y:auto}.nav-links a{display:flex;align-items:center;min-height:44px}.explore-paths{gap:2px 16px}}
