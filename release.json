@@ -1,12 +1,12 @@
 {
-  "version": "0.4.26",
+  "version": "0.4.28",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
     "motion": "Staged approach, reach, lift, carry, lower and release; daily scenes rest at their destination instead of returning to origin; reduced motion preserves position",
-    "status": "Local WIP. Syntax checks, 10 mocked position checks, 8 mocked life checks and 182 asset hashes passed. Room layout and interactions have not been browser-verified in 0.4.26. Earlier QA does not validate this build. Not deployed"
+    "status": "Local review build. 48 Chromium checks passed across mobile 320, mobile 375 reduced motion and desktop 1440; 18 mocked checks passed separately. 182 asset hashes verified. See QA-0.4.28.md. Not deployed."
   },
   "walletConnection": false,
   "evidence": {
@@ -37,5 +37,5 @@
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
-  "status": "Local WIP based on 0.4.23. Queued activity suggestions, phone and encouragement vignettes, vector purple costume prototype. See QA-0.4.25.md. Not deployed."
+  "status": "Local review build with isolated TV wall bay, object-release position preservation and sleep-aware interactions. Not deployed."
 }

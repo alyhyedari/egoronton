@@ -1,8 +1,16 @@
 /* Room composition: one shelf, one shared table, no baked-in furniture. */
 .egor-home .home-room{display:none}
-.egor-home .home-stage{background:linear-gradient(to bottom,#ece6d4 0 75%,#c1b49c 75% 75.6%,#d9ccb5 75.6%)}
+.egor-home .home-stage{aspect-ratio:1.8;background:linear-gradient(to bottom,#ece6d4 0 75%,#c1b49c 75% 75.6%,#d9ccb5 75.6%)}
+/* Give the mirror its own wall bay, below (not behind) the bookshelf. */
+.egor-home .room-mirror{left:8%;top:44%;width:12%;height:25%;min-width:44px;padding:0}
+.egor-home .room-mirror svg{width:100%;height:100%}
+/* Dedicated upper-left wall bay, clear of EGOR's central standing area. */
+.egor-home .room-tv{left:5%;top:3%;width:23%}
+.egor-home .home-egor{height:66%}
+@media(max-width:600px){.egor-home .home-stage{aspect-ratio:1.15}.egor-home .home-egor{height:58%}.egor-home .room-tv{top:3%}}
 .home-stage:before{content:'';position:absolute;left:23%;top:80%;width:48%;height:14%;background:#879fa8;border:3px solid #abbcc0;border-radius:50%;transform:rotate(-3deg);z-index:1;pointer-events:none}
-.egor-home .home-egor{cursor:default;touch-action:pan-y}
+.egor-home .home-egor{cursor:default;touch-action:pan-y;pointer-events:none}
+.egor-home .home-bubble{pointer-events:none}
 .egor-home .physics-shelf{left:5%;top:34%;width:27%;height:2%;padding:0;border-bottom:6px solid #9a795b;box-shadow:0 3px 0 #644f3e}
 .egor-home .shelf-book{width:6%;min-width:24px;height:16%;min-height:44px;padding:0!important}
 .egor-home .shelf-book svg{width:100%;height:100%;margin:0}
@@ -13,4 +21,4 @@
 .room-table-plant svg{width:100%;height:100%;display:block}
 .egor-home .room-radio{left:73%;top:auto;bottom:34%;width:12%;min-width:32px;min-height:0}
 .egor-home [data-object=cup]{width:7%;height:10%;min-width:24px;min-height:24px}
-.egor-home .home-note{top:40%}
+.egor-home .home-note{top:auto;bottom:3%;left:4%;max-width:23%;font-size:clamp(10px,1.1vw,14px)}
