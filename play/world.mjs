@@ -1,4 +1,4 @@
-import { dressNeighborhood } from './scenery.mjs';
+import { buildUnfinishedStreet } from './chapter.mjs';
 const $=id=>document.getElementById(id);
 let pc,app;
 try {
@@ -37,12 +37,12 @@ for(let i=0;i<32;i++){let a=i*2.399,r=16+(i%4)*1.5,x=Math.cos(a)*r,z=Math.sin(a)
 for(let i=0;i<55;i++){let x=Math.sin(i*7.3)*19,z=Math.cos(i*4.7)*19;if(Math.abs(x)<3||Math.abs(z)<3)continue;shape('sphere',x,.08,z,.12,.16,.12,i%3?'cream':'blue');}
 // Benches and low planters.
 for(const x of [-4,4]){shape('box',x,.65,3,1.8,.16,.6,'cream');for(const dx of [-.65,.65])shape('box',x+dx,.3,3,.12,.6,.45,'ink');}
-dressNeighborhood({pc,app,shape,mat,obstacles});
+const chapter=buildUnfinishedStreet({pc,app,shape,mat,obstacles});
 const player=new pc.Entity('temporary-blue-traveler');app.root.addChild(player);player.setPosition(0,0,11.5);
 shape('capsule',0,.72,0,.6,.95,.5,'blue',player);shape('sphere',0,1.38,0,.72,.65,.65,'blue',player);shape('sphere',-.14,1.43,-.29,.09,.07,.06,'ink',player);shape('sphere',.14,1.43,-.29,.09,.07,.06,'ink',player);const feet=[shape('box',-.17,.17,0,.23,.25,.45,'ink',player),shape('box',.17,.17,0,.23,.25,.45,'ink',player)];
 // A first-person guest: keep the old traveler only as an invisible position anchor.
 player.children.forEach(e=>e.enabled=false);
-const spots=[{x:-5,z:0,name:'The little garden',line:'Even a quiet place can grow.'},{x:4,z:-4,name:'The sleeping window',line:'Someone left a light for you.'},{x:7,z:3,name:'The corner of almost-home',line:'A world feels different when you belong to it.'}];
+const spots=[{x:-5,z:0,name:'A little care',action:'Let it grow',line:'Not everything grows on its own.'},{x:4,z:-4,name:'Someone is home',action:'Leave a light on',line:'A light is a small way of saying: come in.'},{x:7,z:3,name:'Room for one more',action:'Set a second cup',line:'You do not have to fill the silence.'}];
 for(const s of spots){shape('cylinder',s.x,.9,s.z,.15,1.8,.15,'ink');s.glow=mat('#8aa6ac',.1);s.lamp=shape('sphere',s.x,2,s.z,.48,.62,.48,s.glow);s.halo=shape('cylinder',s.x,.1,s.z,1.5,.06,1.5,'blue');}
 const motes=Array.from({length:22},(_,i)=>({entity:shape('sphere',0,0,0,.045,.045,.045,mat('#f2d79a',.6)),phase:i*2.399}));
 const ripples=[];
@@ -53,13 +53,13 @@ function caption(text){$('caption').textContent=text;clearTimeout(captionTimer);
 function chime(){if(!sound)return;context??=new (window.AudioContext||window.webkitAudioContext)();context.resume();[0,4,7].forEach((n,i)=>{let o=context.createOscillator(),g=context.createGain(),t=context.currentTime+i*.12;o.type='sine';o.frequency.value=330*Math.pow(2,n/12);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+1);o.connect(g);g.connect(context.destination);o.start(t);o.stop(t+1.1);});}
 const threads=[];
 function thread(a,b){const from=new pc.Vec3(a.x,.18,a.z),to=new pc.Vec3(b.x,.18,b.z),mid=from.clone().add(to).mulScalar(.5),e=shape('box',mid.x,mid.y,mid.z,.055,.055,from.distance(to),mat('#83e0ed',.7));e.lookAt(to);threads.push(e);}
-function connect(){if(!started||paused||!near||near.lit)return;const s=near;s.lit=true;count++;s.glow.diffuse=new pc.Color().fromString('#ffda82');s.glow.emissive=new pc.Color(.9,.58,.2);s.glow.update();ripple(s);s.halo.render.material=materials.gold;thread(last||{x:0,z:14},s);last=s;chime();caption(s.line);$('progress').setAttribute('aria-label',`${count} of 3 lights connected`);$('progress').textContent='● '.repeat(count)+'○ '.repeat(3-count);$('hint').textContent=`${count} of 3 lights connected.`;if(count===3){done=true;$('objective').textContent='Bring the thread home.';$('hint').textContent='Return to the warm doorway where you began.';}}
+function connect(){if(!started||paused||!near||near.lit)return;const s=near;s.lit=true;chapter.activate(spots.indexOf(s));count++;s.glow.diffuse=new pc.Color().fromString('#ffda82');s.glow.emissive=new pc.Color(.9,.58,.2);s.glow.update();ripple(s);s.halo.render.material=materials.gold;thread(last||{x:0,z:14},s);last=s;chime();caption(s.line);$('progress').setAttribute('aria-label',`${count} of 3 lights connected`);$('progress').textContent='● '.repeat(count)+'○ '.repeat(3-count);$('hint').textContent=`${count} of 3 lights connected.`;if(count===3){chapter.complete();done=true;$('objective').textContent='Bring the thread home.';$('hint').textContent='Return to the warm doorway where you began.';}}
 $('connect').onclick=connect;
 function setPaused(value){if(!started||!$('ending').hidden)return;paused=value;clearInput();$('pause').textContent=paused?'Resume':'Pause';document.body.classList.toggle('paused',paused);if(paused)caption('Take your time. The world can wait.');}
 $('pause').onclick=()=>setPaused(!paused);
 let entrance=-1,yaw=0,pitch=0,ax=0,az=0,vx=0,vz=0,running=false;
 function clearInput(){keys.clear();ax=az=vx=vz=0;stickPointer=null;lookPointer=null;$('thumb').style.transform='translate(-50%,-50%)';}
-function finishEntrance(){entrance=-1;started=true;player.setPosition(0,0,11.5);$('arrival').hidden=true;$('skip').hidden=true;for(const id of ['hud','guide','pause','touch','look','reticle','run'])$(id).hidden=false;caption('You are here. Take your time.');$('world').focus();}
+function finishEntrance(){entrance=-1;started=true;player.setPosition(0,0,11.5);$('arrival').hidden=true;$('skip').hidden=true;for(const id of ['hud','guide','pause','touch','look','reticle','run'])$(id).hidden=false;caption('Follow the ink. Leave something kind behind.');$('world').focus();}
 $('skip').onclick=finishEntrance;
 $('enter').onclick=()=>{$('entry').hidden=true;if($('reduced').checked){finishEntrance();return;}entrance=0;$('arrival').hidden=false;$('skip').hidden=false;};
 $('stay').onclick=()=>{$('ending').hidden=true;paused=false;$('pause').focus();};
@@ -67,8 +67,9 @@ $('restart').onclick=()=>{if(!confirm('Start this little journey again?'))return
 $('sound').onclick=()=>{sound=!sound;$('sound').textContent=sound?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',sound);if(sound)chime();};
 $('copy').onclick=async()=>{try{await navigator.clipboard.writeText('Three windows. One thread. A little further into EGOR’s world.');$('copy-status').textContent='Memory copied.';}catch{$('copy-status').textContent='Three windows. One thread. A little further into EGOR’s world.';}};
 const movement=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d','Shift'];
-window.addEventListener('keydown',e=>{if(!started||!$('ending').hidden)return;const k=e.key.length===1?e.key.toLowerCase():e.key;if(e.key==='Escape'){setPaused(!paused);return;}if(paused)return;if(movement.includes(k)){e.preventDefault();keys.add(k);}if((k==='e'||e.code==='Space')&&!e.repeat&& (k==='e'||!['BUTTON','INPUT','SUMMARY','A'].includes(document.activeElement.tagName))){e.preventDefault();connect();}});
-window.addEventListener('keyup',e=>keys.delete(e.key.length===1?e.key.toLowerCase():e.key));
+const controlKey=e=>({KeyW:'w',KeyA:'a',KeyS:'s',KeyD:'d',KeyE:'e',ShiftLeft:'Shift',ShiftRight:'Shift'}[e.code]||e.key);
+window.addEventListener('keydown',e=>{if(!started||!$('ending').hidden)return;if(e.target?.matches('input,textarea,select,[contenteditable="true"]'))return;const k=controlKey(e);if(e.key==='Escape'){if(!e.repeat)setPaused(!paused);return;}if(paused)return;if(movement.includes(k)){e.preventDefault();keys.add(k);}if((k==='e'||e.code==='Space')&&!e.repeat&& (k==='e'||!['BUTTON','INPUT','SUMMARY','A'].includes(document.activeElement.tagName))){e.preventDefault();connect();}});
+window.addEventListener('keyup',e=>keys.delete(controlKey(e)));
 window.addEventListener('blur',()=>{keys.clear();if(started)setPaused(true);});document.addEventListener('visibilitychange',()=>{if(document.hidden&&started)setPaused(true);});
 let stickPointer=null,lookPointer=null,lx=0,ly=0;
 const stick=$('stick');
@@ -81,7 +82,7 @@ $('run').onclick=()=>{running=!running;$('run').setAttribute('aria-pressed',Stri
 window.addEventListener('resize',clearInput);
 camera.setPosition(0,1.65,15.8);camera.setEulerAngles(0,0,0);
 app.on('update',dt=>{dt=Math.min(dt,.04);time+=dt;const p=player.getPosition();if(started&&!paused){let dx=Number(keys.has('d'))-Number(keys.has('a'))+ax,dz=Number(keys.has('s')||keys.has('ArrowDown'))-Number(keys.has('w')||keys.has('ArrowUp'))+az;yaw+=(Number(keys.has('ArrowLeft'))-Number(keys.has('ArrowRight')))*dt*90;const len=Math.max(1,Math.hypot(dx,dz)),speed=(keys.has('Shift')||running?4.6:2.7),r=yaw*Math.PI/180,tx=(dx*Math.cos(r)+dz*Math.sin(r))/len*speed,tz=(-dx*Math.sin(r)+dz*Math.cos(r))/len*speed,blend=1-Math.exp(-dt*12);vx+=(tx-vx)*blend;vz+=(tz-vz)*blend;const clear=(x,z)=>Math.abs(x)<19&&Math.abs(z)<19&&!obstacles.some(o=>Math.abs(x-o.x)<o.w&&Math.abs(z-o.z)<o.d);let x=p.x,z=p.z;if(clear(x+vx*dt,z))x+=vx*dt;else vx=0;if(clear(x,z+vz*dt))z+=vz*dt;else vz=0;player.setPosition(x,0,z);
-near=spots.filter(s=>!s.lit).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];if(near&&Math.hypot(near.x-p.x,near.z-p.z)>2)near=null;$('connect').hidden=!near;if(near)$('connect').textContent=`Wake this light · E`;
+near=spots.filter(s=>!s.lit).sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];if(near&&Math.hypot(near.x-p.x,near.z-p.z)>2)near=null;$('connect').hidden=!near;if(near)$('connect').textContent=`${near.action} · E`;
 $('place').textContent=near?near.name:Math.hypot(p.x,p.z-14)<3?'The way home':p.z<-3?'Window Lane':p.x<-3?'The little garden':'Blue-thread Square';
 if(done&&Math.hypot(p.x,p.z-13)<2){done=false;thread(last,{x:0,z:14});paused=true;clearInput();$('ending').hidden=false;$('stay').focus();$('objective').textContent='A little more like home.';$('hint').textContent='The neighborhood is yours to wander.';chime();}}
 if(!paused){for(const m of motes){const a=m.phase+time*.08;m.entity.setPosition(Math.sin(a)*12,1.2+Math.sin(a*2+time*.3)*.7,Math.cos(m.phase+time*.05)*12);m.entity.enabled=!$('reduced').checked;}for(let i=ripples.length-1;i>=0;i--){const r=ripples[i];r.age+=dt;r.e.setLocalScale(1+r.age*3,.025,1+r.age*3);if(r.age>.65){r.e.destroy();ripples.splice(i,1);}}}
