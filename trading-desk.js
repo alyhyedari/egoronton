@@ -12,7 +12,7 @@
  function summary(){const last=data.at(-1),prev=data.at(-2);$('#pair-title').textContent=`EGOR / ${quote()} · DEMO`;$('#pair-help').textContent=`Synthetic ${quote()} per 1 EGOR · not a swap quote`;$('#last-price').textContent=fmt(last.c)+' '+quote();$('#last-change').textContent=((last.c/prev.c-1)*100).toFixed(2)+'%';$('#range-high').textContent=fmt(Math.max(...data.map(d=>d.h)));$('#range-low').textContent=fmt(Math.min(...data.map(d=>d.l)));}
  let seed = 3317;
  const random = () => ((seed = (Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
- const base = []; function generate(){base.length=0;seed={GRAM:3317,USD:7319,TON:9981}[quote()];let price={GRAM:.24,USD:.0024,TON:.0007}[quote()];
+ const base = []; function generate(){base.length=0;seed={GRAM:3317,USD:7319,USDT:11939,EUR:15401,GBP:18253}[quote()];let price={GRAM:.24,USD:.0024,USDT:.0023,EUR:.0021,GBP:.0018}[quote()];
  for(let i=0;i<720;i++) {const o=price; price=Math.max(.00001,o*(1+(random()-.47)*.047));base.push({t:Date.UTC(2026,0,1)+i*3600000,o,h:Math.max(o,price)*(1+random()*.022),l:Math.min(o,price)*(1-random()*.022),c:price,v:200+random()*3600});}}
  generate();
  let interval=1,data=[],ema=[],end=720,count=100,tool='pan',drawings=[],redo=[],saved={},gesture=null,hover=null,frame=0,W=0,H=0,geometry=null;

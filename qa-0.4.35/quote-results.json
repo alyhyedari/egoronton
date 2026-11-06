@@ -1,0 +1,122 @@
+[
+  {
+    "width": 320,
+    "q": "GRAM",
+    "title": "EGOR / GRAM · DEMO",
+    "price": "0.463082 GRAM",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "q": "USD",
+    "title": "EGOR / USD · DEMO",
+    "price": "0.003562 USD",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "q": "USDT",
+    "title": "EGOR / USDT · DEMO",
+    "price": "0.004323 USDT",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "q": "EUR",
+    "title": "EGOR / EUR · DEMO",
+    "price": "0.005133 EUR",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "q": "GBP",
+    "title": "EGOR / GBP · DEMO",
+    "price": "0.006344 GBP",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 375,
+    "q": "GRAM",
+    "title": "EGOR / GRAM · DEMO",
+    "price": "0.463082 GRAM",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 375,
+    "q": "USD",
+    "title": "EGOR / USD · DEMO",
+    "price": "0.003562 USD",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 375,
+    "q": "USDT",
+    "title": "EGOR / USDT · DEMO",
+    "price": "0.004323 USDT",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 375,
+    "q": "EUR",
+    "title": "EGOR / EUR · DEMO",
+    "price": "0.005133 EUR",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 375,
+    "q": "GBP",
+    "title": "EGOR / GBP · DEMO",
+    "price": "0.006344 GBP",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "q": "GRAM",
+    "title": "EGOR / GRAM · DEMO",
+    "price": "0.463082 GRAM",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "q": "USD",
+    "title": "EGOR / USD · DEMO",
+    "price": "0.003562 USD",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "q": "USDT",
+    "title": "EGOR / USDT · DEMO",
+    "price": "0.004323 USDT",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "q": "EUR",
+    "title": "EGOR / EUR · DEMO",
+    "price": "0.005133 EUR",
+    "rows": 20,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "q": "GBP",
+    "title": "EGOR / GBP · DEMO",
+    "price": "0.006344 GBP",
+    "rows": 20,
+    "overflow": false
+  }
+]
