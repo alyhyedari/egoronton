@@ -1,4 +1,19 @@
 /* Local navigation refinements; preserve the original paper and artwork. */
+.world-explore summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:18px;padding:10px 16px;border:1px solid currentColor;border-radius:8px;font-size:12px;font-weight:700;list-style:none}
+.world-explore summary::-webkit-details-marker{display:none}
+.world-explore[open] summary span{transform:rotate(45deg)}
+.explore-panel{position:absolute;top:100%;right:0;width:min(900px,100vw - 40px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:24px;background:#f4f0df;color:#16343b;border:1px solid #748b90;border-radius:0 0 16px 16px;box-shadow:0 20px 40px #0003;max-height:calc(100dvh - 160px);overflow:auto}
+.explore-panel h2{font:700 12px/1.5 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;margin:0 0 12px;color:#365c69}
+.nav-links .explore-panel a{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:48px;padding:9px 12px;border-radius:6px;font-size:13px;white-space:normal}
+.explore-panel a small{font-size:11px;font-weight:400;line-height:1.5;color:#365c69}
+.nav-links .explore-panel a:after{display:none}
+.explore-panel a:hover,.explore-panel a:focus-visible{background:#c7e3e7;color:#102936}
+.world-explore summary:focus-visible{outline:3px solid #1485b5;outline-offset:4px}
+html[data-theme=night] .explore-panel{background:#102b43;color:#e2edf5}
+html[data-theme=night] .explore-panel :is(h2,small){color:#bdd3e2}
+html[data-theme=night] .explore-panel a:hover small,html[data-theme=night] .explore-panel a:focus-visible small{color:#365c69}
+@media(max-width:760px){.explore-panel{position:static;width:100%;grid-template-columns:1fr;padding:16px;max-height:none;box-shadow:none;margin-top:12px}.world-explore summary{justify-content:space-between}}
+
 .explore-paths{display:flex;flex-wrap:wrap;gap:4px 18px;margin:12px 0;font-size:12px}
 .explore-paths a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}
 .explore-paths a:focus-visible,.nav a:focus-visible,.menu-toggle:focus-visible{outline:3px solid var(--blue,#244bb7);outline-offset:4px}

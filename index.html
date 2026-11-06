@@ -143,7 +143,7 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <header class="paper"><nav class="nav wrap" aria-label="Main navigation">
 <a class="brand" href="#" aria-label="EGOR home"><img src="assets/portrait.webp" alt="" width="42" height="42"><div><span class="brand-word">$EGOR</span><small>A LITTLE DIFFERENT</small></div></a>
 <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">＋</span></button>
-<div class="nav-links" id="nav-links"><a href="#world">The world</a><a href="#sticker-desk">Stickers</a><a href="#community">Community</a><a href="#roadmap">Roadmap</a><a href="#token">Token details</a><a class="btn btn-dark" href="portrait-studio.html">Portrait studio <span aria-hidden="true">↗</span></a></div>
+<div class="nav-links" id="nav-links"><a href="#light-room">Play</a><a href="portrait-studio.html">Create</a><a href="#community">Community</a><details class="world-explore"><summary>Explore the world <span aria-hidden="true">＋</span></summary><div class="explore-panel"><div><h2>Play &amp; create</h2><a href="#light-room">EGOR’s room <small>Drop in and explore</small></a><a href="#idea-workshop">Idea workshop <small>Watch a drawing grow</small></a><a href="#sticker-desk">Sticker desk <small>Find your next reaction</small></a><a href="#play">Drawing board <small>Make something yours</small></a><a href="portrait-studio.html">Portrait studio <small>Create a paper portrait</small></a></div><div><h2>Meet the world</h2><a href="#world">EGOR’s story</a><a href="#redo">REDO room</a><a href="egor-zhgun.html">Art &amp; attribution</a><a href="#community">Community</a><a href="#roadmap">Roadmap</a></div><div><h2>Project information</h2><a href="#faq">Questions &amp; answers</a><a href="#evidence">Release notes</a><a href="#token">Token details <small>Financial information · not for children</small></a><a href="market.html">Market data</a><a href="trading-desk.html">Trading desk <small>Demo only · synthetic data</small></a></div></div></details></div>
 </nav></header>
 <main id="main" tabindex="-1">
 <section class="hero welcome paper" aria-labelledby="hero-heading" data-water-static><div class="wrap">
@@ -536,7 +536,9 @@ let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
 async function copyAddress(){try{await navigator.clipboard.writeText(address);toast('Contract address copied');}catch(_){const target=dialog.open?$('#dialog-contract'):$('#contract-display');const range=document.createRange();range.selectNodeContents(target);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);toast('Address selected. Use your device’s Copy command.');}}
 const menu=$('.menu-toggle'); const links=$('#nav-links');
-function closeMenu(){menu.setAttribute('aria-expanded','false');links.classList.remove('open');}
+const explore=document.querySelector('.world-explore');
+function closeMenu(){menu.setAttribute('aria-expanded','false');links.classList.remove('open');explore.open=false;}
+explore.addEventListener('keydown',e=>{if(e.key==='Escape'&&explore.open){e.stopPropagation();explore.open=false;explore.querySelector('summary').focus();}});
 menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));links.classList.toggle('open',open);});
 links.addEventListener('click',e=>{if(e.target.closest('a,button'))closeMenu();});
 document.addEventListener('click',e=>{if(!e.target.closest('.nav'))closeMenu();});

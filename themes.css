@@ -32,4 +32,22 @@ html[data-theme=night] .notes-themed :focus-visible{outline-color:#9edbed}
 html[data-theme=night] .market-page main{background:#f4f0df;color:#182a45;border-radius:12px}
 html[data-theme=night] .studio-themed .editor{background:#e9eeed;color:#10232b}
 html[data-theme=night] .studio-themed :is(.skip,#boot-message,.fallback){color:#10232b}
+/* Light paper surfaces must carry their own ink, not inherit night text. */
+html[data-theme=night] :is(.idea-workshop,.final-cta,.sticker-stories){color:#16343b;--ink:#16343b}
+html[data-theme=night] .menu-toggle{border-color:currentColor}
+html[data-theme=night] .idea-copy h2 span{color:#2457a6}
+html[data-theme=night] .step{padding:24px;border-radius:8px}
+html[data-theme=night] .step-index{position:static}
+html[data-theme=night] .lamp-play .light-status{color:#bdd3e2}
+html[data-theme=night] .lamp-play .light-tools button[aria-pressed="true"]{background:#244b65;color:#f4f0df;border-color:#87a9be}
+/* A paper component owns its foreground as well as its background.
+   Do not let the dark surround's light ink leak into the notebook. */
+.rm-notebook{color:#152c39;--ink:#152c39;--paper:#faf7ec;--line:#b8bdaf}
+.rm-notebook button{color:inherit}
+.rm-notebook .rm-stop{color:#244bb7}
+html[data-theme=night] .rm-heading h2 span{color:#76d8eb}
+html[data-theme=night] .rm-bottom>a{color:#9edbed}
+.rm-notebook :is(a,button):focus-visible{outline:3px solid #244bb7;outline-offset:4px}
+.rm-pause:hover,.rm-controls button:hover:not(:disabled){background:#e5ede2}
+.rm-controls button:disabled{opacity:1;color:#67736e;border-color:#b8bdaf;cursor:not-allowed}
 @media print{.theme-bar{display:none}}
