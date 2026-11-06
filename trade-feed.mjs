@@ -29,13 +29,47 @@ export function parseTrades(body) {
 const panel = typeof document !== 'undefined' && document.querySelector('#trade-feed');
 if (panel) {
  const status = panel.querySelector('[role=status]'), tbody = panel.querySelector('tbody'), refresh = panel.querySelector('[data-refresh]'), auto = panel.querySelector('[data-auto]'), filter = panel.querySelector('select');
+ let page = 1, pageSize = 10, pending = null;
+ const pager = document.createElement('nav');
+ pager.className = 'trade-pagination';
+ pager.setAttribute('aria-label', 'Trade pages');
+ pager.innerHTML = '<div class="trade-page-summary" role="status" aria-live="polite"></div><label class="trade-page-size">Rows per page <select aria-label="Trades per page"><option>10</option><option>25</option><option>50</option></select></label><div class="trade-page-buttons"><button type="button" data-step="first" aria-label="First trade page">«</button><button type="button" data-step="prev" aria-label="Previous trade page">‹ Previous</button><span class="trade-page-numbers"></span><button type="button" data-step="next" aria-label="Next trade page">Next ›</button><button type="button" data-step="last" aria-label="Last trade page">»</button></div><button type="button" class="trade-new" hidden>Updated results available — show latest</button><p>Pages cover this returned sample only — not a complete trading history.</p>';
+ panel.append(pager);
+ const summary = pager.querySelector('.trade-page-summary'), numbers = pager.querySelector('.trade-page-numbers'), latest = pager.querySelector('.trade-new');
+ const filtered = () => rows.filter(r => filter.value === 'All' || r.side === filter.value);
+ const pages = () => Math.max(1, Math.ceil(filtered().length / pageSize));
+ function acceptPending() { if(pending) { rows=pending.rows; rejected=pending.rejected; received=pending.received; pending=null; } }
+ function navigate(target) { page=Math.max(1,Math.min(pages(),target));if(page===1)acceptPending();render();panel.querySelector('.trade-scroll').scrollTop=0; }
+ pager.addEventListener('click', e => {
+  const button=e.target.closest('button');if(!button || button.disabled)return;
+  if(button===latest){page=1;acceptPending();navigate(1);return;}
+  const step=button.dataset.step;
+  if(button.dataset.page)navigate(Number(button.dataset.page));
+  else if(step)navigate(step==='first'?1:step==='last'?pages():page+(step==='next'?1:-1));
+ });
+ pager.querySelector('select').addEventListener('change',e=>{pageSize=Number(e.target.value);navigate(1);});
  let rows = [], received = 0, next = 0, busy = false, controller, visible = false, error = '', rejected = 0;
  const fmt = n => n === null ? 'Unavailable' : n.toLocaleString('en-US',{maximumSignificantDigits:7});
  function render() {
   refresh.disabled = busy || Date.now() < next;
   status.textContent = busy ? 'Requesting GeckoTerminal reports…' : `${error ? error+' ' : ''}${received ? `Last received ${new Date(received).toISOString()}. ${Date.now()-received>300000?'STALE response. ':''}${rows.length} trades in returned sample; ${rejected} invalid or anomalous entries excluded.` : 'Not loaded. No synthetic trades are used.'}`;
+  const matches=filtered();page=Math.min(page,pages());
+  const start=(page-1)*pageSize;
+  summary.textContent=matches.length?`${start+1}–${Math.min(start+pageSize,matches.length)} of ${matches.length} trades · Page ${page} of ${pages()}`:'0 trades · No pages';
+  latest.hidden=!pending;
+  for(const button of pager.querySelectorAll('[data-step]'))button.disabled=button.dataset.step==='first'||button.dataset.step==='prev'?page===1:page===pages();
+  // Keep numbered controls stable across timer ticks so keyboard focus is not lost.
+  const signature=`${page}/${pages()}`;
+  if(numbers.dataset.signature!==signature){
+   const focused=numbers.contains(document.activeElement)?document.activeElement.dataset.page:null;
+   numbers.replaceChildren();numbers.dataset.signature=signature;
+   for(let n=1;n<=pages();n++){
+    const b=document.createElement('button');b.type='button';b.dataset.page=String(n);b.textContent=String(n);b.setAttribute('aria-label',`Trade page ${n}`);if(n===page)b.setAttribute('aria-current','page');numbers.append(b);
+   }
+   if(focused)numbers.querySelector(`[data-page="${Math.min(Number(focused),pages())}"]`)?.focus({preventScroll:true});
+  }
   tbody.replaceChildren();
-  for (const r of rows.filter(r=>filter.value==='All'||r.side===filter.value)) {
+  for (const r of matches.slice(start,start+pageSize)) {
    const tr = document.createElement('tr');
    tr.className = r.side === 'Buy' ? 'trade-buy' : 'trade-sell';
    for (const text of [new Date(r.time).toISOString().replace('T',' ').replace('.000Z',' UTC'),r.side,fmt(r.amount),fmt(r.ton),fmt(r.price),fmt(r.usd)]) { const td=document.createElement('td'); td.textContent=text;tr.append(td); }
@@ -51,11 +85,11 @@ if (panel) {
    if(r.status===429){next=Date.now()+300000;throw Error('Rate limited; paused for five minutes.');}
    if(!r.ok)throw Error('Provider unavailable.');return r.json();
   }
-  try { checkPool(await request(endpoint));const result=parseTrades(await request(endpoint+'/trades'));if(result.rejected && !result.rows.length)throw Error('No valid trade records; response rejected.');rows=result.rows;rejected=result.rejected;received=Date.now(); }
+  try { checkPool(await request(endpoint));const result=parseTrades(await request(endpoint+'/trades'));if(result.rejected && !result.rows.length)throw Error('No valid trade records; response rejected.');if(page>1){pending={...result,received:Date.now()};}else{rows=result.rows;rejected=result.rejected;received=Date.now();pending=null;} }
   catch(e){error=(e.name==='AbortError'?'Request cancelled or timed out.':e.message)+' Previous results, if any, are not live.';}
   finally{clearTimeout(timeout);busy=false;render();}
  }
- refresh.addEventListener('click',load);filter.addEventListener('change',render);
+ refresh.addEventListener('click',load);filter.addEventListener('change',()=>navigate(1));
  auto.addEventListener('change',()=>{if(auto.checked&&visible)load();});
  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&auto.checked)load();}).observe(panel);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)controller?.abort();else if(auto.checked)load();});
