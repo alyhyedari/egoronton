@@ -1,0 +1,12 @@
+.site-directory{position:relative;flex:0 1 auto;font-family:system-ui,sans-serif;letter-spacing:normal;text-transform:none;z-index:1000}
+.site-directory summary{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;box-sizing:border-box;border:1px solid currentColor;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;list-style:none}
+.site-directory summary::-webkit-details-marker{display:none}
+.site-directory-panel{position:fixed;top:84px;right:20px;width:min(900px,calc(100vw - 40px));box-sizing:border-box;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:20px;max-height:calc(100dvh - 104px);overflow:auto;overscroll-behavior:contain;background:#f4f0df;color:#16343b;border:1px solid #748b90;border-radius:12px;box-shadow:0 20px 40px #0003;text-align:left}
+.site-directory:not([open])>.site-directory-panel{display:none}
+.site-directory .site-directory-panel h2{font:700 12px/1.5 system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;margin:0 0 8px;color:inherit}
+header .site-directory .site-directory-panel a{display:flex;align-items:center;min-height:44px;padding:8px 10px;box-sizing:border-box;font:500 13px/1.5 system-ui,sans-serif;color:inherit;text-decoration:none;white-space:normal;border-radius:6px;letter-spacing:normal;text-transform:none}
+header .site-directory .site-directory-panel a:after{display:none}
+header .site-directory .site-directory-panel a:hover{background:#c7e3e7;color:#102936}
+.site-directory :is(summary,a):focus-visible{outline:3px solid #1485b5;outline-offset:2px}
+html[data-theme=night] .site-directory-panel{background:#102b43;color:#e2edf5}
+@media(max-width:760px){.site-directory-panel{top:100px;right:12px;width:calc(100vw - 24px);max-height:calc(100dvh - 116px);grid-template-columns:1fr;gap:16px;padding:16px}.site-directory summary{font-size:11px}.app-header,.desk-header,.page-nav{flex-wrap:wrap}}

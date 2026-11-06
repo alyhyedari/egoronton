@@ -1,5 +1,5 @@
 {
-  "version": "0.4.34",
+  "version": "0.4.35",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
@@ -37,6 +37,6 @@
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
-  "status": "Local theme and accessibility review build. 60 Chromium viewport/theme checks and 9 theme behavior checks passed. See QA-0.4.34.md for scope and limitations. Not deployed.",
+  "status": "Local consolidated review build: configurable demo Trading Desk, navigation and paper/night contrast fixes. See QA-0.4.35.md for final verification scope. Not deployed.",
   "tradingDesk": {"page": "trading-desk.html", "data": "Synthetic demonstration data only, not live prices or executable quotes", "indexing": "noindex"}
 }

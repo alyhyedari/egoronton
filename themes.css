@@ -33,7 +33,12 @@ html[data-theme=night] .market-page main{background:#f4f0df;color:#182a45;border
 html[data-theme=night] .studio-themed .editor{background:#e9eeed;color:#10232b}
 html[data-theme=night] .studio-themed :is(.skip,#boot-message,.fallback){color:#10232b}
 /* Light paper surfaces must carry their own ink, not inherit night text. */
-html[data-theme=night] :is(.idea-workshop,.final-cta,.sticker-stories){color:#16343b;--ink:#16343b}
+html[data-theme=night] .idea-workshop{color:#16343b;--ink:#16343b}
+/* These sections sit on night surfaces, not light paper islands. */
+html[data-theme=night] :is(.final-cta,.sticker-stories){background:#102b43;color:#e2edf5;--ink:#e2edf5;--paper:#102b43;--line:#7596ac;--blue:#76d8eb}
+html[data-theme=night] .sticker-stories .blue-text{color:#76d8eb}
+html[data-theme=night] .sticker-pack{background:#18384f;border-color:#7596ac;border-left-color:#76d8eb}
+html[data-theme=night] :is(.sticker-stories,.final-cta) a:focus-visible{outline:3px solid #76d8eb;outline-offset:4px}
 html[data-theme=night] .menu-toggle{border-color:currentColor}
 html[data-theme=night] .idea-copy h2 span{color:#2457a6}
 html[data-theme=night] .step{padding:24px;border-radius:8px}
