@@ -1,0 +1,35 @@
+/* Explicit themes: OS preferences never replace the visitor's choice. */
+.theme-bar{display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:8px max(20px,4vw);background:#f4f0df;color:#16343b;border-bottom:1px solid #16343b30;font:12px/1.4 system-ui,sans-serif}
+.theme-switch{min-height:44px;padding:8px 16px;border:1px solid currentColor;border-radius:24px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.theme-bar .theme-switch:hover:not(:disabled){background:#c7e3e7;color:#102936;border-color:currentColor}
+.theme-switch:focus-visible{outline:3px solid #1485b5;outline-offset:3px}
+html[data-theme=night]{background:#091c30}
+html[data-theme=night] body{background:#091c30;color:#e2edf5}
+html[data-theme=night] .theme-bar,html[data-theme=night] body>header{background:#102b43;color:#e2edf5}
+/* Editorial paper islands retain their original black ink; never invert artwork. */
+html[data-theme=night] :is(.hero.welcome,.world,.roadmap,.numbers,.how,.faq,.release-evidence,.portrait-invite){background:#102b43;color:#e2edf5;--ink:#e2edf5;--paper:#102b43;--line:#7596ac66}
+html[data-theme=night] :is(.welcome-note,.welcome-foot,.window-caption,.welcome-intro){color:#bdd3e2}
+html[data-theme=night] .welcome-copy h1>span:not(.welcome-smile){color:#76d8eb}
+html[data-theme=night] .welcome-character:before{background:#74c6d8;box-shadow:0 14px 35px #0002}
+html[data-theme=night] .window-room{background:#90c8d2;border-radius:48% 48% 12px 12px;padding:16px;color:#16343b}
+html[data-theme=night] .window-room .window-caption{color:#16343b}
+html[data-theme=night] .nav-links.open{background:#102b43;color:#e2edf5}
+html[data-theme=night] :is(.art-card,.art-label,.token-card,.contract-bar,.step,.faq details){--ink:#102936;--paper:#c7e3e7;background:#c7e3e7;color:#102936}
+html[data-theme=night] .faq details{padding-inline:16px}
+.reading-companion{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;margin:32px auto;padding:24px;background:#c7e3e7;color:#102936;border:1px solid #173b4d40;border-radius:5px 22px 5px 22px;box-shadow:0 10px 30px #071b2910}
+.reading-companion img{width:180px;height:180px;object-fit:contain}
+.reading-companion p{font-size:14px;line-height:1.8;margin-top:10px}
+html[data-theme=night] body.desk-themed{--paper:#091c30;--panel:#102b43;--ink:#e2edf5;--muted:#b0c9da;--line:#52758c;--blue:#7bcce9;--up:#66d9b5;--down:#ff9d8f;--grid:#29465d}
+html[data-theme=night] .desk-themed .intro img{background:#90c8d2;border-radius:50%}
+@media(max-width:600px){.reading-companion{grid-template-columns:1fr;text-align:center}.reading-companion img{margin:auto}.theme-bar{padding:6px 20px}}
+html[data-theme=night] .sticker-desk,html[data-theme=night] .guide-bubble{color:#102936}
+html[data-theme=night] .step :is(p,.step-index){color:#234b5a;opacity:1}
+html[data-theme=night] .how-bottom .btn{color:#091b20}
+/* Night surrounds, with paper work surfaces for accurate artwork editing. */
+html[data-theme=night] .notes-themed a{color:#9edbed}
+html[data-theme=night] .notes-themed .notice{background:#163b54;border-color:#9edbed}
+html[data-theme=night] .notes-themed :focus-visible{outline-color:#9edbed}
+html[data-theme=night] .market-page main{background:#f4f0df;color:#182a45;border-radius:12px}
+html[data-theme=night] .studio-themed .editor{background:#e9eeed;color:#10232b}
+html[data-theme=night] .studio-themed :is(.skip,#boot-message,.fallback){color:#10232b}
+@media print{.theme-bar{display:none}}

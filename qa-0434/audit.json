@@ -1,0 +1,482 @@
+[
+  {
+    "file": "index.html",
+    "width": 320,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 320,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 375,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 375,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 760,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 760,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 1440,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 1440,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 2560,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "index.html",
+    "width": 2560,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 320,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 320,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 375,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 375,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 760,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 760,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 1440,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 1440,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 2560,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "trading-desk.html",
+    "width": 2560,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 320,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 320,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 375,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 375,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 760,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 760,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 1440,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 1440,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 2560,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "market.html",
+    "width": 2560,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 320,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 320,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 375,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 375,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 760,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 760,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 1440,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 1440,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 2560,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "egor-zhgun.html",
+    "width": 2560,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 320,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 320,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 375,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 375,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 760,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 760,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 1440,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 1440,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 2560,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "roadmap-notes.html",
+    "width": 2560,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 320,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 320,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 375,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 375,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 760,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 760,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 1440,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 1440,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 2560,
+    "theme": "paper",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "file": "portrait-studio.html",
+    "width": 2560,
+    "theme": "night",
+    "errors": [],
+    "overflow": false,
+    "violations": []
+  }
+]
