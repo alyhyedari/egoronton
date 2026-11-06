@@ -17,11 +17,12 @@ export function parseTrades(body) {
   const sell = a?.from_token_address === TOKEN && a?.to_token_address === TON;
   const amount = buy ? a.to_token_amount : a?.from_token_amount;
   const price = buy ? a.price_to_in_usd : a?.price_from_in_usd;
+  const ton = buy ? a?.from_token_amount : a?.to_token_amount;
   const time = Date.parse(a?.block_timestamp);
   if (item?.type !== 'trade' || typeof item.id !== 'string' || !(buy || sell) || a.kind !== (buy ? 'buy' : 'sell') || !/^[a-f0-9]{64}$/i.test(a.tx_hash) || !positive(amount) || !Number.isFinite(time) || time > Date.now()+60000 || a.is_anomalous === true) { rejected++; continue; }
   if (seen.has(item.id)) continue;
   seen.add(item.id);
-  rows.push({time,side:buy?'Buy':'Sell',amount:Number(amount),price:positive(price)?Number(price):null,usd:positive(a.volume_in_usd)?Number(a.volume_in_usd):null,hash:a.tx_hash});
+  rows.push({time,side:buy?'Buy':'Sell',amount:Number(amount),ton:positive(ton)?Number(ton):null,price:positive(price)?Number(price):null,usd:positive(a.volume_in_usd)?Number(a.volume_in_usd):null,hash:a.tx_hash});
  }
  return {rows:rows.sort((a,b)=>b.time-a.time).slice(0,100),rejected};
 }
@@ -36,10 +37,11 @@ if (panel) {
   tbody.replaceChildren();
   for (const r of rows.filter(r=>filter.value==='All'||r.side===filter.value)) {
    const tr = document.createElement('tr');
-   for (const text of [new Date(r.time).toISOString().replace('T',' ').replace('.000Z',' UTC'),r.side,fmt(r.amount),fmt(r.price),fmt(r.usd)]) { const td=document.createElement('td'); td.textContent=text;tr.append(td); }
+   tr.className = r.side === 'Buy' ? 'trade-buy' : 'trade-sell';
+   for (const text of [new Date(r.time).toISOString().replace('T',' ').replace('.000Z',' UTC'),r.side,fmt(r.amount),fmt(r.ton),fmt(r.price),fmt(r.usd)]) { const td=document.createElement('td'); td.textContent=text;tr.append(td); }
    const td=document.createElement('td'), a=document.createElement('a'); a.href=`https://tonviewer.com/transaction/${r.hash}`;a.textContent='View transaction ↗';a.target='_blank';a.rel='noopener noreferrer';td.append(a);tr.append(td);tbody.append(tr);
   }
-  if (!tbody.children.length) { const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=6;td.textContent=received?'No matching trades in the returned sample.':'No trades loaded.';tr.append(td);tbody.append(tr); }
+  if (!tbody.children.length) { const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=7;td.textContent=received?'No matching trades in the returned sample.':'No trades loaded.';tr.append(td);tbody.append(tr); }
  }
  async function load() {
   if (busy || Date.now()<next || document.hidden) return;
@@ -55,8 +57,9 @@ if (panel) {
  }
  refresh.addEventListener('click',load);filter.addEventListener('change',render);
  auto.addEventListener('change',()=>{if(auto.checked&&visible)load();});
- new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)controller?.abort();else if(auto.checked)load();}).observe(panel);
- document.addEventListener('visibilitychange',()=>{if(document.hidden)controller?.abort();});
+ new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&auto.checked)load();}).observe(panel);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)controller?.abort();else if(auto.checked)load();});
  setInterval(()=>{if(!document.hidden){render();if(visible&&auto.checked)load();}},10000);
  render();
+ load();
 }
