@@ -1,0 +1,34 @@
+/* Local 0.4.41 notebook and responsive overlays. */
+.entry-facts{color:#f0d49a;font-weight:bold}
+.veil{align-items:safe center}
+#entry .entry-copy{margin-block:auto}
+#journal{color:#f7f0dd;background:#143650;border:1px solid #d8c99b;border-radius:12px;width:min(760px,calc(100% - 24px));max-height:calc(100dvh - 32px);padding:26px;overflow:auto;overscroll-behavior:contain}
+#journal::backdrop,#ending::backdrop{background:#071c30c9}
+.journal-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.journal-heading h2{font:30px Georgia,serif;margin:8px 0}
+.journal-heading .eyebrow{margin:0}
+#journal h3{margin:24px 0 8px}
+#journal-summary{color:#f0d49a}
+#journal .fine{color:#dce5e5}
+.palette{display:flex;flex-wrap:wrap;gap:8px}
+.palette [aria-pressed=true]{background:#eeddb3;color:#143650;border-color:#eeddb3}
+#journal-places,#journal-projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#journal-places button{text-align:left;line-height:1.4}
+#journal-places small{font-size:12px;opacity:1;color:#dce5e5;letter-spacing:0}
+#journal-projects article{padding:16px;border:1px solid #7e9da3;border-radius:8px;background:#102e45}
+#journal-projects h3{margin:0;font-size:17px}
+#journal-projects p{font-size:13px;line-height:1.6}
+#journal-projects button{width:100%}
+#journal button:disabled{cursor:default;opacity:.65}
+#safe-home{margin-top:24px;width:100%}
+#ending{width:100%;height:100dvh;max-width:none;max-height:none;margin:0;border:0;color:#f7f0dd}
+input:focus-visible,#journal-summary:focus-visible{outline:3px solid #f4d17d;outline-offset:4px}
+#world:focus-visible{outline:2px solid #f4d17d;outline-offset:-2px}
+@media(max-width:650px){
+ header span{max-width:130px;letter-spacing:.4px}header a{font-size:10px;letter-spacing:0;padding:10px}header{gap:8px}header button{padding:10px}
+ #entry{padding-inline:20px}#entry h1{font-size:42px}
+ footer{gap:6px;left:10px;right:10px}footer button{padding:10px;font-size:10px;letter-spacing:0}
+ #journal{padding:18px}#journal-places,#journal-projects{grid-template-columns:1fr}.journal-heading h2{font-size:24px}.journal-heading{align-items:flex-start}.journal-heading button{padding:10px;flex-shrink:0}
+ #hud{max-width:260px}#hud .eyebrow{font-size:9px}#caption{font-size:14px;padding:10px}
+}
+@media(max-height:550px){#entry .entry-copy{margin:0}.veil{align-items:flex-start}#journal{max-height:calc(100dvh - 16px)}}

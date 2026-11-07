@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Desktop hides touch controls",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "English WASD movement",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "Persian layout physical KeyW movement",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "Pause freezes movement",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "Notebook, prerequisites, palette and Escape",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "Three introductory lights and ending",
+    "status": "PASS",
+    "details": "Position-assisted interaction coverage; not a navigation test"
+  },
+  {
+    "name": "All five places, nine discoveries and eight dependency-linked projects",
+    "status": "PASS",
+    "details": "Position-assisted; build actions use notebook UI"
+  },
+  {
+    "name": "Reload persistence and safe return",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "Reset cancellation and confirmation",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "No page errors or missing HTTP resources",
+    "status": "PASS",
+    "details": ""
+  },
+  {
+    "name": "Responsive 320x568, notebook overflow and joystick pointer input",
+    "status": "PASS",
+    "details": "Touch-first emulation; pointer input, not physical device"
+  },
+  {
+    "name": "Responsive 375x812, notebook overflow and joystick pointer input",
+    "status": "PASS",
+    "details": "Touch-first emulation; pointer input, not physical device"
+  },
+  {
+    "name": "Responsive 812x375, notebook overflow and joystick pointer input",
+    "status": "PASS",
+    "details": "Touch-first emulation; pointer input, not physical device"
+  },
+  {
+    "name": "Blocked storage reports visit-only saving",
+    "status": "PASS",
+    "details": ""
+  }
+]
