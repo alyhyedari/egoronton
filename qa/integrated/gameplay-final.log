@@ -1,0 +1,14 @@
+PASS Desktop hides touch controls 
+PASS English WASD movement 
+PASS Persian layout physical KeyW movement 
+PASS Pause freezes movement 
+PASS Notebook, prerequisites, palette and Escape 
+PASS Three introductory lights and ending Position-assisted interaction coverage; not a navigation test
+PASS All five places, nine discoveries and eight dependency-linked projects Position-assisted; build actions use notebook UI
+PASS Reload persistence and safe return 
+PASS Reset cancellation and confirmation 
+PASS No page errors or missing HTTP resources 
+PASS Responsive 320x568, notebook overflow and joystick pointer input Touch-first emulation; pointer input, not physical device
+PASS Responsive 375x812, notebook overflow and joystick pointer input Touch-first emulation; pointer input, not physical device
+PASS Responsive 812x375, notebook overflow and joystick pointer input Touch-first emulation; pointer input, not physical device
+PASS Blocked storage reports visit-only saving 

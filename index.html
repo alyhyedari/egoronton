@@ -129,6 +129,8 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
 <link rel="icon" href="/favicon.png" type="image/png" sizes="144x144">
 <link rel="apple-touch-icon" href="/assets/icons/egor-180.png" sizes="180x180">
 <link rel="stylesheet" href="navigation.css?v=0.4.32">
+<link rel="stylesheet" href="entry-door.css">
+<script src="entry-door.js" defer></script>
 <script src="themes.js"></script>
 <link rel="stylesheet" href="themes.css">
 <link rel="stylesheet" href="site-directory.css">
@@ -216,6 +218,24 @@ dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding
  </div>
  <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.9</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
 </div></section>
+<section class="entry-door-section" id="neighborhood-entry" lang="fa" dir="rtl" aria-labelledby="entry-door-title" data-water-static>
+ <div class="entry-door-copy">
+  <p class="eyebrow">یک تقه، یک شروع تازه.</p>
+  <h2 id="entry-door-title">پشت این در،<br>داستان تو شروع می‌شود.</h2>
+  <p>یک اتاق آرام، محله‌ای برای کشف و گاراژی برای ساختن. در بزن؛ اینجا برای تو هم جا هست.</p>
+  <span class="entry-door-note">پیش‌نمایش محلی · ذخیره در همین مرورگر · بدون حساب یا کیف پول</span>
+ </div>
+ <div class="entry-door-stage">
+  <span class="entry-door-address" dir="ltr" aria-hidden="true">01 / EGOR WORLD</span>
+  <a class="entry-door" id="entry-door" href="/play/" aria-label="در بزن و وارد دنیای ایگور شو" aria-describedby="entry-door-status">
+   <span class="entry-door-interior" aria-hidden="true"><span class="entry-door-welcome">خوش<br>آمدی.</span></span>
+   <span class="entry-door-leaf" aria-hidden="true"><span class="entry-door-number" dir="ltr">01</span><span class="entry-door-panel"></span><span class="entry-door-knocker"></span><span class="entry-door-handle"></span><span class="entry-door-mail" dir="ltr">EGOR</span></span>
+   <span class="entry-door-step" aria-hidden="true"></span>
+  </a>
+  <p id="entry-door-status" class="entry-door-status" role="status" aria-live="polite">برای ورود، در بزن ↙</p>
+  <span class="entry-door-hint">روی در بزن؛ یا با صفحه‌کلید انتخاب کن و Enter بزن.</span>
+ </div>
+</section>
 <section class="idea-workshop paper" id="idea-workshop" aria-labelledby="idea-title" data-idea="voyage" data-water-static>
  <div class="wrap idea-layout">
   <div class="idea-copy"><p class="eyebrow">The little idea desk / Make a mark</p><h2 id="idea-title">One little line.<br><span>Somewhere new.</span></h2><p>A blank page, a familiar face, and three small possibilities. Pick a thought. Watch it take shape.</p>

@@ -1,15 +1,17 @@
-# EGOR World 0.4.35 — complete local review package
+# EGOR World 0.4.41-integrated.1 — complete local review package
 
-This is a static site, not a deployed release. All six pages and their local assets are included.
+This is the complete static site plus the `/play/` game, not a deployed release. The six existing pages and their local assets are retained. An independent homepage door follows the welcome section and precedes `idea-workshop`.
+
+Current verification: `QA-INTEGRATED-fa.md`. Earlier versioned reports are historical, not fresh QA of this build.
 
 ## Preview
 From this directory run:
 
 ```sh
-python -m http.server 8000
+python3 -m http.server 18854 --bind 127.0.0.1
 ```
 
-Open http://localhost:8000/ . Use HTTP rather than opening HTML files directly.
+Open http://127.0.0.1:18854/ or http://127.0.0.1:18854/play/ . Use HTTP rather than opening HTML files directly. This binds only to loopback. Existing market/provider and external-link behavior is retained; serving locally does not itself block outbound browser requests. Automated browser QA intercepts non-local requests.
 
 ## Pages
 - `index.html`: homepage and community/sticker sections
@@ -18,6 +20,7 @@ Open http://localhost:8000/ . Use HTTP rather than opening HTML files directly.
 - `egor-zhgun.html`: artist context
 - `roadmap-notes.html`: roadmap notes
 - `portrait-studio.html`: portrait studio
+- `play/index.html`: first-person neighborhood, progression, tutorial, settings and garage/driving prototype
 
 ## Included improvements
 Paper/night theme readability, navigation refinements, explicit night surfaces in sticker stories and Stay connected, keyboard focus indicators, and the configurable Trading Desk with indicators, drawing tools, saved settings and CSV/PNG export. Original image assets and attribution are preserved.
@@ -30,6 +33,10 @@ The separate market page requests TonAPI reports automatically when visible, wit
 On non-local HTTPS hosting, existing monitoring code may request Vercel platform endpoints unless disabled by privacy settings. Hosting configuration must be reviewed before deployment; this package does not recreate or certify production settings.
 
 ## Verification and delivery
-See `QA-0.4.35.md` and `qa-0.4.35/` for final local checks and screenshots. Earlier QA reports describe earlier builds, not additional coverage of this release. `SHA256SUMS.txt` lists packaged-file hashes except itself. Verify original artwork hashes with `python update_asset_manifest.py --check`.
+See `QA-INTEGRATED-fa.md` and `qa/integrated/` for current final local checks. Game screenshots/results are in `qa/startup/`, `qa/focused/` and `qa/gameplay/`. Earlier QA reports describe earlier builds, not additional coverage of this release. `SHA256SUMS.txt` lists all packaged-file hashes except itself. Verify with `sha256sum -c SHA256SUMS.txt`; verify the asset manifest with `python3 update_asset_manifest.py --check`.
 
-No deployment, external submission or social publication has been performed. Real devices, Safari and Firefox remain untested. The interactive room is a prototype with approximate physics and reconstructed animated line limbs; original source images are unchanged.
+No deployment, external submission or social publication has been performed. Real devices, Telegram WebView, Safari and Firefox remain untested. Artwork licensing and attribution clearance remain unverified. Azure 01 is an original unofficial vehicle prototype, not an endorsed branded asset. The existing interactive room retains approximate physics and reconstructed animated line limbs; original source images are unchanged.
+
+## Reproducing QA
+Unit checks: `node --test tests/vehicle.test.mjs` and `node qa-0441/test-progression.mjs`.
+Browser scripts: `tests/integrated-entry.cjs`, `tests/startup-browser.cjs`, `tests/focused-browser.cjs`, `tests/gameplay-browser.cjs`. Run sequentially with `BASE_URL=http://127.0.0.1:18854` while the local server is running. These scripts were run in the supplied Linux Chromium/Playwright harness; its browser and Node dependencies are not bundled. Inspect their browser/module paths before running elsewhere (some support `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH`; gameplay retains harness-specific paths). Mobile checks are viewport/touch emulation, not physical-device certification. Some interaction/progression checks use assisted positions, not end-to-end navigation.

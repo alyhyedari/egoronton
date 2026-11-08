@@ -1,0 +1,5 @@
+PASS English default; saved Persian preserved; game theme persists; cross-tab set/remove/clear
+PASS Blocked browser storage: game starts and theme toggles with warning
+PASS module failure: accessible error, disabled entry, return link, full reload retry succeeds
+PASS webgl failure: accessible error, disabled entry, return link, full reload retry succeeds
+PASS init failure: accessible error, disabled entry, return link, full reload retry succeeds and app destroyed

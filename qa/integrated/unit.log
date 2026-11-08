@@ -1,0 +1,17 @@
+PASS progression: malformed input, ID filtering/deduplication, full restoration, dependency cascade and locked prerequisites
+✔ qa-0441/test-progression.mjs (206.71079ms)
+✔ controls sanitize values and reject duplicate/reserved bindings (6.600957ms)
+✔ garage sanitizes persisted data (0.55435ms)
+✔ throttle, reverse, braking, coasting and speed caps (9.631118ms)
+✔ steering affects heading and opposite pedal brakes before reversing (1.874012ms)
+✔ collision and course bounds block the full footprint (15.098821ms)
+✔ invalid or very large time steps are bounded (0.601288ms)
+✔ safe exit falls back to the other side or refuses (0.54619ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 444.868893

@@ -7,8 +7,13 @@
   const $ = selector => document.querySelector(selector);
   const intro = $('#intro');
   let finished = false;
-  let paused = reduced.matches;
-  try { paused ||= localStorage.getItem('egor-motion') === 'off'; } catch (_) {}
+  let paused = readPreference();
+  function readPreference() {
+    try {
+      const saved = localStorage.getItem('egor-motion');
+      return saved === 'off' || (saved !== 'on' && JSON.parse(localStorage.getItem('egor-controls-v1') || 'null')?.reduced === true);
+    } catch (_) { return false; }
+  }
   const motionAllowed = () => !paused && !reduced.matches;
 
   function finishIntro() {
@@ -52,7 +57,10 @@
     try { localStorage.setItem('egor-motion', paused ? 'off' : 'on'); } catch (_) {}
     setMotion();
   });
-  reduced.addEventListener('change', () => {paused = reduced.matches;setMotion();});
+  reduced.addEventListener('change', setMotion);
+  addEventListener('storage', event => {
+    if (event.key === null || event.key === 'egor-motion' || event.key === 'egor-controls-v1') { paused = readPreference(); setMotion(); }
+  });
   setMotion();
   document.addEventListener('visibilitychange', () => body.classList.toggle('page-hidden', document.hidden));
 

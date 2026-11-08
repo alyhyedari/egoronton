@@ -1,5 +1,7 @@
 {
-  "version": "0.4.35",
+  "version": "0.4.41-integrated.1",
+  "baseSiteVersion": "0.4.35",
+  "baseGameVersion": "0.4.41",
   "name": "EGOR World",
   "deployment": "static",
   "livingCorner": {
@@ -37,6 +39,18 @@
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
-  "status": "Local consolidated review build: configurable demo Trading Desk, navigation and paper/night contrast fixes. See QA-0.4.35.md for final verification scope. Not deployed.",
+  "status": "Local integrated site and game review build. Final automated loopback QA passed; see QA-INTEGRATED-fa.md. Not deployed; not approved for production.",
+  "integratedReview": {
+    "entry": "Independent homepage door after welcome and before idea-workshop; opens /play/",
+    "themeAndMotion": "Shared paper/night theme and motion preferences; reduced-motion support",
+    "qa": "qa/integrated/",
+    "assetCount": 182,
+    "assetManifestVersion": "2159c45bb8c3c959",
+    "realDeviceTested": false,
+    "telegramWebViewTested": false,
+    "liveTelegramConnected": false,
+    "artworkPermissionsVerified": false,
+    "vehicle": "Azure 01: original unofficial prototype; no brand affiliation claimed"
+  },
   "tradingDesk": {"page": "trading-desk.html", "data": "Synthetic demonstration data only, not live prices or executable quotes", "indexing": "noindex"}
 }

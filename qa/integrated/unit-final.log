@@ -1,0 +1,17 @@
+✔ controls sanitize values and reject duplicate/reserved bindings (5.662059ms)
+✔ garage sanitizes persisted data (0.396939ms)
+✔ throttle, reverse, braking, coasting and speed caps (7.183681ms)
+✔ steering affects heading and opposite pedal brakes before reversing (0.985164ms)
+✔ collision and course bounds block the full footprint (13.771452ms)
+✔ invalid or very large time steps are bounded (0.620767ms)
+✔ safe exit falls back to the other side or refuses (0.603581ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 229.753568
+PASS progression: malformed input, ID filtering/deduplication, full restoration, dependency cascade and locked prerequisites
+Verified 182 assets (2159c45bb8c3c959).
