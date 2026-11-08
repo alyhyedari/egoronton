@@ -8,7 +8,7 @@
     "page": "market.html",
     "art": "Unchanged source images; original head, torso and feet fragments with reconstructed line limbs during choreography",
     "motion": "Staged approach, reach, lift, carry, lower and release; daily scenes rest at their destination instead of returning to origin; reduced motion preserves position",
-    "status": "Local review build. 48 Chromium regression checks passed across mobile 320, mobile 375 reduced motion and desktop 1440. Sleep checks use an explicit fixture. 182 asset hashes verified. See QA-0.4.32.md. Not deployed."
+    "status": "Historical result from the 0.4.32 review: 48 Chromium regression checks across mobile 320, mobile 375 reduced motion and desktop 1440; sleep checks used an explicit fixture. These checks have not been rerun as a complete suite on this integrated build. The current asset check verifies 182 hashes. Not deployed."
   },
   "walletConnection": false,
   "evidence": {
@@ -39,11 +39,18 @@
   },
   "externalServices": "Swap routes, liquidity, naming and platform terms must be checked on the live third-party service.",
   "deploymentNote": "This file identifies the packaged code, not proof of a successful production deployment.",
-  "status": "Local integrated site and game review build. Final automated loopback QA passed; see QA-INTEGRATED-fa.md. Not deployed; not approved for production.",
+  "status": "Local integrated site and game review build. Current browser QA is incomplete: the screenshot-free entry run passed width 320, then exceeded the 240-second overall command limit after starting width 375. No fresh full-suite or visual pass is claimed. See QA-INTEGRATED-fa.md and qa/recheck/. Not deployed; not approved for production.",
   "integratedReview": {
     "entry": "Independent homepage door after welcome and before idea-workshop; opens /play/",
     "themeAndMotion": "Shared paper/night theme and motion preferences; reduced-motion support",
     "qa": "qa/integrated/",
+    "currentRecheck": {
+      "evidenceDirectory": "qa/recheck/",
+      "loopbackHTTP": "GET / returned 200 on 127.0.0.1:18854",
+      "browser": "Partial only: width 320 passed without screenshots; command timed out after starting width 375; width 1440 was not reached",
+      "completeBrowserSuitePassed": false,
+      "freshVisualReviewCompleted": false
+    },
     "assetCount": 182,
     "assetManifestVersion": "2159c45bb8c3c959",
     "realDeviceTested": false,

@@ -1,0 +1,10 @@
+START integrated 320
+page.waitForURL: Timeout 120000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "http://127.0.0.1:18854/play/" until "load"
+  navigated to "http://127.0.0.1:18854/play/"
+============================================================
+    at /mnt/data/egor-world-integrated-local/tests/integrated-entry.cjs:31:10 {
+  log: [],
+  name: 'TimeoutError'
+}

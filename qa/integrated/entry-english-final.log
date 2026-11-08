@@ -1,0 +1,17 @@
+START integrated 320
+page.screenshot: Timeout 120000ms exceeded.
+Call log:
+  - taking page screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+
+    at /mnt/data/egor-world-integrated-local/tests/integrated-entry.cjs:24:52 {
+  log: [
+    '  - taking page screenshot',
+    '    - disabled all CSS animations',
+    '  - waiting for fonts to load...',
+    '  - fonts loaded'
+  ],
+  name: 'TimeoutError'
+}

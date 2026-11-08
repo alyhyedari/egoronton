@@ -2,7 +2,7 @@
 
 This is the complete static site plus the `/play/` game, not a deployed release. The six existing pages and their local assets are retained. An independent homepage door follows the welcome section and precedes `idea-workshop`.
 
-Current verification: `QA-INTEGRATED-fa.md`. Earlier versioned reports are historical, not fresh QA of this build.
+Current verification: `QA-INTEGRATED-fa.md`. Unit/progression/asset checks passed after the English entry update, but the latest browser rerun remains incomplete due to screenshot and element-visibility timeouts. Earlier successful browser results are retained as historical evidence, not certification of the latest copy changes. Earlier versioned reports are historical, not fresh QA of this build.
 
 ## Preview
 From this directory run:

@@ -1,0 +1,9 @@
+START integrated 320
+page.waitForSelector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('#entry-door') to be visible
+
+    at /mnt/data/egor-world-integrated-local/tests/integrated-entry.cjs:13:29 {
+  log: [ "  - waiting for locator('#entry-door') to be visible" ],
+  name: 'TimeoutError'
+}

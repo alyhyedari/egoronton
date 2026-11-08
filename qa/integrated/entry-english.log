@@ -1,0 +1,21 @@
+START integrated 320
+locator.screenshot: Timeout 119461.26100000001ms exceeded.
+Call log:
+  - taking element screenshot
+    - disabled all CSS animations
+  - waiting for fonts to load...
+  - fonts loaded
+  - attempting scroll into view action
+    - waiting for element to be stable
+
+    at /mnt/data/egor-world-integrated-local/tests/integrated-entry.cjs:23:41 {
+  log: [
+    '  - taking element screenshot',
+    '    - disabled all CSS animations',
+    '  - waiting for fonts to load...',
+    '  - fonts loaded',
+    '  - attempting scroll into view action',
+    '    - waiting for element to be stable'
+  ],
+  name: 'TimeoutError'
+}

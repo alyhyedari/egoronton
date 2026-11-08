@@ -30,10 +30,10 @@
     busy = true;
     door.setAttribute('aria-busy', 'true');
     door.dataset.state = 'knocking';
-    status.textContent = 'تق، تق…';
+    status.textContent = 'Knock, knock…';
     openingTimer = setTimeout(() => {
       door.dataset.state = 'opening';
-      status.textContent = 'خوش آمدی؛ در باز می‌شود…';
+      status.textContent = 'Welcome in. The door is opening…';
     }, 460);
     // Bounded navigation still works if animation events are cancelled.
     navigationTimer = setTimeout(enter, 1460);
