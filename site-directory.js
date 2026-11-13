@@ -1,7 +1,7 @@
 /* Shared header directory. Existing page navigation remains available without JS. */
 (() => {
   const groups = [
-    ['Play & create', [['index.html#light-room', 'EGOR’s room'], ['index.html#idea-workshop', 'Idea workshop'], ['index.html#sticker-desk', 'Sticker desk'], ['index.html#play', 'Drawing board'], ['portrait-studio.html', 'Portrait studio'], ['index.html#portrait', 'Portrait gallery']]],
+    ['Play & create', [['/play/', '3D neighborhood'], ['/survival-delivery/', 'Survival + Delivery'], ['/guaranteed-moon/', 'The Guaranteed Moon'], ['index.html#light-room', 'EGOR’s room'], ['index.html#idea-workshop', 'Idea workshop'], ['index.html#sticker-desk', 'Sticker desk'], ['index.html#play', 'Drawing board'], ['portrait-studio.html', 'Portrait studio'], ['index.html#portrait', 'Portrait gallery']]],
     ['Explore the world', [['index.html#world', 'EGOR’s story & sticker worlds'], ['index.html#redo', 'REDO room'], ['egor-zhgun.html', 'Artist & attribution'], ['index.html#roadmap', 'Interactive roadmap'], ['roadmap-notes.html', 'Roadmap notes & sources']]],
     ['Project & community', [['index.html#token', 'Token details'], ['index.html#market', 'Market overview'], ['market.html', 'Market report'], ['trading-desk.html', 'Trading Desk — synthetic demo'], ['index.html#how', 'Getting started'], ['index.html#faq', 'Questions & answers'], ['index.html#evidence', 'Release evidence'], ['index.html#community', 'Community & social links']]]
   ];

@@ -1,9 +1,0 @@
-PASS Tutorial: all six signals, completion persisted (interaction position-assisted)
-PASS Key remapping: conflicts, reserved keys, cancel, new/old bindings; modal focus and pause restore
-PASS Settings and tutorial survive reload; controls reset
-PASS Garage: bay customization, language, driving, speed exit guard, pause, brake, safe exit and recovery confirmation
-PASS Garage configuration persists across reload
-PASS No page errors or failed HTTP resources in desktop focused run
-PASS 320x568: skip does not complete tutorial; settings/garage overflow; joystick driving and keyboard brake (emulated)
-PASS 375x812: skip does not complete tutorial; settings/garage overflow; joystick driving and keyboard brake (emulated)
-PASS 812x375: skip does not complete tutorial; settings/garage overflow; joystick driving and keyboard brake (emulated)

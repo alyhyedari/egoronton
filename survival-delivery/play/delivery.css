@@ -1,0 +1,9 @@
+/* Mission controls remain separate from car-entry and touch controls. */
+#delivery-hud{position:fixed;z-index:3;left:24px;top:90px;width:min(320px,calc(100% - 48px));padding:12px 16px;border:1px solid #d8c99b;border-radius:10px;background:#102e45f5;color:#f7f0dd;line-height:1.6}
+#delivery-hud p{margin:0;font-size:15px}
+#delivery-hud button{margin-top:10px;min-height:44px;width:100%;white-space:normal;letter-spacing:0;background:#eeddb3;color:#123958}
+#delivery-journal{padding:14px;border:1px solid currentColor;border-radius:8px;line-height:1.8}
+body.delivery-area #hud{visibility:hidden}
+body:has(#injury-hud:not([hidden])) #delivery-hud,body:has(#coach:not([hidden])) #delivery-hud{display:none}
+@media(max-width:650px){#delivery-hud{top:136px;left:12px;width:calc(100% - 24px)}}
+@media(orientation:landscape) and (max-height:550px){#delivery-hud{top:62px;left:12px;width:270px}}

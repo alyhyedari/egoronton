@@ -1,0 +1,12 @@
+/* Standalone garage accessibility additions; base layout lives in experience.css.
+   Authored here, not restored from the review archive. */
+.garage-modal button,
+.garage-modal select,
+.garage-modal input { font: inherit; }
+.garage-modal button:focus-visible,
+.garage-modal select:focus-visible,
+.garage-modal input:focus-visible { outline: 3px solid #245edb; outline-offset: 3px; }
+.garage-modal button:disabled { opacity: .55; cursor: not-allowed; }
+.garage-modal h2,
+.garage-modal p { overflow-wrap: anywhere; }
+.garage-modal input[type="range"] { max-width: 100%; }

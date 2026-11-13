@@ -1,0 +1,69 @@
+/* Isolated staging: tutorial, settings and Azure 01 controls. */
+:root{--stick-size:112px;--control-lift:90px}
+#control-settings,#garage-dialog{color:#f7f0dd;background:#143650;border:1px solid #d8c99b;border-radius:12px;width:min(720px,calc(100% - 24px));max-height:calc(100dvh - 24px);padding:24px;overflow:auto;overscroll-behavior:contain}
+#control-settings::backdrop,#garage-dialog::backdrop{background:#071c30cc}
+.garage-top{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.garage-top h2{margin:0;font-size:24px}.garage-top button{flex-shrink:0}
+.garage-kicker{font-size:11px;letter-spacing:1px;direction:ltr}.garage-fine{font-size:12px}
+.garage-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.garage-options label{margin:0;min-width:0;font-size:14px;line-height:1.7}
+.garage-options select,.garage-options input{display:block;width:100%;margin-top:8px}
+select{font:inherit;color:#f7f0dd;background:#102e45;border:1px solid #9bb5be;border-radius:4px;min-height:46px;padding:8px;max-width:100%}
+input[type=range]{min-height:44px;accent-color:#f4d17d}input[type=checkbox]{accent-color:#f4d17d}
+select:focus-visible{outline:3px solid #f4d17d;outline-offset:3px}
+select:disabled{opacity:.65}#control-settings p,#garage-dialog p{font-size:14px;line-height:1.8}
+#control-status,#garage-availability,#garage-save{color:#f0d49a}
+#key-bindings,.garage-actions,.coach-actions{display:flex;flex-wrap:wrap;gap:8px}
+#key-bindings button{flex:1 1 145px}#control-settings button,#garage-dialog button{letter-spacing:0}
+#coach{position:fixed;z-index:3;right:24px;top:100px;width:340px;max-height:calc(100dvh - 340px);overflow:auto;overscroll-behavior:contain;padding:18px;background:#102e45f5;border:1px solid #d8c99b;border-radius:12px;box-shadow:0 8px 30px #071c3033}
+#coach .eyebrow{letter-spacing:0;margin:0}#coach h2{font-size:20px;margin:8px 0}#coach p{font-size:14px;margin:8px 0;line-height:1.8}
+#coach-meter{display:block;width:100%;height:8px;margin:16px 0;accent-color:#f4d17d}.coach-actions button{flex:1;font-size:12px;padding:8px}
+#touch{bottom:max(var(--control-lift),calc(env(safe-area-inset-bottom) + 70px))}#stick{width:var(--stick-size);height:var(--stick-size);display:block}
+#run{bottom:max(var(--control-lift),calc(env(safe-area-inset-bottom) + 70px))}
+body[data-hand=left] #touch{left:auto;right:max(24px,env(safe-area-inset-right))}
+body[data-hand=left] #look{right:auto;left:0}
+body[data-hand=left] #run{right:auto;left:25px}
+#garage-open{position:fixed;z-index:3;right:24px;top:80px}
+body:has(#coach:not([hidden])) #garage-open{top:auto;bottom:235px}
+#car-action,#car-brake{position:fixed;z-index:3;right:24px;bottom:calc(max(var(--control-lift),120px) + 80px);max-width:180px;background:#eeddb3;color:#123958;font-weight:bold}
+#car-brake{bottom:max(var(--control-lift),120px);min-width:70px;touch-action:none}
+body[data-hand=left] #car-action,body[data-hand=left] #car-brake{right:auto;left:24px}
+#drive-hud{position:fixed;z-index:2;left:24px;top:90px;padding:12px 18px;background:#102e45ed;border:1px solid #9bb5be;border-radius:8px;pointer-events:none}
+#drive-hud p{margin:0;font-size:12px}#drive-hud strong{font-size:28px}#drive-hud small{display:inline;font-size:12px;opacity:1}
+body.driving #hud,body.driving #run,body.driving #connect{display:none!important}
+footer{flex-wrap:wrap}footer button{white-space:nowrap}
+/* Injury feedback stays above look/touch layers and never steals world focus. */
+#injury-hud{position:fixed;z-index:4;top:138px;right:24px;width:min(340px,calc(100% - 48px));max-height:calc(100dvh - 260px);overflow:auto;overscroll-behavior:contain;padding:12px;background:#102e45f5;color:#f7f0dd;border:1px solid #f0d49a;border-radius:10px;font-size:14px;line-height:1.6}
+#injury-hud p{margin:0 0 8px}#injury-meters{font-weight:bold;font-variant-numeric:tabular-nums}
+#injury-hud small{display:block;margin-top:8px;font-size:12px;opacity:1}
+#crash-recover{width:100%;min-height:44px;white-space:normal;letter-spacing:0;background:#eeddb3;color:#123958}
+#crash-recover:disabled{opacity:.65;cursor:wait}
+#injury-hud[data-state=dead]{border-color:#ffb7aa}
+body.incapacitated #touch,body.incapacitated #look,body.incapacitated #run,body.incapacitated #connect{display:none!important}
+body:has(#injury-hud:not([hidden])) #caption{visibility:hidden}
+@media(max-width:650px){
+ #injury-hud{top:136px;right:12px;width:calc(100% - 24px);max-height:calc(100dvh - 380px)}
+ body:has(#injury-hud:not([hidden])) #hud{visibility:hidden}
+ header span{display:none}header{pointer-events:none}header a,header button{pointer-events:auto}
+ footer{gap:6px;justify-content:center}footer button{flex:1 1 auto;padding:8px;min-height:44px}
+ #guide-keys{display:none}#touch,#run{bottom:max(var(--control-lift),calc(116px + env(safe-area-inset-bottom)))}
+ #coach{top:76px;right:12px;width:calc(100% - 24px);max-height:calc(100dvh - 320px);padding:12px}
+ body:has(#coach:not([hidden])) #hud{visibility:hidden}
+ #garage-open{top:76px;right:12px}body:has(#coach:not([hidden])) #garage-open{bottom:230px}
+ #control-settings,#garage-dialog{padding:16px}.garage-options{grid-template-columns:1fr;gap:12px}
+ .garage-top{align-items:flex-start;gap:10px}.garage-top h2{font-size:21px}.garage-top button{padding:8px;font-size:12px}
+ #drive-hud{top:76px;left:12px;padding:8px}#drive-hud strong{font-size:24px}
+ #caption{bottom:280px;font-size:14px}body:has(#coach:not([hidden])) #caption{display:none}
+ #connect{bottom:210px}#car-action,#car-brake{max-width:145px}
+}
+@media(orientation:landscape) and (max-height:550px){
+ #injury-hud{top:62px;right:calc(50% - 160px);width:320px;max-height:calc(100dvh - 128px)}
+ header span,#guide-keys{display:none}header{padding:6px 12px}footer{bottom:6px;gap:6px}
+ footer button{padding:6px 10px;font-size:11px;min-height:44px}
+ #coach{top:62px;right:calc(50% - 170px);width:340px;max-height:calc(100dvh - 126px);padding:12px}
+ body:has(#coach:not([hidden])) #hud,body:has(#coach:not([hidden])) #caption{visibility:hidden}
+ #touch,#run{bottom:max(62px,var(--control-lift))}#garage-open{top:62px;right:12px}
+ body:has(#coach:not([hidden])) #garage-open{top:62px;bottom:auto}
+ #drive-hud{top:62px;left:12px}#car-brake{bottom:62px}#car-action{bottom:142px}
+ #connect{bottom:142px}#caption{bottom:62px}
+}
