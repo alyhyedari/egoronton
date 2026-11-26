@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f0df">
+<meta name="egor-release" content="0.4.35-preview">
+<meta name="description" content="Explore EGOR World, an independent tribute to Egor Zhgun: Utya sticker references, art, a portrait maker and the $EGOR community on TON.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://www.egorverse.xyz/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="EGOR World">
+<meta property="og:url" content="https://www.egorverse.xyz/">
+<meta property="og:title" content="EGOR World — Art, Stickers &amp; EGOR on TON">
+<meta property="og:description" content="Art, sticker stories and a browser-local portrait maker. Explore an independent community tribute to Egor Zhgun, not his official website.">
+<meta property="og:image" content="https://www.egorverse.xyz/assets/og/egor-world-v1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="EGOR in white lettering on blue, with a relaxed line-drawn character, a lamp and a small plant.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@egorverse">
+<meta name="twitter:title" content="EGOR World — Art, Stickers &amp; EGOR on TON">
+<meta name="twitter:description" content="Explore playful art, animated stickers and a local portrait maker. An independent community tribute, not an official artist project.">
+<meta name="twitter:image" content="https://www.egorverse.xyz/assets/og/egor-world-v1.jpg">
+<meta name="twitter:image:alt" content="EGOR in white lettering on blue, with a relaxed line-drawn character, a lamp and a small plant.">
+<title>EGOR World — Art, Stickers &amp; EGOR on TON</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.egorverse.xyz/#website",
+      "url": "https://www.egorverse.xyz/",
+      "name": "EGOR World",
+      "alternateName": ["EGOR", "Egorverse", "Egor ($EGOR)"],
+      "inLanguage": "en-US",
+      "description": "An independent community tribute with art, animated stickers and a local portrait maker, alongside the $EGOR community token on TON.",
+      "sameAs": ["https://x.com/egorverse", "https://t.me/egorversePortal"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.egorverse.xyz/#webpage",
+      "url": "https://www.egorverse.xyz/",
+      "name": "EGOR World — Art, Stickers & EGOR on TON",
+      "isPartOf": {"@id": "https://www.egorverse.xyz/#website"},
+      "inLanguage": "en-US",
+      "description": "Explore EGOR's art, stickers, portrait studio and independent community. Not an official artist project or endorsement.",
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.egorverse.xyz/assets/og/egor-world-v1.jpg",
+        "width": 1200,
+        "height": 630
+      }
+    }
+  ]
+}
+</script>
+
+
+
+<link rel="preload" href="assets/font-0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="preload" href="assets/egor-seated.webp" as="image">
+<script>
+// Fail open: content remains accessible if scripts, fonts, or assets fail.
+try {
+ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && localStorage.getItem('egor-motion') !== 'off' && !sessionStorage.getItem('egor-visited')) {
+  document.documentElement.classList.add('greeting');
+  window.egorBootTimeout = setTimeout(() => document.documentElement.classList.remove('greeting'), 2000);
+ }
+} catch (_) {}
+</script>
+<style>
+:root{--blue:#03afd5;--ink:#091b20;--paper:#f4f0df;--yellow:#f6ee69;--line:rgba(9,27,32,.25);--font:'DM Sans',Arial,sans-serif;--display:'Anton','Arial Narrow',Impact,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--blue);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6}button,a,input{ -webkit-tap-highlight-color:transparent}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button{color:inherit}::selection{background:var(--yellow);color:var(--ink)}:focus-visible{outline:3px solid currentColor;outline-offset:6px}img,svg{max-width:100%}button:disabled{cursor:not-allowed}h1,h2,h3,p{margin:0}h1,h2,h3{line-height:1.04}p{max-width:60ch}.wrap{width:min(1360px,calc(100% - 112px));margin:auto}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:700;text-transform:uppercase}.display{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:-.025em}.paper{position:relative;isolation:isolate}.paper:before{content:'';position:absolute;z-index:-1;inset:0;background:url('assets/paper.webp') repeat;opacity:.14;mix-blend-mode:multiply;pointer-events:none}.skip{position:absolute;left:20px;top:-80px;background:var(--paper);padding:10px;z-index:99}.skip:focus{top:12px}.arrow{font-size:24px;line-height:1}.btn{display:inline-flex;gap:30px;align-items:center;justify-content:space-between;min-height:55px;border:1.5px solid var(--ink);padding:14px 23px;font-weight:700;font-size:13px;border-radius:4px;transition:transform .2s,box-shadow .2s,background .2s}.btn:hover{transform:translate(-2px,-3px);box-shadow:4px 4px 0 var(--ink)}.btn-dark{background:var(--ink);color:var(--paper)}.btn-dark:hover{box-shadow:4px 4px 0 rgba(9,27,32,.35)}.btn-light{background:var(--paper)}.btn-clear{background:transparent}.text-link{display:inline-flex;align-items:center;gap:15px;font-size:13px;font-weight:700;border-bottom:1px solid currentColor;padding:6px 0}.section-label{display:flex;align-items:center;gap:15px;margin-bottom:35px}.section-label:before{content:'✳';font-size:24px;line-height:1}
+header{border-bottom:1px solid var(--line);position:relative;z-index:10}.nav{height:92px;display:flex;align-items:center;justify-content:space-between;gap:30px}.brand{display:flex;align-items:center;gap:10px}.brand img{width:42px;height:42px;border:1.5px solid var(--ink);border-radius:50%;object-fit:cover}.brand-word{font-family:var(--display);font-size:28px;letter-spacing:-.04em}.brand small{font-size:9px;letter-spacing:.12em;display:block;line-height:1}.nav-links{display:flex;align-items:center;gap:32px;font-size:12px;font-weight:600}.nav-links a:not(.btn){position:relative}.nav-links a:not(.btn):after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:1px;background:currentColor;transition:width .2s}.nav-links a:hover:after{width:100%}.nav .btn{min-height:42px;padding:9px 17px;font-size:11px;gap:25px}.menu-toggle{display:none;border:1px solid var(--ink);background:transparent;padding:8px 12px;border-radius:3px}
+.hero{min-height:790px;overflow:hidden}.hero-topline{display:flex;justify-content:space-between;align-items:center;padding:26px 0 0}.tiny-status{display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.dot{width:6px;height:6px;background:var(--ink);border-radius:50%}.hero-stage{position:relative;min-height:670px;padding-top:25px}.hero-title{font-size:clamp(145px,25.5vw,360px);line-height:1.02;letter-spacing:-.04em;white-space:nowrap;position:relative;margin-left:-8px;z-index:1}.hero-title span{color:var(--paper)}.hero-bottom{position:relative;z-index:3;margin-top:24px;width:40%}.hero-bottom h2{font-size:29px;font-weight:600;letter-spacing:-.04em;line-height:1.2;margin-bottom:16px}.hero-bottom p{font-size:14px;max-width:340px;line-height:1.8}.hero-actions{display:flex;align-items:center;gap:25px;margin-top:26px}.hero-actions .text-link{font-size:11px;white-space:nowrap}.hero-note{font-size:9px;opacity:.7;margin-top:14px;letter-spacing:.025em}.character{position:absolute;width:660px;height:660px;right:-56px;bottom:-32px;z-index:2;pointer-events:none}.character svg{width:100%;height:100%;overflow:visible}.wave-arm{transform-origin:575px 255px;animation:wave 5.8s ease-in-out infinite;will-change:transform}@keyframes wave{0%,12%,52%,100%{transform:rotate(0deg)}22%,40%{transform:rotate(10deg)}31%,47%{transform:rotate(-7deg)}}.character.paused .wave-arm{animation-play-state:paused}.speech{position:absolute;right:5%;top:49%;z-index:3;background:var(--paper);border:2px solid var(--ink);border-radius:50%;padding:13px 25px;transform:rotate(9deg);font-size:17px;font-weight:700}.speech:after{content:'';position:absolute;bottom:-12px;left:21px;border-width:12px 12px 0 0;border-style:solid;border-color:var(--ink) transparent transparent transparent;transform:rotate(12deg)}.hero-sticker{position:absolute;z-index:4;right:13px;top:13px;width:126px;height:126px;display:grid;place-content:center;background:var(--yellow);clip-path:polygon(50% 0%,59% 9%,71% 4%,76% 17%,90% 16%,89% 31%,100% 38%,93% 50%,100% 62%,88% 70%,90% 84%,75% 84%,70% 97%,59% 91%,50% 100%,40% 91%,27% 97%,24% 83%,10% 84%,12% 70%,0% 61%,8% 50%,0% 38%,12% 29%,10% 16%,25% 17%,29% 4%,41% 9%);text-align:center;transform:rotate(13deg);font-size:10px;font-weight:700;line-height:1.4}.hero-sticker strong{font-family:var(--display);font-size:39px;line-height:1.1;font-weight:400}.scribble{position:absolute;right:30%;bottom:30px;z-index:3;transform:rotate(-10deg);font-size:12px;font-style:italic}.hero-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:17px 0;font-size:9px;text-transform:uppercase;letter-spacing:.15em}.motion-button{border:0;background:none;display:flex;gap:7px;align-items:center;font-size:9px;letter-spacing:.08em;padding:4px}
+.marquee{overflow:hidden;background:var(--ink);color:var(--paper);padding:18px 0;transform:rotate(-1.2deg);width:100%;position:relative;z-index:4}.marquee-track{display:flex;gap:48px;width:max-content;animation:marquee 35s linear infinite;will-change:transform}.marquee-group{display:flex;gap:48px;align-items:center;font-family:var(--display);font-size:30px;line-height:1.2;white-space:nowrap}.marquee-group i{font-style:normal;color:var(--blue);font-size:35px}@keyframes marquee{to{transform:translateX(-50%)}}body.motion-off .marquee-track,body.motion-off .wave-arm{animation-play-state:paused}
+.world{padding:110px 0 105px;background:var(--paper);margin-top:-13px}.world-layout{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}.world h2{font-size:clamp(50px,6.6vw,92px)}.blue-text{color:#0088b0}.world-copy{margin:26px 0 25px;font-size:14px;line-height:1.9;max-width:420px}.world-copy strong{font-weight:700}.art-wall{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center}.art-card{width:300px;transform:rotate(-6deg);background:var(--blue);padding:20px 20px 17px;border:1.5px solid var(--ink);box-shadow:8px 8px 0 rgba(9,27,32,.12);position:relative}.art-card:before{content:'';position:absolute;left:90px;top:-15px;width:100px;height:30px;background:rgba(230,218,175,.7);transform:rotate(3deg);border-left:2px dashed rgba(9,27,32,.08);border-right:2px dashed rgba(9,27,32,.08)}.art-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;mix-blend-mode:multiply}.art-card figcaption{display:flex;justify-content:space-between;padding-top:15px;font-size:10px}.art-label{position:absolute;right:-6px;bottom:8px;background:var(--yellow);border:1.5px solid var(--ink);padding:18px 22px;transform:rotate(7deg);font-size:22px;font-family:var(--display);line-height:1.1;box-shadow:4px 4px 0 var(--ink)}.asterisk{position:absolute;right:10px;top:20px;font-size:100px;font-family:Arial;line-height:1;transform:rotate(8deg)}.wall-caption{position:absolute;left:10px;bottom:-20px;font-size:12px;font-style:italic;transform:rotate(-4deg)}.source-links{display:flex;gap:22px;flex-wrap:wrap}.source-links a{font-size:11px}.world-meta{margin-top:55px;padding-top:25px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:25px}.world-meta span{font-family:var(--display);font-size:24px;display:block;margin-bottom:4px}.world-meta p{font-size:11px;opacity:.75;line-height:1.7}
+.numbers{padding:90px 0 95px}.section-header{display:flex;align-items:end;justify-content:space-between;gap:35px;margin-bottom:40px}.section-header h2{font-size:clamp(45px,6vw,82px)}.section-header p{font-size:13px;max-width:280px;padding-bottom:5px}.token-grid{display:grid;grid-template-columns:1.25fr 1fr .9fr;border:1.5px solid var(--ink);border-radius:5px;overflow:hidden}.token-card{padding:32px;min-height:270px;position:relative}.token-card+.token-card{border-left:1.5px solid var(--ink)}.token-card .num{font-family:var(--display);font-size:100px;line-height:1;margin:25px 0 18px;letter-spacing:-.03em}.token-card p{font-size:12px}.token-card.supply{background:var(--paper)}.token-card.fee{background:var(--yellow)}.token-card.chain{background:var(--ink);color:var(--paper)}.token-card.chain .num{font-size:75px;margin-top:40px;margin-bottom:25px}.token-card .corner{position:absolute;right:25px;top:24px;font-size:26px}.numbers-note{font-size:10px;max-width:850px;line-height:1.8;margin-top:22px;opacity:.8}.contract-bar{margin-top:35px;padding:17px 20px;border:1px dashed var(--ink);border-radius:4px;display:flex;align-items:center;gap:20px;justify-content:space-between}.contract-detail{display:flex;gap:20px;align-items:center;min-width:0}.contract-detail code{font-size:12px;overflow-wrap:anywhere}.contract-bar button{font-size:11px;background:none;border:0;border-bottom:1px solid var(--ink);padding:5px 0;white-space:nowrap}.contract-bar .eyebrow{white-space:nowrap;font-size:9px}
+.how{background:var(--ink);color:var(--paper);padding:85px 0 95px}.how .section-label:before{color:var(--blue)}.how .section-header p{opacity:.7}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin:50px 0 40px}.step{border-top:1px solid rgba(244,240,223,.25);padding-top:25px}.step-index{font-size:11px;letter-spacing:.15em;color:var(--blue)}.step h3{font-size:25px;letter-spacing:-.04em;line-height:1.2;margin:25px 0 12px}.step p{font-size:12px;line-height:1.9;opacity:.7;max-width:270px}.how-bottom{display:flex;align-items:center;gap:25px}.how-bottom p{font-size:10px;opacity:.6;max-width:350px}.how .btn{background:var(--blue);color:var(--ink);border-color:var(--blue)}.how .btn:hover{box-shadow:4px 4px 0 var(--paper)}
+.faq{padding:85px 0;background:var(--paper)}.faq-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:100px}.faq h2{font-size:65px}.faq-intro p{font-size:12px;max-width:230px;margin-top:20px;opacity:.7}.faq details{border-top:1px solid var(--line)}.faq details:last-child{border-bottom:1px solid var(--line)}.faq summary{padding:22px 35px 22px 0;font-size:14px;font-weight:600;cursor:pointer;list-style:none;position:relative}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:'+';position:absolute;right:3px;font-size:23px;top:16px;font-weight:400}.faq details[open] summary:after{content:'−'}.faq details p{font-size:12px;line-height:1.9;padding:0 30px 24px 0;opacity:.8}.faq details a{text-decoration:underline;text-underline-offset:3px}
+.final-cta{padding:80px 0 70px;overflow:hidden;text-align:center}.final-cta .eyebrow{margin-bottom:23px}.final-cta h2{font-size:clamp(65px,10.5vw,145px)}.final-cta h2 span{color:var(--paper)}.final-cta p{font-size:14px;margin:25px auto}.final-cta .btn{min-width:190px}.footer{padding:25px 0 0}.footer-top{border-top:1px solid var(--line);padding:25px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-links{display:flex;gap:25px;font-size:11px;flex-wrap:wrap}.footer-bottom{display:flex;justify-content:space-between;gap:50px;font-size:9px;opacity:.7}.footer-bottom p{max-width:790px;line-height:1.8}.footer-bottom span{white-space:nowrap}.reveal{opacity:1}.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}.js .reveal.visible{opacity:1;transform:translateY(0)}
+dialog{width:min(520px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding:38px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:6px;box-shadow:9px 9px 0 var(--ink)}dialog::backdrop{background:rgba(4,23,29,.7);backdrop-filter:blur(6px)}.dialog-close{position:absolute;right:15px;top:10px;border:0;background:none;font-size:25px;padding:4px 10px}.dialog-title{font-size:52px;margin:20px 0}.dialog-copy{font-size:13px;line-height:1.8}.launch-status{background:rgba(3,175,213,.12);padding:17px;margin:24px 0;border:1px solid var(--line);font-size:12px}.launch-status strong{display:block;margin-bottom:5px}.dialog-contract{overflow-wrap:anywhere;display:block;font-size:11px;margin-top:10px}.dialog-actions{display:flex;gap:12px;flex-wrap:wrap}.dialog-actions .btn{font-size:12px}.risk-note{font-size:10px;opacity:.7;line-height:1.8;margin-top:22px}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--paper);padding:12px 23px;border-radius:4px;font-size:12px;opacity:0;pointer-events:none;z-index:100;transition:opacity .2s,transform .2s}.toast.show{opacity:1;transform:translate(-50%,0)}[hidden]{display:none!important}
+@media(min-width:1550px){.hero-title{font-size:360px}.character{right:0;width:700px;height:700px}.hero-stage{min-height:710px}}
+@media(max-width:1100px){.wrap{width:calc(100% - 64px)}.nav-links{gap:23px}.hero{min-height:710px}.hero-stage{min-height:610px}.hero-title{font-size:25vw}.character{width:570px;height:570px;right:-100px;bottom:-15px}.hero-bottom{width:47%;margin-top:35px}.hero-bottom h2{font-size:25px}.speech{right:0;top:42%}.hero-sticker{width:105px;height:105px;right:0;top:10px}.hero-sticker strong{font-size:32px}.scribble{right:22%}.world-layout{gap:40px}.art-card{width:260px}.art-label{right:-5px;font-size:20px}.world-meta{gap:20px}.token-card{padding:24px}.token-card .num{font-size:85px}.faq-layout{gap:50px}.hero-actions{gap:15px}.hero-actions .btn{gap:15px}}
+@media(max-width:760px){.wrap{width:calc(100% - 40px)}.nav{height:74px}.brand img{width:34px;height:34px}.brand-word{font-size:24px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:73px;left:0;right:0;background:var(--paper);border-bottom:2px solid var(--ink);padding:25px;flex-direction:column;align-items:stretch;gap:22px}.nav-links.open{display:flex}.nav-links .btn{justify-content:center}.hero{min-height:0}.hero-topline{padding-top:20px}.hero-topline .eyebrow{font-size:8px;letter-spacing:.1em}.tiny-status{font-size:8px;letter-spacing:.03em}.hero-stage{min-height:730px;padding-top:23px}.hero-title{font-size:26.3vw;margin-left:-3px}.hero-bottom{margin-top:330px;width:100%;padding-bottom:25px}.hero-bottom h2{font-size:27px}.hero-bottom p{max-width:420px;font-size:13px}.hero-actions{gap:25px}.hero-actions .btn{gap:40px}.character{width:410px;height:410px;right:calc(50% - 205px);top:73px;bottom:auto}.speech{top:220px;right:7px;font-size:14px;padding:10px 17px}.hero-sticker{top:142px;left:0;right:auto;width:100px;height:100px}.scribble{top:382px;left:0;right:auto;bottom:auto;font-size:10px}.hero-foot{font-size:8px}.marquee-group{font-size:24px}.marquee{padding:13px 0}.world{padding:75px 0 60px}.world-layout{grid-template-columns:1fr;gap:35px}.world h2{font-size:59px}.section-label{margin-bottom:25px}.world-copy{font-size:13px;max-width:100%}.art-wall{min-height:360px;width:min(380px,100%);margin:0 auto 30px}.art-card{width:250px}.asterisk{font-size:80px;right:8px}.art-label{right:0;bottom:0}.world-meta{grid-template-columns:1fr;gap:20px;margin-top:25px}.world-meta>div{display:grid;grid-template-columns:120px 1fr;gap:20px}.world-meta span{font-size:21px}.numbers{padding:60px 0}.section-header{display:block;margin-bottom:30px}.section-header h2{font-size:52px}.section-header p{margin-top:20px;max-width:330px;font-size:12px}.token-grid{grid-template-columns:1fr}.token-card{min-height:215px;padding:25px}.token-card+.token-card{border-left:0;border-top:1.5px solid var(--ink)}.token-card .num{margin:15px 0 10px;font-size:90px}.token-card.chain .num{margin:20px 0;font-size:70px}.contract-bar{align-items:flex-start;padding:17px;gap:10px}.contract-detail{flex-direction:column;align-items:flex-start;gap:6px}.contract-detail code{font-size:10px}.contract-bar button{font-size:10px}.how{padding:60px 0}.steps{grid-template-columns:1fr;gap:28px;margin:35px 0}.step{position:relative;padding:20px 0 0 43px}.step-index{position:absolute;left:0;top:25px}.step h3{margin:0 0 10px;font-size:23px}.step p{max-width:none}.how-bottom{align-items:flex-start;flex-direction:column;gap:20px}.faq{padding:60px 0}.faq-layout{grid-template-columns:1fr;gap:35px}.faq h2{font-size:55px}.faq-intro p{max-width:none}.faq summary{font-size:13px}.final-cta{padding:60px 0}.final-cta h2{font-size:15vw}.final-cta p{font-size:12px}.footer-top{align-items:flex-start}.footer-links{max-width:170px;gap:12px 20px}.footer-bottom{flex-direction:column;gap:20px}.dialog-title{font-size:44px}dialog{padding:30px 25px}.motion-button{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="motion.css">
+<link rel="stylesheet" href="character.css">
+
+<link rel="stylesheet" href="idle.css">
+<link rel="stylesheet" href="water.css">
+<link rel="stylesheet" href="wake.css">
+<link rel="stylesheet" href="experience.css">
+<link rel="stylesheet" href="sticker-stories.css">
+<link rel="stylesheet" href="sticker-desk.css">
+<link rel="stylesheet" href="light-room.css?v=0.4.4">
+<script src="asset-cache.js" defer></script>
+<script src="light-room.js?v=0.4.4" defer></script>
+<link rel="stylesheet" href="redo-room.css">
+<link rel="stylesheet" href="community.css">
+<script src="lottie-loader.js" defer></script>
+<script src="redo-room.js" defer></script>
+<script src="sticker-desk.js" defer></script>
+<script src="water.js" defer></script>
+<script src="wake.js" defer></script>
+<script src="idle.js" defer></script>
+<link rel="preload" as="image" href="assets/egor-seated.webp" media="(max-width: 760px)" fetchpriority="high">
+<link rel="stylesheet" href="welcome.css?v=0.4.31">
+<link rel="stylesheet" href="scenes.css?v=0.4.6">
+<link rel="stylesheet" href="market.css?v=0.4.9">
+<link rel="stylesheet" href="release.css?v=0.4.3">
+<script src="evidence.js?v=0.4.3" defer></script>
+<script src="welcome.js?v=0.4.6" defer></script>
+<script src="motion.js" defer></script>
+<script src="character.js" defer></script>
+<script src="studio.js" defer></script>
+<link rel="stylesheet" href="roadmap.css?v=0.4.5">
+<script src="roadmap.js?v=0.4.5" defer></script>
+<link rel="stylesheet" href="room-reading.css">
+<script src="room-reading.js" defer></script>
+<script src="vercel-monitoring.js" defer></script>
+<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16 32x32 48x48 64x64">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="144x144">
+<link rel="apple-touch-icon" href="/assets/icons/egor-180.png" sizes="180x180">
+<link rel="stylesheet" href="navigation.css?v=0.4.32">
+<link rel="stylesheet" href="entry-door.css">
+<script src="entry-door.js" defer></script>
+<script src="themes.js"></script>
+<link rel="stylesheet" href="themes.css">
+<link rel="stylesheet" href="site-directory.css">
+<script defer src="site-directory.js"></script>
+</head>
+<body>
+<div class="intro" id="intro" aria-label="Welcome to EGOR World">
+ <div class="intro-doodle"><img src="assets/portrait.webp" alt="" width="56" height="56"></div>
+ <div class="intro-center"><div class="intro-title">OH, <span>HI</span></div><p class="intro-caption">A few lines, a whole little world</p></div>
+ <button class="intro-skip" id="intro-skip" aria-label="Dismiss greeting">×</button>
+</div>
+<div class="scroll-progress" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="paper"><nav class="nav wrap" aria-label="Main navigation">
+<a class="brand" href="#" aria-label="EGOR home"><img src="assets/portrait.webp" alt="" width="42" height="42"><div><span class="brand-word">$EGOR</span><small>A LITTLE DIFFERENT</small></div></a>
+<button class="menu-toggle" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">＋</span></button>
+<div class="nav-links" id="nav-links"><a href="#light-room">Play</a><a href="portrait-studio.html">Create</a><a href="#community">Community</a><details class="world-explore"><summary>Explore the world <span aria-hidden="true">＋</span></summary><div class="explore-panel"><div><h2>Play &amp; create</h2><a href="#light-room">EGOR’s room <small>Drop in and explore</small></a><a href="#idea-workshop">Idea workshop <small>Watch a drawing grow</small></a><a href="#sticker-desk">Sticker desk <small>Find your next reaction</small></a><a href="#play">Drawing board <small>Make something yours</small></a><a href="portrait-studio.html">Portrait studio <small>Create a paper portrait</small></a></div><div><h2>Meet the world</h2><a href="#world">EGOR’s story</a><a href="#redo">REDO room</a><a href="egor-zhgun.html">Art &amp; attribution</a><a href="#community">Community</a><a href="#roadmap">Roadmap</a></div><div><h2>Project information</h2><a href="#faq">Questions &amp; answers</a><a href="#evidence">Release notes</a><a href="#token">Token details <small>Financial information · not for children</small></a><a href="market.html">Market data</a><a href="trading-desk.html">Trading desk <small>Demo only · synthetic data</small></a></div></div></details></div>
+</nav></header>
+<main id="main" tabindex="-1">
+<section class="hero welcome paper" aria-labelledby="hero-heading" data-water-static><div class="wrap">
+ <div class="welcome-grid">
+  <div class="welcome-copy"><p class="eyebrow">EGOR World / A little different</p><div class="welcome-headline"><div class="welcome-character"><img class="welcome-friend" src="assets/egor-seated.webp" alt="Egor sitting on a chair, one hand raised in greeting" width="640" height="640" fetchpriority="high" loading="eager"></div><h1 id="hero-heading">Meet Egor.<br> <span>Your little blue escape.</span></h1></div><p class="welcome-intro">Play with art, explore animated stickers, or create a portrait. An independent community tribute to Egor Zhgun.</p><div class="welcome-actions"><a class="btn btn-dark" href="#world">Explore the world <span aria-hidden="true">↓</span></a><a class="btn btn-light" href="portrait-studio.html">Create a portrait <span aria-hidden="true">↗</span></a></div><p class="welcome-note">No sign-up or purchase needed</p><nav class="explore-paths" aria-label="Choose something to try"><a href="#light-room">Play in the room</a><a href="#sticker-desk">Browse stickers</a><a href="#play">Draw a doodle</a></nav><div class="hero-socials" aria-label="EGOR community links"><a href="https://t.me/egorverseportal" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a><a href="https://x.com/egorverse" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></div></div>
+  <div class="hero-play"><p class="eyebrow">EGOR’s room / Stay a while</p>
+<section class="light-room" id="light-room" aria-labelledby="light-heading" data-lit="true" data-time="morning" data-water-static>
+ <h2 id="light-heading" class="sr-only">Egor’s interactive room: change the light and explore the objects</h2>
+ <div class="room-times" role="group" aria-label="Choose the room light">
+  <button type="button" data-room-time="morning" aria-pressed="true" aria-controls="light-stage" disabled>Morning</button>
+  <button type="button" data-room-time="day" aria-pressed="false" aria-controls="light-stage" disabled>Day</button>
+  <button type="button" data-room-time="sunset" aria-pressed="false" aria-controls="light-stage" disabled>Sunset</button>
+  <button type="button" data-room-time="night" aria-pressed="false" aria-controls="light-stage" disabled>Night</button>
+ </div>
+ <div class="light-stage" id="light-stage">
+  <div class="room-window" aria-hidden="true"><span class="room-sun"></span><span class="room-cloud"></span><span class="room-stars">✧ · ✦<br> · ✧</span><i></i></div>
+  <div class="room-daylight" aria-hidden="true"></div>
+  <div class="room-rug" aria-hidden="true"></div>
+  <svg class="room-rocker" viewBox="80 0 240 375" role="img" aria-labelledby="rocker-title rocker-desc">
+   <title id="rocker-title">EGOR, off the clock</title><desc id="rocker-desc">EGOR rests in a wooden rocking chair, comfortably below the window.</desc>
+   <g class="rocker-assembly">
+    <g fill="none" stroke="#688a91" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+     <path d="M101 158 119 252 217 252M108 193l93 6M121 199l10 51M194 202l8 48"/>
+     <path d="m132 254-9 85m79-85 37 84m-108-51h85"/>
+     <path d="M94 329Q175 369 275 328" stroke-width="7"/>
+    </g>
+    <image class="rocker-head" href="assets/egor-rocker-head.webp" x="108" y="20" width="85" height="96"/>
+    <g class="rocker-body" fill="none" stroke="currentColor" stroke-width="4.8" stroke-linecap="round" stroke-linejoin="round">
+     <path d="m149 108 1 24m-25 3 49-1 14 103q-28 9-56-2Z" fill="var(--room-wall)"/>
+     <path d="M127 141q-20 28-10 57 8 18 42 13m16-69q9 31 25 47l27-18"/>
+     <path d="M139 236q42-12 70-5l27 61q17 0 23 9-17 6-27-3l-29-47-28-3m-39-11q9 16 45 15l43 65q30-1 37 10-19 10-35-4"/>
+    </g>
+    <path d="m110 216 61 4" fill="none" stroke="#688a91" stroke-width="5" stroke-linecap="round"/>
+   </g>
+  </svg>
+  <span class="room-time-note" id="light-time-note">Coffee first, everything else later</span>
+  <svg class="light-drawing" id="light-drawing" viewBox="0 0 420 420" preserveAspectRatio="none" aria-hidden="true">
+   <path class="light-floor" id="light-floor" d="M18 390H402"/>
+    <path class="light-desk" id="light-desk" d="M248 371H403M256 371v19M395 371v19"/>
+   <path class="light-cord" id="light-cord" d="M319 6L319 262"/>
+   <g id="light-anchor" transform="translate(319 0)"><path d="M-12 2H12M-6 6H6" fill="none" stroke="currentColor" stroke-width="2"/></g>
+   <g class="light-toy" data-toy="0" transform="translate(277 350)"><path d="M-14-12H10V7q0 9-12 9t-12-9Z" fill="#f4edda"/><path d="M10-8q13-2 12 7T10 8" fill="none"/><path d="M-8-3h12" stroke="#087d97"/><ellipse cx="-2" cy="-12" rx="12" ry="3" fill="#82654e"/></g>
+   <g class="light-toy" data-toy="1" transform="translate(370 350)"><path d="m-16-19 30 3-2 33-29-3Z" fill="#80afbb"/><path d="m-12-17-2 30m7-22 13 1m-14 5 10 1" fill="none"/><path d="m-17 14 29 3-2 5-28-3Z" fill="#f4edda"/></g>
+   <g class="light-toy" data-toy="2" transform="translate(319 376)"><path d="m-12-6 6-8 13 2 7 11-6 11-13 2-10-7Z" fill="#eadcba"/><path d="m-6-14 4 11-10-3M-2-3l10 13M-2-3 7-12M-2-3l-3 15" fill="none" opacity=".4"/></g>
+  </svg>
+  <button class="light-bulb" id="light-bulb" type="button" disabled aria-label="Lamp light" aria-pressed="true" aria-describedby="light-help">
+   <svg viewBox="0 0 64 84" aria-hidden="true">
+    <defs><linearGradient id="light-metal" x2="1" y2="0"><stop stop-color="#6b7069"/><stop offset=".5" stop-color="#d8d2bc"/><stop offset="1" stop-color="#74766c"/></linearGradient></defs>
+    <path d="M29 11V7q3-6 6 0v4" fill="#777d72" stroke="#4c5651"/>
+    <path d="M26 12q6-3 12 0l2 19H24Z" fill="url(#light-metal)" stroke="#5c665f" stroke-width="1.2"/>
+    <path d="m25 16 14-2m-14 7 14-2m-14 7 14-2m-14 6 14-2" stroke="#6f756a" fill="none"/>
+    <path class="light-glass" d="M26 31h12c-2 15 1 18 6 26 8 16-1 24-12 24S12 73 20 57c5-8 8-11 6-26Z"/>
+    <path d="M26 59q-9 15 0 17" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+    <path class="light-filament" d="M29 34 27 64l3-4 2 5 2-5 3 4-2-30"/>
+   </svg>
+  </button>
+  <p class="light-scene-note" id="light-help">Drag the lamp · Give the desk a little nudge</p>
+ </div>
+ <div class="light-toolbar"><div class="light-tools">
+  <button type="button" id="light-nudge" disabled aria-label="Nudge the lamp">Nudge ↗</button>
+  <button type="button" id="light-reel" disabled aria-label="Change the cord length">Cord ↓</button>
+  <button type="button" id="light-sound" aria-pressed="false" disabled>Sound off</button>
+  <button type="button" id="light-pause" aria-pressed="false" disabled>Pause</button>
+ </div><p class="light-status" id="light-status" role="status">Tap the bulb to switch · Arrow keys move it</p></div>
+ <noscript><p class="light-static-note">A quiet morning view · Enable JavaScript to play</p></noscript>
+</section>
+  </div>
+ </div>
+ <div class="welcome-foot"><span>A community tribute, not an official artist project · <a href="release.json" class="release-tag">v0.4.9</a></span><button class="motion-button" id="motion-toggle" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="motion-label">Pause motion</span></button></div>
+</div></section>
+<section class="entry-door-section" id="neighborhood-entry" lang="en" dir="ltr" aria-labelledby="entry-door-title" data-water-static>
+ <div class="entry-door-copy">
+  <p class="eyebrow">One knock. A new beginning.</p>
+  <h2 id="entry-door-title">Behind this door,<br>your story begins.</h2>
+  <p>A quiet room, a neighborhood to explore, and a garage to make your own. Knock on the door. There’s room for you here, too.</p>
+  <span class="entry-door-note">Local preview · Progress saved in this browser · No account or wallet required</span>
+ </div>
+ <div class="entry-door-stage">
+  <span class="entry-door-address" dir="ltr" aria-hidden="true">01 / EGOR WORLD</span>
+  <a class="entry-door" id="entry-door" href="/play/" aria-label="Knock and enter EGOR World" aria-describedby="entry-door-status">
+   <span class="entry-door-interior" aria-hidden="true"><span class="entry-door-welcome">Welcome<br>home.</span></span>
+   <span class="entry-door-leaf" aria-hidden="true"><span class="entry-door-number" dir="ltr">01</span><span class="entry-door-panel"></span><span class="entry-door-knocker"></span><span class="entry-door-handle"></span><span class="entry-door-mail" dir="ltr">EGOR</span></span>
+   <span class="entry-door-step" aria-hidden="true"></span>
+  </a>
+  <p id="entry-door-status" class="entry-door-status" role="status" aria-live="polite">Knock to enter ↑</p>
+  <span class="entry-door-hint">Tap the door, or use Tab to focus it and press Enter.</span>
+ </div>
+</section>
+<section class="idea-workshop paper" id="idea-workshop" aria-labelledby="idea-title" data-idea="voyage" data-water-static>
+ <div class="wrap idea-layout">
+  <div class="idea-copy"><p class="eyebrow">The little idea desk / Make a mark</p><h2 id="idea-title">One little line.<br><span>Somewhere new.</span></h2><p>A blank page, a familiar face, and three small possibilities. Pick a thought. Watch it take shape.</p>
+   <div class="idea-choices" role="group" aria-label="Choose a little drawing">
+    <button type="button" data-idea-choice="voyage" aria-pressed="true" aria-controls="idea-art" disabled><span aria-hidden="true">01</span> A little voyage</button>
+    <button type="button" data-idea-choice="grow" aria-pressed="false" aria-controls="idea-art" disabled><span aria-hidden="true">02</span> Something growing</button>
+    <button type="button" data-idea-choice="orbit" aria-pressed="false" aria-controls="idea-art" disabled><span aria-hidden="true">03</span> A tiny universe</button>
+   </div>
+   <a class="text-link" href="#play">Now make something of your own ↓</a>
+  </div>
+  <div class="idea-desk">
+   <div class="idea-desk-label"><span>EGOR / FIELD NOTES</span><span id="idea-number">NO. 01</span></div>
+   <svg class="idea-scene" viewBox="0 0 640 470" role="img" aria-labelledby="idea-art-title idea-art-desc">
+    <title id="idea-art-title">The little idea desk</title><desc id="idea-art-desc">EGOR stands beside a drawing of a paper boat on a cobalt-blue worktable.</desc>
+    <ellipse cx="179" cy="417" rx="100" ry="10" fill="#0b244d" opacity=".22"/>
+    <path d="M48 419Q310 410 591 421" fill="none" stroke="#dbe8ec" opacity=".4" stroke-width="2"/>
+    <image class="idea-egor" href="assets/egor-guide.webp" x="-24" y="119" width="320" height="320"/>
+    <g transform="rotate(-4 398 226)">
+     <path d="M267 85 548 85 548 359 267 359Z" fill="#132f61" opacity=".32" transform="translate(9 12)"/>
+     <path d="M267 85 548 85 548 359 267 359Z" fill="#f7f1df"/>
+     <path d="M383 75 439 76 437 96 385 94Z" fill="#b7cccf" opacity=".9"/>
+     <path d="M289 115h58M289 329h72" stroke="#a7b2a9" stroke-width="2"/>
+     <g id="idea-art" fill="none" stroke="#2457a6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <g data-idea-art="voyage"><path pathLength="1" d="m321 238 174-2-35 39-107-1Zm29-3 48-73 4 74m0-74 71 73M323 290q21-10 43 0t43 0 43 0 43 0"/><path pathLength="1" d="M457 165h17m-8-9v18M316 195h12" opacity=".55"/></g>
+      <g data-idea-art="grow" hidden><path pathLength="1" d="m367 243 84 1-12 57h-58ZM407 243v-73m0 52q-59 5-54-43 53-2 54 43Zm1-24q54 5 55-43-55-1-55 43ZM359 302h99"/><path pathLength="1" d="m329 155 5 13m-19 5 14 4m143 43 12-6" opacity=".55"/></g>
+      <g data-idea-art="orbit" hidden><path pathLength="1" d="M446 223a40 40 0 1 1-80 0 40 40 0 1 1 80 0Zm-77 17q-53 32-44 3t73-47 87-15-47 53-69 6"/><path pathLength="1" d="m347 160 1-12m-7 6h13m124 115v16m-8-8h16m-100 23 1 5m80-153 1 6" opacity=".7"/></g>
+     </g>
+    </g>
+    <g transform="rotate(24 545 367)"><path d="M539 296h12v110l-6 18-6-18Z" fill="#efc173" stroke="#183b64" stroke-width="2"/><path d="m539 406 12 0-6 18Z" fill="#f4ebd3"/><path d="m543 418 2 6 2-6" fill="#183b64"/><path d="M545 306v92" stroke="#c68b45" stroke-width="2"/></g>
+    <text x="291" y="402" fill="#dce6ee" font-size="11" letter-spacing="2">SMALL IDEAS WELCOME.</text>
+   </svg>
+   <div class="idea-desk-footer"><p id="idea-status" role="status">A little voyage. Every adventure starts somewhere.</p><button id="idea-replay" type="button" disabled aria-controls="idea-art">Draw again ↻</button></div>
+   <noscript><p class="idea-fallback">A small drawing, just for you. Enable JavaScript to explore all three ideas.</p></noscript>
+  </div>
+ </div>
+</section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><div class="marquee-group"><span>SMALL LINES, BIG PERSONALITY</span><i>✳</i><span>LONG LIVE THE DOODLE</span><i>✳</i><span>ART AT HEART</span><i>✳</i><span>STAY A LITTLE WEIRD</span><i>✳</i></div><div class="marquee-group"><span>SMALL LINES, BIG PERSONALITY</span><i>✳</i><span>LONG LIVE THE DOODLE</span><i>✳</i><span>ART AT HEART</span><i>✳</i><span>STAY A LITTLE WEIRD</span><i>✳</i></div></div></div>
+<section class="world paper" id="world"><div class="wrap">
+<div class="world-layout"><div class="reveal"><div class="section-label eyebrow">01 / Behind the lines</div><h2 class="display">THE INTERNET<br>NEEDS MORE<br><span class="blue-text">CHARACTER</span></h2><p class="world-copy">Egor Zhgun turns simple shapes into ideas that stick. From visual satire and animated stories to expressive stickers, his work makes a little go a long way.<br><br><strong>EGOR World is an independent community tribute.</strong> Explore the room, find a sticker that fits your mood, or make something of your own. Artist credits describe the work — they do not imply a partnership or endorsement.</p><div class="source-links"><a class="text-link" href="egor-zhgun.html">Egor Zhgun: artist &amp; sticker credits ↗</a><a class="text-link" href="https://www.behance.net/egorzhgun" target="_blank" rel="noopener noreferrer">Explore Egor’s work ↗</a><a class="text-link" href="https://www.artlebedev.com/zhgun/" target="_blank" rel="noopener noreferrer">Artist profile ↗</a></div></div>
+<div class="art-wall reveal"><span class="asterisk" aria-hidden="true">✳</span><figure class="art-card paper"><span class="pose-edition eyebrow">THE EGOR MOOD BOARD</span><div class="pose-stage"><img id="mood-image" src="assets/egor-seated.webp" alt="Egor sitting on a little stool, taking a well-earned break" width="640" height="640" loading="lazy" decoding="async"></div><figcaption><span id="mood-caption" aria-live="polite">FIG 01 / OFF DUTY</span><span aria-hidden="true">☺</span></figcaption></figure><div class="art-label">SAME EGOR<br>DIFFERENT ENERGY</div><span class="wall-caption">a whole personality in a few lines</span></div></div>
+<div class="mood-desk reveal"><div><span class="eyebrow">EGOR, OFF THE CLOCK</span><p>Some days we build. Some days we just sit. Both belong here.</p></div><div class="mood-buttons" role="group" aria-label="Choose Egor’s pose" hidden><button type="button" data-mood="seated" aria-pressed="true" aria-controls="mood-image">Off duty <span aria-hidden="true">↙</span></button><button type="button" data-mood="confident" aria-pressed="false" aria-controls="mood-image">On brand <span aria-hidden="true">✳</span></button><button type="button" data-mood="guide" aria-pressed="false" aria-controls="mood-image">Good company <span aria-hidden="true">↗</span></button></div></div>
+<div class="world-meta reveal"><div><span>DRAWN TOGETHER</span><p>A shared appreciation for art, humor,<br>and things with a little soul.</p></div><div><span>MADE TO FEEL</span><p>One small wave says more<br>than a thousand buzzwords.</p></div><div><span>CREATOR IN MIND</span><p>Public reward records.<br>No fixed rate verified here.</p></div></div>
+<aside class="reading-companion wrap" aria-label="A reading companion"><img src="assets/living/read.webp" alt="EGOR in a reading pose" width="180" height="180" loading="lazy"><div><h3>A little time to read.</h3><p>Meet the world behind the drawings. Explore the artist references, community context and sources at your own pace. This companion uses an existing site illustration; it is not a newly commissioned artist work.</p><a class="text-link" href="egor-zhgun.html">About Egor Zhgun and this tribute ↗</a></div></aside>
+<section class="sticker-stories" aria-labelledby="sticker-stories-title">
+ <div class="sticker-heading"><p class="eyebrow">A few lines. A lasting memory.</p><h3 class="display" id="sticker-stories-title">SMALL STICKERS<br><span class="blue-text">BIG FEELINGS</span></h3><p>Sometimes a little duck stays with you. These three Telegram sticker packs offer another way into Egor Zhgun’s creative world.</p></div>
+ <div class="sticker-layout">
+  <figure class="sticker-tribute"><img src="assets/line-memory-tribute.webp" alt="Independent tribute illustration: a seated doodle figure draws a looping line that becomes a yellow duck on cream paper with a blue border" width="1200" height="1200" loading="lazy" decoding="async"><figcaption><strong>A line becomes a memory</strong><span>Independent artwork made for this community tribute. Not a work by Egor Zhgun and not an endorsement.</span></figcaption></figure>
+  <div class="sticker-packs">
+   <article class="sticker-pack"><span class="eyebrow">01 / UtyaDuck</span><h4>Utya</h4><p>A little duck, a whole range of feelings.</p><a href="https://tlgrm.eu/stickers/UtyaDuck" target="_blank" rel="noopener noreferrer">View Utya pack listing <span aria-hidden="true">↗</span><span class="sticker-sr"> (opens in a new tab)</span></a></article>
+   <article class="sticker-pack"><span class="eyebrow">02 / ResistanceDog</span><h4>Resistance Dog</h4><p>A small sticker with a defiant spirit.</p><a href="https://tlgrm.eu/stickers/ResistanceDog" target="_blank" rel="noopener noreferrer">View Resistance Dog pack listing <span aria-hidden="true">↗</span><span class="sticker-sr"> (opens in a new tab)</span></a></article>
+   <article class="sticker-pack"><span class="eyebrow">03 / BabyYoda</span><h4>Baby Yoda</h4><p>A familiar face, made for everyday reactions.</p><a href="https://tlgrm.eu/stickers/BabyYoda" target="_blank" rel="noopener noreferrer">View Baby Yoda pack listing <span aria-hidden="true">↗</span><span class="sticker-sr"> (opens in a new tab)</span></a></article>
+  </div>
+ </div>
+ <div class="sticker-evidence"><strong>A note on the artist credit</strong><p>TLGRM’s indexed search listings credit “Yegor Zhgun” as artist for these specific packs. This is directory evidence, not independent confirmation of every sticker’s authorship; the retrieved Resistance Dog page did not expose its artist credit. These references concern the named sticker packs only, not original character ownership, other versions, or any related token. They do not establish an endorsement of $EGOR.</p></div>
+</section>
+</div></section>
+<section class="sticker-desk" id="sticker-desk" aria-labelledby="sticker-desk-title" data-water-static><div class="wrap">
+ <div class="sticker-desk-heading"><div><p class="eyebrow">The sticker desk / A little feeling goes a long way</p><h2 class="display" id="sticker-desk-title">PICK A MOOD<br><span class="blue-text">MAKE IT MOVE</span></h2></div><p>Eighteen little reactions. Choose a feeling, then press Play once. Nothing here starts without you.</p></div>
+ <div class="sticker-desk-layout">
+  <div class="sticker-player">
+   <div class="sticker-player-top"><span>A feeling, frame by frame</span><span id="sticker-count">01 / 18</span></div>
+   <div class="sticker-stage"><img id="sticker-preview" src="assets/stickers/previews/sticker-01.webp" alt="Yellow duck laughing with tears of joy" width="512" height="512" loading="lazy" decoding="async"><div class="sticker-canvas" role="img" aria-label="Animation of the selected duck reaction"></div></div>
+   <div class="sticker-player-caption"><h3 id="sticker-title">Big laugh</h3><a id="sticker-original" href="assets/stickers/originals/1.tgs" download>Download TGS ↓</a></div>
+   <div class="sticker-controls" hidden><div class="sticker-control-row"><button type="button" id="sticker-play">Play once</button><button type="button" id="sticker-reset">Show still</button></div><p class="sticker-status" id="sticker-status" role="status" aria-live="polite" aria-atomic="true">Nothing plays automatically.</p></div>
+  </div>
+  <div class="sticker-shelf">
+   <div class="sticker-shelf-heading"><h3 id="sticker-shelf-title">Choose your little feeling</h3><span>18 animations, on demand</span></div>
+   <div class="sticker-options" role="group" aria-labelledby="sticker-shelf-title">
+    <button class="sticker-option" type="button" disabled aria-pressed="true" data-sticker="sticker-01" data-source="1.tgs" data-title="Big laugh"><img src="assets/stickers/previews/sticker-01.webp" alt="Yellow duck laughing with tears of joy" width="512" height="512" loading="lazy" decoding="async"><span>Big laugh</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-02" data-source="2.tgs" data-title="With love"><img src="assets/stickers/previews/sticker-02.webp" alt="Yellow duck sending a red heart" width="512" height="512" loading="lazy" decoding="async"><span>With love</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-03" data-source="3.tgs" data-title="Oh, hi"><img src="assets/stickers/previews/sticker-03.webp" alt="Smiling yellow duck with wings raised" width="512" height="512" loading="lazy" decoding="async"><span>Oh, hi</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-04" data-source="4.tgs" data-title="No way"><img src="assets/stickers/previews/sticker-04.webp" alt="Shocked duck holding its cheeks" width="512" height="512" loading="lazy" decoding="async"><span>No way</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-05" data-source="5.tgs" data-title="Feeling good"><img src="assets/stickers/previews/sticker-05.webp" alt="Yellow duck smiling with eyes closed" width="512" height="512" loading="lazy" decoding="async"><span>Feeling good</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-06" data-source="6.tgs" data-title="Rainy day"><img src="assets/stickers/previews/sticker-06.webp" alt="Sad yellow duck crying in the rain" width="512" height="512" loading="lazy" decoding="async"><span>Rainy day</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-07" data-source="7.tgs" data-title="Wait, what"><img src="assets/stickers/previews/sticker-07.webp" alt="Wide-eyed yellow duck with a surprised expression" width="512" height="512" loading="lazy" decoding="async"><span>Wait, what</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-08" data-source="8.tgs" data-title="Not today"><img src="assets/stickers/previews/sticker-08.webp" alt="Angry yellow duck frowning" width="512" height="512" loading="lazy" decoding="async"><span>Not today</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-09" data-source="9.tgs" data-title="Little mischief"><img src="assets/stickers/previews/sticker-09.webp" alt="Purple duck with small horns and a mischievous smile" width="512" height="512" loading="lazy" decoding="async"><span>Mischief</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-10" data-source="10.tgs" data-title="Stay cool"><img src="assets/stickers/previews/sticker-10.webp" alt="Yellow duck wearing dark sunglasses" width="512" height="512" loading="lazy" decoding="async"><span>Stay cool</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-11" data-source="11.tgs" data-title="Whatever"><img src="assets/stickers/previews/sticker-11.webp" alt="Duck with folded wings beneath the word Whatever" width="512" height="512" loading="lazy" decoding="async"><span>Whatever</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-12" data-source="12.tgs" data-title="Tiny giggle"><img src="assets/stickers/previews/sticker-12.webp" alt="Yellow duck covering its beak while giggling" width="512" height="512" loading="lazy" decoding="async"><span>Tiny giggle</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-13" data-source="13.tgs" data-title="Classic"><img src="assets/stickers/previews/sticker-13.webp" alt="Duck holding a cigarette beneath the words Haha, classic" width="512" height="512" loading="lazy" decoding="async"><span>Classic</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-14" data-source="14.tgs" data-title="Tea time"><img src="assets/stickers/previews/sticker-14.webp" alt="Green duck holding a small blue cup" width="512" height="512" loading="lazy" decoding="async"><span>Tea time</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-15" data-source="15.tgs" data-title="Still here"><img src="assets/stickers/previews/sticker-15.webp" alt="Small duck skeleton with large dark eyes" width="512" height="512" loading="lazy" decoding="async"><span>Still here</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-16" data-source="16.tgs" data-title="Goodnight"><img src="assets/stickers/previews/sticker-16.webp" alt="Duck sleeping under a green blanket with a teddy bear" width="512" height="512" loading="lazy" decoding="async"><span>Goodnight</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-17" data-source="17.tgs" data-title="Incognito"><img src="assets/stickers/previews/sticker-17.webp" alt="Duck wearing a wide-brimmed hat and sunglasses" width="512" height="512" loading="lazy" decoding="async"><span>Incognito</span></button>
+    <button class="sticker-option" type="button" disabled aria-pressed="false" data-sticker="sticker-18" data-source="18.tgs" data-title="All heart"><img src="assets/stickers/previews/sticker-18.webp" alt="Yellow duck with a white H on its chest and a red heart nearby" width="512" height="512" loading="lazy" decoding="async"><span>All heart</span></button>
+   </div>
+   <noscript><p class="sticker-desk-note">JavaScript is off. Enjoy the static collection; animated playback needs JavaScript.</p></noscript>
+   <div class="sticker-desk-note"><strong>Supplied stickers, carefully kept</strong><p>These are user-supplied Telegram animations, with the original files preserved. The mood names are labels for this gallery, not official sticker titles. Visual resemblance does not confirm pack membership, authorship, permission to reproduce, or endorsement of $EGOR. <a href="assets/stickers/manifest.json">View the file manifest</a>.</p></div>
+  </div>
+ </div>
+</div></section>
+<section class="redo-room" id="redo" aria-labelledby="redo-heading" data-water-static data-state="still">
+ <div class="wrap">
+  <div class="redo-masthead"><a href="#redo" class="redo-wordmark" aria-label="REDO, the frequency room">REDO<span>THE FREQUENCY ROOM</span></a><span class="redo-edition">EGOR WORLD <span aria-hidden="true">↗</span> INDEPENDENT ART TRIBUTE / 01</span></div>
+  <div class="redo-hero">
+   <div class="redo-editorial">
+    <p class="redo-kicker"><span aria-hidden="true">✳</span> SMALL CHARACTER. OPEN POSSIBILITIES.</p>
+    <h2 class="display" id="redo-heading">FREEDOM,<br>IN EVERY<br><span>FRAME</span></h2>
+    <p class="redo-intro">A voice. A little defiance. A wild imagination.<br>Sometimes a small drawing makes room for all three.</p>
+    <div class="redo-margin-note"><span aria-hidden="true">↳</span><p>Our reading of the supplied imagery.<br>Not a statement of the artist’s intent.</p></div>
+    <a href="#redo-tuner" class="redo-explore">FIND YOUR FREQUENCY <span aria-hidden="true">↓</span></a>
+   </div>
+   <div class="redo-receiver">
+    <div class="redo-hud"><span><i aria-hidden="true"></i> <span id="redo-mode">STILL / YOUR PACE</span></span><span id="redo-channel">CH 07 / 10</span></div>
+    <div class="redo-stage" id="redo-stage">
+     <div class="redo-orbits" aria-hidden="true"><span></span><span></span><span></span><b>✳</b></div>
+     <span class="redo-axis redo-axis-top" aria-hidden="true">IMAGINATION HAS NO EDGE</span>
+     <div class="redo-aperture"><img id="redo-preview" src="assets/redo/previews/redo-24.webp" alt="Hooded dog and a small companion in a blue spacecraft beneath the word GO" width="512" height="512" loading="lazy" decoding="async"><div class="redo-canvas" role="img" aria-label="Selected sticker animation" hidden></div></div>
+     <span class="redo-axis redo-axis-bottom" aria-hidden="true">＋ &nbsp; A SMALL SIGNAL IN A BIG WORLD &nbsp; ＋</span>
+    </div>
+    <div class="redo-caption"><div><span class="redo-label" id="redo-category">IMAGINATION / EDITORIAL LABEL</span><h3 id="redo-title">Open horizons</h3></div><a id="redo-original" href="assets/redo/originals/25.tgs" download aria-label="Download selected original TGS">Download TGS ↓</a></div>
+    <p class="redo-reading" id="redo-reading">For us, a tiny spacecraft becomes an invitation to imagine beyond the familiar.</p>
+    <div class="redo-player-tools" hidden>
+     <div class="redo-actions"><button type="button" id="redo-play" class="redo-primary">Play once <span aria-hidden="true">↗</span></button><button type="button" id="redo-still">Show still</button><button type="button" id="redo-inspect">Explore frames</button></div>
+     <div class="redo-timeline" id="redo-timeline" hidden><label for="redo-frame">FRAME LAB <output id="redo-frame-label" for="redo-frame">01 / 90</output></label><input type="range" id="redo-frame" min="0" max="89" value="0" step="1" aria-label="Explore animation frame by frame"><span>Drag or use arrow keys. Nothing resumes automatically.</span></div>
+     <p id="redo-status" class="redo-status" role="status" aria-live="polite" aria-atomic="true">Nothing plays until you press Play once.</p>
+    </div>
+   </div>
+  </div>
+  <div class="redo-tuner" id="redo-tuner">
+   <div class="redo-tuner-heading"><div><p class="redo-label">TEN SIGNALS / ONE OPEN CHANNEL</p><h3>What does freedom feel like?</h3></div><div class="redo-navigation" hidden><button id="redo-prev" type="button" aria-label="Previous sticker">←</button><span id="redo-position">07 / 10</span><button id="redo-next" type="button" aria-label="Next sticker">→</button></div></div>
+   <div class="redo-dial" hidden><label for="redo-frequency">TUNE THE ROOM <span>Drag the dial or choose a card below</span></label><div class="redo-scale"><input id="redo-frequency" type="range" min="0" max="9" step="1" value="6" aria-label="Choose a sticker channel" aria-valuetext="Channel 7 of 10: Open horizons"></div><div class="redo-scale-labels" aria-hidden="true"><span>01 / VOICE</span><span>05 / CONNECTION</span><span>10 / EXPRESSION</span></div></div>
+   <div class="redo-signals" role="group" aria-label="Choose a REDO sticker">
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-18" data-source="19.tgs" data-title="A little defiance" data-category="Voice" data-reading="A playful refusal. In this room, freedom includes the space to say no."><span class="redo-signal-number">01 / VOICE</span><img src="assets/redo/previews/redo-18.webp" alt="White gloved hand reaching around a red prohibition sign" width="512" height="512" loading="lazy" decoding="async"><span>A little defiance</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-19" data-source="20.tgs" data-title="Call me" data-category="Connection" data-reading="Even behind a mask, there can be a wish to connect. A small hello can open a door."><span class="redo-signal-number">02 / CONNECTION</span><img src="assets/redo/previews/redo-19.webp" alt="Hooded dog in a scream-style mask with the words CALL ME" width="512" height="512" loading="lazy" decoding="async"><span>Call me</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-20" data-source="21.tgs" data-title="Off duty" data-category="Being yourself" data-reading="Not every moment needs to be a statement. We see room here to rest and simply be yourself."><span class="redo-signal-number">03 / BE YOURSELF</span><img src="assets/redo/previews/redo-20.webp" alt="White dog holding a cup beside a waterfall and tropical leaves" width="512" height="512" loading="lazy" decoding="async"><span>Off duty</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-21" data-source="22.tgs" data-title="Stay curious" data-category="Imagination" data-reading="Wonder leaves the world a little less fixed. There is always another way to see it."><span class="redo-signal-number">04 / WONDER</span><img src="assets/redo/previews/redo-21.webp" alt="Wide-eyed hooded dog resting its chin on its paws beneath WOW" width="512" height="512" loading="lazy" decoding="async"><span>Stay curious</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-22" data-source="23.tgs" data-title="Keep in touch" data-category="Connection" data-reading="A paper-plane symbol becomes, in our reading, a reminder that ideas are made to travel."><span class="redo-signal-number">05 / CONNECTION</span><img src="assets/redo/previews/redo-22.webp" alt="Hooded figure facing a glowing turquoise paper-plane symbol" width="512" height="512" loading="lazy" decoding="async"><span>Keep in touch</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-23" data-source="24.tgs" data-title="Unexpected visitor" data-category="Humor" data-reading="A dark costume, a familiar little face. Humor can change the way a moment feels."><span class="redo-signal-number">06 / HUMOR</span><img src="assets/redo/previews/redo-23.webp" alt="Dog in a grim-reaper costume peeking around an open door" width="512" height="512" loading="lazy" decoding="async"><span>Unexpected visitor</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="true" aria-controls="redo-stage" data-redo="redo-24" data-source="25.tgs" data-title="Open horizons" data-category="Imagination" data-reading="For us, a tiny spacecraft becomes an invitation to imagine beyond the familiar."><span class="redo-signal-number">07 / IMAGINATION</span><img src="assets/redo/previews/redo-24.webp" alt="Hooded dog and a small companion in a blue spacecraft beneath the word GO" width="512" height="512" loading="lazy" decoding="async"><span>Open horizons</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-25" data-source="26.tgs" data-title="Larger than life" data-category="Theatricality" data-reading="An oversized prop and a theatrical pose. A reminder of how much character a few lines can hold."><span class="redo-signal-number">08 / THEATER</span><img src="assets/redo/previews/redo-25.webp" alt="Hooded dog with a large cartoon cannon and a small black flag" width="512" height="512" loading="lazy" decoding="async"><span>Larger than life</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-26" data-source="27.tgs" data-title="At the window" data-category="Perspective" data-reading="A window can be a boundary or a new view. We leave the interpretation open."><span class="redo-signal-number">09 / PERSPECTIVE</span><img src="assets/redo/previews/redo-26.webp" alt="Dog in a plague-doctor mask holding a cup at a window" width="512" height="512" loading="lazy" decoding="async"><span>At the window</span></button>
+    <button class="redo-signal" type="button" disabled aria-pressed="false" aria-controls="redo-stage" data-redo="redo-27" data-source="28.tgs" data-title="A voice of your own" data-category="Expression" data-reading="This image carries the words Long live Belarus. Here, we reflect on the freedom to express belonging and hope."><span class="redo-signal-number">10 / EXPRESSION</span><img src="assets/redo/previews/redo-27.webp" alt="Hooded dog with a raised fist beneath a Belarusian slogan meaning Long live Belarus" width="512" height="512" loading="lazy" decoding="async"><span>A voice of your own</span></button>
+   </div>
+<a class="redo-return" href="#redo-stage">Back to selected signal ↑</a>
+   <noscript><p class="redo-status">JavaScript is off. All ten stills remain here; interactive playback and the card maker need JavaScript.</p></noscript>
+  </div>
+  <div class="redo-make" hidden>
+   <div><p class="redo-label">TAKE A LITTLE SIGNAL WITH YOU</p><h3>Your words, your frequency</h3><p>Turn the selected still into a personal signal card.<br>Made in your browser. Never uploaded.</p></div>
+   <div class="redo-card-form"><label for="redo-message">Your message <span>Up to 48 characters</span></label><input id="redo-message" type="text" maxlength="48" value="More room to be yourself." autocomplete="off" spellcheck="true" dir="auto"><div class="redo-card-actions"><button id="redo-palette" type="button" aria-pressed="false">Paper palette</button><button id="redo-save" class="redo-primary" type="button">Save signal card <span aria-hidden="true">↗</span></button></div><p id="redo-save-status" role="status" aria-live="polite">1600 × 1000 PNG · supplied art + your message</p></div>
+   <div class="redo-card-proof"><canvas id="redo-card-preview" width="1600" height="1000" role="img" aria-label="Signal card preview">Choose your sticker, words and palette, then save a PNG.</canvas><span>YOUR SIGNAL / LIVE PREVIEW</span></div>
+  </div>
+  <details class="redo-credits"><summary>Behind the signal <span>Sources, original files &amp; editorial notes</span></summary><div><p><strong>A community interpretation, not an official REDO project.</strong> “Freedom” and the channel names are editorial framing for this EGOR room. They are not claims about the artist’s intent, or endorsement by Pavel Durov, Telegram, an artist, or any token project.</p><p>The files were supplied under a REDO label. This gallery selects ten visually distinct non-duck images from 28 received files; it does not claim to be a complete or authenticated pack. Duck images and duplicates remain preserved in the archive, not relabeled as separate REDO stickers. Original artwork is preserved unchanged; English descriptions explain any embedded non-English text.</p><p>TLGRM’s indexed listing for <a href="https://tlgrm.eu/stickers/ResistanceDog" target="_blank" rel="noopener noreferrer">Resistance Dog ↗</a> credits “Yegor Zhgun.” That is secondary directory evidence, not verification of each supplied file. Receipt of files does not establish authorship or reproduction rights. Confirm publication and sharing permissions; the card maker does not grant a license.</p><p><a href="assets/redo/manifest.json">Original-file manifest &amp; SHA-256 hashes ↗</a> · <a href="#sticker-stories-title">More about the artist references ↑</a></p></div></details>
+  <div class="redo-colophon"><span>NO AUTOPLAY. NO WALLET. JUST A LITTLE POSSIBILITY.</span><span>END OF TRANSMISSION <span aria-hidden="true">✳</span></span></div>
+ </div>
+</section>
+<section class="roadmap paper" id="roadmap" aria-labelledby="roadmap-title" data-water-static>
+ <div class="wrap">
+  <div class="rm-heading"><div><p class="eyebrow">THE EGOR FIELD NOTES / A PROPOSED 12-MONTH JOURNEY</p><h2 id="roadmap-title">Little steps<br><span>Bigger world</span></h2></div><div class="rm-intro"><p>A place to make things, meet people<br>and see what comes next</p><a href="roadmap-notes.html" class="rm-doc-link">Read the plan &amp; source notes <span aria-hidden="true">↗</span></a></div></div>
+  <div class="rm-legend" aria-label="Roadmap status key"><span><i class="rm-dot rm-dot-built" aria-hidden="true"></i>Built into this site</span><span><i class="rm-dot rm-dot-plan" aria-hidden="true"></i>Proposed next steps</span><span><i class="rm-dot rm-dot-external" aria-hidden="true"></i>Outside decisions</span></div>
+  <div class="rm-notebook">
+   <div class="rm-map-side">
+    <div class="rm-map-caption"><span>FOLLOW THE LITTLE BLUE LINE</span><button class="rm-pause" type="button" aria-pressed="false" hidden>Pause motion</button></div>
+    <div class="rm-map">
+     <svg class="rm-landscape" viewBox="0 0 720 530" fill="none" aria-hidden="true" focusable="false">
+      <defs><pattern id="rm-grid" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#264fc6" opacity=".14"/></pattern></defs>
+      <rect width="720" height="530" fill="url(#rm-grid)"/>
+      <g class="rm-sun"><circle cx="594" cy="97" r="46" fill="#f4df79"/><path d="M594 36v-12m0 146v-12m-61-61h-12m146 0h-12m-104-43-9-9m104 104-9-9m0-86 9-9m-104 104 9-9" stroke="#9b7429" stroke-width="2" stroke-linecap="round"/></g>
+      <g class="rm-cloud rm-cloud-one" stroke="#778ea5" stroke-width="2" fill="#f6f2e4"><path d="M80 110c-29 0-24-28-3-27-2-31 42-39 51-8 27-12 42 23 19 35Z"/></g>
+      <g class="rm-cloud rm-cloud-two" stroke="#778ea5" stroke-width="2" fill="#f6f2e4"><path d="M354 94c-22 0-23-24-3-26 2-24 32-26 39-5 24-6 31 27 9 31Z"/></g>
+      <path d="M20 478c81-20 145-13 221 6s143-5 226-11 133 13 230-11" stroke="#7c9286" stroke-width="2"/>
+      <g stroke="#6a8376" stroke-width="2.5" stroke-linecap="round"><path d="M151 477v-25m0 12c-19-2-21-16-21-16 21-1 21 16 21 16m0-7c1-16 19-21 19-21 0 17-19 21-19 21M551 478v-33m0 15c-20-1-23-19-23-19 19 0 23 19 23 19m0-8c1-17 21-24 21-24 0 18-21 24-21 24"/></g>
+      <g stroke="#244bb7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m60 321 32-22 31 22v36H60Z" fill="#e4ebf1"/><path d="M82 357v-23h20v23m-15-43h10M305 197l23-11 23 11-23 12Zm0 0v27l23 12 23-12v-27m-23 12v27"/><path d="M591 293h36v56h-36Zm8 6h21v50m-6-28h1" fill="#e4ebf1"/><path d="m431 447 10-12 10 12m-10-12v30m-7-12h14"/></g>
+      <path class="rm-route-shadow" d="M95 420 C85 345 125 245 230 245 S280 360 380 360 S418 190 500 190 S547 90 620 90" stroke="#d9d8cb" stroke-width="13" stroke-linecap="round"/>
+      <path id="rm-route" d="M95 420 C85 345 125 245 230 245 S280 360 380 360 S418 190 500 190 S547 90 620 90" stroke="#365dd0" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 9"/>
+      <g id="rm-traveler" style="transform:translate(95px,420px)"><ellipse cx="0" cy="-13" rx="32" ry="6" fill="#173fb0" opacity=".12"/><g class="rm-traveler-bob"><image href="assets/egor-guide.webp" x="-70" y="-155" width="140" height="140"/></g></g>
+      <g transform="translate(367 457) rotate(-6)"><path d="m-34 5 9-5-4 10m4-10c13 15 31 16 44 9" stroke="#607379" stroke-width="1.6"/><text x="-29" y="37" fill="#52646b" font-size="15" font-family="Georgia,serif" font-style="italic">room to grow</text></g>
+     </svg>
+     <div class="rm-stops" aria-label="Choose a roadmap chapter" hidden>
+      <button class="rm-stop" style="--x:13.194%;--y:79.245%" type="button" data-chapter="0" aria-controls="rm-chapter-0" aria-pressed="true"><span>01</span><strong>Start here</strong></button>
+      <button class="rm-stop" style="--x:31.944%;--y:46.226%" type="button" data-chapter="1" aria-controls="rm-chapter-1" aria-pressed="false"><span>02</span><strong>Get clear</strong></button>
+      <button class="rm-stop" style="--x:52.778%;--y:67.925%" type="button" data-chapter="2" aria-controls="rm-chapter-2" aria-pressed="false"><span>03</span><strong>Create together</strong></button>
+      <button class="rm-stop" style="--x:69.444%;--y:35.849%" type="button" data-chapter="3" aria-controls="rm-chapter-3" aria-pressed="false"><span>04</span><strong>Open doors</strong></button>
+      <button class="rm-stop" style="--x:86.111%;--y:16.981%" type="button" data-chapter="4" aria-controls="rm-chapter-4" aria-pressed="false"><span>05</span><strong>Keep growing</strong></button>
+     </div>
+    </div>
+    <div class="rm-map-foot"><span class="rm-handnote">A plan, not a price prediction</span><span class="rm-map-hint">Tap a number to explore</span></div>
+   </div>
+   <div class="rm-pages">
+    <div class="rm-page-top"><span>THE NEXT CHAPTER</span><span class="rm-page-count" aria-hidden="true">01 / 05</span></div>
+    <div class="rm-chapters">
+     <article class="rm-chapter" id="rm-chapter-0" aria-labelledby="rm-title-0"><div class="rm-chapter-meta"><span class="rm-badge rm-built">Built into this site</span><span>THE STARTING POINT</span></div><h3 id="rm-title-0">Come on in</h3><p class="rm-simple">There’s already a little world to explore</p><ul><li>A room with a light you can play with</li><li>Sticker stories, Utya and the REDO room</li><li>A portrait studio that works in your browser</li></ul><div class="rm-proof"><span>WHAT YOU CAN CHECK</span><p>Try the tools yourself — no wallet, sign-up or purchase needed</p></div><a class="rm-chapter-link" href="portrait-studio.html">Make your first picture <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-1" aria-labelledby="rm-title-1"><div class="rm-chapter-meta"><span class="rm-badge rm-planned">Proposed</span><span>MONTHS 1–2*</span></div><h3 id="rm-title-1">Make it clear</h3><p class="rm-simple">One name, one address, facts you can find</p><ul><li>Match project details across public profiles</li><li>Collect fee, migration and liquidity records</li><li>Keep a public list of fixes and open questions</li></ul><div class="rm-proof"><span>PROPOSED FINISH LINE</span><p>A linked checklist with a source for each verified fact — and an honest label for everything still unknown</p></div><a class="rm-chapter-link" href="roadmap-notes.html#phase-1">See the checks <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-2" aria-labelledby="rm-title-2"><div class="rm-chapter-meta"><span class="rm-badge rm-planned">Proposed</span><span>MONTHS 3–5*</span></div><h3 id="rm-title-2">Make it together</h3><p class="rm-simple">More things to make, more room for people</p><ul><li>Try small community art prompts</li><li>Improve the studio using real feedback</li><li>Share community work with permission</li></ul><div class="rm-proof"><span>PROPOSED FINISH LINE</span><p>A small, credited showcase and a tested studio update — shaped by what people actually use</p></div><a class="rm-chapter-link" href="roadmap-notes.html#phase-2">See the creative plan <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-3" aria-labelledby="rm-title-3"><div class="rm-chapter-meta"><span class="rm-badge rm-outside">Outside decisions</span><span>MONTHS 6–9*</span></div><h3 id="rm-title-3">Open a few doors</h3><p class="rm-simple">We can ask — others decide</p><ul><li>Ask Topblast to confirm the current rules</li><li>Prepare eligible platform applications</li><li>Track replies without calling them approvals</li></ul><div class="rm-proof"><span>WHAT DEPENDS ON OTHERS</span><p>Listings, promotions and market conditions are not controlled by EGOR — applying does not guarantee acceptance</p></div><a class="rm-chapter-link" href="roadmap-notes.html#topblast">Read the Topblast notes <span aria-hidden="true">↗</span></a></article>
+     <article class="rm-chapter" id="rm-chapter-4" aria-labelledby="rm-title-4"><div class="rm-chapter-meta"><span class="rm-badge rm-planned">Proposed</span><span>MONTHS 10–12*</span></div><h3 id="rm-title-4">Keep the good bits</h3><p class="rm-simple">Listen, learn and draw the next page</p><ul><li>Review the tools and community feedback</li><li>Publish what shipped, slipped or stopped</li><li>Choose a smaller, clearer next plan</li></ul><div class="rm-proof"><span>PROPOSED FINISH LINE</span><p>A public review with useful evidence, not a promised token price, audience size or exchange rank</p></div><a class="rm-chapter-link" href="roadmap-notes.html#phase-4">See the review plan <span aria-hidden="true">↗</span></a></article>
+    </div>
+    <div class="rm-controls" hidden><button type="button" class="rm-prev" aria-label="Previous roadmap chapter" disabled>←</button><span class="rm-position" role="status" aria-live="polite" aria-atomic="true">Chapter 1 of 5 · Come on in</span><button type="button" class="rm-next" aria-label="Next roadmap chapter">→</button></div>
+   </div>
+  </div>
+  <div class="rm-bottom"><p>* Timing is a suggested sequence from team approval, not a dated commitment<br>Changing chapters explores the plan — it does not mark work as complete</p><a href="roadmap-notes.html">Open the full roadmap <span aria-hidden="true">↗</span></a></div>
+  <details class="rm-trust"><summary>Where does Topblast fit in?</summary><div><p>Topblast is a separate platform — its published milestones are not EGOR promises</p><p>The current rules and EGOR’s eligibility have not been independently verified — fresh written confirmation is needed before any benefit is marked as available</p><p>No listing, payment, artist endorsement or commercial art license is promised here — <a href="roadmap-notes.html#topblast">read the source limitations and open questions ↗</a></p></div></details>
+  <noscript><p class="rm-noscript">JavaScript is off — all five chapters are shown below the map so you can still read the whole plan</p></noscript>
+ </div>
+</section>
+
+<section class="numbers paper" id="token"><div class="wrap"><div class="section-label eyebrow reveal">02 / The token, in plain sight</div><div class="section-header token-heading reveal"><h2 class="display">BIG CHARACTER<br>SIMPLE NUMBERS</h2><div class="token-host"><img src="assets/egor-confident.webp" alt="Egor standing with crossed arms and smart glasses" width="640" height="640" loading="lazy" decoding="async"><p><span class="host-aside">the serious face</span>Same little doodle.<br>A little more business.<br>Let’s look at the details.</p></div></div>
+<div class="token-grid reveal"><article class="token-card supply"><span class="eyebrow">Maximum supply</span><span class="corner" aria-hidden="true">↗</span><div class="num">1 BILLION</div><p>1,000,000,000 EGOR.<br>Mintable: false in the supplied metadata.</p></article><article class="token-card fee"><span class="eyebrow">Creator rewards</span><span class="corner" aria-hidden="true">✳</span><div class="num">ON RECORD</div><p>Dated transfers, not a promised rate.<br><a class="text-link" href="#evidence">Read the evidence ↓</a></p></article><article class="token-card chain"><span class="eyebrow">The home chain</span><span class="corner" aria-hidden="true">◇</span><div class="num">TON</div><p>The Open Network.<br>Native coin: Gram (see naming note in FAQ).<br>Community token: $EGOR.</p></article></div>
+<p class="numbers-note">Supply and mintability reflect the project’s supplied token metadata. Historical reward comments do not establish a trading tax, a recurring reward rate, recipient identity, or artist endorsement. Confirm the deployed contract and all fees before trading.</p>
+<div class="contract-bar reveal"><div class="contract-detail"><span class="eyebrow">Token contract / CA</span><code id="contract-display" tabindex="0">EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA</code></div><div class="contract-actions"><button id="contract-action" data-buy aria-label="Copy EGOR contract address">Copy CA</button><a class="text-link" href="https://dedust.io/swap/TON/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA" target="_blank" rel="noopener noreferrer" aria-label="Swap Gram for EGOR on DeDust, opens in a new tab">Swap on DeDust ↗</a></div></div>
+<section class="market-panel" id="market" aria-labelledby="market-title">
+ <header class="market-heading">
+  <div><p class="eyebrow">THE EGOR FIELD NOTES</p><h3 id="market-title">A LITTLE CHARACTER.<br>A CLEARER PICTURE.</h3><p class="market-intro">A dedicated space for automatically refreshed TonAPI price and token reports, saved holder evidence, and the limits behind the numbers.</p><p class="market-tag">No wallet. No hidden fallback. No rush.</p><a class="btn" href="trading-desk.html">Open Trading Desk · Demo ↗</a> <a class="btn" href="market.html">Explore the market notes ↗</a></div>
+  <div class="market-art" aria-hidden="true"><span class="market-orbit"></span><img src="assets/egor-confident.webp" alt="" width="640" height="640" loading="lazy" decoding="async"><span class="market-scribble">look a little closer ↙</span></div>
+ </header>
+ <nav class="market-links" aria-label="Market notes"><a href="market.html#reports">TonAPI reports</a><a href="market.html#reports">Holder report &amp; limits</a><a href="https://tonviewer.com/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA" target="_blank" rel="noopener noreferrer">Inspect contract on Tonviewer ↗</a></nav>
+ <div class="market-content"><p>Reports load automatically while the reports section and tab are visible on the market page; requests can be stopped. A recent response is not a live trade; addresses are not people. Holder distribution percentages remain withheld while the saved balances and reported supply disagree.</p></div>
+</section>
+
+</div></section>
+<section class="how" id="how"><div class="wrap"><div class="section-label eyebrow reveal">03 / Your little DeDust guide</div>
+<div class="section-header how-heading reveal"><div><h2 class="display">FIRST, GET CURIOUS<br>THEN, GET CLEAR</h2><p>No rush. EGOR can wait.<br>Here’s how to swap Gram for EGOR on DeDust.</p></div><div class="guide-host"><span class="guide-bubble">one step at a time</span><div class="guide-disc paper"><img src="assets/egor-guide.webp" alt="Egor offering a friendly, simple line-arm gesture" width="640" height="640" loading="lazy" decoding="async"></div></div></div>
+<div class="trade-status reveal"><span class="status-mark" aria-hidden="true">!</span><p><strong>Your swap happens on DeDust.</strong> The project has supplied the contract address and Gram-to-EGOR link shown here. Contract authenticity, liquidity, and fee routing have not been independently verified by this website. Check them before trading.</p></div>
+<div class="steps"><article class="step reveal"><span class="step-index">01 / GET READY</span><h3>Your wallet, your keys</h3><p>Use a TON-compatible wallet and have Gram (GRAM), TON’s native cryptocurrency, ready for the swap. Keep a separate balance for the network fees shown by your wallet. Your recovery phrase stays private.</p></article><article class="step reveal"><span class="step-index">02 / FIND THE REAL ONE</span><h3>Check the address, not the face</h3><p>Copy the full $EGOR contract address above and match it against the receiving token on DeDust. Independently verify the contract before trading. A familiar name or smiling icon is not proof.</p></article><article class="step reveal"><span class="step-index">03 / CHOOSE THE PAIR</span><h3>Gram in, EGOR out</h3><p>Open the DeDust link, connect your wallet, and check that Gram (which the supplied link identifies as TON) is the paying asset and the supplied $EGOR contract is the receiving asset. Enter your amount. If no route or liquidity is available, stop.</p></article><article class="step reveal"><span class="step-index">04 / TAKE ONE MORE LOOK</span><h3>Read it before you sign</h3><p>Review minimum received, price impact, slippage, and every fee shown by the trading interface and your wallet. Confirm only if the wallet details match. Wait for the transaction result before trying again.</p></article></div>
+<div class="how-bottom reveal"><button type="button" class="btn btn-clear" id="purchase-info" data-buy aria-haspopup="dialog" aria-controls="buy-dialog">Before you swap</button><a class="btn" href="https://dedust.io/swap/TON/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA" target="_blank" rel="noopener noreferrer" aria-label="Swap on DeDust, opens in a new tab">Swap on DeDust <span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://help.dedust.io/en/trade/swap" target="_blank" rel="noopener noreferrer">Read DeDust’s swap guide ↗</a><p>This page never connects to your wallet.<br>Learning about EGOR does not require buying it.</p></div></div></section>
+<section class="faq paper" id="faq"><div class="wrap faq-layout"><div class="faq-intro reveal"><div class="section-label eyebrow">04 / Good questions</div><h2 class="display">CURIOUS?<br>GOOD</h2><p>A little clarity before you enter<br>the blue side of the internet.</p><div class="curious-host"><img src="assets/egor-curious.webp" alt="Egor sitting thoughtfully with one line-arm by the chin" width="640" height="640" loading="lazy" decoding="async"><span aria-hidden="true">?</span><small>asking for a friend<br>the friend is me</small></div></div><div class="reveal"><details><summary>What exactly is $EGOR?</summary><p>$EGOR is a community meme-token project on TON, presented as a tribute to Egor Zhgun’s creative work. It is a speculative token, not an ownership stake in his art or a claim on his intellectual property.</p></details><details><summary>Is this Egor’s official token?</summary><p>No official endorsement or partnership has been established for this website. This is a community tribute, not Egor’s official website. The project character is shown from supplied reference artwork; authorship is not independently established here.</p></details><details><summary>What do the creator reward records prove?</summary><p>The <a href="#evidence">dated records below</a> contain comments referring to creator rewards for $EGOR from Topblast. A transfer comment alone does not prove a fixed trading fee, the identity of the recipient, an ongoing reward arrangement, or artist endorsement. Amounts and totals are withheld while the source discrepancy and display units remain unresolved.</p></details><details><summary>What is the token supply?</summary><p>The supplied metadata lists a maximum supply of 1,000,000,000 EGOR and “mintable: false.” Verify these details against the full deployed contract before making a transaction.</p></details><details><summary>How do I swap Gram for $EGOR?</summary><p>Use the Swap on DeDust link to open the project-supplied Gram-to-EGOR pair in a new tab. The link retains DeDust’s supplied TON asset identifier; confirm the live interface before proceeding. Match the receiving token to the full contract address displayed on this site and verify it independently. Check liquidity, minimum received, price impact, and fees before signing in your wallet. This website does not execute transactions. See <a href="https://help.dedust.io/en/trade/swap" target="_blank" rel="noopener noreferrer">DeDust’s swap guide</a> for the interface steps.</p></details><details><summary>What is Gram, and what is TON?</summary><p>TON (The Open Network) is the blockchain. Gram (GRAM) is the native-coin name shown in the <a href="https://ton.org" target="_blank" rel="noopener noreferrer">official TON website snapshot reviewed for this release (November 2, 2026)</a>. $EGOR is a separate community token on that network. The supplied DeDust URL retains the technical asset identifier TON; always check the live paying asset and network before signing.</p></details><details><summary>What should I know before buying?</summary><p>Meme tokens are highly speculative. Prices can be volatile, liquidity can disappear, and you can lose your entire purchase. There are no guaranteed returns. Never share your recovery phrase, and never trade using an unverified token address.</p></details><details id="privacy"><summary>What does this website store or measure?</summary><p>Your doodles and signal-card messages stay in page memory and are never uploaded; save a PNG before leaving or reloading. Your motion preference is stored in this browser, and a session flag skips repeat introductions. On a configured Vercel deployment, optional Web Analytics and Speed Insights measure visits and page performance. This integration respects browser Do Not Track and Global Privacy Control signals and removes query strings and fragments from monitored page URLs. It sends no custom copy or swap events and never accesses your wallet. Hosting providers may also process request logs. See <a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel’s analytics privacy information</a>.</p></details></div></div></section>
+<section class="release-evidence paper" id="evidence" aria-labelledby="evidence-title"><div class="wrap">
+<p class="eyebrow">Public records / limited conclusions</p><h2 class="display" id="evidence-title">ON RECORD<br>NOT A PROMISE</h2>
+<p>Nine dated records in the reviewed transaction snapshot carry the comment <q>Creator Rewards for $EGOR from topblast.lol</q>. Only surrounding whitespace was removed when matching comments. This is a historical selection, not a live feed or a complete payment history.</p>
+<p>These comments do not establish a fixed fee, future payments, recipient identity, or artist endorsement. Amounts and totals are omitted because source reconciliation and display units remain unresolved. The July 5 ZHGUNLANDIA transfer and other differently labeled transfers are excluded.</p>
+<details><summary>Read the nine records · May 27–June 28, 2026</summary>
+<p>Times are UTC. Each link opens a transaction associated with the corresponding snapshot record in an independent explorer.</p>
+<ol class="evidence-records">
+<li><time datetime="2026-06-28T00:38:51Z">2026-06-28 · 00:38:51 UTC</time> <a href="https://tonviewer.com/transaction/df4f39d66bba39e3537a46213ffb434f67207fe327795b58a30d60888c4a0085" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-06-26T20:13:05Z">2026-06-26 · 20:13:05 UTC</time> <a href="https://tonviewer.com/transaction/34df7b9c6b39ea9018fe57a7e64004ba7d3da72181683691562df898bca46a0e" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-06-25T12:39:46Z">2026-06-25 · 12:39:46 UTC</time> <a href="https://tonviewer.com/transaction/c6bcb1a67f6e7fe863ae018b81318bc5841a481cc7480f3da21b4f8c0859aaed" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-06-12T22:28:41Z">2026-06-12 · 22:28:41 UTC</time> <a href="https://tonviewer.com/transaction/b4e5092e9ac27799367dc422768f5eaf095c99928226f8df5216c88e77ed5474" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-06-07T06:40:48Z">2026-06-07 · 06:40:48 UTC</time> <a href="https://tonviewer.com/transaction/941281a84338688b6b9bdcd7d98532e24ac7c7c11a625d296237608cfbcc4050" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-06-07T06:40:17Z">2026-06-07 · 06:40:17 UTC</time> <a href="https://tonviewer.com/transaction/9993a9b3a483d537849c46987eb1d69acaf06016000fca6d49f01f90e51110bf" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-06-03T13:45:06Z">2026-06-03 · 13:45:06 UTC</time> <a href="https://tonviewer.com/transaction/a984acf153771f07e98bfe045608fc96b8b2b8fca1879f5ee7259480ccf5491f" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-05-29T20:40:11Z">2026-05-29 · 20:40:11 UTC</time> <a href="https://tonviewer.com/transaction/5d39e52edcdd76e29153af1eaa6defcb781e46cc1e1ff3d761bc0ac1ee2fa8aa" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+<li><time datetime="2026-05-27T21:32:09Z">2026-05-27 · 21:32:09 UTC</time> <a href="https://tonviewer.com/transaction/2369bbff1ae88521d32a1923374ab93b34d1a9d2bc3ff66269dd710a95cb0faf" target="_blank" rel="noopener noreferrer">View transaction ↗</a></li>
+</ol><button type="button" id="evidence-copy" hidden>Copy record links</button><p id="evidence-status" role="status" aria-live="polite"></p></details>
+<div class="release-status"><h3>What is ready?</h3><p><strong>Available here:</strong> Utya, the REDO room, the doodle desk and Portrait Studio. They do not require a wallet connection.</p><p><strong>External services:</strong> swaps, liquidity and platform rewards depend on third parties, their current terms and availability.</p><p><strong>Not promised:</strong> future features, listings, milestones or platform benefits. Plans are not delivered functionality or guaranteed entitlements.</p></div>
+</div></section>
+<section class="portrait-invite paper" id="portrait" aria-labelledby="portrait-heading" data-water-static><div class="wrap portrait-invite-layout">
+ <div><p class="eyebrow">A little character. Your own way.</p><h2 class="display" id="portrait-heading">MAKE IT<br><span class="blue-text">YOUR EGOR</span></h2><p>Fancy a little blue in your Telegram profile? Make a portrait that feels like you. Use it if you like — everyone belongs, with or without an EGOR picture.</p><a class="btn btn-dark" href="portrait-studio.html">Open portrait studio <span aria-hidden="true">↗</span></a><p class="portrait-invite-note">Pose a 2D character, add your photo or text, erase and restore, then export a PNG. Photos stay in your browser tab. Save your project before leaving; work is not autosaved.</p></div>
+ <figure><img src="assets/egor-guide.webp" alt="A friendly EGOR pose to inspire your profile picture" width="640" height="640" loading="lazy"><figcaption>Your pose. Your picture. Entirely optional.</figcaption></figure>
+</div></section>
+<section class="studio" id="play" aria-labelledby="studio-title" data-water-static><div class="wrap">
+ <div class="section-label eyebrow">05 / A little room to play</div>
+ <div class="studio-heading"><h2 class="display" id="studio-title">YOUR LINES<br><span>YOUR LITTLE WORLD</span></h2><p>No perfect lines required. Draw on the canvas, add a character, then save a PNG before leaving.</p></div>
+ <div class="studio-layout">
+  <div>
+   <div class="studio-board">
+    <div class="studio-board-top"><span>THE EGOR DOODLE DESK</span><span id="studio-count">01 / 120 marks</span></div>
+    <div class="studio-surface"><canvas width="800" height="600" tabindex="0" role="img" aria-label="Your EGOR doodle canvas" aria-describedby="studio-help">An EGOR doodle page. Use the stamp buttons to add characters and Save PNG to keep your picture.</canvas><img class="studio-fallback" src="assets/egor-seated.webp" alt="" width="640" height="640" loading="lazy"></div>
+    <p class="studio-board-bottom" id="studio-help">Tap to stamp. Arrow keys move the stamp cursor; Enter places it. Or use Place stamp. In Draw mode, sketch here and scroll outside the page.</p>
+   </div>
+   <div class="studio-actions" data-studio-controls hidden>
+    <button type="button" id="studio-undo">Undo</button><button type="button" id="studio-redo" disabled>Redo</button><button type="button" id="studio-clear">Clear</button><button type="button" id="studio-place">Place stamp</button><button type="button" id="studio-surprise">Surprise me</button><button type="button" class="studio-primary" id="studio-save">Save PNG ↗</button>
+   </div>
+  </div>
+  <div class="studio-tools" data-studio-controls hidden>
+   <fieldset><legend>01 / Make your mark</legend><div class="studio-tool-grid">
+    <button type="button" data-studio-tool="seated" aria-pressed="true">Off duty</button><button type="button" data-studio-tool="confident" aria-pressed="false">On brand</button><button type="button" data-studio-tool="guide" aria-pressed="false">Good company</button><button type="button" data-studio-tool="curious" aria-pressed="false">Curious</button><button type="button" data-studio-tool="star" aria-pressed="false">Little spark ✳</button><button type="button" data-studio-tool="pen" aria-pressed="false">Draw a line</button>
+   </div></fieldset>
+   <fieldset><legend>02 / Pick your paper</legend><div class="studio-colors">
+    <button type="button" class="studio-color" data-studio-bg="blue" aria-label="Blue paper" aria-pressed="true" style="--swatch:#03afd5"></button><button type="button" class="studio-color" data-studio-bg="paper" aria-label="Cream paper" aria-pressed="false" style="--swatch:#f4f0df"></button><button type="button" class="studio-color" data-studio-bg="yellow" aria-label="Yellow paper" aria-pressed="false" style="--swatch:#f6ee69"></button>
+   </div></fieldset>
+   <div class="studio-prompt"><span class="eyebrow">Staring at the page?</span><p id="studio-idea" aria-live="polite">Give EGOR a tiny planet to stand on.</p><button type="button" id="studio-prompt">Another idea ↗</button></div>
+  </div>
+ </div>
+ <p class="studio-status" id="studio-status" role="status" aria-live="polite">A small studio, right in your browser.</p>
+ <p class="studio-note">No uploads. No wallet. No sign-up. Your page is not stored: save a PNG before leaving or reloading. Artwork credits and rights remain with their respective owners.</p>
+ <button type="button" class="studio-motion" id="studio-motion" aria-pressed="false" data-studio-controls hidden>Ⅱ Pause page motion</button>
+ <noscript><p class="studio-note">Enable JavaScript to draw, place stamps and save your page.</p></noscript>
+</div></section>
+<section class="final-cta community paper" id="community" aria-labelledby="community-heading"><div class="wrap reveal">
+ <h2 class="display" id="community-heading">STAY CONNECTED</h2>
+ <p class="community-intro">A little corner for everyone. No purchase needed.</p>
+ <nav class="community-simple-links" aria-label="EGOR community" aria-describedby="community-external">
+  <a href="https://t.me/egorverseportal" target="_blank" rel="noopener noreferrer" aria-label="Join Telegram (opens in a new tab)">Join Telegram <span aria-hidden="true">↗</span></a>
+  <a href="https://x.com/egorverse" target="_blank" rel="noopener noreferrer" aria-label="Follow on X (opens in a new tab)">Follow on X <span aria-hidden="true">↗</span></a>
+ </nav>
+ <p class="community-external" id="community-external">Links open in a new tab.</p>
+</div></section>
+</main>
+<footer class="footer paper"><div class="wrap"><div class="footer-top"><a class="brand" href="#" aria-label="Back to top"><span class="brand-word">$EGOR</span></a><div class="footer-links"><a href="#token">Token details</a><a href="#faq">FAQ</a><a href="#privacy">Privacy</a><a href="https://www.behance.net/egorzhgun" target="_blank" rel="noopener noreferrer">Artist portfolio ↗</a></div></div><div class="footer-bottom"><p>Independent community tribute. Not affiliated with or endorsed by Egor Zhgun. Artist names and works belong to their respective owners. $EGOR is a speculative meme token with no guaranteed value or return. Nothing on this site is financial advice.</p><span>MADE OF LINES & A LITTLE LOVE ↗</span></div></div></footer>
+<dialog id="buy-dialog" aria-labelledby="buy-title"><button class="dialog-close" aria-label="Close purchase information">×</button><div class="eyebrow">Your next step</div><h2 class="display dialog-title" id="buy-title">MEET $EGOR</h2><p class="dialog-copy">Good characters deserve a proper introduction.<br>So do token contracts.</p><div class="launch-status"><strong id="purchase-status">Gram → EGOR on DeDust</strong><span id="purchase-detail">The project supplied this contract and swap link. Verify the receiving token, available liquidity, and fees before signing in your wallet.</span><code class="dialog-contract" id="dialog-contract" hidden></code></div><div class="dialog-actions"><a class="btn btn-dark" id="swap-link" target="_blank" rel="noopener noreferrer" hidden>Swap on DeDust ↗</a><button class="btn btn-clear" id="dialog-copy" hidden>Copy contract</button><button class="btn btn-dark" id="back-to-world">Back to the world ↗</button></div><p class="risk-note">No fixed trading fee or reward rate is verified here. Check all fees in the trading interface and your wallet. Trading can result in total loss. Never share your recovery phrase.</p></dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}[data-buy],.motion-button,.menu-toggle{display:none!important}.nav-links{display:flex!important;position:static!important}.nav{height:auto;min-height:92px;flex-wrap:wrap;padding:20px 0}</style><p style="padding:20px;text-align:center">The contract address and direct DeDust link are available in Token details. JavaScript enables the copy button, purchase-info dialog, and motion controls.</p></noscript>
+<script>
+/* PUBLIC PROJECT-SUPPLIED CONFIGURATION. Never put secrets or private keys here.
+   Address format and link matching are not independent contract verification. */
+window.EGOR_CONFIG = {
+  contractAddress: 'EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA',
+  buyUrl: 'https://dedust.io/swap/TON/EQAO_tYpLbPq-GOXegYTYtFaQ0tMkxLBxzYF8cUCGGWAj_aA'
+};
+(function(){
+'use strict';
+const $ = (s) => document.querySelector(s);
+const config = window.EGOR_CONFIG;
+const dialog = $('#buy-dialog');
+const address = config.contractAddress.trim();
+// TON friendly address or raw workchain:hash. No abbreviated addresses accepted.
+const validAddress = /^(?:[EU]Q[A-Za-z0-9_-]{46}|(?:0|-1):[0-9a-fA-F]{64})$/.test(address);
+let tradeURL = null;
+try {const u = new URL(config.buyUrl); if(u.origin === 'https://dedust.io' && u.pathname === '/swap/TON/' + address && !u.search && !u.hash && !u.username && !u.password) tradeURL = u.href;} catch(_) {}
+const ready = validAddress && tradeURL;
+if(ready){
+ $('#contract-display').textContent = address;
+ $('#contract-action').textContent = 'Copy CA';
+ $('#contract-action').removeAttribute('data-buy');
+ $('#contract-action').addEventListener('click',copyAddress);
+ $('#purchase-status').textContent = 'Gram → EGOR on DeDust';
+ $('#purchase-detail').textContent = 'Project-supplied contract and swap link. Independently verify the receiving token, liquidity, and fees before signing in your wallet.';
+ $('#dialog-contract').textContent = address; $('#dialog-contract').hidden = false;
+ $('#swap-link').href = tradeURL; $('#swap-link').hidden = false;
+ $('#dialog-copy').hidden = false; $('#dialog-copy').addEventListener('click',copyAddress);
+ $('#back-to-world').hidden = true;
+}
+document.querySelectorAll('[data-buy]').forEach(b => b.addEventListener('click',()=>dialog.showModal()));
+$('.dialog-close').addEventListener('click',()=>dialog.close());
+$('#back-to-world').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
+let toastTimer;
+function toast(message){$('#toast').textContent=message;$('#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('show'),3500);}
+async function copyAddress(){try{await navigator.clipboard.writeText(address);toast('Contract address copied');}catch(_){const target=dialog.open?$('#dialog-contract'):$('#contract-display');const range=document.createRange();range.selectNodeContents(target);const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);toast('Address selected. Use your device’s Copy command.');}}
+const menu=$('.menu-toggle'); const links=$('#nav-links');
+const explore=document.querySelector('.world-explore');
+function closeMenu(){menu.setAttribute('aria-expanded','false');links.classList.remove('open');explore.open=false;}
+explore.addEventListener('keydown',e=>{if(e.key==='Escape'&&explore.open){e.stopPropagation();explore.open=false;explore.querySelector('summary').focus();}});
+menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));links.classList.toggle('open',open);});
+links.addEventListener('click',e=>{if(e.target.closest('a,button'))closeMenu();});
+document.addEventListener('click',e=>{if(!e.target.closest('.nav'))closeMenu();});
+links.addEventListener('focusout',()=>{setTimeout(()=>{if(!document.activeElement.closest('.nav'))closeMenu();},0);});
+matchMedia('(max-width:760px)').addEventListener('change',e=>{if(e.matches&&links.contains(document.activeElement))menu.focus();closeMenu();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus();}});
+
+})();
+</script>
+<script src="closing-copy.js?v=0.4.27" defer></script>
+</body>
+</html>

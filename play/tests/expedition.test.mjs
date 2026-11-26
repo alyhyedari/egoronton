@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createWalker,stepWalker,deployParachute} from '../movement.mjs';
+import {createCombat,fireCombat,reloadCombat,tickCombat,rayBox,normalizeAdventure} from '../adventure-state.mjs';
+import {normalizeSave,parseImport} from '../session.mjs';
+import {createCar,stepCar} from '../vehicle-physics.mjs';
+import {scoreFor} from '../soundtrack.mjs';
+test('double jump requires a second press, caps at two, and landing restores it',()=>{const s=createWalker();stepWalker(s,{jumpPressed:true},.1);assert.equal(s.jumps,1);stepWalker(s,{jumpPressed:true},.1);assert.equal(s.jumps,2);const vy=s.vy;stepWalker(s,{jumpPressed:true},.1);assert.ok(s.vy<vy);for(let i=0;i<100;i++)stepWalker(s,{},.05);assert.equal(s.jumps,0);assert.ok(s.grounded);});
+test('parachute requires flight, limits descent, and closes on landing',()=>{const s=createWalker();assert.equal(deployParachute(s),false);s.y=40;s.grounded=false;s.vy=-30;assert.ok(deployParachute(s));for(let i=0;i<100;i++)stepWalker(s,{},.05);assert.ok(s.y>28);assert.ok(s.vy>=-2.2);for(let i=0;i<500;i++)stepWalker(s,{},.05);assert.ok(s.grounded);assert.equal(s.parachute,false);});
+test('magazine firing respects cooldown and reload conserves ammunition',()=>{const s=createCombat();assert.ok(fireCombat(s));assert.equal(fireCombat(s),false);assert.ok(reloadCombat(s));assert.equal(fireCombat(s),false);for(let i=0;i<30;i++)tickCombat(s,.1);assert.equal(s.ammo[0],24);assert.equal(s.reserve[0],95);assert.equal(reloadCombat(s),false);});
+test('surface ray blocks a target behind a wall and returns correct normal',()=>{const wall=rayBox({x:0,y:1,z:0},{x:0,y:0,z:-1},{x:-2,y:0,z:-6},{x:2,y:3,z:-5});assert.equal(wall.distance,5);assert.deepEqual(wall.normal,{x:0,y:0,z:1});assert.equal(rayBox({x:5,y:1,z:0},{x:0,y:0,z:-1},{x:-2,y:0,z:-6},{x:2,y:3,z:-5}),null);});
+test('save round-trip retains equipment, unique memories and only the latest 64 marks',()=>{const a=normalizeAdventure({uv:true,credits:30,read:[1,1,2],marks:Array.from({length:80},(_,i)=>({x:i,y:0,z:0,nx:0,ny:1,nz:0}))});assert.equal(a.marks.length,64);assert.deepEqual(a.read,[1,2]);const s=normalizeSave({adventure:a});assert.deepEqual(parseImport(JSON.stringify(s)).adventure,a);assert.deepEqual(normalizeAdventure({ammo:[NaN,-10]}).ammo,[24,0,30,12]);});
+test('snow grip increases braking distance without reversing the car',()=>{function stop(grip){const s=createCar();s.speed=12;let total=0;for(let i=0;i<250;i++){stepCar(s,{brake:true,grip},1/120);total+=Math.abs(s.speed)/120;assert.ok(s.speed>=0);}return total;}assert.ok(stop(.45)>stop(1)*1.6);});
+test('score distinguishes horror, flight, snow and combat',()=>{assert.equal(scoreFor({horror:true}).dark,true);assert.notEqual(scoreFor({parachute:true}).name,scoreFor({weather:'snow'}).name);assert.ok(scoreFor({danger:true}).energy>scoreFor({horror:true}).energy);});

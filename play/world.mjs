@@ -1,25 +1,44 @@
+import {setupGlideStations} from './glide-stations.mjs';
+import {setupCanopy} from './canopy.mjs';
+import {setupRiding} from './riding.mjs';
+import {setupTrails} from './trails.mjs';
+import {setupAdventure} from './adventure.mjs';
 import { setupExperience } from './experience.mjs';
+import { setupDelivery } from './delivery-ui.mjs';
 import { setupGarage } from './garage.mjs';
 import { buildNeighborhood } from './neighborhood.mjs';
 import { buildUnfinishedStreet } from './chapter.mjs';
+import {openSave,MODES} from './session.mjs';
+import {setupWeather} from './weather.mjs';
+import {setupAccount} from './account.mjs';
+import {setupJourney} from './journey.mjs';
+import {buildFrontier} from './frontier.mjs';
+import {createWalker,stepWalker,deployParachute} from './movement.mjs';
+import {buildLandscape,groundHeight,WORLD_BOUNDS} from './terrain.mjs';
+import {setupPerformance} from './performance.mjs';
+import {setupSoundtrack} from './soundtrack.mjs';
+import {setupLanguage} from './language.mjs';
+import {setupAtlas} from './atlas.mjs';
+import {setupShell} from './shell.mjs';
+const store=await openSave();let savingEnabled=true;
 const $=id=>document.getElementById(id);
-let pc,app;
+let pc,app;let music;let contextLost=false;
 pc=await import('./vendor/playcanvas.mjs');
 try {
  app=new pc.Application($('world'),{graphicsDeviceOptions:{alpha:false,antialias:true,powerPreference:'low-power'}});
 } catch(error) { throw new Error('This doorway needs a WebGL-capable browser. Please return to EGOR World or try another browser.',{cause:error}); }
 try{init();}catch(error){app.destroy();throw new Error('The neighborhood could not start. Please reload or return to the room.',{cause:error});}
 function init(){
-app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);app.setCanvasResolution(pc.RESOLUTION_AUTO);app.graphicsDevice.maxPixelRatio=Math.min(devicePixelRatio,1.6);
-app.scene.ambientLight=new pc.Color(.52,.63,.71);app.scene.fog.type='linear';app.scene.fog.color=new pc.Color(.38,.53,.65);app.scene.fog.start=20;app.scene.fog.end=85;
+app.setCanvasFillMode(pc.FILLMODE_NONE);app.setCanvasResolution(pc.RESOLUTION_AUTO);app.graphicsDevice.maxPixelRatio=Math.min(devicePixelRatio,1.6);
+app.scene.ambientLight=new pc.Color(.52,.63,.71);app.scene.fog.type='linear';app.scene.fog.color=new pc.Color(.58,.76,.8);app.scene.fog.start=85;app.scene.fog.end=290;
 const colors={blue:'#168ca9',ink:'#15333d',ground:'#c4c6af',path:'#eadfbe',cream:'#eddfbb',dark:'#213c4b',leaf:'#558e84',gold:'#efc877'};
 function mat(hex,emission=0){let m=new pc.StandardMaterial();m.diffuse=new pc.Color().fromString(hex);m.emissive=m.diffuse.clone().mulScalar(emission);m.shininess=0;m.update();return m;}
 // Procedural paper grain, generated locally; no third-party artwork is used.
 const paper=document.createElement('canvas');paper.width=paper.height=128;const ctx=paper.getContext('2d'),pixels=ctx.createImageData(128,128);let seed=37;for(let i=0;i<pixels.data.length;i+=4){seed=(seed*1664525+1013904223)>>>0;const tone=247+(seed%9);pixels.data[i]=pixels.data[i+1]=pixels.data[i+2]=tone;pixels.data[i+3]=255;}ctx.putImageData(pixels,0,0);const grain=new pc.Texture(app.graphicsDevice,{width:128,height:128,mipmaps:true});grain.setSource(paper);
 const materials=Object.fromEntries(Object.entries(colors).map(([k,v])=>{const m=mat(v);m.diffuseMap=grain;m.diffuseMapTiling.set(3,3);m.update();return [k,m];}));
 function shape(type,x,y,z,sx,sy,sz,material,parent=app.root){const e=new pc.Entity();e.addComponent('render',{type,material:typeof material==='string'?materials[material]:material,castShadows:true,receiveShadows:true});e.setLocalPosition(x,y,z);e.setLocalScale(sx,sy,sz);parent.addChild(e);return e;}
-const camera=new pc.Entity();camera.addComponent('camera',{clearColor:new pc.Color(.38,.53,.65),fov:68,nearClip:.08,farClip:100});app.root.addChild(camera);
-const sun=new pc.Entity();sun.addComponent('light',{type:'directional',color:new pc.Color(1,.88,.68),intensity:1.6,castShadows:true,shadowResolution:1024,shadowDistance:35,normalOffsetBias:.07});sun.setEulerAngles(48,-30,0);app.root.addChild(sun);
+const camera=new pc.Entity();camera.addComponent('camera',{clearColor:new pc.Color(.58,.76,.8),fov:68,nearClip:.08,farClip:350});app.root.addChild(camera);
+const sun=new pc.Entity();sun.addComponent('light',{type:'directional',color:new pc.Color(1,.88,.68),intensity:1.15,castShadows:true,shadowResolution:1024,shadowDistance:35,normalOffsetBias:.07});sun.setEulerAngles(48,-30,0);app.root.addChild(sun);
 shape('box',0,-.4,0,44,.8,44,'ground');shape('box',0,.015,0,5,.08,35,'path');shape('box',0,.02,0,32,.08,4,'path');shape('cylinder',0,.08,0,9,.15,9,'path');
 const obstacles=[];
 function house(x,z,w,d,tone){shape('box',x,1.65,z,w,3.3,d,tone);shape('box',x,3.4,z,w+.4,.35,d+.4,'ink');shape('box',x,.9,z+d/2+.03,.8,1.8,.12,'ink');for(let side of [-1,1])shape('box',x+side*w*.29,1.9,z+d/2+.08,.65,.85,.12,mat('#edce8a',.35));obstacles.push({x,z,w:w/2+.4,d:d/2+.4});}
@@ -42,8 +61,9 @@ for(let i=0;i<55;i++){let x=Math.sin(i*7.3)*19,z=Math.cos(i*4.7)*19;if(Math.abs(
 for(const x of [-4,4]){shape('box',x,.65,3,1.8,.16,.6,'cream');for(const dx of [-.65,.65])shape('box',x+dx,.3,3,.12,.6,.45,'ink');}
 const chapter=buildUnfinishedStreet({pc,app,shape,mat,obstacles});
 const neighborhood=buildNeighborhood({pc,app,shape,mat,obstacles});
-const saveKey='egor-neighborhood-0441';
-let saved={};try{const raw=JSON.parse(localStorage.getItem(saveKey)||'{}');if(raw&&typeof raw==='object'&&!Array.isArray(raw))saved=raw;}catch{}
+const terrain=buildLandscape({pc,app,shape,mat,obstacles});
+const frontier=buildFrontier({pc,app,shape,mat,obstacles});
+const saved=store.state.neighborhood;
 const activities=neighborhood.activities;
 for(const a of activities){a.stage=Number.isFinite(saved[a.id])?Math.max(0,Math.min(a.steps.length,Math.floor(saved[a.id]))):0;}
 const stages=()=>Object.fromEntries(activities.map(a=>[a.id,a.stage]));
@@ -52,7 +72,8 @@ const state=neighborhood.normalize(saved,stages());
 for(const a of activities){if(a.id.startsWith('find-'))a.stage=Number(state.found.includes(a.id.slice(5)));a.apply(a.stage);}
 state.built.forEach(id=>neighborhood.build(id));neighborhood.setPalette(state.palette);
 let homeSeen=saved.homeSeen===true,storageOK=true;
-function saveProgress(){try{localStorage.setItem(saveKey,JSON.stringify({...stages(),...Object.fromEntries(spots.map((s,i)=>['light'+i,!!s.lit])),...state,homeSeen,version:1}));storageOK=true;}catch{storageOK=false;caption('Storage unavailable. Progress will last for this visit.');}}
+function saveProgress(){store.patch({neighborhood:{...stages(),...Object.fromEntries(spots.map((s,i)=>['light'+i,!!s.lit])),...state,homeSeen,delivery:delivery?.state||saved.delivery}});}
+function savePosition(){if(!started||!savingEnabled)return;const pos=garage.savePoint();store.patch({position:{x:pos.x,y:pos.y,z:pos.z,yaw,pitch,parachute:walker.parachute||!!glide?.lifting()},drive:garage.snapshot(),weather:weather?.snapshot(),adventure:adventure?.snapshot(),riding:riding?.snapshot(),trails:trails?.snapshot()});}
 const player=new pc.Entity('temporary-blue-traveler');app.root.addChild(player);player.setPosition(0,0,11.5);
 shape('capsule',0,.72,0,.6,.95,.5,'blue',player);shape('sphere',0,1.38,0,.72,.65,.65,'blue',player);shape('sphere',-.14,1.43,-.29,.09,.07,.06,'ink',player);shape('sphere',.14,1.43,-.29,.09,.07,.06,'ink',player);const feet=[shape('box',-.17,.17,0,.23,.25,.45,'ink',player),shape('box',.17,.17,0,.23,.25,.45,'ink',player)];
 // A first-person guest: keep the old traveler only as an invisible position anchor.
@@ -68,8 +89,8 @@ function caption(text){$('caption').textContent=text;clearTimeout(captionTimer);
 function chime(){if(!sound)return;context??=new (window.AudioContext||window.webkitAudioContext)();context.resume();[0,4,7].forEach((n,i)=>{let o=context.createOscillator(),g=context.createGain(),t=context.currentTime+i*.12;o.type='sine';o.frequency.value=330*Math.pow(2,n/12);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.05,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+1);o.connect(g);g.connect(context.destination);o.start(t);o.stop(t+1.1);});}
 const threads=[];
 function thread(a,b){const from=new pc.Vec3(a.x,.18,a.z),to=new pc.Vec3(b.x,.18,b.z),mid=from.clone().add(to).mulScalar(.5),e=shape('box',mid.x,mid.y,mid.z,.055,.055,from.distance(to),mat('#83e0ed',.7));e.lookAt(to);threads.push(e);}
-let experience,garage;
-function connect(){if(!started||paused)return;if(garage?.interact())return;if(!near)return;if(near.steps){if(near.stage>=near.steps.length)return;near.stage++;experience.signal('interact');near.apply(near.stage);if(near.id.startsWith('find-'))state.found.push(near.id.slice(5));neighborhood.setPalette(state.palette);caption(near.stage===near.steps.length?near.finish:`${near.name}: ${near.steps[near.stage]}. Press E when ready.`);saveProgress();chime();return;}if(near.lit)return;const s=near;s.lit=true;experience.signal('interact');chapter.activate(spots.indexOf(s));count++;s.glow.diffuse=new pc.Color().fromString('#ffda82');s.glow.emissive=new pc.Color(.9,.58,.2);s.glow.update();ripple(s);s.halo.render.material=materials.gold;thread(last||{x:0,z:14},s);last=s;chime();caption(s.line);saveProgress();updateLights();}
+let experience,garage,delivery,journey,shell,atlas,weather,adventure,riding,trails,glide;
+function connect(){if(!started||paused)return;if(riding?.isRiding()){riding.interact(yaw);return;}if(glide?.interact())return;if(trails?.interact())return;if(riding?.interact(yaw))return;if(adventure?.interact())return;if(journey?.interact())return;if(delivery?.interact())return;if(garage?.interact())return;if(!near)return;if(near.steps){if(near.stage>=near.steps.length)return;near.stage++;experience.signal('interact');near.apply(near.stage);if(near.id.startsWith('find-'))state.found.push(near.id.slice(5));neighborhood.setPalette(state.palette);caption(near.stage===near.steps.length?near.finish:`${near.name}: ${near.steps[near.stage]}. Press E when ready.`);saveProgress();chime();return;}if(near.lit)return;const s=near;s.lit=true;experience.signal('interact');chapter.activate(spots.indexOf(s));count++;s.glow.diffuse=new pc.Color().fromString('#ffda82');s.glow.emissive=new pc.Color(.9,.58,.2);s.glow.update();ripple(s);s.halo.render.material=materials.gold;thread(last||{x:0,z:14},s);last=s;chime();caption(s.line);saveProgress();updateLights();}
 function updateLights(){
  $('progress').setAttribute('aria-label',`${count} of 3 lights connected`);$('progress').textContent='● '.repeat(count)+'○ '.repeat(3-count);
  $('hint').textContent=`${count} of 3 lights connected. Explore north; J opens your notebook.`;
@@ -82,7 +103,7 @@ if(count<3)homeSeen=false;else if(homeSeen)thread(last,{x:0,z:14});updateLights(
 const journal=$('journal');let destination=null,journalWasPaused=false;
 function renderJournal(){
  $('journal-summary').textContent=`${state.found.length}/9 discoveries · ${state.built.length}/8 projects · ${activities.filter(a=>!a.id.startsWith('find-')&&a.stage===a.steps.length).length}/5 places completed`;
- $('save-status').textContent=storageOK?'Saved on this browser only. Clearing browser data erases progress.':'Storage unavailable — progress lasts only for this visit.';
+ $('save-status').textContent=store.status+'. Download a backup from Menu.';
  $('journal-places').innerHTML=activities.map((a,i)=>`<button data-destination="${i}">${a.name}<small>${a.stage}/${a.steps.length} · ${a.stage===a.steps.length?'Complete':'Follow this place'}</small></button>`).join('');
  $('journal-projects').innerHTML=neighborhood.commissions.map(c=>{const needs=neighborhood.missing(c,state,stages()),built=state.built.includes(c.id);return `<article><h3>${c.title}</h3><p>${c.reward}</p><p>${built?'Completed':needs.length?needs.join(' · '):'Ready to build'}</p><button data-build="${c.id}" ${built||needs.length?'disabled':''}>${built?'Built':'Build project'}</button></article>`;}).join('');
  for(const button of journal.querySelectorAll('[data-palette]'))button.setAttribute('aria-pressed',String(button.dataset.palette===state.palette));
@@ -92,32 +113,32 @@ journal.onclick=e=>{const button=e.target.closest('button');if(!button)return;
  if(button.dataset.build){const c=neighborhood.commissions.find(c=>c.id===button.dataset.build);if(!c||state.built.includes(c.id)||neighborhood.missing(c,state,stages()).length)return;state.built.push(c.id);neighborhood.build(c.id);saveProgress();renderJournal();$('journal-summary').focus();return;}
  if(button.dataset.palette){state.palette=button.dataset.palette;neighborhood.setPalette(state.palette);saveProgress();renderJournal();return;}
  if(button.dataset.destination!==undefined)destination=activities[Number(button.dataset.destination)];
- else if(button.id==='safe-home'){garage.home();player.setPosition(0,0,11.5);yaw=pitch=0;destination=null;}
+ else if(button.id==='safe-home'){if(!riding?.home()||!garage.home())return;glide?.cancel();trails?.cancel();player.setPosition(0,0,11.5);yaw=pitch=0;destination=null;}
  else if(button.id!=='close-journal')return;
  closeJournal();
 };
 journal.addEventListener('cancel',e=>{e.preventDefault();closeJournal();});
 function toggleJournal(){if(!started||!$('ending').hidden||experience?.blocked()||garage?.blocked())return;if(journal.open){closeJournal();return;}journalWasPaused=paused;setPaused(true);renderJournal();journal.showModal();$('close-journal').focus();experience.signal('notebook');}
 $('journal-button').onclick=toggleJournal;
-function setPaused(value){if(!started||!$('ending').hidden)return;paused=value;clearInput();$('pause').textContent=paused?'Resume':'Pause';document.body.classList.toggle('paused',paused);if(paused){$('connect').hidden=true;caption('Take your time. The world can wait.');}}
+function setPaused(value){if(!started||!$('ending').hidden)return;paused=value;music?.pause(paused);app.autoRender=!paused&&!contextLost;app.renderNextFrame=true;clearInput();$('pause').textContent=paused?'Resume':'Pause';document.body.classList.toggle('paused',paused);if(paused)savePosition();if(paused&&document.pointerLockElement)document.exitPointerLock();if(paused){$('connect').hidden=true;caption('Take your time. The world can wait.');}}
 function togglePause(){setPaused(!paused);experience.signal('pause');}
 $('pause').onclick=togglePause;
 let entrance=-1,entranceFrame=performance.now(),yaw=0,pitch=0,ax=0,az=0,vx=0,vz=0,running=false;
 // Arrival uses visible elapsed time, not the physics timestep capped for safety.
 document.addEventListener('visibilitychange',()=>{entranceFrame=performance.now();});
-function clearInput(){keys.clear();ax=az=vx=vz=0;running=false;$('run').setAttribute('aria-pressed','false');garage?.clearInput();stickPointer=null;lookPointer=null;$('thumb').style.transform='translate(-50%,-50%)';}
-function finishEntrance(){entrance=-1;started=true;player.setPosition(0,0,11.5);$('arrival').hidden=true;$('skip').hidden=true;for(const id of ['hud','guide','pause','touch','look','reticle','run'])$(id).hidden=false;caption('Follow the ink. Leave something kind behind.');$('world').focus();experience.start();}
+function clearInput(){keys.clear();jumpHeld=false;jumpRequest=false;if(walker){walker.vx=walker.vz=0;}ax=az=vx=vz=0;running=false;$('run').setAttribute('aria-pressed','false');garage?.clearInput();riding?.clearInput();stickPointer=null;lookPointer=null;$('thumb').style.transform='translate(-50%,-50%)';}
+function finishEntrance(){entrance=-1;started=true;app.autoRender=true;document.body.classList.add('playing');const pos=store.state.position;if(clearWalk(pos.x,pos.z))player.setPosition(pos.x,Math.max(groundHeight(pos.x,pos.z),pos.y),pos.z);else player.setPosition(0,0,11.5);yaw=pos.yaw;pitch=pos.pitch||0;walker=createWalker(player.getPosition().x,player.getPosition().z,groundHeight);walker.y=player.getPosition().y;walker.grounded=walker.y<=groundHeight(walker.x,walker.z)+.01;if(pos.parachute&&!walker.grounded)deployParachute(walker);$('arrival').hidden=true;$('skip').hidden=true;for(const id of ['hud','guide','pause','touch','look','reticle','run'])$(id).hidden=false;caption('Your world, your pace. Read the letter at home, or explore.');$('world').focus();experience.start();}
 $('skip').onclick=finishEntrance;
-$('enter').onclick=()=>{$('entry').hidden=true;if($('reduced').checked){finishEntrance();return;}entrance=0;entranceFrame=performance.now();$('arrival').hidden=false;$('skip').hidden=false;};
+$('enter').onclick=()=>{music.start();$('entry').hidden=true;finishEntrance();store.flush();};
 $('stay').onclick=()=>{$('ending').close();$('ending').hidden=true;setPaused(false);$('world').focus();};
 $('ending').addEventListener('cancel',e=>{e.preventDefault();$('stay').click();});
-$('restart').onclick=()=>{if(!confirm('Erase saved progress and start again?'))return;try{localStorage.removeItem(saveKey);}catch{}location.reload();};
+$('restart').onclick=async()=>{if(!confirm('Erase EGORVERSE progress on this device and start again?'))return;savingEnabled=false;await store.replace({});location.reload();};
 $('sound').onclick=()=>{sound=!sound;$('sound').textContent=sound?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',sound);if(sound)chime();};
 // Clipboard sharing disabled in this staging game.
 const movement=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d','Shift','Space'];
 const controlKey=e=>{const action=Object.entries(experience.settings().keys).find(([,code])=>code===e.code)?.[0];return ({forward:'w',back:'s',left:'a',right:'d',run:'Shift',interact:'e',notebook:'j'})[action]||e.code;};
 window.addEventListener('keydown',e=>{
- if(!started||!$('ending').hidden||experience.blocked()||garage.blocked())return;
+ if(!started||!$('ending').hidden||experience.blocked()||garage.blocked()||journey?.blocked()||shell?.blocked()||atlas?.blocked()||adventure?.blocked()||trails?.blocked())return;
  if(e.target?.matches?.('input,textarea,select,[contenteditable="true"]')||e.ctrlKey||e.altKey||e.metaKey)return;
  const k=controlKey(e);
  if(k==='j'&&!e.repeat){e.preventDefault();toggleJournal();return;}
@@ -125,7 +146,9 @@ window.addEventListener('keydown',e=>{
  if(paused||journal.open)return;
  const uiFocus=['BUTTON','INPUT','SUMMARY','A'].includes(document.activeElement.tagName);
  if(movement.includes(k)&&!(k==='Space'&&uiFocus)){e.preventDefault();keys.add(k);}
- if((k==='e'||(k==='Space'&&!garage.isDriving()&&!uiFocus))&&!e.repeat){e.preventDefault();connect();}
+ if(k==='Space'&&!garage.isDriving()&&!riding?.isRiding()&&!uiFocus&&!e.repeat)jump();
+ if(k==='KeyR'&&!e.repeat){e.preventDefault();adventure?.reload();}if(k==='KeyF'&&!e.repeat)adventure?.light();if(k==='Digit1')adventure?.equip(0);if(k==='Digit2')adventure?.equip(1);if(k==='Digit3')adventure?.equip(2);if(k==='Digit4')adventure?.equip(3);if(k==='KeyC'&&!e.repeat)adventure?.toggleCrouch();
+ if(k==='e'&&!e.repeat){e.preventDefault();if(glide?.lifting()){glide.cancel();}else if(!garage.isDriving()&&!riding?.isRiding()&&deployParachute(walker))caption(walker.parachute?'Parachute deployed':'Parachute folded');else connect();}
 });
 window.addEventListener('keyup',e=>keys.delete(controlKey(e)));
 window.addEventListener('blur',()=>{keys.clear();if(started)setPaused(true);});document.addEventListener('visibilitychange',()=>{if(document.hidden&&started)setPaused(true);});
@@ -135,22 +158,58 @@ function moveStick(e){const r=stick.getBoundingClientRect(),dx=e.clientX-r.left-
 stick.onpointerdown=e=>{if(paused||!started||stickPointer!==null)return;e.preventDefault();stickPointer=e.pointerId;stick.setPointerCapture(e.pointerId);moveStick(e);};
 stick.onpointermove=e=>{if(e.pointerId===stickPointer)moveStick(e);};
 stick.onpointerup=stick.onpointercancel=stick.onlostpointercapture=e=>{if(e.pointerId!==stickPointer)return;stickPointer=null;ax=az=0;$('thumb').style.transform='translate(-50%,-50%)';};
-for(const area of [$('look'),$('world')]){area.onpointerdown=e=>{if(!started||paused||lookPointer!==null)return;lookPointer=e.pointerId;lx=e.clientX;ly=e.clientY;area.setPointerCapture(e.pointerId);};area.onpointermove=e=>{if(e.pointerId!==lookPointer||paused)return;const sensitivity=Number($('sensitivity').value)*.18;experience.signal('look',Math.abs(e.clientX-lx)*sensitivity);yaw-=(e.clientX-lx)*sensitivity;pitch=Math.max(-65,Math.min(65,pitch-(e.clientY-ly)*sensitivity));lx=e.clientX;ly=e.clientY;};area.onpointerup=area.onpointercancel=area.onlostpointercapture=e=>{if(e.pointerId===lookPointer)lookPointer=null;};}
+for(const area of [$('look'),$('world')]){area.onpointerdown=e=>{if(!started||paused||lookPointer!==null)return;lookPointer=e.pointerId;lx=e.clientX;ly=e.clientY;area.setPointerCapture(e.pointerId);};area.onpointermove=e=>{if(e.pointerId!==lookPointer||paused)return;const sensitivity=Number($('sensitivity').value)*.18*(adventure?.aiming()?.65:1);experience.signal('look',Math.abs(e.clientX-lx)*sensitivity);yaw-=(e.clientX-lx)*sensitivity;pitch=Math.max(-65,Math.min(65,pitch-(e.clientY-ly)*sensitivity));lx=e.clientX;ly=e.clientY;};area.onpointerup=area.onpointercancel=area.onlostpointercapture=e=>{if(e.pointerId===lookPointer)lookPointer=null;};}
 $('run').onclick=()=>{running=!running;$('run').setAttribute('aria-pressed',String(running));};
-window.addEventListener('resize',clearInput);
-function clearWalk(x,z){return ((x>-39&&x<39&&z>-58&&z<19)||(x>=36&&x<107&&z>-55&&z<19))&&!obstacles.some(o=>Math.abs(x-o.x)<o.w&&Math.abs(z-o.z)<o.d);}
+
+function clearWalk(x,z){return x>WORLD_BOUNDS.minX+1&&x<WORLD_BOUNDS.maxX-1&&z>WORLD_BOUNDS.minZ+1&&z<WORLD_BOUNDS.maxZ-1&&!garage?.blocks(x,z)&&!obstacles.some(o=>Math.abs(x-o.x)<o.w+.28&&Math.abs(z-o.z)<o.d+.28);}
 experience=setupExperience({pause:setPaused,isPaused:()=>paused,focusWorld:()=>$('world').focus()});experience.init();
-garage=setupGarage({pc,app,shape,mat,obstacles,player,camera,clearWalk,pause:setPaused,isPaused:()=>paused,focusWorld:()=>$('world').focus(),resetInput:clearInput,caption,isStarted:()=>started});
+garage=setupGarage({pc,app,shape,mat,obstacles,player,camera,clearWalk,pause:setPaused,isPaused:()=>paused,focusWorld:()=>$('world').focus(),resetInput:clearInput,caption,isStarted:()=>started&&!riding?.isRiding(),store,damageEnabled:()=>MODES[store.state.profile.mode].damage});
+riding=setupRiding({pc,app,shape,mat,obstacles,player,camera,store,active:()=>started&&!paused&&!garage.incapacitated(),carDriving:()=>garage.isDriving(),carObstacle:()=>{const c=garage.snapshot().car,a=Math.abs(Math.cos(c.yaw)),b=Math.abs(Math.sin(c.yaw));return {x:c.x,z:c.z,w:1.16*a+2.55*b,d:2.55*a+1.16*b};},clearWalk,caption,resetInput:clearInput});
+delivery=setupDelivery({pc,app,player:()=>player.getPosition(),isDriving:()=>garage.isDriving()||riding.isRiding(),isBlocked:()=>!started||paused||garage.incapacitated()||garage.blocked()||experience.blocked()||!$('ending').hidden,getLang:()=>$('garage-ui').lang,saved:saved.delivery,onSave:saveProgress,toast:caption});
+journey=setupJourney({store,player:()=>player.getPosition(),active:()=>started&&!paused&&!garage.isDriving()&&!riding.isRiding(),caption,shape,mat,app,pc,pause:()=>setPaused(true),resume:()=>setPaused(false)});
+shell=setupShell({store,pause:()=>setPaused(true),resume:()=>setPaused(false),isStarted:()=>started,savePosition,freezeSave:()=>{savingEnabled=false;},settings:quality=>{app.graphicsDevice.maxPixelRatio=quality==='low'?1:Math.min(devicePixelRatio,quality==='high'?2:1.5);sun.light.castShadows=quality!=='low';app.resizeCanvas();}});
+atlas=setupAtlas({player,clearWalk,garage:{...garage,isDriving:()=>garage.isDriving()||riding.isRiding()},delivery,pause:()=>setPaused(true),resume:()=>setPaused(false),reset:()=>{glide?.cancel();trails?.cancel();clearInput();},save:savePosition,caption,isStarted:()=>started});
+let walker=createWalker(0,11.5,groundHeight),jumpHeld=false,jumpRequest=false;function jump(){jumpRequest=true;}
+$('jump').onpointerdown=e=>{e.preventDefault();jumpHeld=true;jumpRequest=true;$('jump').setPointerCapture(e.pointerId);};
+$('jump').onpointerup=$('jump').onpointercancel=$('jump').onlostpointercapture=()=>{jumpHeld=false;};
+$('jump').onclick=e=>{if(e.detail===0)jump();};
+music=setupSoundtrack({enabled:store.state.profile.music,volume:store.state.profile.volume,onStatus:(name,bpm)=>{$('music-track').textContent=name+(bpm?' / '+bpm+' BPM':'');}});
+weather=setupWeather({pc,app,camera,sun,shape,mat,store,terrain,player:()=>player.getPosition(),driving:()=>garage.isDriving(),reduced:()=>$('reduced').checked});
+setupAccount({store,save:savePosition,freeze:()=>{savingEnabled=false;},pause:()=>setPaused(true)});
+trails=setupTrails({shape,mat,store,player,mode:()=>garage.isDriving()?'car':riding.kind()||'foot',active:()=>started&&!paused,pause:()=>setPaused(true),resume:()=>setPaused(false),caption});
+adventure=setupAdventure({pc,app,camera,player,shape,mat,store,active:()=>started&&!paused&&!garage.incapacitated(),driving:()=>garage.isDriving()||riding.isRiding(),clearWalk,pause:()=>setPaused(true),resume:()=>setPaused(false),caption,parachute:()=>deployParachute(walker),motion:()=>({speed:Math.hypot(walker.vx,walker.vz),grounded:walker.grounded}),reduced:()=>experience.settings().reduced});
+glide=setupGlideStations({shape,mat,player,walker:()=>walker,active:()=>started&&!paused&&!garage.isDriving()&&!riding.isRiding(),caption,store,resetInput:clearInput});
+const canopy=setupCanopy({pc,camera,shape,mat});
+setupLanguage({store});
+document.body.dataset.input=store.state.profile.input;$('input-mode').value=store.state.profile.input;$('input-mode').onchange=e=>{document.body.dataset.input=e.target.value;store.patch({profile:{...store.state.profile,input:e.target.value}});clearInput();};
+$('music-enabled').checked=store.state.profile.music;$('music-volume').value=store.state.profile.volume;
+function musicSettings(){store.patch({profile:{...store.state.profile,music:$('music-enabled').checked,volume:Number($('music-volume').value)}});music.configure(store.state.profile.music,store.state.profile.volume);}
+$('music-enabled').onchange=$('music-volume').oninput=musicSettings;
+document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==$('world')||paused||!started)return;const sense=Number($('sensitivity').value)*.15*(adventure?.aiming()?.65:1);yaw-=e.movementX*sense;pitch=Math.max(-65,Math.min(65,pitch-e.movementY*sense));});
+document.addEventListener('pointerlockchange',()=>{if(!document.pointerLockElement&&started)setPaused(true);});
+let saveClock=0;
+window.addEventListener('pagehide',()=>{savePosition();app.autoRender=false;});
 camera.setPosition(0,1.65,15.8);camera.setEulerAngles(0,0,0);
-app.on('update',dt=>{dt=Math.min(dt,.04);time+=dt;const p=player.getPosition();garage.update(dt,{throttle:Number(keys.has('w')||keys.has('ArrowUp'))-Number(keys.has('s')||keys.has('ArrowDown'))-az,steer:Number(keys.has('d')||keys.has('ArrowRight'))-Number(keys.has('a')||keys.has('ArrowLeft'))+ax,brake:keys.has('Space')});if(started&&!paused&&!garage.isDriving()){let dx=Number(keys.has('d'))-Number(keys.has('a'))+ax,dz=Number(keys.has('s')||keys.has('ArrowDown'))-Number(keys.has('w')||keys.has('ArrowUp'))+az;yaw+=(Number(keys.has('ArrowLeft'))-Number(keys.has('ArrowRight')))*dt*90;experience.signal('look',Math.abs(Number(keys.has('ArrowLeft'))-Number(keys.has('ArrowRight')))*dt*90);const len=Math.max(1,Math.hypot(dx,dz)),speed=(keys.has('Shift')||running?4.6:2.7),r=yaw*Math.PI/180,tx=(dx*Math.cos(r)+dz*Math.sin(r))/len*speed,tz=(-dx*Math.sin(r)+dz*Math.cos(r))/len*speed,blend=1-Math.exp(-dt*12);vx+=(tx-vx)*blend;vz+=(tz-vz)*blend;const clear=clearWalk;let x=p.x,z=p.z;if(clear(x+vx*dt,z))x+=vx*dt;else vx=0;if(clear(x,z+vz*dt))z+=vz*dt;else vz=0;const distance=Math.hypot(x-p.x,z-p.z);experience.signal('move',distance);if(keys.has('Shift')||running)experience.signal('run',distance);player.setPosition(x,0,z);
+const perf=setupPerformance({app,profile:()=>store.state.profile,resize:()=>resize(),output:$('performance-readout')});
+app.on('update',dt=>{perf.tick(performance.now(),started&&!paused&&!document.hidden&&!contextLost);dt=Math.min(dt,.1);time+=dt;journey.update();if(!paused)frontier.update(time);if(started&&!paused){saveClock+=dt;if(saveClock>2){saveClock=0;savePosition();}}const p=player.getPosition();garage.update(dt,{throttle:Number(keys.has('w')||keys.has('ArrowUp'))-Number(keys.has('s')||keys.has('ArrowDown'))-az,steer:Number(keys.has('d')||keys.has('ArrowRight'))-Number(keys.has('a')||keys.has('ArrowLeft'))+ax,brake:keys.has('Space'),grip:weather?.grip()||1});riding.update(dt,{throttle:Number(keys.has('w')||keys.has('ArrowUp'))-Number(keys.has('s')||keys.has('ArrowDown'))-az,steer:Number(keys.has('d')||keys.has('ArrowRight'))-Number(keys.has('a')||keys.has('ArrowLeft'))+ax,brake:keys.has('Space'),run:keys.has('Shift')||running,grip:weather?.grip()||1},yaw);if(started&&!paused&&!garage.isDriving()&&!riding.isRiding()&&!glide.lifting()&&!garage.incapacitated()){let dx=Number(keys.has('d'))-Number(keys.has('a'))+ax,dz=Number(keys.has('s')||keys.has('ArrowDown'))-Number(keys.has('w')||keys.has('ArrowUp'))+az;yaw+=(Number(keys.has('ArrowLeft'))-Number(keys.has('ArrowRight')))*dt*90;experience.signal('look',Math.abs(Number(keys.has('ArrowLeft'))-Number(keys.has('ArrowRight')))*dt*90);if(Math.hypot(walker.x-p.x,walker.z-p.z)>.001)walker=createWalker(p.x,p.z,groundHeight);
+const r=yaw*Math.PI/180;stepWalker(walker,{x:dx*Math.cos(r)+dz*Math.sin(r),z:-dx*Math.sin(r)+dz*Math.cos(r),run:keys.has('Shift')||running,jump:keys.has('Space')||jumpHeld,jumpPressed:jumpRequest,scale:garage.movementScale()*(adventure?.aiming()?.7:1),crouch:adventure?.crouching(),brake:keys.has('Space'),forwardX:-Math.sin(r),forwardZ:-Math.cos(r)},dt,{clear:clearWalk,height:groundHeight});jumpRequest=false;
+const distance=Math.hypot(walker.x-p.x,walker.z-p.z);experience.signal('move',distance);if(keys.has('Shift')||running)experience.signal('run',distance);player.setPosition(walker.x,walker.y,walker.z);$('hop-status').hidden=walker.chain<2&&!walker.parachute;$('hop-status').textContent=(walker.parachute?'PARACHUTE / ':'BHOP ')+walker.chain+' / '+Math.round(Math.hypot(walker.vx,walker.vz)*3.6)+' KM/H'+(walker.parachute?' / '+Math.round(walker.y-groundHeight(walker.x,walker.z))+' m / '+Math.abs(walker.vy).toFixed(1)+' m/s':'');
+
 near=[...spots.filter(s=>!s.lit),...activities.filter(a=>a.stage<a.steps.length)].sort((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)-Math.hypot(b.x-p.x,b.z-p.z))[0];if(near&&Math.hypot(near.x-p.x,near.z-p.z)>2)near=null;$('connect').hidden=!near;if(near)$('connect').textContent=`${near.steps?near.steps[near.stage]:near.action} · ${experience.key('interact')}`;
 $('place').textContent=near?near.name:Math.hypot(p.x,p.z-14)<3?'The way home':p.z<-3?'Window Lane':p.x<-3?'The little garden':'Blue-thread Square';
-if(destination){const dx=destination.x-p.x,dz=destination.z-p.z,angle=(Math.atan2(-dx,-dz)*180/Math.PI-yaw+540)%360-180;$('place').textContent=`${destination.name} · ${Math.round(Math.hypot(dx,dz))} m · ${Math.abs(angle)<25?'Ahead':angle>0?'Turn left':'Turn right'}`;}else if(p.z<-18){$('place').textContent='The living neighborhood · J to choose a place';}
+if(p.z<-170)$('place').textContent='Cloudrest highlands';else if(p.x>120)$('place').textContent='East country road';
+if(destination){const dx=destination.x-p.x,dz=destination.z-p.z,angle=(Math.atan2(-dx,-dz)*180/Math.PI-yaw+540)%360-180;$('place').textContent=`${destination.name} · ${Math.round(Math.hypot(dx,dz))} m · ${Math.abs(angle)<25?'Ahead':angle>0?'Turn left':'Turn right'}`;}else if(p.z<-170){$('place').textContent='Cloudrest highlands';}else if(p.x>120){$('place').textContent='East country road';}else if(p.z<-82){$('place').textContent='The remembering woods';}else if(p.z<-58){$('place').textContent='TON Blockchain Tower / Public archive';}else if(p.z<-18){$('place').textContent='The living neighborhood · J to choose a place';}
 if(done&&Math.hypot(p.x,p.z-13)<2){done=false;homeSeen=true;saveProgress();thread(last,{x:0,z:14});setPaused(true);$('ending').hidden=false;$('ending').showModal();$('stay').focus();$('objective').textContent='A little more like home.';$('hint').textContent='Head north. Five places and eight linked projects await.';chime();}}
 if(!paused){for(const m of motes){const a=m.phase+time*.08;m.entity.setPosition(Math.sin(a)*12,1.2+Math.sin(a*2+time*.3)*.7,Math.cos(m.phase+time*.05)*12);m.entity.enabled=!$('reduced').checked;}for(let i=ripples.length-1;i>=0;i--){const r=ripples[i];r.age+=dt;r.e.setLocalScale(1+r.age*3,.025,1+r.age*3);if(r.age>.65){r.e.destroy();ripples.splice(i,1);}}}
-app.scene.ambientLight.set(.52+count*.035,.63+count*.018,.71);
-if(entrance>=0&&!document.hidden){const now=performance.now();entrance+=(now-entranceFrame)/1000;entranceFrame=now;const t=Math.min(1,entrance/3.8),ease=t*t*(3-2*t);camera.setPosition(0,1.65,15.8-ease*4.3);$('arrival').style.opacity=String(1-t);if(t===1)finishEntrance();}else if(started){if(garage.isDriving())garage.updateCamera();else{camera.setPosition(p.x,1.65,p.z);camera.setEulerAngles(pitch,yaw,0);}}
+glide.update(dt);trails.update(dt);canopy.update(walker,started&&!paused&&!garage.isDriving()&&!riding.isRiding(),store.state.profile.language==='fa');adventure.update(dt);weather.update(dt,started&&!paused&&!document.hidden&&!contextLost);music.update({driving:garage.isDriving()||riding.isRiding(),speed:riding.isRiding()?riding.speed():garage.speed(),forest:p.z<-82,danger:garage.danger()||weather.storm()||adventure.danger(),horror:adventure.horror(),parachute:walker.parachute,weather:weather.snapshot().type,chain:walker.chain});
+if(entrance>=0&&!document.hidden){const now=performance.now();entrance+=(now-entranceFrame)/1000;entranceFrame=now;const t=Math.min(1,entrance/3.8),ease=t*t*(3-2*t);camera.setPosition(0,1.65,15.8-ease*4.3);$('arrival').style.opacity=String(1-t);if(t===1)finishEntrance();}else if(started){if(garage.isDriving())garage.updateCamera(yaw,pitch);else if(riding.isRiding())riding.updateCamera(yaw,pitch,experience.settings().reduced);else{const kick=adventure.view();camera.camera.fov=adventure.aiming()?63:68;camera.setPosition(p.x,(adventure.crouching()?1.1:1.65)+p.y,p.z);camera.setEulerAngles(pitch+kick.pitch,yaw+kick.yaw,0);}}
 });
-window.addEventListener('resize',()=>app.resizeCanvas());$('world').addEventListener('webglcontextlost',e=>{e.preventDefault();setPaused(true);caption('The graphics context was lost. Reload to reopen the doorway.');});
-app.start();$('enter').disabled=false;$('enter').textContent='Open the door →';$('load').textContent='A growing local neighborhood. Progress saves on this browser. J opens places.';
+let resizeFrame=0;function resize(){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(contextLost)return;const w=Math.max(1,window.innerWidth),h=Math.max(1,window.innerHeight);app.resizeCanvas(w,h);app.render();app.renderNextFrame=true;});}
+window.addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);window.addEventListener('orientationchange',()=>{clearInput();resize();});resize();
+$('world').addEventListener('webglcontextlost',e=>{e.preventDefault();contextLost=true;savePosition();setPaused(true);$('recovery-panel').hidden=false;$('recovery-copy').textContent='Restoring the view';});
+$('world').addEventListener('webglcontextrestored',()=>{contextLost=false;resize();app.renderNextFrame=true;$('recovery-copy').textContent='The view is ready';$('recovery-resume').hidden=false;});
+$('graphics-check').onclick=()=>{const extension=app.graphicsDevice.gl?.getExtension('WEBGL_lose_context');if(!extension){$('graphics-status').textContent='This browser does not expose the recovery test';return;}savePosition();$('control-settings').close();setPaused(false);extension.loseContext();setTimeout(()=>{try{extension.restoreContext();}catch{$('recovery-copy').textContent='Use Reload safely to restore the view';}},800);};
+$('recovery-resume').onclick=()=>{$('recovery-panel').hidden=true;setPaused(false);};$('recovery-reload').onclick=()=>{savePosition();location.reload();};
+
+app.autoRender=false;app.renderNextFrame=true;app.start();$('enter').disabled=false;$('enter').textContent=store.state.updated?'Continue your world →':'Enter the world →';$('load').textContent='Ready. Your progress stays on this device.';
 }

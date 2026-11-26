@@ -1,0 +1,30 @@
+/* Staging UI themes; 3D scene lighting is independent of this preference. */
+:root { color-scheme: light; }
+html[data-theme="night"] { color-scheme: dark; }
+#load-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 18px 0; }
+#load-actions a { display: inline-flex; align-items: center; min-height: 46px; padding: 12px; }
+#enter:disabled { cursor: not-allowed; }
+html[data-theme="paper"] #entry,
+html[data-theme="paper"] #ending { color: #203340; background: linear-gradient(110deg,#f7f2e5,#d9e5e2); }
+html[data-theme="paper"] .entry-copy p,
+html[data-theme="paper"] .entry-copy details { color: #405660; }
+html[data-theme="paper"] .entry-copy .eyebrow { color: #46616b; }
+html[data-theme="paper"] .door-art > span { color: #34515e; }
+html[data-theme="paper"] #control-settings,
+html[data-theme="paper"] #garage-dialog,
+html[data-theme="paper"] #coach { background: #f5f1e5; color: #223b49; border-color: #849da5; }
+html[data-theme="paper"] #control-settings p,
+html[data-theme="paper"] #garage-dialog p,
+html[data-theme="paper"] #coach p { color: #334e5a; }
+html[data-theme="paper"] #control-settings button,
+html[data-theme="paper"] #garage-dialog button,
+html[data-theme="paper"] #coach button,
+html[data-theme="paper"] #load-retry { color: #f7f0dd; background: #173d60; }
+html[data-theme="paper"] select { color: #203b4a; background: #fffdf6; border-color: #849da5; }
+html[data-theme="paper"] #entry input,
+html[data-theme="paper"] #control-settings input,
+html[data-theme="paper"] #coach-meter { accent-color: #245a78; }
+html[data-theme="night"] #entry { background: linear-gradient(110deg,#0c1c2afa,#102b40fa); }
+html[data-theme="night"] #control-settings,
+html[data-theme="night"] #garage-dialog,
+html[data-theme="night"] #coach { background: #102638; }

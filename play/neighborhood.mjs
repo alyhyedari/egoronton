@@ -1,3 +1,4 @@
+import {roadDistance} from './terrain.mjs';
 import { discoveries, commissions, normalize, missing } from './progression.mjs';
 // Original, locally generated neighborhood. No external art assets.
 export function buildNeighborhood({shape,mat,obstacles,pc,app}) {
@@ -16,7 +17,7 @@ export function buildNeighborhood({shape,mat,obstacles,pc,app}) {
  const sculpture=[];for(let i=0;i<7;i++){const e=box(0, .4+i*.45,-35,2-i*.18,.35,2-i*.18,i%2?gold:blue);e.setEulerAngles(0,i*17,0);sculpture.push(e);}
  const cup=shape('cylinder',23,1.12,-26,.35,.4,.35,gold);cup.enabled=false;
  const canvas=box(-23,1.6,-26,2,1.3,.1,cream);
- for(let i=0;i<16;i++){const x=i%2?-35:35,z=14-Math.floor(i/2)*8;shape('cylinder',x,1,z,.25,2,.25,ink);shape('sphere',x,2.8,z,2.5,3,2.5,leaf);}
+ for(let i=0;i<16;i++){const x=i%2?-35:35,z=14-Math.floor(i/2)*8;if(roadDistance(x,z)<5)continue;shape('cylinder',x,1,z,.25,2,.25,ink);shape('sphere',x,2.8,z,2.5,3,2.5,leaf);}
  const activities=[
  {id:'studio',x:-23,z:-24,name:'Open-air atelier',steps:['Choose a blue ground','Add the golden line','Sign your study'],finish:'Your first colour study is now hanging in the atelier.',apply(n){canvas.render.material=n===1?blue:n===2?gold:leaf;}},
  {id:'cafe',x:23,z:-24,name:'The quiet cafe',steps:['Prepare a cup','Brew the coffee','Leave a cup for a guest'],finish:'A warm welcome. A small table, no longer empty.',apply(n){cup.enabled=n>0;cup.setLocalScale(.35,.2+n*.07,.35);}},

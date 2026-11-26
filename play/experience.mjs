@@ -12,7 +12,7 @@ export function normalize(raw={}){
  if(codes.length===7&&new Set(codes).size===7&&codes.every(validCode)&&Object.keys(labels).every(k=>codes.includes(raw.keys[k])))n.keys={...raw.keys};
  return n;
 }
-function validCode(code){return typeof code==='string'&&(/^(Key[A-Z]|Digit[0-9]|ShiftLeft|ShiftRight)$/.test(code));}
+function validCode(code){return !['KeyR','KeyF','KeyC','Digit1','Digit2','Digit3','Digit4'].includes(code)&&typeof code==='string'&&(/^(Key[A-Z]|Digit[0-9]|ShiftLeft|ShiftRight)$/.test(code));}
 export function setupExperience({pause,isPaused,focusWorld}){
  const $=id=>document.getElementById(id);let settings;
  try{settings=normalize(JSON.parse(localStorage.getItem(KEY)||'null'));}catch{settings=normalize();}
@@ -77,7 +77,7 @@ export function setupExperience({pause,isPaused,focusWorld}){
   if(e.key==='Tab')return;
   e.preventDefault();e.stopPropagation();
   if(e.key==='Escape'){capture=null;$('control-status').textContent='Key change cancelled.';return;}
-  if(!validCode(e.code)||e.ctrlKey||e.altKey||e.metaKey){$('control-status').textContent='Choose a letter, number or Shift. Arrows, Space and Escape are reserved.';return;}
+  if(!validCode(e.code)||e.ctrlKey||e.altKey||e.metaKey){$('control-status').textContent='Choose a letter, number or Shift. Arrows, Space, Escape, R, F, 1 and 2 are reserved.';return;}
   if(Object.entries(settings.keys).some(([action,code])=>action!==capture&&code===e.code)){$('control-status').textContent='That key is already in use. Choose another key.';return;}
   const action=capture;settings.keys[action]=e.code;capture=null;apply();persist();dialog.querySelector(`[data-bind="${action}"]`).focus();
  });
@@ -85,5 +85,5 @@ export function setupExperience({pause,isPaused,focusWorld}){
  systemMotion.addEventListener('change',apply);
  window.addEventListener('storage',event=>{if(event.key===null||event.key==='egor-motion'||event.key===KEY){readMotion();apply();}});
  apply();
- return {settings:()=>settings,key,signal,blocked:()=>dialog.open,start:()=>{if($('learn-with-egor').checked)start();},init:()=>{$('learn-with-egor').checked=!completed;}};
+ return {settings:()=>settings,key,signal,blocked:()=>dialog.open,start:()=>{if($('learn-with-egor').checked)start();},init:()=>{$('learn-with-egor').checked=false;}};
 }

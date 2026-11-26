@@ -1,0 +1,3 @@
+/* UX restriction, not DRM. Does not prevent screenshots or source extraction. */
+body, body * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img, a { -webkit-user-drag: none; }
